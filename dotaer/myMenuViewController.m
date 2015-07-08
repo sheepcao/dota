@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.viewDeckController.panningMode = IIViewDeckFullViewPanning;
 
     // Do any additional setup after loading the view from its nib.
 }

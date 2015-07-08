@@ -139,7 +139,7 @@ static const UIViewAnimationOptions DefaultSwipedAnimationCurve = UIViewAnimatio
 
 static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocity)
 {
-    NSTimeInterval animationDuration = pointsToAnimate / fabsf(velocity);
+    NSTimeInterval animationDuration = pointsToAnimate / fabs(velocity);
     // adjust duration for easing curve, if necessary
     if (DefaultSwipedAnimationCurve != UIViewAnimationOptionCurveLinear) animationDuration *= 1.25;
     return animationDuration;
@@ -300,7 +300,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 - (void)commonInitWithCenterViewController:(UIViewController *)centerController
 {
     _elastic = YES;
-    _willAppearShouldArrangeViewsAfterRotation = (UIInterfaceOrientation)UIDeviceOrientationUnknown;
+    _willAppearShouldArrangeViewsAfterRotation = (UIInterfaceOrientation)UIDeviceOrientationPortrait;
     _panningMode = IIViewDeckFullViewPanning;
     _panningCancelsTouchesInView = YES; // let's default to standard IOS behavior.
     _navigationControllerBehavior = IIViewDeckNavigationControllerContained;
@@ -1455,6 +1455,10 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
         } completion:^(BOOL finished) {
             [self enableUserInteraction];
             [self setAccessibilityForCenterTapper]; // update since the frame and the frame's intersection with the window will have changed
+            
+            
+
+            
             
             if (completed) completed(self, YES);
             [self notifyDidOpenSide:side animated:animated];
@@ -3381,6 +3385,8 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
             CAMediaTimingFunction* timingFunction;
             if ([self currentAnimationDuration:&duration timingFunction:&timingFunction]) {
                 CABasicAnimation* anim;
+                CABasicAnimation* anim2;
+
                 if (![_shadowLayer animationForKey:@"animateShadowPath"]) {
                     anim = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
                     anim.fromValue = (id)_shadowLayer.shadowPath;
@@ -3390,13 +3396,15 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
                     anim.fillMode = kCAFillModeForwards;
                     [_shadowLayer addAnimation:anim forKey:@"animateShadowPath"];
 
-                    anim = [CABasicAnimation animationWithKeyPath:@"bounds"];
-                    anim.duration = duration;
-                    anim.timingFunction = timingFunction;
-                    anim.fromValue = [NSValue valueWithCGRect:_shadowLayer.bounds];
-                    anim.toValue = [NSValue valueWithCGRect:self.slidingControllerView.layer.bounds];
-                    anim.fillMode = kCAFillModeForwards;
-                    [_shadowLayer addAnimation:anim forKey:@"animateBounds"];
+                    anim2 = [CABasicAnimation animationWithKeyPath:@"bounds"];
+                    anim2.duration = duration;
+                    anim2.timingFunction = timingFunction;
+                    anim2.fromValue = [NSValue valueWithCGRect:_shadowLayer.bounds];
+                    anim2.toValue = [NSValue valueWithCGRect:self.slidingControllerView.layer.bounds];
+                    anim2.fillMode = kCAFillModeForwards;
+                    [_shadowLayer addAnimation:anim2 forKey:@"animateBounds"];
+                    
+                    
                 }
             }
             
@@ -3406,7 +3414,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
                 CABasicAnimation* anim = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
                 anim.fromValue = @(0.0);
                 anim.duration = 1;
-                anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
                 anim.fillMode = kCAFillModeForwards;
                 [_shadowLayer addAnimation:anim forKey:@"animateShadowOpacity"];
             }
@@ -3421,7 +3429,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 
 - (BOOL)currentAnimationDuration:(CGFloat*)duration timingFunction:(CAMediaTimingFunction**)timingFunction {
     for (NSString* key in self.slidingControllerView.layer.animationKeys) {
-        if ([key isEqualToString:@"bounds"]) {
+        if ([key isEqualToString:@"position"]) {
             CABasicAnimation* other = (CABasicAnimation*)[self.slidingControllerView.layer animationForKey:key];
             
             if ([other isKindOfClass:[CABasicAnimation class]]) {
