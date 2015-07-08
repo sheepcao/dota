@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="dotaerViewController"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nearbyCell" rowHeight="108" id="xaq-f9-Tny">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" rowHeight="74" id="xaq-f9-Tny" customClass="listCellTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xaq-f9-Tny" id="vSU-t9-eAM">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhv-Ed-EFu">
-                        <rect key="frame" x="8" y="9" width="90" height="90"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="用户名    性别     年龄   天梯积分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tht-W4-f6e">
-                        <rect key="frame" x="106" y="22" width="246" height="21"/>
+                        <rect key="frame" x="106" y="9" width="261" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="多少米内" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43K-W5-qVK">
-                        <rect key="frame" x="106" y="88" width="237" height="11"/>
+                        <rect key="frame" x="106" y="42" width="237" height="11"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.57254901960000004" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vhv-Ed-EFu">
+                        <rect key="frame" x="8" y="4" width="61" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="vhv-Ed-EFu" secondAttribute="height" multiplier="1:1" id="sBE-N6-Gpn"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="vhv-Ed-EFu" firstAttribute="top" secondItem="vSU-t9-eAM" secondAttribute="topMargin" constant="-4" id="7jV-va-FXI"/>
+                    <constraint firstAttribute="centerY" secondItem="vhv-Ed-EFu" secondAttribute="centerY" id="FrR-TF-Nu8"/>
+                    <constraint firstItem="vhv-Ed-EFu" firstAttribute="leading" secondItem="vSU-t9-eAM" secondAttribute="leadingMargin" id="TrL-t3-ynE"/>
+                </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="336.5" y="181"/>
+            <connections>
+                <outlet property="userDistance" destination="43K-W5-qVK" id="6nh-XW-ehd"/>
+                <outlet property="userHead" destination="vhv-Ed-EFu" id="g8z-XV-gbn"/>
+                <outlet property="userInfo" destination="tht-W4-f6e" id="s4i-u8-Gkq"/>
+            </connections>
+            <point key="canvasLocation" x="396.5" y="160"/>
         </tableViewCell>
     </objects>
 </document>

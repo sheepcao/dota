@@ -8,9 +8,12 @@
 
 #import "AppDelegate.h"
 #import "globalVar.h"
-#import "IIViewDeckController.h"
+#import "MFSideMenu.h"
+#import "SideMenuViewController.h"
+#import "MFSideMenuContainerViewController.h"
 #import "dotaerViewController.h"
 #import "myMenuViewController.h"
+#import "centerViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,14 +23,28 @@ BMKMapManager* _mapManager;
 
 @implementation AppDelegate
 
+- (dotaerViewController *)demoController {
+    return [[dotaerViewController alloc] initWithNibName:@"dotaerViewController" bundle:nil];
+}
+
+- (UINavigationController *)navigationController {
+    return [[UINavigationController alloc]
+            initWithRootViewController:[self demoController]];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
     
-    IIViewDeckController* deckController = [self generateControllerStack];
-    self.window.rootViewController = deckController;
+    
+    SideMenuViewController *leftMenuViewController = [[SideMenuViewController alloc] init];
+    leftMenuViewController.items = [NSArray arrayWithObjects:@"战绩更新",@"关注",@"消息",@"关于我们", nil];
+    MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController
+                                                    containerWithCenterViewController:[self navigationController]
+                                                    leftMenuViewController:leftMenuViewController
+                                                    rightMenuViewController:nil];
+    self.window.rootViewController = container;
+    
     [self.window makeKeyAndVisible];
     
     
@@ -43,22 +60,22 @@ BMKMapManager* _mapManager;
     return YES;
 }
 
-- (IIViewDeckController*)generateControllerStack {
-//    myMenuViewController* rightController = [[myMenuViewController alloc] initWithNibName:@"myMenuViewController" bundle:nil];
-    myMenuViewController* leftController = [[myMenuViewController alloc] initWithNibName:@"myMenuViewController" bundle:nil];
-
-    
-    UIViewController *centerController = [[dotaerViewController alloc] initWithNibName:@"dotaerViewController" bundle:nil];
-    centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
-    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:centerController
-                                                                                    leftViewController:leftController
-                                                                                   rightViewController:nil];
-    deckController.leftSize = 200;
-//    deckController.navigationControllerBehavior = IIViewDeckNavigationControllerIntegrated;
-    
-    [deckController disablePanOverViewsOfClass:NSClassFromString(@"_UITableViewHeaderFooterContentView")];
-    return deckController;
-}
+//- (IIViewDeckController*)generateControllerStack {
+////    myMenuViewController* rightController = [[myMenuViewController alloc] initWithNibName:@"myMenuViewController" bundle:nil];
+//    myMenuViewController* leftController = [[myMenuViewController alloc] initWithNibName:@"myMenuViewController" bundle:nil];
+//
+//    
+//    UIViewController *centerController = [[dotaerViewController alloc] initWithNibName:@"dotaerViewController" bundle:nil];
+//    centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
+//    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:centerController
+//                                                                                    leftViewController:leftController
+//                                                                                   rightViewController:nil];
+//    deckController.leftSize = 200;
+////    deckController.navigationControllerBehavior = IIViewDeckNavigationControllerIntegrated;
+//    
+//    [deckController disablePanOverViewsOfClass:NSClassFromString(@"_UITableViewHeaderFooterContentView")];
+//    return deckController;
+//}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

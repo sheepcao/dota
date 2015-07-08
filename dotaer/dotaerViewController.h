@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "globalVar.h"
 
-#define MY_LOCATION_UPDATE_NOTIFICATION @"MY_LOCATION_UPDATE_NOTIFICATION"
 
-@interface dotaerViewController : UIViewController
+@interface dotaerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 
 @end

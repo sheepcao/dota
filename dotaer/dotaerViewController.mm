@@ -7,11 +7,12 @@
 //
 
 #import "dotaerViewController.h"
-#import "IIViewDeckController.h"
 #import "loginViewController.h"
 #import <BaiduMapAPI/BMapKit.h>
+#import "MFSideMenu.h"
+#import "listCellTableViewCell.h"
 
-@interface dotaerViewController ()<IIViewDeckControllerDelegate,BMKMapViewDelegate,UITableViewDataSource,UITableViewDelegate,BMKLocationServiceDelegate, BMKRadarManagerDelegate> {
+@interface dotaerViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate, BMKRadarManagerDelegate> {
     BMKLocationService *_locServer;
     BMKRadarManager *_radarManager;
     CLLocationCoordinate2D _curLocation;
@@ -33,71 +34,152 @@
 
 @synthesize nearbyInfos = _nearbyInfos;
 @synthesize curPageIndex = _curPageIndex;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    self.viewDeckController.delegate = self;
-    self.viewDeckController.panningMode = IIViewDeckNoPanning;
-    self.viewDeckController.openSlideAnimationDuration = 0.05f; // In seconds
-    self.viewDeckController.closeSlideAnimationDuration = 0.02f;
+    if(!self.title) self.title = @"附近";
     
-//    self.viewDeckController.shadowEnabled = NO;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"我的" style:UIBarButtonItemStylePlain target:self.viewDeckController action:@selector(toggleLeftView)];
+    UINib *nib = [UINib nibWithNibName:@"listCell" bundle:nil];
+    [self.listView registerNib:nib forCellReuseIdentifier:@"listCell"];
     
-    self.navigationItem.title = @"附近";
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"地图" style:UIBarButtonItemStylePlain target:self action:@selector(mapTapped:)];
-    
-
-    
-    
-    NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
-    
-    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 0.8*SCREEN_HEIGHT)];
-
-    [self.view addSubview:containerView];
-
-    
-    self.listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
-    self.listView.delegate = self;
-    self.listView.dataSource = self;
-    self.listView.backgroundColor = [UIColor whiteColor];
-    
-    self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
-    self.mapView.backgroundColor = [UIColor whiteColor];
-
-
-    [containerView addSubview:self.listView];
-    
-    
-    UIView *searchingBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT - containerView.frame.size.height - containerView.frame.origin.y)];
-    
-    searchingBar.backgroundColor = [UIColor lightGrayColor];
-    
-    [self.view addSubview:searchingBar];
-    
-    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height, searchingBar.frame.size.height/8, searchingBar.frame.size.height*3/4, searchingBar.frame.size.height*3/4)];
-    
-    [searchBtn setTitle:@"查" forState:UIControlStateNormal];
-    [searchBtn setBackgroundColor:[UIColor purpleColor]];
-    [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
-    [searchingBar addSubview:searchBtn];
-    
-    
-
-    
-    [self uploadLocation];
-    BOOL res = [_radarManager uploadInfoRequest:[self getCurrInfo]];
-    if (res) {
-        NSLog(@"upload 成功");
-    } else {
-        NSLog(@"upload 失败");
-    }
-
-
-    
+    [self setupMenuBarButtonItems];
+    [self setupcCenterView];
 }
+
+-(void)setupcCenterView
+{
+        NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
+    
+        UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 0.8*SCREEN_HEIGHT)];
+    
+        [self.view addSubview:containerView];
+    
+    
+        self.listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
+        self.listView.delegate = self;
+        self.listView.dataSource = self;
+       self.listView.rowHeight = 60;
+//        self.listView.backgroundColor = [UIColor whiteColor];
+        _nearbyInfos = [NSMutableArray array];
+
+    
+    
+        self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
+        self.mapView.backgroundColor = [UIColor whiteColor];
+    
+    
+        [containerView addSubview:self.listView];
+    
+    
+        UIView *searchingBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT - containerView.frame.size.height - containerView.frame.origin.y)];
+    
+        searchingBar.backgroundColor = [UIColor lightGrayColor];
+    
+        [self.view addSubview:searchingBar];
+    
+        UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height, searchingBar.frame.size.height/8, searchingBar.frame.size.height*3/4, searchingBar.frame.size.height*3/4)];
+    
+        [searchBtn setTitle:@"查" forState:UIControlStateNormal];
+        [searchBtn setBackgroundColor:[UIColor purpleColor]];
+        [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
+        [searchingBar addSubview:searchBtn];
+    
+    
+    
+    
+        [self uploadLocation];
+        BOOL res = [_radarManager uploadInfoRequest:[self getCurrInfo]];
+        if (res) {
+            NSLog(@"upload 成功");
+        } else {
+            NSLog(@"upload 失败");
+        }
+    
+    
+        
+
+}
+
+
+#pragma mark -
+#pragma mark - UIBarButtonItems
+
+- (void)setupMenuBarButtonItems {
+    
+    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+    if(self.menuContainerViewController.menuState == MFSideMenuStateClosed &&
+       ![[[self.navigationController viewControllers] objectAtIndex:0] isEqual:self]) {
+        self.navigationItem.leftBarButtonItem = [self backBarButtonItem];
+    } else {
+        self.navigationItem.leftBarButtonItem = [self leftMenuBarButtonItem];
+    }
+    
+
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(menuStateEventOccurred:)
+                                                 name:MFSideMenuStateNotificationEvent
+                                               object:nil];
+    
+    [self.menuContainerViewController setMenuWidth:200];
+ 
+
+}
+
+- (void)menuStateEventOccurred:(NSNotification *)notification {
+    
+    NSLog(@"eventType:%@",[[notification userInfo] objectForKey:@"eventType"]);
+    
+
+    if ([[[notification userInfo] objectForKey:@"eventType"] intValue] == MFSideMenuStateEventMenuDidClose) {
+        self.menuContainerViewController.panMode = MFSideMenuPanModeNone ;
+
+    }else if([[[notification userInfo] objectForKey:@"eventType"] intValue] == MFSideMenuStateEventMenuDidOpen)
+    {
+        self.menuContainerViewController.panMode = MFSideMenuPanModeDefault ;
+
+    }
+}
+
+- (UIBarButtonItem *)leftMenuBarButtonItem {
+    return [[UIBarButtonItem alloc] initWithTitle:@"我的" style:UIBarButtonItemStylePlain target:self action:@selector(leftSideMenuButtonPressed:)];
+
+}
+
+- (UIBarButtonItem *)rightMenuBarButtonItem {
+    return [[UIBarButtonItem alloc] initWithTitle:@"地图" style:UIBarButtonItemStylePlain target:self action:@selector(mapTapped:)];
+    
+
+}
+
+- (UIBarButtonItem *)backBarButtonItem {
+    return [[UIBarButtonItem alloc] initWithTitle:@"收回"
+                                            style:UIBarButtonItemStylePlain
+                                           target:self
+                                           action:@selector(backButtonPressed:)];
+}
+
+
+#pragma mark -
+#pragma mark - UIBarButtonItem Callbacks
+
+- (void)backButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)leftSideMenuButtonPressed:(id)sender {
+    [self.menuContainerViewController toggleLeftSideMenuCompletion:^{
+        [self setupMenuBarButtonItems];
+    }];
+}
+
+- (void)rightSideMenuButtonPressed:(id)sender {
+    [self.menuContainerViewController toggleRightSideMenuCompletion:^{
+        [self setupMenuBarButtonItems];
+    }];
+}
+
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -124,7 +206,7 @@
     _locServer.delegate = self;
     [_locServer startUserLocationService];
     
-    [_radarManager startAutoUpload:15];
+    [_radarManager startAutoUpload:10];
 
 }
 
@@ -136,11 +218,12 @@
 
         [UIView transitionFromView:self.listView
                             toView:self.mapView
-                          duration:0.5
+                          duration:0.8
                            options:UIViewAnimationOptionTransitionFlipFromLeft                        completion:^(BOOL finished){
                             /* do something on animation completion */
                         }];
-    
+        [_mapView setCenterCoordinate:_myCoor];
+        [_mapView setZoomLevel:5.5];
 
     }else
     {
@@ -150,7 +233,7 @@
 
         [UIView transitionFromView:self.mapView
                             toView:self.listView
-                          duration:0.5
+                          duration:0.8
                            options:UIViewAnimationOptionTransitionFlipFromLeft
                         completion:^(BOOL finished){
                             /* do something on animation completion */
@@ -178,16 +261,17 @@
 }
 -(void)searchDotaer
 {
-    [self nearbySearchWithPageIndex:0];
+    [self nearbySearchWithPageIndex:1];
 
 }
 
 - (void)nearbySearchWithPageIndex:(NSInteger) pageIndex {
     BMKRadarNearbySearchOption *option = [[BMKRadarNearbySearchOption alloc] init]
     ;
-    option.radius = 80000;
+    option.radius = 80000000000000000;
     option.sortType = BMK_RADAR_SORT_TYPE_DISTANCE_FROM_NEAR_TO_FAR;
     option.centerPt = _myCoor;
+//    option.centerPt = CLLocationCoordinate2DMake(39.916, 116.404);
     option.pageIndex = pageIndex;
     //    option.pageCapacity = 2;
     //    NSDate *eDate = [NSDate date];
@@ -209,27 +293,7 @@
 }
 
 
-#pragma 抽屉代理方法.
-//- (void)viewDeckController:(IIViewDeckController *)viewDeckController applyShadow:(CALayer *)shadowLayer withBounds:(CGRect)rect {
-//    shadowLayer.masksToBounds = NO;
-//    shadowLayer.shadowRadius = 20;
-//    shadowLayer.shadowOpacity = 0.8;
-//    shadowLayer.shadowColor = [[UIColor blackColor] CGColor];
-//    shadowLayer.shadowOffset = CGSizeMake(0.0f, 5.0f);
-//    shadowLayer.shadowPath = [[UIBezierPath bezierPathWithRect:rect] CGPath];
-//}
 
--(void)viewDeckController:(IIViewDeckController *)viewDeckController didCloseViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated
-{
-    self.viewDeckController.panningMode = IIViewDeckNoPanning;
-
-}
-
--(void)viewDeckController:(IIViewDeckController *)viewDeckController didOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated
-{
-    self.viewDeckController.panningMode = IIViewDeckFullViewPanning;
-   
-}
 
 
 - (void)didReceiveMemoryWarning {
@@ -244,8 +308,7 @@
     BMKUserLocation *location = loc;
     _myCoor = location.location.coordinate;
     [_mapView updateLocationData:location];
-    [_mapView setCenterCoordinate:location.location.coordinate];
-    [_mapView setZoomLevel:5.5];
+
     
 }
 
@@ -254,31 +317,47 @@
 
 
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 5;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _nearbyInfos.count;
 }
-
-
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (listCellTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"nearbyCell"];
+    listCellTableViewCell *cell =(listCellTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"listCell"];
     if (nil == cell)
     {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"listCell" owner:self options:nil] lastObject];//加载nib文件
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"listCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
     }
     cell.backgroundColor = [UIColor clearColor];
 
+    BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
+    cell.userInfo.text = info.userId;
+    cell.userDistance.text = [NSString stringWithFormat:@"%d米   %@", (int)info.distance, info.extInfo];
     
-//    cell.textLabel.text = [_demoNameArray objectAtIndex:indexPath.row];
+    
+    
+
     return cell;
 }
 
-
+//- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    static NSString *CellIdentifier = @"BaiduMapRadarDemoCell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//    }
+//    BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
+//    cell.textLabel.text = info.userId;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d米   %@", (int)info.distance, info.extInfo];
+//    return cell;
+//}
 #pragma mark -
 #pragma mark Table view delegate
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    UIViewController* viewController = nil;
 //    if (indexPath.row < 18) {
@@ -295,10 +374,14 @@
 
 - (BMKRadarUploadInfo *)getCurrInfo {
     BMKRadarUploadInfo *info = [[BMKRadarUploadInfo alloc] init];
-    _radarManager.userId = @"dotaer";
+
+    int random = arc4random()%1000;
+    _radarManager.userId =[NSString stringWithFormat:@"dotaer%d",random];
 
     info.extInfo = @"hello dota";
     [lock lock];
+//    info.pt = CLLocationCoordinate2DMake(39.916, 116.404);//我的地理坐标
+
     info.pt = _curLocation;
     [lock unlock];
     return info;

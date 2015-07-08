@@ -1,26 +1,32 @@
 //
-//  myMenuViewController.m
-//  dotaer
+//  DemoViewController.m
+//  MFSideMenuDemo
 //
-//  Created by Eric Cao on 7/6/15.
-//  Copyright (c) 2015 sheepcao. All rights reserved.
+//  Created by Michael Frederick on 3/19/12.
 //
 
-#import "myMenuViewController.h"
+#import "centerViewController.h"
 #import "MFSideMenu.h"
+#import <BaiduMapAPI/BMapKit.h>
+#import <BaiduMapAPI/BMKRadarComponent.h>
 
-@interface myMenuViewController ()
 
-@end
 
-@implementation myMenuViewController
+@implementation centerViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if(!self.title) self.title = @"附近!";
+    if(!self.title) self.title = @"Demo!";
     
     [self setupMenuBarButtonItems];
+    NSLog(@"111");
+    BMKMapView *mapView = [[BMKMapView alloc] init];
+    NSLog(@"map:%@",mapView);
+
 }
+
 
 #pragma mark -
 #pragma mark - UIBarButtonItems
@@ -37,14 +43,14 @@
 
 - (UIBarButtonItem *)leftMenuBarButtonItem {
     return [[UIBarButtonItem alloc]
-            initWithImage:[UIImage imageNamed:@"menu-icon.png"] style:UIBarButtonItemStyleBordered
+            initWithTitle:@"mine" style:UIBarButtonItemStyleBordered
             target:self
             action:@selector(leftSideMenuButtonPressed:)];
 }
 
 - (UIBarButtonItem *)rightMenuBarButtonItem {
     return [[UIBarButtonItem alloc]
-            initWithImage:[UIImage imageNamed:@"menu-icon.png"] style:UIBarButtonItemStyleBordered
+            initWithTitle:@"map" style:UIBarButtonItemStyleBordered
             target:self
             action:@selector(rightSideMenuButtonPressed:)];
 }
@@ -56,21 +62,22 @@
                                            action:@selector(backButtonPressed:)];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark -
+#pragma mark - UIBarButtonItem Callbacks
+
+- (void)backButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)leftSideMenuButtonPressed:(id)sender {
+    [self.menuContainerViewController toggleLeftSideMenuCompletion:^{
+        [self setupMenuBarButtonItems];
+    }];
 }
 
 
-//- (void)viewDeckController:(IIViewDeckController *)viewDeckController applyShadow:(CALayer *)shadowLayer withBounds:(CGRect)rect {
-//
-//    NSLog(@"shadow~~~~");
-//    
-//    shadowLayer.masksToBounds = NO;
-//    shadowLayer.shadowRadius = 10;
-//    shadowLayer.shadowOpacity = 0.9;
-//    shadowLayer.shadowColor = [[UIColor yellowColor] CGColor];
-//    shadowLayer.shadowOffset = CGSizeZero;
-//    shadowLayer.shadowPath = [[UIBezierPath bezierPathWithRect:rect] CGPath];
-//}
+
+
+
 @end
