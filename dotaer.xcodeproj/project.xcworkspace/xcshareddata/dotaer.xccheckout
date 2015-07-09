@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>EA58AFF6-22C6-4211-B612-32AD46193116</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>dotaer</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>19CB8053BA57C9E990FF48FEC7896FB14C238049</key>
 		<string>https://github.com/sheepcao/dota.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>dotaer.xcodeproj/project.xcworkspace</string>
+	<string>dotaer.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>19CB8053BA57C9E990FF48FEC7896FB14C238049</key>

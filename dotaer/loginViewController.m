@@ -8,6 +8,7 @@
 
 #import "loginViewController.h"
 #import "FXBlurView.h"
+#import "globalVar.h"
 
 @interface loginViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
@@ -25,8 +26,22 @@
     self.roundBack_R.layer.cornerRadius = 7.5;
 
     self.loginBtn.layer.cornerRadius = 15.0f;
+    
+    
+    
+    [self.midView setCenter:CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-30)];
+    [self.view addSubview:self.midView];
+    
+    [self.loginPart setCenter:CGPointMake(self.midView.center.x, self.midView.center.y-50)];
+    [self.registerView setCenter:self.midView.center];
+
+    [self.midView addSubview:self.loginPart];
+    
+  
 
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -73,4 +88,43 @@
 }
 */
 
+- (IBAction)changePage:(UIButton *)sender {
+    NSLog(@"title:%@",sender.titleLabel.text);
+    if ([sender.titleLabel.text isEqualToString:@"注册"]) {
+        
+
+
+        [UIView transitionFromView:self.loginPart
+                            toView:self.registerView
+                          duration:0.8
+                           options:UIViewAnimationOptionTransitionFlipFromLeft                        completion:^(BOOL finished){
+                          
+                               [sender setTitle:@"登录" forState:UIControlStateNormal];
+
+                               /* do something on animation completion */
+                           }];
+//        [self.loginPart setHidden:YES];
+//        [self.registerView setHidden:NO];
+        NSLog(@"registerView:%@",self.registerView);
+        NSLog(@"fatherView:%@",[self.registerView superview]);
+
+
+
+    }else
+    {
+
+        [UIView transitionFromView:self.registerView
+                            toView:self.loginPart
+                          duration:0.8
+                           options:UIViewAnimationOptionTransitionFlipFromLeft                        completion:^(BOOL finished){
+                             
+                               [sender setTitle:@"注册" forState:UIControlStateNormal];
+
+                               /* do something on animation completion */
+                           }];
+//        [self.loginPart setHidden:NO];
+//        [self.registerView setHidden:YES];
+        NSLog(@"loginPart:%@",self.loginPart);
+    }
+}
 @end

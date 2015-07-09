@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface loginViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIView *loginPart;
+@property (strong, nonatomic) IBOutlet UIView *loginPart;
 @property (weak, nonatomic) IBOutlet UIView *roundBack;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
+@property (strong, nonatomic) IBOutlet UIView *midView;
+
+@property (strong, nonatomic) IBOutlet UIView *registerView;
+
 @property (weak, nonatomic) IBOutlet UIView *roundBack_R;
+- (IBAction)changePage:(id)sender;
 @end
