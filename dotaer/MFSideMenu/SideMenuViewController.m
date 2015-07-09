@@ -51,13 +51,13 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    loginViewController *demoController = [[loginViewController alloc] initWithNibName:@"loginViewController" bundle:nil];
-    demoController.title = [NSString stringWithFormat:@"login #%d-%d", indexPath.section, indexPath.row];
-    
-    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
-    [temp addObject:demoController];
-    navigationController.viewControllers = temp;
+//    loginViewController *demoController = [[loginViewController alloc] initWithNibName:@"loginViewController" bundle:nil];
+//    demoController.title = [NSString stringWithFormat:@"login #%d-%d", indexPath.section, indexPath.row];
+//    
+//    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+//    NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+//    [temp addObject:demoController];
+//    navigationController.viewControllers = temp;
     [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
 }
 

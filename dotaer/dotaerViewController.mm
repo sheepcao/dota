@@ -43,6 +43,22 @@
     
     [self setupMenuBarButtonItems];
     [self setupcCenterView];
+    
+    [self showLoginPage];
+    
+}
+
+
+-(void)showLoginPage
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"defaultUser"])  {
+        
+    }else
+    {
+        loginViewController *demoController = [[loginViewController alloc] initWithNibName:@"loginViewController" bundle:nil];
+        
+        [self presentViewController:demoController animated:YES completion:nil];
+    }
 }
 
 -(void)setupcCenterView

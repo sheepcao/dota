@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface loginViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *loginPart;
+@property (weak, nonatomic) IBOutlet UIView *roundBack;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
+@property (weak, nonatomic) IBOutlet UIView *roundBack_R;
 @end
