@@ -36,6 +36,8 @@
 @synthesize curPageIndex = _curPageIndex;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self showLoginPage];
+
     if(!self.title) self.title = @"附近";
     
     UINib *nib = [UINib nibWithNibName:@"listCell" bundle:nil];
@@ -44,7 +46,6 @@
     [self setupMenuBarButtonItems];
     [self setupcCenterView];
     
-    [self showLoginPage];
     
 }
 

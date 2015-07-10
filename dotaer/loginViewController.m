@@ -16,25 +16,29 @@
 
 @end
 
+
 @implementation loginViewController
+
+bool emailOK;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    emailOK = NO;
     // Do any additional setup after loading the view from its nib.
     self.blurView.blurRadius = 7;
     self.roundBack.layer.cornerRadius = 7.5;
-    self.roundBack_R.layer.cornerRadius = 7.5;
-
     self.loginBtn.layer.cornerRadius = 15.0f;
-    
+    self.submitBtn.layer.cornerRadius = 15.0f;
+    self.haedBtn.layer.cornerRadius = 65.0f;
     
     
     [self.midView setCenter:CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-30)];
     [self.view addSubview:self.midView];
     
-    [self.loginPart setCenter:CGPointMake(self.midView.center.x, self.midView.center.y-50)];
-    [self.registerView setCenter:self.midView.center];
-
+    [self.loginPart setCenter:CGPointMake(self.midView.frame.size.width/2, self.midView.frame.size.height/2-50)];
+    [self.registerView setCenter:CGPointMake(self.midView.frame.size.width/2, self.midView.frame.size.height/2)];
+    
     [self.midView addSubview:self.loginPart];
     
   
@@ -50,14 +54,37 @@
 
 -(void)judgeWordCount:(UITextField *)textField
 {
-    CGSize textSize = [textField.text sizeWithAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Thin" size:13.0] }];
-    if (textSize.width>=textField.frame.size.width) {
-        textField.text = @"";
-        NSLog(@"too many words");
-        UIAlertView *wordMaxAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"太长了...您的昵称太长了..." delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [wordMaxAlert show];
+    if (textField.tag ==100) {
+        
+        
+        CGSize textSize = [textField.text sizeWithAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Thin" size:13.0] }];
+        if (textSize.width>=textField.frame.size.width) {
+            textField.text = @"";
+            NSLog(@"too many words");
+            UIAlertView *wordMaxAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"太长了...您的昵称太长了..." delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [wordMaxAlert show];
+        }
+    }else if (textField.tag == 200 )
+    {
+       
+        if ([self validateEmail:textField.text]) {
+            emailOK = YES;
+        }else
+        {
+            emailOK = NO;
+            UIAlertView *emailAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的email格式" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [emailAlert show];
+        }
     }
+        
 
+}
+
+- (BOOL) validateEmail: (NSString *) candidate {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -69,7 +96,6 @@
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     
-    [self judgeWordCount:textField];
 
     [textField resignFirstResponder];
     return YES;
@@ -78,15 +104,21 @@
     [self.view endEditing:YES];// this will do the trick
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+- (IBAction)uploadHead:(UIButton *)sender {
 }
-*/
+
+- (IBAction)selectSex:(UIButton *)sender {
+    [sender setSelected:YES];
+    if ([sender isEqual:self.maleBtn]) {
+        [self.femaleBtn setSelected:NO];
+    }else
+    {
+        [self.maleBtn setSelected:NO];
+
+    }
+}
 
 - (IBAction)changePage:(UIButton *)sender {
     NSLog(@"title:%@",sender.titleLabel.text);
@@ -126,5 +158,8 @@
 //        [self.registerView setHidden:YES];
         NSLog(@"loginPart:%@",self.loginPart);
     }
+}
+
+- (IBAction)submitRegister:(id)sender {
 }
 @end

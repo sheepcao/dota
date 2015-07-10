@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A412D0071B4F5A74006180A0 /* cake.png in Resources */ = {isa = PBXBuildFile; fileRef = A412D0061B4F5A74006180A0 /* cake.png */; };
 		A447FE9C1B4A198B0053D982 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9B1B4A198B0053D982 /* main.m */; };
 		A447FE9F1B4A198B0053D982 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9E1B4A198B0053D982 /* AppDelegate.mm */; };
 		A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447FEA11B4A198B0053D982 /* dotaerViewController.mm */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A412D0061B4F5A74006180A0 /* cake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cake.png; sourceTree = "<group>"; };
 		A447FE961B4A198B0053D982 /* dotaer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dotaer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A447FE9A1B4A198B0053D982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A447FE9B1B4A198B0053D982 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 		A4DA56181B4E49F80010C95D /* login */ = {
 			isa = PBXGroup;
 			children = (
+				A412D0061B4F5A74006180A0 /* cake.png */,
 				A4DA56251B4E73660010C95D /* register-female@2x.png */,
 				A4DA56261B4E73660010C95D /* register-male@2x.png */,
 				A4DA56211B4E73280010C95D /* select_selected.png */,
@@ -428,6 +431,7 @@
 				A447FEE81B4A4AF80053D982 /* dotaerViewController.xib in Resources */,
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
 				A4D13E1C1B4CEBE300C06A2B /* Default.png in Resources */,
+				A412D0071B4F5A74006180A0 /* cake.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
