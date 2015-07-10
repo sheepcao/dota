@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIView *registerView;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
+@property (weak, nonatomic) IBOutlet UIImageView *headImg;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *ageField;
 @property (weak, nonatomic) IBOutlet UIButton *maleBtn;

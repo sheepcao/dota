@@ -21,6 +21,7 @@
                 <outlet property="emailField" destination="XAK-RP-7xy" id="k0B-cB-8xh"/>
                 <outlet property="femaleBtn" destination="KNU-hn-IMK" id="KDV-yo-D8j"/>
                 <outlet property="haedBtn" destination="42V-Mr-obu" id="h5X-Y6-DtP"/>
+                <outlet property="headImg" destination="cjI-AT-Qdq" id="ECU-yP-J8N"/>
                 <outlet property="headUploadTip" destination="DaE-3B-uqA" id="iGq-zF-WFc"/>
                 <outlet property="loginBtn" destination="913-Lx-doT" id="2kn-yi-pPV"/>
                 <outlet property="loginPart" destination="D8Q-I3-3kY" id="oO8-KJ-Q0P"/>
@@ -296,6 +297,9 @@
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="disabled">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="submitRegister:" destination="-1" eventType="touchUpInside" id="WcD-UT-kl4"/>
                     </connections>
@@ -306,10 +310,31 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42V-Mr-obu">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击提交表示同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny9-LC-9zE">
+                    <rect key="frame" x="104" y="394" width="93" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbI-Fk-A9z">
+                    <rect key="frame" x="187" y="394" width="119" height="21"/>
+                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
+                    <state key="normal" title="《Dota圈子用户协议》"/>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjI-AT-Qdq" userLabel="headIMG">
                     <rect key="frame" x="10" y="30" width="130" height="130"/>
                     <color key="backgroundColor" red="0.94929584700000003" green="0.93839946549999997" blue="0.94675164469999995" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击上传头像" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaE-3B-uqA">
+                    <rect key="frame" x="10" y="125" width="130" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42V-Mr-obu">
+                    <rect key="frame" x="10" y="30" width="130" height="130"/>
                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="79"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <inset key="titleEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="30"/>
                     <size key="titleShadowOffset" width="1" height="1"/>
                     <state key="normal" title="+">
@@ -320,26 +345,9 @@
                         <action selector="uploadHead:" destination="-1" eventType="touchUpInside" id="byw-Y6-erQ"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击上传头像" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaE-3B-uqA">
-                    <rect key="frame" x="10" y="125" width="130" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbI-Fk-A9z">
-                    <rect key="frame" x="187" y="394" width="119" height="21"/>
-                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
-                    <state key="normal" title="《Dota圈子用户协议》"/>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击提交表示同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny9-LC-9zE">
-                    <rect key="frame" x="104" y="394" width="93" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-346" y="90.5"/>
+            <point key="canvasLocation" x="-333" y="107.5"/>
         </view>
         <view contentMode="scaleToFill" id="WnG-ZA-anx" userLabel="midView">
             <rect key="frame" x="0.0" y="0.0" width="310" height="415"/>
