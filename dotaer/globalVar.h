@@ -26,4 +26,6 @@
 
 #define registerService @"http://localhost/~ericcao/upload.php"
 
+
+#import "MBProgressHUD.h"
 #endif

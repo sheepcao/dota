@@ -225,6 +225,12 @@ bool emailOK;
         UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"两次输入密码不一致!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [passwordAlert show];
         return false;
+    }else if (!emailOK)
+    {
+        UIAlertView *emailAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的email格式" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [emailAlert show];
+        
+        return false;
     }
     return true;
     
@@ -236,6 +242,11 @@ bool emailOK;
         return;
     }else
     {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeAnnularDeterminate;
+        hud.labelText = @"Uploading";
+        hud.dimBackground = YES;
+        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
         
         NSDictionary *parameters = @{@"tag": @"register",@"name":self.usernameField.text,@"email":self.emailField.text,@"password":self.passwordField.text,@"age":self.ageField.text,@"sex":self.sexInfo};
         
@@ -282,7 +293,15 @@ bool emailOK;
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+            hud.mode = MBProgressHUDModeCustomView;
+            hud.labelText = @"Completed";
+            [hud hide:YES afterDelay:1.5];
+
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            hud.mode = MBProgressHUDModeCustomView;
+            hud.labelText = @"Error";
+            [hud hide:YES afterDelay:1.5];
+            
             NSLog(@"Error: %@ ***** %@", operation.responseString, error);
             if ([operation.responseString containsString:@"User already existed"]) {
                 UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您输入的用户名已存在，换一个吧" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -295,7 +314,19 @@ bool emailOK;
             
         }];
         
+        
+        [op setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
+                                            long long totalBytesWritten,
+                                            long long totalBytesExpectedToWrite) {
+
+           
+            hud.progress = totalBytesWritten/totalBytesExpectedToWrite;
+      
+            NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
+        }];
+        
         [op start];
+        
         
         
         
