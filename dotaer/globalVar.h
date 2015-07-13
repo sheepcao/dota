@@ -24,6 +24,6 @@
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
-
+#define registerService @"http://localhost/~ericcao/upload.php"
 
 #endif

@@ -10,6 +10,7 @@
 #import "FXBlurView.h"
 #import "globalVar.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "AFURLSessionManager.h"
 
 @interface loginViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
@@ -238,17 +239,51 @@ bool emailOK;
         
         NSDictionary *parameters = @{@"tag": @"register",@"name":self.usernameField.text,@"email":self.emailField.text,@"password":self.passwordField.text,@"age":self.ageField.text,@"sex":self.sexInfo};
         
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+//        
+//        
+//        [manager POST:@"http://localhost/~ericcao/index_withPOST.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            
+//            NSLog(@"JSON: %@", responseObject);
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"Error: %@", error);
+//            NSLog(@"JSON ERROR: %@",  operation.responseString);
+//            
+//            if ([operation.responseString containsString:@"User already existed"]) {
+//                UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您输入的用户名已存在，换一个吧" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [userNameAlert show];
+//            }else
+//            {
+//                UIAlertView *registerFailedAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"注册失败，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [registerFailedAlert show];
+//            }
+//            
+//        }];
+//        
+//        
+        //upload head image
+        UIImage *image = self.headImg.image;
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+
         
+        AFHTTPRequestOperationManager *manager2 = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost"]];
+        [manager2 setRequestSerializer:[AFHTTPRequestSerializer serializer]];
+        [manager2.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+        manager2.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+
         
-        [manager POST:@"http://localhost/~ericcao/index_withPOST.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        AFHTTPRequestOperation *op = [manager2 POST:registerService parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             
-            NSLog(@"JSON: %@", responseObject);
+            NSString *fileName = [NSString stringWithFormat:@"%@.png",self.usernameField.text];
+            
+            [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+            
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
-            NSLog(@"JSON ERROR: %@",  operation.responseString);
-            
+            NSLog(@"Error: %@ ***** %@", operation.responseString, error);
             if ([operation.responseString containsString:@"User already existed"]) {
                 UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您输入的用户名已存在，换一个吧" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [userNameAlert show];
@@ -259,6 +294,10 @@ bool emailOK;
             }
             
         }];
+        
+        [op start];
+        
+        
         
     }
 
