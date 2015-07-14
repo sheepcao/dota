@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "globalVar.h"
+#import "userInfo.h"
+#import "SideMenuViewController.h"
 
 
 @interface dotaerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 
+-(void)showLoginPage;
 @end
 

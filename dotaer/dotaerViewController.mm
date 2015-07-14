@@ -36,7 +36,6 @@
 @synthesize curPageIndex = _curPageIndex;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self showLoginPage];
 
     if(!self.title) self.title = @"附近";
     
@@ -44,7 +43,7 @@
     [self.listView registerNib:nib forCellReuseIdentifier:@"listCell"];
     
     [self setupMenuBarButtonItems];
-    [self setupcCenterView];
+    [self setupCenterView];
     
     
 }
@@ -62,7 +61,7 @@
     }
 }
 
--(void)setupcCenterView
+-(void)setupCenterView
 {
         NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
     
@@ -200,12 +199,49 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"appear !!!!!");
     [super viewWillAppear:animated];
+    
+    
 
     [_mapView viewWillAppear];
     [_radarManager addRadarManagerDelegate:self];//添加radar delegate
 
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"haveDefaultUser"] isEqualToString:@"yes"]) {
+        
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
+        
+        
+        userInfo *myInfo = [[userInfo alloc] init];
+        myInfo.username = [userDic objectForKey:@"username"];
+        myInfo.age = [userDic objectForKey:@"age"];
+        myInfo.sex = [userDic objectForKey:@"sex"];
+        myInfo.email = [userDic objectForKey:@"email"];
+        myInfo.createTime = [userDic objectForKey:@"created"];
+        myInfo.id_DB = [userDic objectForKey:@"id"];
+        myInfo.headImagePath = [imagePath stringByAppendingString:[userDic objectForKey:@"username"]];
+        
+        
+        if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
+            NSURL *url = [NSURL URLWithString:myInfo.headImagePath];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            UIImage *img = [[UIImage alloc] initWithData:data];
+            SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+
+            [leftMenuVC.headImage setImage:img];
+            
+            
+        }
+        
+        
+    }else
+    {
+        [self showLoginPage];
+
+    }
+    
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -477,7 +513,7 @@
  */
 - (void)didFailToLocateUserWithError:(NSError *)error
 {
-    NSLog(@"location error");
+    NSLog(@"location error,%@",error);
 }
 
 #pragma mark - BMKRadarManagerDelegate

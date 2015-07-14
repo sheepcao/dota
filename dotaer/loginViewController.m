@@ -157,7 +157,7 @@ bool emailOK;
 
 - (IBAction)changePage:(UIButton *)sender {
     NSLog(@"title:%@",sender.titleLabel.text);
-    if ([sender.titleLabel.text isEqualToString:@"注册"]) {
+    if ([sender.titleLabel.text isEqualToString:@"前往注册"]) {
         
 
 
@@ -166,7 +166,7 @@ bool emailOK;
                           duration:0.8
                            options:UIViewAnimationOptionTransitionFlipFromLeft                        completion:^(BOOL finished){
                           
-                               [sender setTitle:@"登录" forState:UIControlStateNormal];
+                               [sender setTitle:@"前往登录" forState:UIControlStateNormal];
 
                                /* do something on animation completion */
                            }];
@@ -185,7 +185,7 @@ bool emailOK;
                           duration:0.8
                            options:UIViewAnimationOptionTransitionFlipFromLeft                        completion:^(BOOL finished){
                              
-                               [sender setTitle:@"注册" forState:UIControlStateNormal];
+                               [sender setTitle:@"前往注册" forState:UIControlStateNormal];
 
                                /* do something on animation completion */
                            }];
@@ -238,6 +238,9 @@ bool emailOK;
 
 - (IBAction)submitRegister:(id)sender {
     
+    [self.view endEditing:YES];// this will do the trick
+
+    
     if (![self validateInfos]) {
         return;
     }else
@@ -277,8 +280,8 @@ bool emailOK;
         UIImage *image = self.headImg.image;
         NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
 
-        
-        AFHTTPRequestOperationManager *manager2 = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost"]];
+        AFHTTPRequestOperationManager *manager2 = [AFHTTPRequestOperationManager manager];
+//        AFHTTPRequestOperationManager *manager2 = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost"]];
         [manager2 setRequestSerializer:[AFHTTPRequestSerializer serializer]];
         [manager2.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
         manager2.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
@@ -295,7 +298,9 @@ bool emailOK;
             NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
             hud.mode = MBProgressHUDModeCustomView;
             hud.labelText = @"Completed";
-            [hud hide:YES afterDelay:1.5];
+            [hud hide:YES afterDelay:1.0];
+            
+            
 
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             hud.mode = MBProgressHUDModeCustomView;
@@ -333,4 +338,68 @@ bool emailOK;
     }
 
 }
+- (IBAction)userLogin:(UIButton *)sender {
+    
+    [self.view endEditing:YES];// this will do the trick
+
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"Sending";
+    hud.dimBackground = YES;
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    
+    NSDictionary *parameters = @{@"tag": @"login",@"name":self.userLoginField.text,@"password":self.passwordLoginField.text};
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+//    [manager.requestSerializer setTimeoutInterval:25];  //Time out after 25 seconds
+
+    
+    [manager POST:registerService parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"登录成功";
+        
+
+        [hud hide:YES afterDelay:1.0];
+        [self performSelector:@selector(successLogin:) withObject:responseObject afterDelay:1.01];
+        
+        
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"Error";
+        [hud hide:YES afterDelay:1.5];
+        
+    }];
+    
+    
+    
+    
+    
+    
+}
+
+-(void)successLogin:(NSDictionary *)userInfoDic
+{
+    
+    NSLog(@"userinfoDic:%@",userInfoDic);
+    NSLog(@"age:%@",[userInfoDic objectForKey:@"age"]);
+    
+    NSDictionary *userDic = [NSDictionary dictionaryWithObjectsAndKeys:[userInfoDic objectForKey:@"username"],@"username",[userInfoDic objectForKey:@"age"],@"age",[userInfoDic objectForKey:@"email"],@"email",[userInfoDic objectForKey:@"sex"],@"sex",[userInfoDic objectForKey:@"id"],@"id",[userInfoDic objectForKey:@"created"],@"created", nil];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:userDic forKey:@"userInfoDic"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"haveDefaultUser"];
+
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+
+
 @end
