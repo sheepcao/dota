@@ -1,0 +1,19 @@
+//
+//  myPointAnnotation.h
+//  dotaer
+//
+//  Created by Eric Cao on 7/15/15.
+//  Copyright © 2015 sheepcao. All rights reserved.
+//
+
+#import <BaiduMapAPI/BMKPointAnnotation.h>
+#import "userInfo.h"
+
+@interface myPointAnnotation : BMKPointAnnotation
+
+@property (nonatomic ,strong) NSMutableArray *containUsers;
+@property (nonatomic ,strong) userInfo *annoUserInfo;
+
+
+
+@end

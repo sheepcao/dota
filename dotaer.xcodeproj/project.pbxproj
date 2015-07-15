@@ -28,6 +28,11 @@
 		A412D0411B4FAB87006180A0 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A412D02F1B4FAB87006180A0 /* UIWebView+AFNetworking.m */; };
 		A41C10281B53B131006E5CF9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A41C10271B53B131006E5CF9 /* MBProgressHUD.m */; };
 		A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A41C10291B53B738006E5CF9 /* 37x-Checkmark@2x.png */; };
+		A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4319D971B5601F900DB8775 /* MapAnnotationBG@2x.png */; };
+		A4319D9B1B56072500DB8775 /* myPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4319D9A1B56072500DB8775 /* myPointAnnotation.m */; };
+		A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4319D9C1B56248900DB8775 /* MapUserCountBG@2x.png */; };
+		A4319D9F1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4319D9D1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg */; };
+		A4319DA21B564FFA00DB8775 /* FabonacciNum.m in Sources */ = {isa = PBXBuildFile; fileRef = A4319DA11B564FFA00DB8775 /* FabonacciNum.m */; };
 		A447FE9C1B4A198B0053D982 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9B1B4A198B0053D982 /* main.m */; };
 		A447FE9F1B4A198B0053D982 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9E1B4A198B0053D982 /* AppDelegate.mm */; };
 		A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447FEA11B4A198B0053D982 /* dotaerViewController.mm */; };
@@ -128,6 +133,13 @@
 		A41C10261B53B131006E5CF9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A41C10271B53B131006E5CF9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A41C10291B53B738006E5CF9 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
+		A4319D971B5601F900DB8775 /* MapAnnotationBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapAnnotationBG@2x.png"; sourceTree = "<group>"; };
+		A4319D991B56072500DB8775 /* myPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPointAnnotation.h; sourceTree = "<group>"; };
+		A4319D9A1B56072500DB8775 /* myPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myPointAnnotation.m; sourceTree = "<group>"; };
+		A4319D9C1B56248900DB8775 /* MapUserCountBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapUserCountBG@2x.png"; sourceTree = "<group>"; };
+		A4319D9D1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MapUserDefaultIcon@2x.jpg"; sourceTree = "<group>"; };
+		A4319DA01B564FFA00DB8775 /* FabonacciNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FabonacciNum.h; path = MFSideMenu/FabonacciNum.h; sourceTree = "<group>"; };
+		A4319DA11B564FFA00DB8775 /* FabonacciNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FabonacciNum.m; path = MFSideMenu/FabonacciNum.m; sourceTree = "<group>"; };
 		A447FE961B4A198B0053D982 /* dotaer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dotaer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A447FE9A1B4A198B0053D982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A447FE9B1B4A198B0053D982 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -386,6 +398,10 @@
 				A412D00A1B4FAB86006180A0 /* AFNetworking */,
 				A4DA56101B4E1AFA0010C95D /* FXBlurView */,
 				A4D13E021B4CBB9C00C06A2B /* MFSideMenu */,
+				A4319D991B56072500DB8775 /* myPointAnnotation.h */,
+				A4319D9A1B56072500DB8775 /* myPointAnnotation.m */,
+				A4319DA01B564FFA00DB8775 /* FabonacciNum.h */,
+				A4319DA11B564FFA00DB8775 /* FabonacciNum.m */,
 			);
 			name = "third party";
 			sourceTree = "<group>";
@@ -446,6 +462,9 @@
 		A4DA56181B4E49F80010C95D /* login */ = {
 			isa = PBXGroup;
 			children = (
+				A4319D9C1B56248900DB8775 /* MapUserCountBG@2x.png */,
+				A4319D9D1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg */,
+				A4319D971B5601F900DB8775 /* MapAnnotationBG@2x.png */,
 				A41C10291B53B738006E5CF9 /* 37x-Checkmark@2x.png */,
 				A412D0061B4F5A74006180A0 /* cake.png */,
 				A4DA56251B4E73660010C95D /* register-female@2x.png */,
@@ -547,6 +566,8 @@
 				A447FEFA1B4A84600053D982 /* listCell.xib in Resources */,
 				A4DA560F1B4E16F50010C95D /* dotaLogin.png in Resources */,
 				A4DA56281B4E73660010C95D /* register-male@2x.png in Resources */,
+				A4319D9F1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg in Resources */,
+				A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */,
 				A4DA561F1B4E4C700010C95D /* password1.png in Resources */,
 				A447FEC31B4A1BBB0053D982 /* loginViewController.xib in Resources */,
 				A4DA56241B4E73280010C95D /* select.png in Resources */,
@@ -560,6 +581,7 @@
 				A447FEF71B4A80C00053D982 /* mapapi.bundle in Resources */,
 				A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */,
 				A4DA56231B4E73280010C95D /* select_selected.png in Resources */,
+				A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */,
 				A4D13E811B4D1A2300C06A2B /* SideMenuViewController.xib in Resources */,
 				A447FEE81B4A4AF80053D982 /* dotaerViewController.xib in Resources */,
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
@@ -603,7 +625,9 @@
 				A412D0351B4FAB87006180A0 /* AFSecurityPolicy.m in Sources */,
 				A447FEE31B4A48600053D982 /* myMenuViewController.m in Sources */,
 				A412D03E1B4FAB87006180A0 /* UIImageView+AFNetworking.m in Sources */,
+				A4319D9B1B56072500DB8775 /* myPointAnnotation.m in Sources */,
 				A412D0341B4FAB87006180A0 /* AFNetworkReachabilityManager.m in Sources */,
+				A4319DA21B564FFA00DB8775 /* FabonacciNum.m in Sources */,
 				A412D0391B4FAB87006180A0 /* AFURLSessionManager.m in Sources */,
 				A41C10281B53B131006E5CF9 /* MBProgressHUD.m in Sources */,
 				A4D13E0C1B4CBB9C00C06A2B /* UIViewController+MFSideMenuAdditions.m in Sources */,

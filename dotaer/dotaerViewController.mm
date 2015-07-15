@@ -9,8 +9,13 @@
 #import "dotaerViewController.h"
 #import "loginViewController.h"
 #import <BaiduMapAPI/BMapKit.h>
+#import "myPointAnnotation.h"
 #import "MFSideMenu.h"
 #import "listCellTableViewCell.h"
+#import "FabonacciNum.h"
+
+#define annoRatio 0.37
+#define userCoverRatio 0.0025
 
 @interface dotaerViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate, BMKRadarManagerDelegate> {
     BMKLocationService *_locServer;
@@ -23,11 +28,23 @@
 }
 
 
+@property (strong,nonatomic) UIButton *pageFront;
+@property (strong,nonatomic) UIButton *pageForward;
+@property (strong,nonatomic) UILabel *pageNumLabel;
+@property (strong,nonatomic) UISlider *radiusSlider;
+
+
+
 @property (strong,nonatomic) UITableView *listView;
 @property (strong,nonatomic) BMKMapView *mapView;
 
+@property (strong,nonatomic) userInfo *myUserInfo;
+
 @property (nonatomic, strong) NSMutableArray *nearbyInfos;
 @property (nonatomic) NSInteger curPageIndex;
+@property (nonatomic) NSInteger totalPageNum;
+@property (nonatomic) CGFloat searchRadius;
+
 @end
 
 @implementation dotaerViewController
@@ -70,7 +87,7 @@
         [self.view addSubview:containerView];
     
     
-        self.listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
+        self.listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height-40)];
         self.listView.delegate = self;
         self.listView.dataSource = self;
        self.listView.rowHeight = 60;
@@ -81,7 +98,7 @@
     
         self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
         self.mapView.backgroundColor = [UIColor whiteColor];
-    
+        self.mapView.zoomEnabled = YES;
     
         [containerView addSubview:self.listView];
     
@@ -100,18 +117,55 @@
         [searchingBar addSubview:searchBtn];
     
     
+        UIView *pageBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y - 40, SCREEN_WIDTH, 40)];
+    [pageBar setBackgroundColor:[UIColor clearColor]];
+    UIButton *pageUpBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 5, 60, 30)];
+    [pageUpBtn setTitle:@"前一页" forState:UIControlStateNormal];
+    [pageUpBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [pageUpBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+
+    [pageUpBtn addTarget:self action:@selector(pageUp) forControlEvents:UIControlEventTouchUpInside];
+    [pageUpBtn setEnabled:NO];
+    
+    UIButton *pageDownBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 80, 5, 60, 30)];
+    [pageDownBtn setTitle:@"下一页" forState:UIControlStateNormal];
+    [pageDownBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [pageDownBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+
+    [pageDownBtn addTarget:self action:@selector(pageDown) forControlEvents:UIControlEventTouchUpInside];
+    [pageDownBtn setEnabled:NO];
+    
+    UILabel *pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-20, 5, 40, 30)];
+    [pageLabel setText:nil];
+    pageLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [pageBar addSubview:pageLabel];
+    [pageBar addSubview:pageUpBtn];
+    [pageBar addSubview:pageDownBtn];
+    
+    self.pageFront = pageUpBtn;
+    self.pageForward = pageDownBtn;
+    self.pageNumLabel = pageLabel;
+    [self.view addSubview:pageBar];
+    
+    
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-80, searchingBar.frame.size.height/2-10, 160, 20)];
+    slider.minimumValue = 13;
+    slider.maximumValue = 31;
+    slider.value = 18;
+    _searchRadius = [FabonacciNum calculateFabonacci:slider.value];
+
+    [slider addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
+    
+    self.radiusSlider = slider;
+    [searchingBar addSubview:slider];
+    
+    
+
     
     
         [self uploadLocation];
-        BOOL res = [_radarManager uploadInfoRequest:[self getCurrInfo]];
-        if (res) {
-            NSLog(@"upload 成功");
-        } else {
-            NSLog(@"upload 失败");
-        }
-    
-    
-        
+
 
 }
 
@@ -223,6 +277,7 @@
         myInfo.id_DB = [userDic objectForKey:@"id"];
         myInfo.headImagePath = [imagePath stringByAppendingString:[userDic objectForKey:@"username"]];
         
+        self.myUserInfo = myInfo;
         
         if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
             NSURL *url = [NSURL URLWithString:myInfo.headImagePath];
@@ -240,6 +295,13 @@
     {
         [self showLoginPage];
 
+    }
+    
+    BOOL res = [_radarManager uploadInfoRequest:[self getCurrInfo]];
+    if (res) {
+        NSLog(@"upload 成功");
+    } else {
+        NSLog(@"upload 失败");
     }
     
 }
@@ -276,7 +338,7 @@
                             /* do something on animation completion */
                         }];
         [_mapView setCenterCoordinate:_myCoor];
-        [_mapView setZoomLevel:5.5];
+        [_mapView setZoomLevel:14.0];
 
     }else
     {
@@ -303,25 +365,85 @@
     [_mapView removeAnnotations:_mapView.annotations];
     NSMutableArray *annotations = [NSMutableArray array];
     for (BMKRadarNearbyInfo *info in _nearbyInfos) {
-        BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
+        
+        myPointAnnotation *annotation = [[myPointAnnotation alloc] init];
         annotation.coordinate = info.pt;
         annotation.title = info.userId;
         annotation.subtitle = info.extInfo;
-        [annotations addObject:annotation];
+        
+        BOOL beContained = NO;
+        
+        for(myPointAnnotation *tempAnno in annotations)
+        {
+            if (fabs(annotation.coordinate.latitude - tempAnno.coordinate.latitude)<userCoverRatio && fabs(annotation.coordinate.longitude - tempAnno.coordinate.longitude)<userCoverRatio) {
+
+                [tempAnno.containUsers addObject:annotation];
+                beContained = YES;
+                break;
+            }
+        }
+        if (!beContained) {
+            [annotations addObject:annotation];
+
+        }
     }
     [_mapView addAnnotations:annotations];
     [_mapView showAnnotations:annotations animated:YES];
+    [_mapView setZoomLevel:9.5+((32 - self.radiusSlider.value)/2) ];
 }
+
+-(void)updateValue:(UISlider *)sender{
+//添加响应事件
+    
+    if (sender.value<31) {
+        _searchRadius = [FabonacciNum calculateFabonacci:sender.value];
+
+    }else
+    {
+        _searchRadius = 99999999999;//无限远
+
+    }
+    
+    NSLog(@"Radius------%f",_searchRadius);
+    
+//    if (sender.value<=40) {
+//        _searchRadius = sender.value *sender.value;
+//    }else if(sender.value<66 &&sender.value>40)
+//    {
+//        _searchRadius = sender.value *sender.value;
+//
+//    }
+}
+
 -(void)searchDotaer
 {
-    [self nearbySearchWithPageIndex:1];
+    _curPageIndex = 0;
+    [self nearbySearchWithPageIndex:_curPageIndex];
 
+}
+
+-(void)pageUp
+{
+    if (_curPageIndex>0) {
+        _curPageIndex --;
+        [self nearbySearchWithPageIndex:_curPageIndex];
+    }
+
+}
+-(void)pageDown
+{
+    if (_curPageIndex<_totalPageNum) {
+        _curPageIndex ++;
+        [self nearbySearchWithPageIndex:_curPageIndex];
+    }
+    
+    
 }
 
 - (void)nearbySearchWithPageIndex:(NSInteger) pageIndex {
     BMKRadarNearbySearchOption *option = [[BMKRadarNearbySearchOption alloc] init]
     ;
-    option.radius = 80000000000000000;
+    option.radius = 10000;
     option.sortType = BMK_RADAR_SORT_TYPE_DISTANCE_FROM_NEAR_TO_FAR;
     option.centerPt = _myCoor;
 //    option.centerPt = CLLocationCoordinate2DMake(39.916, 116.404);
@@ -345,6 +467,7 @@
     
 }
 
+#pragma custom annotation
 
 
 
@@ -360,6 +483,7 @@
 - (void)updateMyLocation:(BMKUserLocation *) loc {
     BMKUserLocation *location = loc;
     _myCoor = location.location.coordinate;
+//    _mapView.showsUserLocation = YES;//显示定位图层
     [_mapView updateLocationData:location];
 
     
@@ -428,8 +552,10 @@
 - (BMKRadarUploadInfo *)getCurrInfo {
     BMKRadarUploadInfo *info = [[BMKRadarUploadInfo alloc] init];
 
-    int random = arc4random()%1000;
-    _radarManager.userId =[NSString stringWithFormat:@"dotaer%d",random];
+//    int random = arc4random()%1000;
+//    _radarManager.userId =[NSString stringWithFormat:@"dotaer%d",random];
+    _radarManager.userId =self.myUserInfo.username;
+
 
     info.extInfo = @"hello dota";
     [lock lock];
@@ -489,7 +615,6 @@
  */
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [self updateMyLocation:userLocation];
     [lock lock];
     _curLocation.latitude = userLocation.location.coordinate.latitude;
@@ -527,7 +652,43 @@
     if (error == BMK_RADAR_NO_ERROR) {
         NSLog(@"result.infoList.count:  %d", (int)result.infoList.count);
         self.nearbyInfos = (NSMutableArray *)result.infoList;
+        
         _curPageIndex = result.pageIndex;
+
+        _totalPageNum = result.pageNum;
+        
+        if (_totalPageNum>0 && _curPageIndex<_totalPageNum-1) {
+            [self.pageForward setEnabled:YES];
+        }else
+        {
+            [self.pageForward setEnabled:NO];
+        }
+        
+        if (_curPageIndex>0) {
+            [self.pageFront setEnabled:YES];
+
+        }else
+        {
+            [self.pageFront setEnabled:NO];
+        }
+        
+        [self.pageNumLabel setText:[NSString stringWithFormat:@"%ld",_curPageIndex+1]];
+        
+        if (_searchRadius<1000) {
+            self.title = [NSString stringWithFormat:@"附近 < %d00米",(int)_searchRadius/100];
+
+        }else if(_searchRadius>10000000)
+        {
+            self.title = [NSString stringWithFormat:@"附近 > 500KM"];
+
+        }else
+        {
+            self.title = [NSString stringWithFormat:@"附近 < %dKM",((int)_searchRadius/1000) +1];
+            
+        }
+//        _curPageIndex = result.pageIndex;
+        
+//        NSLog(@"pageIndex---%ld  of %ld",_curPageIndex,result.pageNum);
 //        _curPageLabel.text = [NSString stringWithFormat:@"%d", (int)_curPageIndex + 1];
 //        _nextButton.enabled = (_curPageIndex + 1 != result.pageNum);
 //        _preButton.enabled = _curPageIndex != 0;
@@ -558,15 +719,92 @@
         ((BMKPinAnnotationView*)annotationView).animatesDrop = YES;
     }
     
+    
     annotationView.annotation = annotation;
     // 单击弹出泡泡，弹出泡泡前提annotation必须实现title属性
-    annotationView.canShowCallout = YES;
+//    annotationView.canShowCallout = YES;
     // 设置是否可以拖拽
     annotationView.draggable = NO;
+    
+
+    
+    UIView *viewForImage=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 112*annoRatio, 144*annoRatio)];
+    UIImageView *backImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 112*annoRatio, 144*annoRatio)];
+    [backImageView setImage:[UIImage imageNamed:@"MapAnnotationBG"]];
+
+    UIImageView *imageview=[[UIImageView alloc]initWithFrame:CGRectMake(3, 4, 112*annoRatio-6, 112*annoRatio-6)];
+    [viewForImage addSubview:backImageView];
+    [viewForImage addSubview:imageview];
+
+    if ([annotation isKindOfClass:[myPointAnnotation class]]) {
+        
+        
+        myPointAnnotation *anno = (myPointAnnotation *)annotation;
+        NSString *headPath = [imagePath stringByAppendingString:anno.title];
+        
+        NSLog(@"anno.title---%@",anno.title);
+        
+        NSURL *url = [NSURL URLWithString:headPath];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        [imageview setImage:img];
+
+        if (anno.containUsers.count>0) {
+            
+            UIImageView *countBackImage = [[UIImageView alloc] initWithFrame:CGRectMake(112*annoRatio-6-15, 112*annoRatio-6-15, 15, 15)];
+            [countBackImage setImage:[UIImage imageNamed:@"MapUserCountBG"]];
+            
+            [imageview addSubview:countBackImage];
+            
+            UILabel *userCount = [[UILabel alloc] initWithFrame:CGRectMake(112*annoRatio-6-11, 112*annoRatio-6-13, 16, 16)];
+            [userCount setText:[NSString stringWithFormat:@"%ld",anno.containUsers.count + 1 ]];
+            userCount.font = [UIFont boldSystemFontOfSize:8.2f];
+            [imageview addSubview:userCount];
+        }
+    }
+    
+    
+    
+//    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(32, 0, 100, 64)];
+//    label.text=@"陈双超";
+//    label.backgroundColor=[UIColor clearColor];
+//    [viewForImage addSubview:label];
+    annotationView.image=[self getImageFromView:viewForImage];
+    
+
+    
+    
+    
     
     return annotationView;
 }
 
+
+-(UIImage *)getImageFromView:(UIView *)view{
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(view.bounds.size);
+    //获取图像
+    
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+
+    
+//    UIGraphicsBeginImageContext(view.bounds.size);
+//    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return image;
+}
+
+- (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
+{
+    
+}
 
 - (void) dealloc {
     _radarManager = nil;
