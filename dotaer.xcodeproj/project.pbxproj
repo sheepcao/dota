@@ -78,6 +78,13 @@
 		A4DA56241B4E73280010C95D /* select.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56221B4E73280010C95D /* select.png */; };
 		A4DA56271B4E73660010C95D /* register-female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56251B4E73660010C95D /* register-female@2x.png */; };
 		A4DA56281B4E73660010C95D /* register-male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56261B4E73660010C95D /* register-male@2x.png */; };
+		A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */; };
+		A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */; };
+		A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB21B57599A00786FD1 /* 11logo2.png */; };
+		A4F51BB71B57760C00786FD1 /* nc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB41B57760C00786FD1 /* nc.jpg */; };
+		A4F51BB81B57760C00786FD1 /* nw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB51B57760C00786FD1 /* nw.jpg */; };
+		A4F51BB91B57760C00786FD1 /* pa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB61B57760C00786FD1 /* pa.jpg */; };
+		A4F51BBB1B57777200786FD1 /* Hvwd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BBA1B57777200786FD1 /* Hvwd.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +210,14 @@
 		A4DA56221B4E73280010C95D /* select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select.png; sourceTree = "<group>"; };
 		A4DA56251B4E73660010C95D /* register-female@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-female@2x.png"; sourceTree = "<group>"; };
 		A4DA56261B4E73660010C95D /* register-male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-male@2x.png"; sourceTree = "<group>"; };
+		A4F51BAA1B57430B00786FD1 /* playerPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerPageViewController.h; sourceTree = "<group>"; };
+		A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerPageViewController.m; sourceTree = "<group>"; };
+		A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = playerPageViewController.xib; sourceTree = "<group>"; };
+		A4F51BB21B57599A00786FD1 /* 11logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11logo2.png; sourceTree = "<group>"; };
+		A4F51BB41B57760C00786FD1 /* nc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nc.jpg; sourceTree = "<group>"; };
+		A4F51BB51B57760C00786FD1 /* nw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nw.jpg; sourceTree = "<group>"; };
+		A4F51BB61B57760C00786FD1 /* pa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pa.jpg; sourceTree = "<group>"; };
+		A4F51BBA1B57777200786FD1 /* Hvwd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Hvwd.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +352,9 @@
 				A4D13E101B4CC22800C06A2B /* centerViewController.h */,
 				A4D13E111B4CC22800C06A2B /* centerViewController.m */,
 				A4D13E121B4CC22800C06A2B /* centerViewController.xib */,
+				A4F51BAA1B57430B00786FD1 /* playerPageViewController.h */,
+				A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */,
+				A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */,
 				A447FEA01B4A198B0053D982 /* dotaerViewController.h */,
 				A447FEA11B4A198B0053D982 /* dotaerViewController.mm */,
 				A447FEE71B4A4AF80053D982 /* dotaerViewController.xib */,
@@ -353,6 +371,7 @@
 		A447FE991B4A198B0053D982 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A4F51BAF1B57593600786FD1 /* dotaImage */,
 				A4DA56181B4E49F80010C95D /* login */,
 				A4D13E181B4CEBE300C06A2B /* Default-568h@2x.png */,
 				A4D13E191B4CEBE300C06A2B /* Default.png */,
@@ -480,6 +499,18 @@
 			name = login;
 			sourceTree = "<group>";
 		};
+		A4F51BAF1B57593600786FD1 /* dotaImage */ = {
+			isa = PBXGroup;
+			children = (
+				A4F51BBA1B57777200786FD1 /* Hvwd.jpg */,
+				A4F51BB41B57760C00786FD1 /* nc.jpg */,
+				A4F51BB51B57760C00786FD1 /* nw.jpg */,
+				A4F51BB61B57760C00786FD1 /* pa.jpg */,
+				A4F51BB21B57599A00786FD1 /* 11logo2.png */,
+			);
+			name = dotaImage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -561,6 +592,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4F51BB81B57760C00786FD1 /* nw.jpg in Resources */,
 				A4DA561C1B4E4B860010C95D /* username.png in Resources */,
 				A4DA561B1B4E4B860010C95D /* password.png in Resources */,
 				A447FEFA1B4A84600053D982 /* listCell.xib in Resources */,
@@ -569,21 +601,26 @@
 				A4319D9F1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg in Resources */,
 				A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */,
 				A4DA561F1B4E4C700010C95D /* password1.png in Resources */,
+				A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */,
 				A447FEC31B4A1BBB0053D982 /* loginViewController.xib in Resources */,
 				A4DA56241B4E73280010C95D /* select.png in Resources */,
 				A4DA56201B4E4C700010C95D /* username1.png in Resources */,
+				A4F51BB71B57760C00786FD1 /* nc.jpg in Resources */,
 				A4D13E1B1B4CEBE300C06A2B /* Default-568h@2x.png in Resources */,
 				A447FEE41B4A48600053D982 /* myMenuViewController.xib in Resources */,
+				A4F51BBB1B57777200786FD1 /* Hvwd.jpg in Resources */,
 				A4D13E141B4CC22800C06A2B /* centerViewController.xib in Resources */,
 				A4DA56271B4E73660010C95D /* register-female@2x.png in Resources */,
 				A4D13E1D1B4CEBE300C06A2B /* Default@2x.png in Resources */,
 				A447FEAA1B4A198B0053D982 /* LaunchScreen.xib in Resources */,
 				A447FEF71B4A80C00053D982 /* mapapi.bundle in Resources */,
 				A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */,
+				A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */,
 				A4DA56231B4E73280010C95D /* select_selected.png in Resources */,
 				A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */,
 				A4D13E811B4D1A2300C06A2B /* SideMenuViewController.xib in Resources */,
 				A447FEE81B4A4AF80053D982 /* dotaerViewController.xib in Resources */,
+				A4F51BB91B57760C00786FD1 /* pa.jpg in Resources */,
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
 				A4D13E1C1B4CEBE300C06A2B /* Default.png in Resources */,
 				A412D0071B4F5A74006180A0 /* cake.png in Resources */,
@@ -617,6 +654,7 @@
 				A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */,
 				A412D0371B4FAB87006180A0 /* AFURLRequestSerialization.m in Sources */,
 				A4DA56131B4E1AFA0010C95D /* FXBlurView.m in Sources */,
+				A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */,
 				A412D0331B4FAB87006180A0 /* AFHTTPSessionManager.m in Sources */,
 				A412D0311B4FAB87006180A0 /* AFHTTPRequestOperation.m in Sources */,
 				A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */,

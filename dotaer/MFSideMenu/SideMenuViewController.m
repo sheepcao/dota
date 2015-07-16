@@ -72,10 +72,10 @@
     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     
     [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"haveDefaultUser"];
-    [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
     
- 
-    [self performSelector:@selector(showLogin) withObject:nil afterDelay:0.25];
+    [hud hide:YES afterDelay:1];
+
+    [self performSelector:@selector(showLogin) withObject:nil afterDelay:1.15];
 
     
 
@@ -84,7 +84,9 @@
 
 -(void)showLogin
 {
-    
+ 
+    [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+
     UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
     dotaerViewController *dotaerVC = [navigationController.viewControllers objectAtIndex:0];
     [dotaerVC showLoginPage];

@@ -13,6 +13,7 @@
 #import "MFSideMenu.h"
 #import "listCellTableViewCell.h"
 #import "FabonacciNum.h"
+#import "playerPageViewController.h"
 
 #define annoRatio 0.37
 #define userCoverRatio 0.0025
@@ -290,6 +291,10 @@
             
         }
         
+//        [self performSelector:@selector(uploadRadarInfo) withObject:nil afterDelay:0.75];
+        
+       
+        
         
     }else
     {
@@ -297,13 +302,16 @@
 
     }
     
+}
+
+-(void)uploadRadarInfo
+{
     BOOL res = [_radarManager uploadInfoRequest:[self getCurrInfo]];
     if (res) {
         NSLog(@"upload 成功");
     } else {
         NSLog(@"upload 失败");
     }
-    
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -321,7 +329,7 @@
     _locServer.delegate = self;
     [_locServer startUserLocationService];
     
-    [_radarManager startAutoUpload:10];
+    [_radarManager startAutoUpload:17];
 
 }
 
@@ -722,7 +730,7 @@
     
     annotationView.annotation = annotation;
     // 单击弹出泡泡，弹出泡泡前提annotation必须实现title属性
-//    annotationView.canShowCallout = YES;
+    annotationView.canShowCallout = NO;
     // 设置是否可以拖拽
     annotationView.draggable = NO;
     
@@ -803,7 +811,14 @@
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
+    NSLog(@"tap annotation!");
     
+    playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:playInfo animated:YES];
+    
+    
+    [_mapView deselectAnnotation:view.annotation animated:YES];
 }
 
 - (void) dealloc {
