@@ -18,12 +18,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.mainScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
-    self.mainScroll.backgroundColor = [UIColor redColor];
+    
+    [self.mainScroll setBounces:NO];
+    [self.mainScroll setBackgroundColor:[UIColor lightGrayColor]];
     
     [self.mainScroll setContentSize:CGSizeMake(SCREEN_WIDTH, 700)];
     [self.infoView setFrame:CGRectMake((SCREEN_WIDTH-320)/2, 64, 320, 200)];
-
-    
+    [self.infoView setBackgroundColor:[UIColor blueColor]];
+    [self.infoView sendSubviewToBack:self.infoBackImage];
     [self.view addSubview:self.mainScroll];
     [self.mainScroll addSubview: self.infoView];
 

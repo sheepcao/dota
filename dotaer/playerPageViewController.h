@@ -11,6 +11,7 @@
 @interface playerPageViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *achieveView;
 @property (strong, nonatomic) IBOutlet UIView *infoView;
+@property (weak, nonatomic) IBOutlet UIImageView *infoBackImage;
 @property (strong, nonatomic) UIScrollView *mainScroll;
 
 @end
