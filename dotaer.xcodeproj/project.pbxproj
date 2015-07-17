@@ -78,6 +78,8 @@
 		A4DA56241B4E73280010C95D /* select.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56221B4E73280010C95D /* select.png */; };
 		A4DA56271B4E73660010C95D /* register-female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56251B4E73660010C95D /* register-female@2x.png */; };
 		A4DA56281B4E73660010C95D /* register-male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56261B4E73660010C95D /* register-male@2x.png */; };
+		A4DF4EDD1B58DB6E004E9F59 /* noteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF4EDB1B58DB6E004E9F59 /* noteTableViewCell.m */; };
+		A4DF4EDE1B58DB6E004E9F59 /* noteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DF4EDC1B58DB6E004E9F59 /* noteTableViewCell.xib */; };
 		A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */; };
 		A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */; };
 		A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB21B57599A00786FD1 /* 11logo2.png */; };
@@ -210,6 +212,9 @@
 		A4DA56221B4E73280010C95D /* select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select.png; sourceTree = "<group>"; };
 		A4DA56251B4E73660010C95D /* register-female@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-female@2x.png"; sourceTree = "<group>"; };
 		A4DA56261B4E73660010C95D /* register-male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "register-male@2x.png"; sourceTree = "<group>"; };
+		A4DF4EDA1B58DB6E004E9F59 /* noteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noteTableViewCell.h; sourceTree = "<group>"; };
+		A4DF4EDB1B58DB6E004E9F59 /* noteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noteTableViewCell.m; sourceTree = "<group>"; };
+		A4DF4EDC1B58DB6E004E9F59 /* noteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = noteTableViewCell.xib; sourceTree = "<group>"; };
 		A4F51BAA1B57430B00786FD1 /* playerPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerPageViewController.h; sourceTree = "<group>"; };
 		A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerPageViewController.m; sourceTree = "<group>"; };
 		A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = playerPageViewController.xib; sourceTree = "<group>"; };
@@ -441,6 +446,9 @@
 				A447FEF91B4A84600053D982 /* listCell.xib */,
 				A4D13E151B4CEA6800C06A2B /* listCellTableViewCell.h */,
 				A4D13E161B4CEA6800C06A2B /* listCellTableViewCell.m */,
+				A4DF4EDA1B58DB6E004E9F59 /* noteTableViewCell.h */,
+				A4DF4EDB1B58DB6E004E9F59 /* noteTableViewCell.m */,
+				A4DF4EDC1B58DB6E004E9F59 /* noteTableViewCell.xib */,
 			);
 			name = listViewRelated;
 			sourceTree = "<group>";
@@ -603,6 +611,7 @@
 				A4DA561F1B4E4C700010C95D /* password1.png in Resources */,
 				A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */,
 				A447FEC31B4A1BBB0053D982 /* loginViewController.xib in Resources */,
+				A4DF4EDE1B58DB6E004E9F59 /* noteTableViewCell.xib in Resources */,
 				A4DA56241B4E73280010C95D /* select.png in Resources */,
 				A4DA56201B4E4C700010C95D /* username1.png in Resources */,
 				A4F51BB71B57760C00786FD1 /* nc.jpg in Resources */,
@@ -652,6 +661,7 @@
 				A4D13E131B4CC22800C06A2B /* centerViewController.m in Sources */,
 				A412D03B1B4FAB87006180A0 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */,
+				A4DF4EDD1B58DB6E004E9F59 /* noteTableViewCell.m in Sources */,
 				A412D0371B4FAB87006180A0 /* AFURLRequestSerialization.m in Sources */,
 				A4DA56131B4E1AFA0010C95D /* FXBlurView.m in Sources */,
 				A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */,

@@ -25,6 +25,9 @@
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
 #define registerService @"http://localhost/~ericcao/upload.php"
+#define playerInfoService @"http://localhost/~ericcao/playerInfo.php"
+
+
 #define imagePath @"http://localhost/~ericcao/upload/"
 
 

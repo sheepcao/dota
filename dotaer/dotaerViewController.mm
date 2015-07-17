@@ -35,6 +35,7 @@
 @property (strong,nonatomic) UISlider *radiusSlider;
 
 
+@property (strong,nonatomic) UILabel *distanceLabel;
 
 @property (strong,nonatomic) UITableView *listView;
 @property (strong,nonatomic) BMKMapView *mapView;
@@ -83,7 +84,7 @@
 {
         NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
     
-        UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 0.8*SCREEN_HEIGHT)];
+        UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64))];
     
         [self.view addSubview:containerView];
     
@@ -111,6 +112,8 @@
         [self.view addSubview:searchingBar];
     
         UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height, searchingBar.frame.size.height/8, searchingBar.frame.size.height*3/4, searchingBar.frame.size.height*3/4)];
+    
+  
     
         [searchBtn setTitle:@"查" forState:UIControlStateNormal];
         [searchBtn setBackgroundColor:[UIColor purpleColor]];
@@ -161,7 +164,11 @@
     self.radiusSlider = slider;
     [searchingBar addSubview:slider];
     
-    
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, searchingBar.frame.size.height/8, 55, searchingBar.frame.size.height*3/4)];
+    [self.distanceLabel setText:@"< 2KM"];
+    [self.distanceLabel setTextColor:[UIColor blackColor]];
+    self.distanceLabel.font = [UIFont systemFontOfSize:13];
+    [searchingBar addSubview:self.distanceLabel];
 
     
     
@@ -345,7 +352,11 @@
                            options:UIViewAnimationOptionTransitionFlipFromLeft                        completion:^(BOOL finished){
                             /* do something on animation completion */
                         }];
-        [_mapView setCenterCoordinate:_myCoor];
+
+        //test
+//        [_mapView setCenterCoordinate:_myCoor];
+        [_mapView setCenterCoordinate: CLLocationCoordinate2DMake(34.226, 108.886)];
+
         [_mapView setZoomLevel:14.0];
 
     }else
@@ -377,7 +388,7 @@
         myPointAnnotation *annotation = [[myPointAnnotation alloc] init];
         annotation.coordinate = info.pt;
         annotation.title = info.userId;
-        annotation.subtitle = info.extInfo;
+//        annotation.anno = info.extInfo;
         
         BOOL beContained = NO;
         
@@ -403,24 +414,37 @@
 -(void)updateValue:(UISlider *)sender{
 //添加响应事件
     
+
+
+    
     if (sender.value<31) {
         _searchRadius = [FabonacciNum calculateFabonacci:sender.value];
+        [self.distanceLabel setText:@"> 500KM"];
+
+        
+        if (_searchRadius<1000) {
+            self.distanceLabel.text = [NSString stringWithFormat:@"< %d00米",(int)_searchRadius/100];
+            
+        }else if(_searchRadius>10000000)
+        {
+            self.distanceLabel.text = [NSString stringWithFormat:@"> 500KM"];
+            
+        }else
+        {
+            self.distanceLabel.text = [NSString stringWithFormat:@"< %dKM",((int)_searchRadius/1000) +1];
+            
+        }
+        
 
     }else
     {
         _searchRadius = 99999999999;//无限远
+        [self.distanceLabel setText:@"> 500KM"];
 
     }
     
     NSLog(@"Radius------%f",_searchRadius);
-    
-//    if (sender.value<=40) {
-//        _searchRadius = sender.value *sender.value;
-//    }else if(sender.value<66 &&sender.value>40)
-//    {
-//        _searchRadius = sender.value *sender.value;
-//
-//    }
+
 }
 
 -(void)searchDotaer
@@ -451,20 +475,13 @@
 - (void)nearbySearchWithPageIndex:(NSInteger) pageIndex {
     BMKRadarNearbySearchOption *option = [[BMKRadarNearbySearchOption alloc] init]
     ;
-    option.radius = 10000;
+    option.radius = _searchRadius;
     option.sortType = BMK_RADAR_SORT_TYPE_DISTANCE_FROM_NEAR_TO_FAR;
-    option.centerPt = _myCoor;
-//    option.centerPt = CLLocationCoordinate2DMake(39.916, 116.404);
+    //test
+//    option.centerPt = _myCoor;
+    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
     option.pageIndex = pageIndex;
-    //    option.pageCapacity = 2;
-    //    NSDate *eDate = [NSDate date];
-    //    //    eDate = [NSDate dateWithTimeInterval:-3600 * 3 sinceDate:eDate];
-    //    NSDate *date = [NSDate dateWithTimeInterval:-3600 * 4 sinceDate:eDate];
-    //    BMKDateRange *dateRange = [[BMKDateRange alloc] init];
-    //    dateRange.startDate = date;
-    //    dateRange.endDate = eDate;
-    //    NSLog(@"%@ ,  %@", date, eDate);
-    //    option.dateRange = dateRange;
+
     
     BOOL res = [_radarManager getRadarNearbySearchRequest:option];
     if (res) {
@@ -567,9 +584,12 @@
 
     info.extInfo = @"hello dota";
     [lock lock];
-//    info.pt = CLLocationCoordinate2DMake(39.916, 116.404);//我的地理坐标
 
-    info.pt = _curLocation;
+    
+    info.pt =  CLLocationCoordinate2DMake(34.216, 108.896);//我的地理坐标
+
+    //test
+//    info.pt = _curLocation;
     [lock unlock];
     return info;
 }
@@ -682,18 +702,18 @@
         
         [self.pageNumLabel setText:[NSString stringWithFormat:@"%ld",_curPageIndex+1]];
         
-        if (_searchRadius<1000) {
-            self.title = [NSString stringWithFormat:@"附近 < %d00米",(int)_searchRadius/100];
-
-        }else if(_searchRadius>10000000)
-        {
-            self.title = [NSString stringWithFormat:@"附近 > 500KM"];
-
-        }else
-        {
-            self.title = [NSString stringWithFormat:@"附近 < %dKM",((int)_searchRadius/1000) +1];
-            
-        }
+//        if (_searchRadius<1000) {
+//            self.title = [NSString stringWithFormat:@"附近 < %d00米",(int)_searchRadius/100];
+//
+//        }else if(_searchRadius>10000000)
+//        {
+//            self.title = [NSString stringWithFormat:@"附近 > 500KM"];
+//
+//        }else
+//        {
+//            self.title = [NSString stringWithFormat:@"附近 < %dKM",((int)_searchRadius/1000) +1];
+//            
+//        }
 //        _curPageIndex = result.pageIndex;
         
 //        NSLog(@"pageIndex---%ld  of %ld",_curPageIndex,result.pageNum);
@@ -814,7 +834,11 @@
     NSLog(@"tap annotation!");
     
     playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
-    
+    myPointAnnotation *anno;
+    if ([view.annotation isKindOfClass:[myPointAnnotation class]]) {
+        anno = (myPointAnnotation *)view.annotation;
+    }
+    playInfo.playerName = anno.title;
     [self.navigationController pushViewController:playInfo animated:YES];
     
     
