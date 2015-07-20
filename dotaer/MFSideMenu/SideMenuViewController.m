@@ -9,6 +9,8 @@
 #import "MFSideMenu.h"
 #import "dotaerViewController.h"
 #import "loginViewController.h"
+#import "globalVar.h"
+#import "DataCenter.h"
 
 @implementation SideMenuViewController
 
@@ -17,6 +19,8 @@
     [super viewDidLoad];
     self.headImage.layer.cornerRadius = 65.0f;
     self.headImage.layer.masksToBounds = YES;
+    
+
 }
 
 #pragma mark -
@@ -44,7 +48,7 @@
     }
     
     cell.textLabel.text = self.items[indexPath.row];
-    
+    cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
     
     return cell;
 }
@@ -65,19 +69,24 @@
 
 - (IBAction)logoutTap:(id)sender {
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    hud.mode = MBProgressHUDModeCustomView;
-    hud.labelText = @"注销成功";
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"haveDefaultUser"];
-    
-    [hud hide:YES afterDelay:1];
-
-    [self performSelector:@selector(showLogin) withObject:nil afterDelay:1.15];
-
-    
+    if ([[DataCenter sharedDataCenter] isGuest]) {
+        [self showLogin];
+    }else
+    {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"注销成功";
+        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"haveDefaultUser"];
+        
+        [hud hide:YES afterDelay:1];
+        
+        [self performSelector:@selector(showLogin) withObject:nil afterDelay:1.15];
+        
+        
+    }
 
     
 }
@@ -91,4 +100,28 @@
     dotaerViewController *dotaerVC = [navigationController.viewControllers objectAtIndex:0];
     [dotaerVC showLoginPage];
 }
+
+#pragma textView delegate
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"编辑个人签名..."]) {
+        textView.text = @"";
+    }
+}
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"编辑个人签名...";
+    }
+}
+
+- (BOOL)textView:(UITextView *)txtView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if( [text rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet]].location == NSNotFound ) {
+        return YES;
+    }
+    
+    [txtView resignFirstResponder];
+    return NO;
+}
+
 @end

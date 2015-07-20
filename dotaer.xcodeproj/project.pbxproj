@@ -52,6 +52,7 @@
 		A447FEF51B4A80450053D982 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A447FEF41B4A80450053D982 /* Security.framework */; };
 		A447FEF71B4A80C00053D982 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A447FEF61B4A80C00053D982 /* mapapi.bundle */; };
 		A447FEFA1B4A84600053D982 /* listCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447FEF91B4A84600053D982 /* listCell.xib */; };
+		A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */; };
 		A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FE3A1B54FA890065C0CA /* userInfo.m */; };
 		A4D13E0A1B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E051B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m */; };
 		A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E071B4CBB9C00C06A2B /* MFSideMenuShadow.m */; };
@@ -177,6 +178,8 @@
 		A447FEF41B4A80450053D982 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A447FEF61B4A80C00053D982 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		A447FEF91B4A84600053D982 /* listCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = listCell.xib; sourceTree = "<group>"; };
+		A4A166EB1B5CDEA8003A8F3D /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
+		A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
 		A4A1FE391B54FA890065C0CA /* userInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfo.h; sourceTree = "<group>"; };
 		A4A1FE3A1B54FA890065C0CA /* userInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfo.m; sourceTree = "<group>"; };
 		A4D13E031B4CBB9C00C06A2B /* MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenu.h; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				A447FEE91B4A4D380053D982 /* globalVar.h */,
 				A4A1FE391B54FA890065C0CA /* userInfo.h */,
 				A4A1FE3A1B54FA890065C0CA /* userInfo.m */,
+				A4A166EB1B5CDEA8003A8F3D /* DataCenter.h */,
+				A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 				A412D0361B4FAB87006180A0 /* AFURLConnectionOperation.m in Sources */,
 				A4D13E131B4CC22800C06A2B /* centerViewController.m in Sources */,
 				A412D03B1B4FAB87006180A0 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */,
 				A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */,
 				A4DF4EDD1B58DB6E004E9F59 /* noteTableViewCell.m in Sources */,
 				A412D0371B4FAB87006180A0 /* AFURLRequestSerialization.m in Sources */,

@@ -14,6 +14,10 @@
 #import "listCellTableViewCell.h"
 #import "FabonacciNum.h"
 #import "playerPageViewController.h"
+#import "globalVar.h"
+#import "userInfo.h"
+#import "SideMenuViewController.h"
+#import "DataCenter.h"
 
 #define annoRatio 0.37
 #define userCoverRatio 0.0025
@@ -56,6 +60,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[DataCenter sharedDataCenter] setIsGuest:NO];
+    
     if(!self.title) self.title = @"附近";
     
     UINib *nib = [UINib nibWithNibName:@"listCell" bundle:nil];
@@ -172,7 +178,6 @@
 
     
     
-        [self uploadLocation];
 
 
 }
@@ -215,6 +220,26 @@
     {
         self.menuContainerViewController.panMode = MFSideMenuPanModeDefault ;
 
+       
+    }else if([[[notification userInfo] objectForKey:@"eventType"] intValue] == MFSideMenuStateEventMenuWillOpen)
+    {
+        if ([[DataCenter sharedDataCenter] isGuest]) {
+            if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
+                SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+                [leftMenuVC.logoutBtn setTitle:@"登录" forState:UIControlStateNormal];
+                [leftMenuVC.unLoginLabel setHidden:NO];
+                [leftMenuVC.itemsTable setHidden:YES];
+            }
+        }else
+        {
+            
+            if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
+                SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+                [leftMenuVC.logoutBtn setTitle:@"注销" forState:UIControlStateNormal];
+                [leftMenuVC.unLoginLabel setHidden:YES];
+                [leftMenuVC.itemsTable setHidden:NO];
+            }
+        }
     }
 }
 
@@ -271,44 +296,64 @@
 
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"haveDefaultUser"] isEqualToString:@"yes"]) {
-        
-        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
-        
-        
-        userInfo *myInfo = [[userInfo alloc] init];
-        myInfo.username = [userDic objectForKey:@"username"];
-        myInfo.age = [userDic objectForKey:@"age"];
-        myInfo.sex = [userDic objectForKey:@"sex"];
-        myInfo.email = [userDic objectForKey:@"email"];
-        myInfo.createTime = [userDic objectForKey:@"created"];
-        myInfo.id_DB = [userDic objectForKey:@"id"];
-        myInfo.headImagePath = [imagePath stringByAppendingString:[userDic objectForKey:@"username"]];
-        
-        self.myUserInfo = myInfo;
-        
-        if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
-            NSURL *url = [NSURL URLWithString:myInfo.headImagePath];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            UIImage *img = [[UIImage alloc] initWithData:data];
-            SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+    
+    NSLog(@"isGuest:%d",[[DataCenter sharedDataCenter] isGuest]);
+    if ([[DataCenter sharedDataCenter] isGuest]) {
+        NSLog(@"isGuest!");
+        [self cancelUploadLocation];
+        return;
+    }else
+    {
+        NSLog(@"is NOT guest!");
 
-            [leftMenuVC.headImage setImage:img];
+
+        
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"haveDefaultUser"] isEqualToString:@"yes"]) {
             
+            NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
+            
+         
+            [self configUserInfo:userDic];
+            
+            //        [self performSelector:@selector(uploadRadarInfo) withObject:nil afterDelay:0.75];
+
+            [self uploadLocation];
+
+            
+        }else
+        {
+            [self showLoginPage];
             
         }
         
-//        [self performSelector:@selector(uploadRadarInfo) withObject:nil afterDelay:0.75];
-        
-       
-        
-        
-    }else
-    {
-        [self showLoginPage];
 
     }
     
+}
+
+-(void)configUserInfo:(NSDictionary *)userDic
+{
+    userInfo *myInfo = [[userInfo alloc] init];
+    myInfo.username = [userDic objectForKey:@"username"];
+    myInfo.age = [userDic objectForKey:@"age"];
+    myInfo.sex = [userDic objectForKey:@"sex"];
+    myInfo.email = [userDic objectForKey:@"email"];
+    myInfo.createTime = [userDic objectForKey:@"created"];
+    myInfo.id_DB = [userDic objectForKey:@"id"];
+    myInfo.headImagePath = [imagePath stringByAppendingString:[userDic objectForKey:@"username"]];
+    
+    self.myUserInfo = myInfo;
+    
+    if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
+        NSURL *url = [NSURL URLWithString:myInfo.headImagePath];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+        
+        [leftMenuVC.headImage setImage:img];
+        
+        
+    }
 }
 
 -(void)uploadRadarInfo
@@ -337,7 +382,17 @@
     [_locServer startUserLocationService];
     
     [_radarManager startAutoUpload:17];
+   
 
+}
+-(void)cancelUploadLocation
+{
+    _radarManager = [BMKRadarManager getRadarManagerInstance];
+    _locServer = [[BMKLocationService alloc] init];
+    _locServer.delegate = self;
+    [_locServer startUserLocationService];
+    
+    [_radarManager stopAutoUpload];
 }
 
 -(void)mapTapped:(UINavigationItem *)sender
@@ -542,18 +597,7 @@
     return cell;
 }
 
-//- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *CellIdentifier = @"BaiduMapRadarDemoCell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//    }
-//    BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
-//    cell.textLabel.text = info.userId;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d米   %@", (int)info.distance, info.extInfo];
-//    return cell;
-//}
+
 #pragma mark -
 #pragma mark Table view delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -561,17 +605,12 @@
     return 60;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UIViewController* viewController = nil;
-//    if (indexPath.row < 18) {
-//        viewController = [[NSClassFromString([_viewControllerArray objectAtIndex:indexPath.row]) alloc] init];
-//    } else {
-//        viewController = [[UIStoryboard storyboardWithName:@"Storyboard" bundle:nil] instantiateViewControllerWithIdentifier:[_viewControllerArray objectAtIndex:indexPath.row]];
-//    }
-//    viewController.title = [_viewControllerTitleArray objectAtIndex:indexPath.row];
-//    UIBarButtonItem *customLeftBarButtonItem = [[UIBarButtonItem alloc] init];
-//    customLeftBarButtonItem.title = @"返回";
-//    self.navigationItem.backBarButtonItem = customLeftBarButtonItem;
-//    [self.navigationController pushViewController:viewController animated:YES];
+
+    BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
+    [self jumpToPlayer:info.userId];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 - (BMKRadarUploadInfo *)getCurrInfo {
@@ -579,19 +618,26 @@
 
 //    int random = arc4random()%1000;
 //    _radarManager.userId =[NSString stringWithFormat:@"dotaer%d",random];
-    _radarManager.userId =self.myUserInfo.username;
+    if (self.myUserInfo.username) {
+        _radarManager.userId =self.myUserInfo.username;
+        info.extInfo = @"hello dota";
+        [lock lock];
+        
+        
+        info.pt =  CLLocationCoordinate2DMake(34.216, 108.896);//我的地理坐标
+        
+        //test
+        //    info.pt = _curLocation;
+        [lock unlock];
+        return info;
+    }
+    else
+    {
+        return nil;
+    }
 
 
-    info.extInfo = @"hello dota";
-    [lock lock];
-
-    
-    info.pt =  CLLocationCoordinate2DMake(34.216, 108.896);//我的地理坐标
-
-    //test
-//    info.pt = _curLocation;
-    [lock unlock];
-    return info;
+ 
 }
 
 #pragma mark - BMKRadarManagerDelegate
@@ -600,6 +646,11 @@
  *开启自动上传，需实现该回调
  */
 - (BMKRadarUploadInfo *)getRadarAutoUploadInfo {
+//    if ([[DataCenter sharedDataCenter] isGuest])
+//    {
+//        return nil;
+//    }else
+    
     return [self getCurrInfo];
 }
 
@@ -833,16 +884,26 @@
 {
     NSLog(@"tap annotation!");
     
-    playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
     myPointAnnotation *anno;
     if ([view.annotation isKindOfClass:[myPointAnnotation class]]) {
         anno = (myPointAnnotation *)view.annotation;
     }
-    playInfo.playerName = anno.title;
+    
+    [self jumpToPlayer:anno.title];
+
+    [_mapView deselectAnnotation:view.annotation animated:YES];
+  
+}
+
+
+-(void)jumpToPlayer:(NSString *)playerName
+{
+    playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
+
+    playInfo.playerName = playerName;
     [self.navigationController pushViewController:playInfo animated:YES];
     
     
-    [_mapView deselectAnnotation:view.annotation animated:YES];
 }
 
 - (void) dealloc {

@@ -8,10 +8,10 @@
 
 #import "loginViewController.h"
 #import "FXBlurView.h"
-#import "globalVar.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "AFURLSessionManager.h"
-
+#import "globalVar.h"
+#import "DataCenter.h"
 @interface loginViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
 @property (weak, nonatomic) IBOutlet FXBlurView *blurView;
@@ -27,6 +27,8 @@ bool emailOK;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[DataCenter sharedDataCenter] setIsGuest:NO];
+
     emailOK = NO;
     self.sexInfo = @"";
     
@@ -192,6 +194,12 @@ bool emailOK;
 
         NSLog(@"loginPart:%@",self.loginPart);
     }
+}
+- (IBAction)beGuest:(UIButton *)sender {
+    
+    NSLog(@"set guest!!!");
+    [[DataCenter sharedDataCenter] setIsGuest:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)enableSubmitBtn

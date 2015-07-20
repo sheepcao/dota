@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "globalVar.h"
 
 @interface loginViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *loginPart;
