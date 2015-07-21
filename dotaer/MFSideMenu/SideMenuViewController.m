@@ -11,6 +11,9 @@
 #import "loginViewController.h"
 #import "globalVar.h"
 #import "DataCenter.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "levelInfoViewController.h"
+
 
 @implementation SideMenuViewController
 
@@ -57,13 +60,18 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0) {
+        levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
+        
+        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+        [temp addObject:levelInfo];
+        navigationController.viewControllers = temp;
+    }
 //    loginViewController *demoController = [[loginViewController alloc] initWithNibName:@"loginViewController" bundle:nil];
 //    demoController.title = [NSString stringWithFormat:@"login #%d-%d", indexPath.section, indexPath.row];
 //    
-//    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-//    NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
-//    [temp addObject:demoController];
-//    navigationController.viewControllers = temp;
     [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
 }
 
@@ -113,6 +121,72 @@
     if ([textView.text isEqualToString:@""]) {
         textView.text = @"编辑个人签名...";
     }
+    
+    [self uploadSignature:textView.text];
+}
+
+-(void)requestSignature
+{
+
+    NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
+    
+    NSDictionary *parameters = @{@"tag": @"getSignature",@"username":username};
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    
+    [manager POST:signatureService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+        NSLog(@"Json: %@", responseObject);
+        
+        NSLog(@"content:%@",[responseObject objectForKey:@"content"]);
+        
+        [self.signatureTextView setText:[responseObject objectForKey:@"content"]];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR233: %@",  operation.responseString);
+        
+        
+    }];
+}
+
+-(void)uploadSignature:(NSString *)signature
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.dimBackground = YES;
+    
+    NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
+    
+    NSDictionary *parameters = @{@"tag": @"signature",@"content":signature,@"username":username};
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    
+    [manager POST:signatureService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+        [hud hide:YES];
+        
+        NSLog(@"Json: %@", responseObject);
+        
+        NSLog(@"content:%@",[responseObject objectForKey:@"content"]);
+
+        [self.signatureTextView setText:[responseObject objectForKey:@"content"]];
+
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        [hud hide:YES];
+        
+        
+    }];
+
 }
 
 - (BOOL)textView:(UITextView *)txtView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="levelInfoViewController">
+            <connections>
+                <outlet property="levelWebview" destination="Hd6-zO-i8x" id="bWw-ZB-BXg"/>
+                <outlet property="uploadBtn" destination="3qm-xA-RNS" id="HCG-8K-kT6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-my-Vqz">
+                    <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请登录您的游戏账号，并点击上传战绩即可。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7c-gN-Ajh">
+                            <rect key="frame" x="29" y="8" width="177" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qm-xA-RNS">
+                            <rect key="frame" x="268" y="15" width="72" height="30"/>
+                            <color key="backgroundColor" red="0.90136527259999999" green="0.76746958450000002" blue="0.074492368929999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="上传战绩">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="uploadLevel:" destination="-1" eventType="touchUpInside" id="n8G-r6-U4x"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.31301398029999999" green="0.72008634869999999" blue="0.84251644739999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="L5N-WF-06q"/>
+                    </constraints>
+                </view>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hd6-zO-i8x">
+                    <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ucj-my-Vqz" secondAttribute="trailing" id="PNr-RA-MuK"/>
+                <constraint firstItem="ucj-my-Vqz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="X1E-Us-W22"/>
+                <constraint firstItem="Hd6-zO-i8x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YTc-zx-CVU"/>
+                <constraint firstItem="Hd6-zO-i8x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Yrs-aS-Mh7"/>
+                <constraint firstAttribute="bottom" secondItem="ucj-my-Vqz" secondAttribute="bottom" id="cjK-h1-igF"/>
+                <constraint firstAttribute="trailing" secondItem="Hd6-zO-i8x" secondAttribute="trailing" id="n2z-PH-S5m"/>
+                <constraint firstItem="ucj-my-Vqz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uAr-An-0mn"/>
+                <constraint firstItem="ucj-my-Vqz" firstAttribute="top" secondItem="Hd6-zO-i8x" secondAttribute="bottom" id="zSz-th-dHS"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="X1E-Us-W22"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

@@ -26,6 +26,7 @@
 
 #define registerService @"http://localhost/~ericcao/upload.php"
 #define playerInfoService @"http://localhost/~ericcao/playerInfo.php"
+#define signatureService @"http://localhost/~ericcao/signature.php"
 
 
 #define imagePath @"http://localhost/~ericcao/upload/"

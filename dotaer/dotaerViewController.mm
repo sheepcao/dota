@@ -60,6 +60,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    _radarManager = [BMKRadarManager getRadarManagerInstance];
+
     [[DataCenter sharedDataCenter] setIsGuest:NO];
     
     if(!self.title) self.title = @"附近";
@@ -289,7 +291,7 @@
     NSLog(@"appear !!!!!");
     [super viewWillAppear:animated];
     
-    
+
 
     [_mapView viewWillAppear];
     [_radarManager addRadarManagerDelegate:self];//添加radar delegate
@@ -314,6 +316,14 @@
             
          
             [self configUserInfo:userDic];
+            
+            if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
+
+                SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+                
+                [leftMenuVC requestSignature];
+                
+            }
             
             //        [self performSelector:@selector(uploadRadarInfo) withObject:nil afterDelay:0.75];
 
@@ -376,7 +386,6 @@
 
 -(void)uploadLocation
 {
-    _radarManager = [BMKRadarManager getRadarManagerInstance];
     _locServer = [[BMKLocationService alloc] init];
     _locServer.delegate = self;
     [_locServer startUserLocationService];
@@ -835,7 +844,8 @@
             
             [imageview addSubview:countBackImage];
             
-            UILabel *userCount = [[UILabel alloc] initWithFrame:CGRectMake(112*annoRatio-6-11, 112*annoRatio-6-13, 16, 16)];
+            UILabel *userCount = [[UILabel alloc] initWithFrame:CGRectMake(112*annoRatio-6-14, 112*annoRatio-6-13, 16, 16)];
+            userCount.textAlignment = NSTextAlignmentCenter;
             [userCount setText:[NSString stringWithFormat:@"%ld",anno.containUsers.count + 1 ]];
             userCount.font = [UIFont boldSystemFontOfSize:8.2f];
             [imageview addSubview:userCount];
@@ -843,17 +853,9 @@
     }
     
     
-    
-//    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(32, 0, 100, 64)];
-//    label.text=@"陈双超";
-//    label.backgroundColor=[UIColor clearColor];
-//    [viewForImage addSubview:label];
     annotationView.image=[self getImageFromView:viewForImage];
     
 
-    
-    
-    
     
     return annotationView;
 }
@@ -872,12 +874,7 @@
     UIGraphicsEndImageContext();
     return image;
 
-    
-//    UIGraphicsBeginImageContext(view.bounds.size);
-//    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return image;
+
 }
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view

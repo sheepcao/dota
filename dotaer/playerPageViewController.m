@@ -53,6 +53,10 @@
         [hud hide:YES];
 
         NSLog(@"JSON: %@", responseObject);
+        
+
+
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR: %@",  operation.responseString);

@@ -54,6 +54,8 @@
 		A447FEFA1B4A84600053D982 /* listCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447FEF91B4A84600053D982 /* listCell.xib */; };
 		A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */; };
 		A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FE3A1B54FA890065C0CA /* userInfo.m */; };
+		A4CFDE581B5E1B0800EAC77E /* levelInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */; };
+		A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */; };
 		A4D13E0A1B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E051B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m */; };
 		A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E071B4CBB9C00C06A2B /* MFSideMenuShadow.m */; };
 		A4D13E0C1B4CBB9C00C06A2B /* UIViewController+MFSideMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E091B4CBB9C00C06A2B /* UIViewController+MFSideMenuAdditions.m */; };
@@ -182,6 +184,9 @@
 		A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
 		A4A1FE391B54FA890065C0CA /* userInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfo.h; sourceTree = "<group>"; };
 		A4A1FE3A1B54FA890065C0CA /* userInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfo.m; sourceTree = "<group>"; };
+		A4CFDE551B5E1B0800EAC77E /* levelInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelInfoViewController.h; sourceTree = "<group>"; };
+		A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = levelInfoViewController.m; sourceTree = "<group>"; };
+		A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = levelInfoViewController.xib; sourceTree = "<group>"; };
 		A4D13E031B4CBB9C00C06A2B /* MFSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenu.h; sourceTree = "<group>"; };
 		A4D13E041B4CBB9C00C06A2B /* MFSideMenuContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSideMenuContainerViewController.h; sourceTree = "<group>"; };
 		A4D13E051B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSideMenuContainerViewController.m; sourceTree = "<group>"; };
@@ -413,6 +418,9 @@
 				A447FEBF1B4A1BBB0053D982 /* loginViewController.h */,
 				A447FEC01B4A1BBB0053D982 /* loginViewController.m */,
 				A447FEC11B4A1BBB0053D982 /* loginViewController.xib */,
+				A4CFDE551B5E1B0800EAC77E /* levelInfoViewController.h */,
+				A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */,
+				A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -622,6 +630,7 @@
 				A4F51BB71B57760C00786FD1 /* nc.jpg in Resources */,
 				A4D13E1B1B4CEBE300C06A2B /* Default-568h@2x.png in Resources */,
 				A447FEE41B4A48600053D982 /* myMenuViewController.xib in Resources */,
+				A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */,
 				A4F51BBB1B57777200786FD1 /* Hvwd.jpg in Resources */,
 				A4D13E141B4CC22800C06A2B /* centerViewController.xib in Resources */,
 				A4DA56271B4E73660010C95D /* register-female@2x.png in Resources */,
@@ -662,6 +671,7 @@
 				A447FEC21B4A1BBB0053D982 /* loginViewController.m in Sources */,
 				A412D0321B4FAB87006180A0 /* AFHTTPRequestOperationManager.m in Sources */,
 				A4D13E0A1B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m in Sources */,
+				A4CFDE581B5E1B0800EAC77E /* levelInfoViewController.m in Sources */,
 				A412D0361B4FAB87006180A0 /* AFURLConnectionOperation.m in Sources */,
 				A4D13E131B4CC22800C06A2B /* centerViewController.m in Sources */,
 				A412D03B1B4FAB87006180A0 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

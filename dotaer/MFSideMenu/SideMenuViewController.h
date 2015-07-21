@@ -17,4 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *unLoginLabel;
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 @property (weak, nonatomic) IBOutlet UITextView *signatureTextView;
+
+-(void)requestSignature;
+
 @end
