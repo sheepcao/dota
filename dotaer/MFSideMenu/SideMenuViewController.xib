@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuViewController">
             <connections>
+                <outlet property="headBtn" destination="WtN-gJ-SSg" id="sBv-8M-aD7"/>
                 <outlet property="headImage" destination="7xf-aQ-QOh" id="aub-ga-5CH"/>
                 <outlet property="itemsTable" destination="aZs-Pk-Brr" id="kLz-9u-XZJ"/>
                 <outlet property="logoutBtn" destination="GRD-B5-Hwf" id="RPF-oO-ymI"/>
@@ -74,17 +75,30 @@
                         <outlet property="delegate" destination="-1" id="mra-yD-qes"/>
                     </connections>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtN-gJ-SSg" userLabel="changeHeadImg">
+                    <rect key="frame" x="35" y="50" width="130" height="130"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="changeHeadImg:" destination="-1" eventType="touchUpInside" id="LsJ-cj-gO5"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="WtN-gJ-SSg" firstAttribute="centerX" secondItem="7xf-aQ-QOh" secondAttribute="centerX" id="7m3-m4-9Q0"/>
                 <constraint firstItem="JAE-bc-Jkt" firstAttribute="top" secondItem="7xf-aQ-QOh" secondAttribute="bottom" constant="50" id="8mc-SJ-DxP"/>
                 <constraint firstItem="7xf-aQ-QOh" firstAttribute="centerX" secondItem="JAE-bc-Jkt" secondAttribute="centerX" id="CgF-lY-ao7"/>
                 <constraint firstAttribute="centerY" secondItem="JAE-bc-Jkt" secondAttribute="centerY" constant="40" id="DXE-uv-1fA"/>
                 <constraint firstItem="GRD-B5-Hwf" firstAttribute="top" secondItem="aZs-Pk-Brr" secondAttribute="bottom" constant="2" id="ELA-Oi-1Z5"/>
+                <constraint firstItem="WtN-gJ-SSg" firstAttribute="width" secondItem="7xf-aQ-QOh" secondAttribute="width" id="Pv1-xM-TQC"/>
                 <constraint firstItem="RhR-LJ-UbC" firstAttribute="top" secondItem="7xf-aQ-QOh" secondAttribute="bottom" constant="8" id="S2n-DX-1fU"/>
                 <constraint firstItem="aZs-Pk-Brr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="aBW-xD-XvJ"/>
                 <constraint firstItem="aZs-Pk-Brr" firstAttribute="top" secondItem="RhR-LJ-UbC" secondAttribute="bottom" constant="3" id="aka-AL-vho"/>
                 <constraint firstAttribute="centerX" secondItem="7xf-aQ-QOh" secondAttribute="centerX" id="eIo-N1-GaW"/>
+                <constraint firstItem="WtN-gJ-SSg" firstAttribute="height" secondItem="7xf-aQ-QOh" secondAttribute="height" id="fg5-5V-PBn"/>
+                <constraint firstItem="WtN-gJ-SSg" firstAttribute="centerY" secondItem="7xf-aQ-QOh" secondAttribute="centerY" id="k31-ni-FTu"/>
                 <constraint firstAttribute="trailing" secondItem="aZs-Pk-Brr" secondAttribute="trailing" id="kj9-dX-yeu"/>
                 <constraint firstAttribute="centerY" secondItem="aZs-Pk-Brr" secondAttribute="centerY" constant="-25" id="pXA-AR-CSJ"/>
                 <constraint firstItem="7xf-aQ-QOh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="qyT-Z6-VQv"/>

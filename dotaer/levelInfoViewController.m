@@ -101,8 +101,10 @@
     hud.labelText = @"Uploading";
     hud.dimBackground = YES;
     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
+
     
-    NSDictionary *parameters = @{@"tag": @"uploadLevel"};
+    NSDictionary *parameters = @{@"tag": @"uploadLevel",@"username":username};
     
     
     //upload head image
@@ -116,9 +118,6 @@
     
     
     AFHTTPRequestOperation *op = [manager POST:registerService parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        
-        NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
         
 
         
@@ -144,7 +143,7 @@
         
         NSLog(@"Error: %@ ***** %@", operation.responseString, error.localizedDescription);
 
-            UIAlertView *registerFailedAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"注册失败，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *registerFailedAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"上传失败，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [registerFailedAlert show];
         
         
