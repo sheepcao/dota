@@ -98,7 +98,7 @@
                 {
                     $response["username"][] = $row["username"];
                     $response["gameID"][] = $row["gameID"];
-                    $response["created_at"][] = $row["created_at"];
+                    $response["created_Time"][] = $row["created_Time"];
                     $response["WinRatio"][] = $row["WinRatio"];
 
                 }

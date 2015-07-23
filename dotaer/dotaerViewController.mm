@@ -45,6 +45,7 @@
 @property (strong,nonatomic) BMKMapView *mapView;
 
 @property (strong,nonatomic) userInfo *myUserInfo;
+@property (strong,nonatomic) NSString *signature;
 
 @property (nonatomic, strong) NSMutableArray *nearbyInfos;
 @property (nonatomic) NSInteger curPageIndex;
@@ -63,7 +64,7 @@
     _radarManager = [BMKRadarManager getRadarManagerInstance];
 
     [[DataCenter sharedDataCenter] setIsGuest:NO];
-    
+    self.signature = @"";
     if(!self.title) self.title = @"附近";
     
     UINib *nib = [UINib nibWithNibName:@"listCell" bundle:nil];
@@ -127,6 +128,8 @@
         [searchBtn setBackgroundColor:[UIColor purpleColor]];
         [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
         [searchingBar addSubview:searchBtn];
+        [searchBtn setEnabled:NO];
+    [self performSelector:@selector(enableSearch:) withObject:searchBtn afterDelay:1.0];
     
     
         UIView *pageBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y - 40, SCREEN_WIDTH, 40)];
@@ -182,6 +185,11 @@
     
 
 
+}
+
+-(void)enableSearch:(UIButton *)btn
+{
+    [btn setEnabled:YES];
 }
 
 
@@ -321,7 +329,7 @@
 
                 SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
                 
-                [leftMenuVC requestSignature];
+                self.signature = [leftMenuVC requestSignature];
                 
             }
             
@@ -452,7 +460,9 @@
         myPointAnnotation *annotation = [[myPointAnnotation alloc] init];
         annotation.coordinate = info.pt;
         annotation.title = info.userId;
-//        annotation.anno = info.extInfo;
+        annotation.annoUserDistance = info.distance;
+        
+        //distance....
         
         BOOL beContained = NO;
         
@@ -478,8 +488,6 @@
 -(void)updateValue:(UISlider *)sender{
 //添加响应事件
     
-
-
     
     if (sender.value<31) {
         _searchRadius = [FabonacciNum calculateFabonacci:sender.value];
@@ -616,7 +624,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
-    [self jumpToPlayer:info.userId];
+    [self jumpToPlayer:info.userId andDistance:info.distance andSignature:self.signature];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
@@ -886,18 +894,21 @@
         anno = (myPointAnnotation *)view.annotation;
     }
     
-    [self jumpToPlayer:anno.title];
+    [self jumpToPlayer:anno.title andDistance:anno.annoUserDistance andSignature:self.signature];
 
     [_mapView deselectAnnotation:view.annotation animated:YES];
   
 }
 
 
--(void)jumpToPlayer:(NSString *)playerName
+-(void)jumpToPlayer:(NSString *)playerName andDistance:(NSUInteger)distance andSignature:(NSString *)signature
 {
     playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
 
     playInfo.playerName = playerName;
+    playInfo.distance = distance;
+    playInfo.userSignature = signature;
+    
     [self.navigationController pushViewController:playInfo animated:YES];
     
     

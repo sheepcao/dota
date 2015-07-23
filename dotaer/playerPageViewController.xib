@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="playerPageViewController">
             <connections>
+                <outlet property="JJCLabel" destination="Imq-rh-0OD" id="e5U-Zq-Ifv"/>
+                <outlet property="TTLabel" destination="0QZ-of-LIJ" id="ube-ez-nTw"/>
                 <outlet property="achieveView" destination="dti-KO-WPD" id="8OU-F1-78f"/>
+                <outlet property="ageLabel" destination="v5Z-Fy-etN" id="kOr-IX-bpg"/>
                 <outlet property="contentView" destination="Fgh-SV-7Ke" id="DVg-CE-9Wi"/>
+                <outlet property="distanceLabel" destination="kFI-G8-DbV" id="bWA-32-d76"/>
+                <outlet property="gameIDLabel" destination="bff-KC-b2y" id="4em-nx-GMy"/>
+                <outlet property="headImage" destination="p4a-lZ-R3C" id="qxs-U8-4X7"/>
+                <outlet property="heroFirstLabel" destination="BtR-31-nFu" id="gwS-5n-XMn"/>
+                <outlet property="heroSecondLabel" destination="UDs-oT-TcQ" id="fbm-NX-DAL"/>
+                <outlet property="heroThirdLabel" destination="VB6-tZ-8NU" id="vEi-7c-Bqx"/>
                 <outlet property="infoBackImage" destination="d1p-7P-8h5" id="vRO-HB-ut6"/>
                 <outlet property="infoView" destination="IiC-HH-iJR" id="QT9-Dm-yt8"/>
                 <outlet property="notePadTable" destination="7iX-oZ-e46" id="Ruw-In-1m5"/>
+                <outlet property="ratioLabel" destination="AfO-Ul-iQX" id="sHU-RM-KZi"/>
+                <outlet property="sexImage" destination="x3h-4G-JJi" id="I02-JL-z7I"/>
+                <outlet property="signatureLabel" destination="8NO-za-aLr" id="ebq-5O-6j9"/>
+                <outlet property="soldierLabel" destination="wOv-mE-BMt" id="vZe-Ri-N1g"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -88,7 +101,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="胜率：60%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfO-Ul-iQX">
-                                    <rect key="frame" x="12" y="78" width="75" height="21"/>
+                                    <rect key="frame" x="8" y="78" width="79" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -131,7 +144,7 @@
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态状态" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NO-za-aLr">
                                     <rect key="frame" x="10" y="105" width="300" height="35"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>

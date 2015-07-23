@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *signatureTextView;
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
 
--(void)requestSignature;
+-(NSString *)requestSignature;
 - (IBAction)changeHeadImg:(UIButton *)sender;
 
 @end

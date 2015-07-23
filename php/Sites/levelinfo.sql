@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS levelinfo (
   heroFirst varchar(64) CHARACTER SET utf8,
   heroSecond varchar(64) CHARACTER SET utf8,
   heroThird varchar(64) CHARACTER SET utf8,
-  created_at datetime NOT NULL,
+  created_Time datetime NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY (username)
 );

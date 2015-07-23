@@ -115,6 +115,22 @@
                 $response["age"] = $user["age"];
                 $response["sex"] = $user["sex"];
                 
+                
+                
+                
+                
+                $response["isReviewed"] = $user["isReviewed"];
+                $response["JJCscore"] = $user["JJCscore"];
+                $response["gameID"] = $user["gameID"];
+                $response["TTscore"] = $user["TTscore"];
+                $response["WinRatio"] = $user["WinRatio"];
+                $response["soldier"] = $user["soldier"];
+                $response["heroFirst"] = $user["heroFirst"];
+                $response["heroSecond"] = $user["heroSecond"];
+                $response["heroThird"] = $user["heroThird"];
+                $response["created_Time"] = $user["created_Time"];
+                
+                
                 sendResponse(200,json_encode($response));
             } else {
                 // user not found

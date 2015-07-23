@@ -25,11 +25,7 @@
     
     [self.navigationController.navigationItem.backBarButtonItem setTitle:@"附近"];
     self.title = self.playerName;
-    NSString *headPath = [imagePath stringByAppendingString:self.playerName];
-    
-    NSURL *url = [NSURL URLWithString:headPath];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img = [[UIImage alloc] initWithData:data];
+
     
     [self requestPlayerInfo];
 }
@@ -48,11 +44,13 @@
     //    [manager.requestSerializer setTimeoutInterval:25];  //Time out after 25 seconds
     
     
-    [manager POST:playerInfoService parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:playerInfoService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
         [hud hide:YES];
 
         NSLog(@"JSON: %@", responseObject);
+        
+        [self setupPageWithDic:responseObject];
         
 
 
@@ -66,7 +64,42 @@
         
     }];
     
+
+}
+
+
+-(void)setupPageWithDic:(NSDictionary *)dic
+{
+    NSString *headPath = [imagePath stringByAppendingString:self.playerName];
     
+    NSURL *url = [NSURL URLWithString:headPath];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img;
+    if (data) {
+        img = [[UIImage alloc] initWithData:data];
+    }else
+    {
+        img = [UIImage imageNamed:@"defaultHead"];
+    }
+    [self.headImage setImage:img];
+    
+    [self.ageLabel setText:[dic objectForKey:@"age"]];
+    [self.sexImage setImage:[UIImage imageNamed:[dic objectForKey:@"sex"]]];
+    [self.distanceLabel setText:[NSString stringWithFormat:@"%ld米",self.distance]];
+    
+    
+    if ([self.userSignature isEqualToString:@"编辑个人签名..."]) {
+        self.userSignature = @"签名的力气都用去打dota了!";
+    }
+    [self.signatureLabel setText:self.userSignature];
+    [self.gameIDLabel setText:[NSString stringWithFormat:@"ID:%@",[dic objectForKey:@"gameID"]]];
+    [self.JJCLabel setText:[dic objectForKey:@"JJCscore"]];
+    [self.TTLabel setText:[dic objectForKey:@"TTscore"]];
+    [self.soldierLabel setText:[dic objectForKey:@"soldier"]];
+    [self.ratioLabel setText:[NSString stringWithFormat:@"胜率:%@%%",[dic objectForKey:@"WinRatio"]]];
+    [self.heroFirstLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroFirst"] ofType:@"jpg"]]];
+    [self.heroSecondLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroSecond"] ofType:@"jpg"]]];
+    [self.heroThirdLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroThird"] ofType:@"jpg"]]];
 
 
 }
@@ -137,20 +170,20 @@
 
 -(void)setupPage
 {
-    //    self.mainScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    //    [self.mainScroll setBounces:NO];
-    //    [self.mainScroll setBackgroundColor:[UIColor lightGrayColor]];
-    //    [self.view addSubview:self.mainScroll];
-    
-    //    [contentView setFrame:CGRectMake((SCREEN_WIDTH-320)/2, 0, 320, SCREEN_HEIGHT)];
-    [self.mainScroll addSubview:contentView];
-    
-    [self.infoView sendSubviewToBack:self.infoBackImage];
-    
-    [contentView setBackgroundColor:[UIColor purpleColor]];
-    
-    [self.mainScroll setContentSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    
+//    //    self.mainScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//    //    [self.mainScroll setBounces:NO];
+//    //    [self.mainScroll setBackgroundColor:[UIColor lightGrayColor]];
+//    //    [self.view addSubview:self.mainScroll];
+//    
+//    //    [contentView setFrame:CGRectMake((SCREEN_WIDTH-320)/2, 0, 320, SCREEN_HEIGHT)];
+//    [self.mainScroll addSubview:contentView];
+//    
+//    [self.infoView sendSubviewToBack:self.infoBackImage];
+//    
+//    [contentView setBackgroundColor:[UIColor purpleColor]];
+//    
+//    [self.mainScroll setContentSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+//    
     
     
     //    [self.contentView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 700)];

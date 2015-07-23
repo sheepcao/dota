@@ -36,6 +36,16 @@ BMKMapManager* _mapManager;
     // Override point for customization after application launch.\
     
     
+    // 要使用百度地图，请先启动BaiduMapManager
+    
+    _mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [_mapManager start:@"MWVBk7FngAqgl0fSzErXRGzF" generalDelegate:self];
+    
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     
@@ -49,15 +59,7 @@ BMKMapManager* _mapManager;
     
     [self.window makeKeyAndVisible];
     
-    
-    // 要使用百度地图，请先启动BaiduMapManager
    
-    _mapManager = [[BMKMapManager alloc]init];
-    BOOL ret = [_mapManager start:@"MWVBk7FngAqgl0fSzErXRGzF" generalDelegate:self];
-    
-    if (!ret) {
-        NSLog(@"manager start failed!");
-    }
     
     return YES;
 }

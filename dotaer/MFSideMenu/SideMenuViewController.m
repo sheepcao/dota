@@ -230,7 +230,7 @@
 }
 
 
--(void)requestSignature
+-(NSString *)requestSignature
 {
     
     NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
@@ -256,6 +256,8 @@
         
         
     }];
+    
+    return self.signatureTextView.text;
 }
 
 

@@ -79,7 +79,7 @@ class DB_Functions {
      * Get playerInfo by name
      */
     public function getUserInfoByName($name) {
-        $result = mysql_query("SELECT * FROM userinfo WHERE unique_id = '$name'") or die(mysql_error());
+        $result = mysql_query("SELECT * FROM userinfo u left join levelinfo l on l.username = u.unique_id WHERE unique_id = '$name'") or die(mysql_error());
         // check for result
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {
@@ -187,7 +187,7 @@ class DB_Functions {
         if ($no_of_rows > 0) {
             
             
-            $update = mysql_query("update levelinfo set isReviewed ='$isReviewed', created_at = NOW() where username = '$username'") or die(mysql_error());
+            $update = mysql_query("update levelinfo set isReviewed ='$isReviewed', created_Time = NOW() where username = '$username'") or die(mysql_error());
             
             if($update)
             {
@@ -210,7 +210,7 @@ class DB_Functions {
         } else {
             
             
-            $insert = mysql_query("INSERT INTO levelinfo(username, isReviewed,created_at) VALUES('$username', '$isReviewed',NOW())") or die(mysql_error());
+            $insert = mysql_query("INSERT INTO levelinfo(username, isReviewed,created_Time) VALUES('$username', '$isReviewed',NOW())") or die(mysql_error());
             if ($insert)
             {
                 $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
@@ -244,6 +244,40 @@ class DB_Functions {
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {
             return $result;
+        }else {
+            // user not found
+            return false;
+        }
+    }
+    
+    public function updateUserLevel($username,$isReviewed,$gameID,$JJCscore,$TTscore,$ratio,$soldier,$heroFirst,$heroSecond,$heroThird) {
+        
+        $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
+        // check for result
+        $no_of_rows = mysql_num_rows($result);
+        if ($no_of_rows > 0) {
+            
+            
+            $update = mysql_query("update levelinfo set isReviewed ='$isReviewed',gameID = '$gameID', JJCscore = '$JJCscore', TTscore = '$TTscore', WinRatio = '$ratio',soldier = '$soldier', heroFirst = '$heroFirst', heroSecond = '$heroSecond', heroThird = '$heroThird' where username = '$username'") or die(mysql_error());
+            
+            if($update)
+            {
+                
+                $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
+                if ($result)
+                {
+                    return mysql_fetch_array($result);
+                    
+                }else
+                {
+                    return false;
+                }
+            }else
+            {
+                return false;
+            }
+            
+
         }else {
             // user not found
             return false;

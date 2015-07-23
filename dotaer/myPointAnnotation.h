@@ -12,8 +12,8 @@
 @interface myPointAnnotation : BMKPointAnnotation
 
 @property (nonatomic ,strong) NSMutableArray *containUsers;
-@property (nonatomic ,strong) userInfo *annoUserInfo;
-
+@property (nonatomic ,strong) NSString *annoUserInfo;
+@property NSUInteger annoUserDistance;
 
 
 @end
