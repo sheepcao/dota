@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 @property (weak, nonatomic) IBOutlet UITextView *signatureTextView;
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *sexImg;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 
 -(NSString *)requestSignature;
 - (IBAction)changeHeadImg:(UIButton *)sender;

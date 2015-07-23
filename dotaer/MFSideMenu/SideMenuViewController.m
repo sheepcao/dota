@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.headImage.layer.cornerRadius = 65.0f;
+    self.headImage.layer.cornerRadius = 55.0f;
     self.headImage.layer.masksToBounds = YES;
     
 

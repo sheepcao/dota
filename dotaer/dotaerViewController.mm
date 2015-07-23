@@ -369,6 +369,8 @@
         SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
         
         [leftMenuVC.headImage setImage:img];
+        [leftMenuVC.sexImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",myInfo.sex]]];
+        [leftMenuVC.ageLabel setText:[NSString stringWithFormat:@"%@岁",myInfo.age]];
         
         
     }

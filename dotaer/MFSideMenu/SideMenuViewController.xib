@@ -8,10 +8,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuViewController">
             <connections>
+                <outlet property="ageLabel" destination="SEq-T5-OKb" id="roB-eH-IlT"/>
                 <outlet property="headBtn" destination="WtN-gJ-SSg" id="sBv-8M-aD7"/>
                 <outlet property="headImage" destination="7xf-aQ-QOh" id="aub-ga-5CH"/>
                 <outlet property="itemsTable" destination="aZs-Pk-Brr" id="kLz-9u-XZJ"/>
                 <outlet property="logoutBtn" destination="GRD-B5-Hwf" id="RPF-oO-ymI"/>
+                <outlet property="sexImg" destination="NmF-Mv-r0N" id="SWK-bD-Mg7"/>
                 <outlet property="signatureTextView" destination="RhR-LJ-UbC" id="9SP-Na-Nrz"/>
                 <outlet property="unLoginLabel" destination="JAE-bc-Jkt" id="qo0-xD-Pr1"/>
                 <outlet property="view" destination="iN0-l3-epB" id="17T-Sm-Y9R"/>
@@ -23,9 +25,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7xf-aQ-QOh">
-                    <rect key="frame" x="35" y="50" width="130" height="130"/>
+                    <rect key="frame" x="45" y="50" width="110" height="110"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="130" id="F4Y-kT-5pa"/>
+                        <constraint firstAttribute="width" constant="110" id="F4Y-kT-5pa"/>
                         <constraint firstAttribute="width" secondItem="7xf-aQ-QOh" secondAttribute="height" id="FWu-ph-2Jm"/>
                     </constraints>
                 </imageView>
@@ -43,7 +45,7 @@
                     </connections>
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录一下         dota有你更精彩！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAE-bc-Jkt">
-                    <rect key="frame" x="40" y="230" width="120" height="50"/>
+                    <rect key="frame" x="40" y="210" width="120" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="IBy-NJ-wwz"/>
                         <constraint firstAttribute="width" constant="120" id="qMx-5C-fGZ"/>
@@ -64,7 +66,7 @@
                     </connections>
                 </tableView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="编辑个人签名..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RhR-LJ-UbC">
-                    <rect key="frame" x="15" y="188" width="170" height="81"/>
+                    <rect key="frame" x="15" y="168" width="170" height="101"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="170" id="oEM-vJ-pLP"/>
@@ -76,7 +78,7 @@
                     </connections>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtN-gJ-SSg" userLabel="changeHeadImg">
-                    <rect key="frame" x="35" y="50" width="130" height="130"/>
+                    <rect key="frame" x="45" y="50" width="110" height="110"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -84,18 +86,39 @@
                         <action selector="changeHeadImg:" destination="-1" eventType="touchUpInside" id="LsJ-cj-gO5"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NmF-Mv-r0N">
+                    <rect key="frame" x="14" y="94" width="19" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="2AQ-2w-3Hg"/>
+                        <constraint firstAttribute="width" constant="19" id="Y3t-Uw-uKr"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110岁" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-T5-OKb">
+                    <rect key="frame" x="163" y="95" width="34" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="34" id="B79-dR-ccX"/>
+                        <constraint firstAttribute="height" constant="21" id="JnA-3h-awg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="SEq-T5-OKb" firstAttribute="leading" secondItem="7xf-aQ-QOh" secondAttribute="trailing" constant="8" id="4de-PD-ESL"/>
+                <constraint firstItem="SEq-T5-OKb" firstAttribute="centerY" secondItem="7xf-aQ-QOh" secondAttribute="centerY" constant="0.5" id="5gK-rx-W5O"/>
                 <constraint firstItem="WtN-gJ-SSg" firstAttribute="centerX" secondItem="7xf-aQ-QOh" secondAttribute="centerX" id="7m3-m4-9Q0"/>
                 <constraint firstItem="JAE-bc-Jkt" firstAttribute="top" secondItem="7xf-aQ-QOh" secondAttribute="bottom" constant="50" id="8mc-SJ-DxP"/>
                 <constraint firstItem="7xf-aQ-QOh" firstAttribute="centerX" secondItem="JAE-bc-Jkt" secondAttribute="centerX" id="CgF-lY-ao7"/>
                 <constraint firstAttribute="centerY" secondItem="JAE-bc-Jkt" secondAttribute="centerY" constant="40" id="DXE-uv-1fA"/>
                 <constraint firstItem="GRD-B5-Hwf" firstAttribute="top" secondItem="aZs-Pk-Brr" secondAttribute="bottom" constant="2" id="ELA-Oi-1Z5"/>
+                <constraint firstItem="WtN-gJ-SSg" firstAttribute="centerY" secondItem="NmF-Mv-r0N" secondAttribute="centerY" id="HQU-cN-RZ0"/>
                 <constraint firstItem="WtN-gJ-SSg" firstAttribute="width" secondItem="7xf-aQ-QOh" secondAttribute="width" id="Pv1-xM-TQC"/>
                 <constraint firstItem="RhR-LJ-UbC" firstAttribute="top" secondItem="7xf-aQ-QOh" secondAttribute="bottom" constant="8" id="S2n-DX-1fU"/>
                 <constraint firstItem="aZs-Pk-Brr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="aBW-xD-XvJ"/>
                 <constraint firstItem="aZs-Pk-Brr" firstAttribute="top" secondItem="RhR-LJ-UbC" secondAttribute="bottom" constant="3" id="aka-AL-vho"/>
+                <constraint firstItem="7xf-aQ-QOh" firstAttribute="leading" secondItem="NmF-Mv-r0N" secondAttribute="trailing" constant="12" id="bXA-bQ-SK1"/>
                 <constraint firstAttribute="centerX" secondItem="7xf-aQ-QOh" secondAttribute="centerX" id="eIo-N1-GaW"/>
                 <constraint firstItem="WtN-gJ-SSg" firstAttribute="height" secondItem="7xf-aQ-QOh" secondAttribute="height" id="fg5-5V-PBn"/>
                 <constraint firstItem="WtN-gJ-SSg" firstAttribute="centerY" secondItem="7xf-aQ-QOh" secondAttribute="centerY" id="k31-ni-FTu"/>
@@ -115,5 +138,13 @@
             </variation>
             <point key="canvasLocation" x="295" y="264.5"/>
         </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TyA-Nw-D74">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="374" y="43.5"/>
+        </label>
     </objects>
 </document>

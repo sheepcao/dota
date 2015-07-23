@@ -193,7 +193,7 @@
         <image name="11logo2.png" width="218" height="110"/>
         <image name="Hvwd.jpg" width="64" height="64"/>
         <image name="nc.jpg" width="45" height="45"/>
-        <image name="pa.jpg" width="45" height="45"/>
+        <image name="pa.jpg" width="64" height="64"/>
         <image name="register-female.png" width="19" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
