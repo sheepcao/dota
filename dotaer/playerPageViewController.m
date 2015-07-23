@@ -126,9 +126,31 @@
 {
     return 1;
 }
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section   // fixed font style. use custom view (UILabel) if you want something different
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section   // fixed font style. use custom view (UILabel) if you want something different
+//{
+//    return @"留言板";
+//}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return @"留言板";
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 2, 60, 31)];
+    title.backgroundColor = [UIColor clearColor];
+    title.font=[UIFont fontWithName:@"Helvetica" size:12];
+    [title setText:@"留言板"];
+    
+    UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 2, 60, 31)];
+    btn.backgroundColor = [UIColor purpleColor];
+    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];
+    [btn setTitle:@"留言" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(leaveMesg) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView * sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionHeaderHeight)];
+    [sectionView setBackgroundColor:[UIColor lightGrayColor]];
+    [sectionView addSubview:btn];
+    [sectionView addSubview:title];
+
+    return sectionView;
 }
 
 // Customize the number of rows in the table view.
@@ -156,16 +178,34 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+-(void)leaveMesg
+{
+    NSLog(@"tao leave message...");
+    UIView *sendNoteView = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [sendNoteView setBackgroundColor:[UIColor clearColor]];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    [self.view addSubview:sendNoteView];
+    
+    
+    UITextView *noteText = [[UITextView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/10, SCREEN_HEIGHT*3/11, SCREEN_WIDTH*4/5, SCREEN_HEIGHT/3)];
+    [noteText setBackgroundColor:[UIColor yellowColor]];
+    
+    [sendNoteView addSubview:noteText];
+    
+    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(noteText.frame.origin.x+noteText.frame.size.width-80, noteText.frame.origin.y-32, 60, 30)];
+    [submit setTitle:@"提交" forState:UIControlStateNormal];
+    [sendNoteView addSubview:submit];
+    
+
+    [UIView animateWithDuration:0.85 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [sendNoteView setCenter:CGPointMake(SCREEN_WIDTH/2, (SCREEN_HEIGHT)/2)];
+    } completion:^(BOOL finished) {
+        
+    }];
+    [noteText becomeFirstResponder];
+
 }
-*/
-
 
 
 -(void)setupPage
