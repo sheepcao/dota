@@ -909,7 +909,7 @@
 
     playInfo.playerName = playerName;
     playInfo.distance = distance;
-    playInfo.userSignature = signature;
+//    playInfo.userSignature = signature;
     
     [self.navigationController pushViewController:playInfo animated:YES];
     

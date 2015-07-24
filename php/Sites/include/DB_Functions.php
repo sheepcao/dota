@@ -79,7 +79,7 @@ class DB_Functions {
      * Get playerInfo by name
      */
     public function getUserInfoByName($name) {
-        $result = mysql_query("SELECT * FROM userinfo u left join levelinfo l on l.username = u.unique_id WHERE unique_id = '$name'") or die(mysql_error());
+        $result = mysql_query("SELECT * FROM userinfo u left join levelinfo l on l.username = u.unique_id left join signatureinfo s on s.username = u.unique_id WHERE unique_id = '$name'") or die(mysql_error());
         // check for result
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {
@@ -283,6 +283,46 @@ class DB_Functions {
             return false;
         }
     }
+    
+    
+    /**
+     * Storing new note
+     * returns visitor note
+     */
+    public function storeNote($content,$username,$visitor) {
+        
+        $result = mysql_query("INSERT INTO noteinfo(username, visitor, note_content,createdAt) VALUES('$username', '$visitor', '$content', NOW())") or die(mysql_error());
+        // check for successful store
+        if ($result) {
+            // get user details
+            $finalResult = mysql_query("SELECT * FROM noteinfo WHERE username = '$username' ORDER BY createdAt DESC");
+            // return user details
+            return $finalResult;
+        } else {
+            return $result;
+        }
+    }
+    
+    /**
+     * Storing new note
+     * returns visitor note
+     */
+    public function fetchNotes($username) {
+        
+    $finalResult = mysql_query("SELECT * FROM noteinfo WHERE username = '$username' ORDER BY createdAt DESC");
+            // return user details
+    $no_of_rows = mysql_num_rows($finalResult);
+        
+        if ($no_of_rows > 0) {
+            return $finalResult;
+        }else {
+            // user not found
+            return false;
+        }
+
+    }
+    
+
     
 
 }

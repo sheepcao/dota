@@ -115,7 +115,8 @@
                 $response["age"] = $user["age"];
                 $response["sex"] = $user["sex"];
                 
-                
+                $response["content"] = $user["content"];
+
                 
                 
                 

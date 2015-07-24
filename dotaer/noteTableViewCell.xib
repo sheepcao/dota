@@ -14,15 +14,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9999." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-ge-Gcf">
+                        <rect key="frame" x="-2" y="19" width="33" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A1g-7s-RHQ">
-                        <rect key="frame" x="67" y="0.0" width="255" height="29"/>
+                        <rect key="frame" x="75" y="0.0" width="247" height="29"/>
                         <color key="backgroundColor" red="0.87450980389999999" green="0.62352941179999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3O-Ot-khi">
-                        <rect key="frame" x="8" y="0.0" width="59" height="59"/>
+                        <rect key="frame" x="27" y="6" width="48" height="48"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMF-FE-F6z">
-                        <rect key="frame" x="70" y="5" width="99" height="21"/>
+                        <rect key="frame" x="75" y="5" width="94" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -33,10 +39,18 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jE6-HH-IWf">
+                        <rect key="frame" x="209" y="11" width="103" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.39412006579999997" green="0.38268400489999999" blue="0.40095600329999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="cellNumber" destination="b3g-ge-Gcf" id="xme-Wz-oZs"/>
                 <outlet property="noteTextLabel" destination="msU-Dz-CdL" id="mdr-Vk-dxy"/>
+                <outlet property="noteTimeLabel" destination="jE6-HH-IWf" id="uGS-r3-h4L"/>
                 <outlet property="userHeadImage" destination="U3O-Ot-khi" id="3fb-Ou-MVM"/>
                 <outlet property="usernameLabel" destination="VMF-FE-F6z" id="rhk-F8-R9I"/>
             </connections>

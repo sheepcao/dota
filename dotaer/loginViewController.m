@@ -361,6 +361,18 @@ bool emailOK;
         hud.labelText = @"Error";
         [hud hide:YES afterDelay:1.5];
         
+        
+        if ([operation.responseString containsString:@"Incorrect username or password!"]) {
+            UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您输入的用户名或密码有误，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [userNameAlert show];
+        }else
+        {
+            UIAlertView *registerFailedAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"登录失败，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [registerFailedAlert show];
+        }
+
+        
+        
     }];
     
     
