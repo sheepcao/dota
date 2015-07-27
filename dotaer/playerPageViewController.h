@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "userInfo.h"
+#import "FXBlurView.h"
 
 @interface playerPageViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *achieveView;
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UILabel *signatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet FXBlurView *blurView;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *gameIDLabel;
@@ -29,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *JJCLabel;
 @property (weak, nonatomic) IBOutlet UILabel *soldierLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratioLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *achieveBlur;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *heroFirstLabel;

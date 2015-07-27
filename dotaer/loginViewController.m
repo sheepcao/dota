@@ -12,6 +12,8 @@
 #import "AFURLSessionManager.h"
 #import "globalVar.h"
 #import "DataCenter.h"
+#import "levelInfoViewController.h"
+
 @interface loginViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
 @property (weak, nonatomic) IBOutlet FXBlurView *blurView;
@@ -33,7 +35,7 @@ bool emailOK;
     self.sexInfo = @"";
     
     // Do any additional setup after loading the view from its nib.
-    self.blurView.blurRadius = 7;
+    self.blurView.blurRadius = 3.8;
     self.roundBack.layer.cornerRadius = 7.5;
     self.loginBtn.layer.cornerRadius = 15.0f;
     self.submitBtn.layer.cornerRadius = 15.0f;
@@ -274,9 +276,12 @@ bool emailOK;
         
         AFHTTPRequestOperation *op = [manager2 POST:registerService parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             
-            NSString *fileName = [NSString stringWithFormat:@"%@.png",self.usernameField.text];
-            
-            [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+            if (imageData) {
+                NSString *fileName = [NSString stringWithFormat:@"%@.png",self.usernameField.text];
+                
+                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+            }
+
             
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -285,7 +290,9 @@ bool emailOK;
             hud.labelText = @"Completed";
             [hud hide:YES afterDelay:1.0];
             
-            
+            [self performSelector:@selector(successLogin:) withObject:responseObject afterDelay:1.01];
+
+            [[DataCenter sharedDataCenter] setNeedConfirmLevelInfo:YES];
 
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             hud.mode = MBProgressHUDModeCustomView;

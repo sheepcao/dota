@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"实力认证";
     
+
     NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName="]];
     [self.levelWebview loadRequest:request];
     self.levelWebview.delegate = self;
@@ -54,9 +55,14 @@
     if (seperateByMID.count>1) {
        
         [self.uploadBtn setTag:10];
+        
+        [self.tipText setText:@"请登录您的11平台游戏账号"];
+        
     }else
     {
         [self.uploadBtn setTag:11];
+        [self.tipText setText:@"待您的战绩页面显示完整之后，请点击上传战绩。"];
+
 
     }
     

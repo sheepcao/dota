@@ -18,6 +18,7 @@
 #import "userInfo.h"
 #import "SideMenuViewController.h"
 #import "DataCenter.h"
+#import "levelInfoViewController.h"
 
 #define annoRatio 0.37
 #define userCoverRatio 0.0025
@@ -299,7 +300,7 @@
     NSLog(@"appear !!!!!");
     [super viewWillAppear:animated];
     
-
+    self.title = @"附近";
 
     [_mapView viewWillAppear];
     [_radarManager addRadarManagerDelegate:self];//添加radar delegate
@@ -321,6 +322,12 @@
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"haveDefaultUser"] isEqualToString:@"yes"]) {
             
             NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
+            
+            
+            if([[DataCenter sharedDataCenter] needConfirmLevelInfo])
+            {
+                [self showConfirmLevel];
+            }
             
          
             [self configUserInfo:userDic];
@@ -347,6 +354,18 @@
 
     }
     
+}
+
+-(void)showConfirmLevel
+{
+    self.title = @"Skip";
+
+    levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
+    
+   
+    [self.navigationController pushViewController:levelInfo animated:NO];
+    
+    [[DataCenter sharedDataCenter] setNeedConfirmLevelInfo:NO];
 }
 
 -(void)configUserInfo:(NSDictionary *)userDic

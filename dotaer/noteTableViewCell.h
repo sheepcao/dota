@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *noteTimeLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *cellNumber;
+@property (weak, nonatomic) IBOutlet UIImageView *bubbleView;
+@property (weak, nonatomic) IBOutlet UIImageView *bubbleArrow;
 
 @end

@@ -11,6 +11,7 @@
 @interface DataCenter : NSObject
 
 @property BOOL isGuest;
+@property BOOL needConfirmLevelInfo;
 
 + (id)sharedDataCenter ;
 @end

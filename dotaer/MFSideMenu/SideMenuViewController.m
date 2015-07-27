@@ -68,6 +68,8 @@
         NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
         [temp addObject:levelInfo];
         navigationController.viewControllers = temp;
+
+
     }
 //    loginViewController *demoController = [[loginViewController alloc] initWithNibName:@"loginViewController" bundle:nil];
 //    demoController.title = [NSString stringWithFormat:@"login #%d-%d", indexPath.section, indexPath.row];

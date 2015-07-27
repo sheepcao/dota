@@ -37,6 +37,18 @@
     [self.navigationController.navigationItem.backBarButtonItem setTitle:@"附近"];
     self.title = self.playerName;
 
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    UIVisualEffectView *visualEffectView;
+    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    
+    visualEffectView.frame = self.achieveBlur.bounds;
+    [self.achieveBlur addSubview:visualEffectView];
+    
+    self.blurView.blurRadius = 4.2;
+    self.headImage.layer.cornerRadius = 49.0f;
+    self.headImage.layer.masksToBounds = YES;
     self.visitorArray = nil;
     self.createTimeArray = nil;
     self.notesArray = nil;
@@ -137,7 +149,9 @@
        
         
         
+//        [self.gameIDLabel setText:@"ID:不是故意的啥了"];
         [self.gameIDLabel setText:[NSString stringWithFormat:@"ID:%@",[dic objectForKey:@"gameID"]]];
+
         [self.JJCLabel setText:[dic objectForKey:@"JJCscore"]];
         [self.TTLabel setText:[dic objectForKey:@"TTscore"]];
         [self.soldierLabel setText:[dic objectForKey:@"soldier"]];
@@ -180,19 +194,25 @@
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 2, 60, 31)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 1, 60, 28)];
     title.backgroundColor = [UIColor clearColor];
-    title.font=[UIFont fontWithName:@"Helvetica" size:12];
+    title.font=[UIFont fontWithName:@"Helvetica-Bold" size:13];
+    title.textColor = [UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0];
     [title setText:@"留言板"];
     
-    UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 2, 60, 31)];
+    UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 3.5, 47, 25)];
     btn.backgroundColor = [UIColor purpleColor];
-    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];
+    btn.layer.cornerRadius = 4.2f;
+    btn.layer.shadowOffset = CGSizeMake(1.5, 1.8);
+    btn.layer.shadowRadius = 0.5;
+    btn.layer.shadowOpacity = 0.4;
+    
+    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:13];
     [btn setTitle:@"留言" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(leaveMesg) forControlEvents:UIControlEventTouchUpInside];
     
     UIView * sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionHeaderHeight)];
-    [sectionView setBackgroundColor:[UIColor lightGrayColor]];
+    [sectionView setBackgroundColor:[UIColor colorWithRed:239/255.0f green:239/255.0f blue:239/255.0f alpha:1.0]];
     [sectionView addSubview:btn];
     [sectionView addSubview:title];
 
