@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet FXBlurView *blurView;
 
+@property (weak, nonatomic) IBOutlet UILabel *notConfirmLevel;
 
 @property (weak, nonatomic) IBOutlet UILabel *gameIDLabel;
 @property (weak, nonatomic) IBOutlet UILabel *TTLabel;

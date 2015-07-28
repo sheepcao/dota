@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.userHeadImage.layer.cornerRadius = 24.0f;
+    self.userHeadImage.layer.cornerRadius = 22.0f;
     self.userHeadImage.layer.masksToBounds = YES;
     
     self.bubbleView.layer.cornerRadius = 4.2f;

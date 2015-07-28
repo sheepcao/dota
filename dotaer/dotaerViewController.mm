@@ -240,6 +240,14 @@
                 [leftMenuVC.logoutBtn setTitle:@"登录" forState:UIControlStateNormal];
                 [leftMenuVC.unLoginLabel setHidden:NO];
                 [leftMenuVC.itemsTable setHidden:YES];
+                [leftMenuVC.ageLabel setHidden:YES];
+                [leftMenuVC.headImage setHidden:YES];
+                [leftMenuVC.headBtn setHidden:YES];
+                [leftMenuVC.signatureTextView setHidden:YES];
+                [leftMenuVC.sexImg setHidden:YES];
+
+                
+                
             }
         }else
         {
@@ -249,6 +257,12 @@
                 [leftMenuVC.logoutBtn setTitle:@"注销" forState:UIControlStateNormal];
                 [leftMenuVC.unLoginLabel setHidden:YES];
                 [leftMenuVC.itemsTable setHidden:NO];
+                [leftMenuVC.itemsTable setHidden:NO];
+                [leftMenuVC.ageLabel setHidden:NO];
+                [leftMenuVC.headImage setHidden:NO];
+                [leftMenuVC.headBtn setHidden:NO];
+                [leftMenuVC.signatureTextView setHidden:NO];
+                [leftMenuVC.sexImg setHidden:NO];
             }
         }
     }

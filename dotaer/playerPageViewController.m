@@ -46,9 +46,14 @@
     visualEffectView.frame = self.achieveBlur.bounds;
     [self.achieveBlur addSubview:visualEffectView];
     
-    self.blurView.blurRadius = 4.2;
+    self.blurView.blurRadius = 3.9f;
     self.headImage.layer.cornerRadius = 49.0f;
     self.headImage.layer.masksToBounds = YES;
+    self.notConfirmLevel.layer.cornerRadius = 4.5f;
+    self.notConfirmLevel.layer.shadowOffset = CGSizeMake(1.5, 1.8);
+    self.notConfirmLevel.layer.shadowRadius = 0.5;
+    self.notConfirmLevel.layer.shadowOpacity = 0.4;
+
     self.visitorArray = nil;
     self.createTimeArray = nil;
     self.notesArray = nil;
@@ -97,6 +102,29 @@
         NSLog(@"JSON ERROR: %@",  operation.responseString);
         
         [hud hide:YES];
+        
+//        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.achieveView.frame.size.width, self.achieveView.frame.size.height)];
+//        [noRecordLabel setText:@"暂无战绩认证"];
+//        noRecordLabel.textAlignment = NSTextAlignmentCenter;
+//        noRecordLabel.tag = 666;
+//        [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
+//        
+//        [self.achieveView addSubview:noRecordLabel];
+        
+        [self.notConfirmLevel setHidden:NO];
+
+        
+        UILabel *noNoteLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.notePadTable.frame.origin.x, self.notePadTable.frame.origin.y+35, self.notePadTable.frame.size.width, self.notePadTable.frame.size.height-35) ];
+        [noNoteLabel setText:@"暂无留言"];
+        noNoteLabel.tag = 555;
+        noNoteLabel.textAlignment = NSTextAlignmentCenter;
+        [noNoteLabel setBackgroundColor:[UIColor whiteColor]];
+        
+        [self.view addSubview:noNoteLabel];
+        
+        UIAlertView *alet = [[UIAlertView alloc] initWithTitle:@"错误" message:@"网络请求失败，请检查您的网络状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alet show];
+        
 
         
     }];
@@ -135,27 +163,30 @@
     
     if ( [[dic objectForKey:@"isReviewed"] isKindOfClass:[NSNull class]] || [[dic objectForKey:@"isReviewed"] isEqualToString:@"no"]) {
        
-        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.achieveView.frame.size.width, self.achieveView.frame.size.height)];
-        [noRecordLabel setText:@"暂无战绩认证"];
-        noRecordLabel.textAlignment = NSTextAlignmentCenter;
-        noRecordLabel.tag = 666;
-        [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
+//        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.achieveView.frame.size.width, self.achieveView.frame.size.height)];
+//        [noRecordLabel setText:@"暂无战绩认证"];
+//        noRecordLabel.textAlignment = NSTextAlignmentCenter;
+//        noRecordLabel.tag = 666;
+//        [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
+//        
+//        [self.achieveView addSubview:noRecordLabel];
         
-        [self.achieveView addSubview:noRecordLabel];
+        [self.notConfirmLevel setHidden:NO];
         
     }else
     {
         
-       
+        [self.notConfirmLevel setHidden:YES];
+
         
         
 //        [self.gameIDLabel setText:@"ID:不是故意的啥了"];
-        [self.gameIDLabel setText:[NSString stringWithFormat:@"ID:%@",[dic objectForKey:@"gameID"]]];
+        [self.gameIDLabel setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"gameID"]]];
 
         [self.JJCLabel setText:[dic objectForKey:@"JJCscore"]];
         [self.TTLabel setText:[dic objectForKey:@"TTscore"]];
         [self.soldierLabel setText:[dic objectForKey:@"soldier"]];
-        [self.ratioLabel setText:[NSString stringWithFormat:@"胜率:%@%%",[dic objectForKey:@"WinRatio"]]];
+        [self.ratioLabel setText:[NSString stringWithFormat:@"%@%%",[dic objectForKey:@"WinRatio"]]];
         [self.heroFirstLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroFirst"] ofType:@"jpg"]]];
         [self.heroSecondLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroSecond"] ofType:@"jpg"]]];
         [self.heroThirdLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroThird"] ofType:@"jpg"]]];

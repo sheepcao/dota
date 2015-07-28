@@ -62,6 +62,7 @@
 		A447FEFA1B4A84600053D982 /* listCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447FEF91B4A84600053D982 /* listCell.xib */; };
 		A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */; };
 		A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FE3A1B54FA890065C0CA /* userInfo.m */; };
+		A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */; };
 		A4CFDE581B5E1B0800EAC77E /* levelInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */; };
 		A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */; };
 		A4D13E0A1B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E051B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m */; };
@@ -313,6 +314,7 @@
 		A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
 		A4A1FE391B54FA890065C0CA /* userInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfo.h; sourceTree = "<group>"; };
 		A4A1FE3A1B54FA890065C0CA /* userInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfo.m; sourceTree = "<group>"; };
+		A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hero_terminable_skin_bg_hover@2x.png"; sourceTree = "<group>"; };
 		A4CFDE551B5E1B0800EAC77E /* levelInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelInfoViewController.h; sourceTree = "<group>"; };
 		A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = levelInfoViewController.m; sourceTree = "<group>"; };
 		A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = levelInfoViewController.xib; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 		A447FE991B4A198B0053D982 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */,
 				A42E82A31B662EA800A431E0 /* chat_bubble_white@2x.png */,
 				A42E82A11B662B5400A431E0 /* chat_bg_left@2x.png */,
 				A42E829F1B662AD600A431E0 /* chat_bar.png */,
@@ -1156,6 +1159,7 @@
 				A4EFE9181B60D60A00C11133 /* 沉默.jpg in Resources */,
 				A42E82961B660D7400A431E0 /* 大刀.png in Resources */,
 				A447FEF71B4A80C00053D982 /* mapapi.bundle in Resources */,
+				A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */,
 				A4EFE8F61B60D60A00C11133 /* 猴子.jpg in Resources */,
 				A4EFE8F31B60D60A00C11133 /* 水人.jpg in Resources */,
 				A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */,

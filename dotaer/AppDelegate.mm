@@ -122,8 +122,6 @@ BMKMapManager* _mapManager;
     if (0 == iError) {
         NSLog(@"授权成功");
     }
-    else {
-        NSLog(@"onGetPermissionState %d",iError);
-    }
+
 }
 @end
