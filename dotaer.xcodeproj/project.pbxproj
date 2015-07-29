@@ -63,6 +63,17 @@
 		A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */; };
 		A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FE3A1B54FA890065C0CA /* userInfo.m */; };
 		A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */; };
+		A4CC4AAB1B672ABA00950537 /* videoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AA91B672ABA00950537 /* videoViewController.m */; };
+		A4CC4AAC1B672ABA00950537 /* videoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AAA1B672ABA00950537 /* videoViewController.xib */; };
+		A4CC4AB01B672B3300950537 /* videoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AAE1B672B3300950537 /* videoTableViewCell.m */; };
+		A4CC4AB11B672B3300950537 /* videoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AAF1B672B3300950537 /* videoTableViewCell.xib */; };
+		A4CC4AB51B674A3800950537 /* playVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AB31B674A3800950537 /* playVideoViewController.m */; };
+		A4CC4AB61B674A3800950537 /* playVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AB41B674A3800950537 /* playVideoViewController.xib */; };
+		A4CC4AB91B674B8300950537 /* YoukuWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AB81B674B8300950537 /* YoukuWebView.m */; };
+		A4CC54181B674EAD00950537 /* youku_play.html in Resources */ = {isa = PBXBuildFile; fileRef = A4CC54171B674EAD00950537 /* youku_play.html */; };
+		A4CC541B1B67520300950537 /* videoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC541A1B67520300950537 /* videoButton.m */; };
+		A4CC541D1B67609C00950537 /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A4CC541C1B67609C00950537 /* start.html */; };
+		A4CC54251B676FD400950537 /* UIWebView+YouKu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC54221B676FD400950537 /* UIWebView+YouKu.m */; };
 		A4CFDE581B5E1B0800EAC77E /* levelInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */; };
 		A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */; };
 		A4D13E0A1B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E051B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m */; };
@@ -90,6 +101,9 @@
 		A4DA56241B4E73280010C95D /* select.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56221B4E73280010C95D /* select.png */; };
 		A4DA56271B4E73660010C95D /* female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56251B4E73660010C95D /* female@2x.png */; };
 		A4DA56281B4E73660010C95D /* male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56261B4E73660010C95D /* male@2x.png */; };
+		A4DDDA011B686E4100ACD655 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DDDA001B686E4100ACD655 /* MediaPlayer.framework */; };
+		A4DDDA041B687C6100ACD655 /* mid_ditu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DDDA021B687C6100ACD655 /* mid_ditu@2x.png */; };
+		A4DDDA051B687C6100ACD655 /* mid_fujin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DDDA031B687C6100ACD655 /* mid_fujin@2x.png */; };
 		A4DF4EDD1B58DB6E004E9F59 /* noteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF4EDB1B58DB6E004E9F59 /* noteTableViewCell.m */; };
 		A4DF4EDE1B58DB6E004E9F59 /* noteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DF4EDC1B58DB6E004E9F59 /* noteTableViewCell.xib */; };
 		A4EFE8381B60910F00C11133 /* defaultHead.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8371B60910F00C11133 /* defaultHead.png */; };
@@ -315,6 +329,23 @@
 		A4A1FE391B54FA890065C0CA /* userInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfo.h; sourceTree = "<group>"; };
 		A4A1FE3A1B54FA890065C0CA /* userInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfo.m; sourceTree = "<group>"; };
 		A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hero_terminable_skin_bg_hover@2x.png"; sourceTree = "<group>"; };
+		A4CC4AA81B672ABA00950537 /* videoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoViewController.h; sourceTree = "<group>"; };
+		A4CC4AA91B672ABA00950537 /* videoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoViewController.m; sourceTree = "<group>"; };
+		A4CC4AAA1B672ABA00950537 /* videoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = videoViewController.xib; sourceTree = "<group>"; };
+		A4CC4AAD1B672B3200950537 /* videoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoTableViewCell.h; sourceTree = "<group>"; };
+		A4CC4AAE1B672B3300950537 /* videoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoTableViewCell.m; sourceTree = "<group>"; };
+		A4CC4AAF1B672B3300950537 /* videoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = videoTableViewCell.xib; sourceTree = "<group>"; };
+		A4CC4AB21B674A3800950537 /* playVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playVideoViewController.h; sourceTree = "<group>"; };
+		A4CC4AB31B674A3800950537 /* playVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playVideoViewController.m; sourceTree = "<group>"; };
+		A4CC4AB41B674A3800950537 /* playVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = playVideoViewController.xib; sourceTree = "<group>"; };
+		A4CC4AB71B674B8300950537 /* YoukuWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoukuWebView.h; sourceTree = "<group>"; };
+		A4CC4AB81B674B8300950537 /* YoukuWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoukuWebView.m; sourceTree = "<group>"; };
+		A4CC54171B674EAD00950537 /* youku_play.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = youku_play.html; sourceTree = "<group>"; };
+		A4CC54191B67520300950537 /* videoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoButton.h; sourceTree = "<group>"; };
+		A4CC541A1B67520300950537 /* videoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoButton.m; sourceTree = "<group>"; };
+		A4CC541C1B67609C00950537 /* start.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = start.html; sourceTree = "<group>"; };
+		A4CC54211B676FD400950537 /* UIWebView+YouKu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+YouKu.h"; sourceTree = "<group>"; };
+		A4CC54221B676FD400950537 /* UIWebView+YouKu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+YouKu.m"; sourceTree = "<group>"; };
 		A4CFDE551B5E1B0800EAC77E /* levelInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelInfoViewController.h; sourceTree = "<group>"; };
 		A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = levelInfoViewController.m; sourceTree = "<group>"; };
 		A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = levelInfoViewController.xib; sourceTree = "<group>"; };
@@ -351,6 +382,9 @@
 		A4DA56221B4E73280010C95D /* select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select.png; sourceTree = "<group>"; };
 		A4DA56251B4E73660010C95D /* female@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "female@2x.png"; sourceTree = "<group>"; };
 		A4DA56261B4E73660010C95D /* male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "male@2x.png"; sourceTree = "<group>"; };
+		A4DDDA001B686E4100ACD655 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A4DDDA021B687C6100ACD655 /* mid_ditu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mid_ditu@2x.png"; sourceTree = "<group>"; };
+		A4DDDA031B687C6100ACD655 /* mid_fujin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mid_fujin@2x.png"; sourceTree = "<group>"; };
 		A4DF4EDA1B58DB6E004E9F59 /* noteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noteTableViewCell.h; sourceTree = "<group>"; };
 		A4DF4EDB1B58DB6E004E9F59 /* noteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noteTableViewCell.m; sourceTree = "<group>"; };
 		A4DF4EDC1B58DB6E004E9F59 /* noteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = noteTableViewCell.xib; sourceTree = "<group>"; };
@@ -482,6 +516,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4DDDA011B686E4100ACD655 /* MediaPlayer.framework in Frameworks */,
 				A4D13E571B4CF98600C06A2B /* Foundation.framework in Frameworks */,
 				A4D13E551B4CF98000C06A2B /* UIKit.framework in Frameworks */,
 				A4D13E531B4CF96A00C06A2B /* MessageUI.framework in Frameworks */,
@@ -508,6 +543,7 @@
 		32E18A50145E6971EB5512EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4DDDA001B686E4100ACD655 /* MediaPlayer.framework */,
 				A4D13E561B4CF98600C06A2B /* Foundation.framework */,
 				A4D13E541B4CF98000C06A2B /* UIKit.framework */,
 				A4D13E521B4CF96A00C06A2B /* MessageUI.framework */,
@@ -603,6 +639,19 @@
 				A447FEC51B4A24E10053D982 /* third party */,
 				A447FE9D1B4A198B0053D982 /* AppDelegate.h */,
 				A447FE9E1B4A198B0053D982 /* AppDelegate.mm */,
+				A4CC54191B67520300950537 /* videoButton.h */,
+				A4CC541A1B67520300950537 /* videoButton.m */,
+				A4CC4AB71B674B8300950537 /* YoukuWebView.h */,
+				A4CC4AB81B674B8300950537 /* YoukuWebView.m */,
+				A4CC4AB21B674A3800950537 /* playVideoViewController.h */,
+				A4CC4AB31B674A3800950537 /* playVideoViewController.m */,
+				A4CC4AB41B674A3800950537 /* playVideoViewController.xib */,
+				A4CC4AA81B672ABA00950537 /* videoViewController.h */,
+				A4CC4AA91B672ABA00950537 /* videoViewController.m */,
+				A4CC4AAA1B672ABA00950537 /* videoViewController.xib */,
+				A4CC4AAD1B672B3200950537 /* videoTableViewCell.h */,
+				A4CC4AAE1B672B3300950537 /* videoTableViewCell.m */,
+				A4CC4AAF1B672B3300950537 /* videoTableViewCell.xib */,
 				A4D13E0D1B4CBC5700C06A2B /* SideMenuViewController.h */,
 				A4D13E0E1B4CBC5700C06A2B /* SideMenuViewController.m */,
 				A4D13E801B4D1A2300C06A2B /* SideMenuViewController.xib */,
@@ -628,6 +677,8 @@
 		A447FE991B4A198B0053D982 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A4DDDA021B687C6100ACD655 /* mid_ditu@2x.png */,
+				A4DDDA031B687C6100ACD655 /* mid_fujin@2x.png */,
 				A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */,
 				A42E82A31B662EA800A431E0 /* chat_bubble_white@2x.png */,
 				A42E82A11B662B5400A431E0 /* chat_bg_left@2x.png */,
@@ -644,6 +695,8 @@
 				A4D13E1A1B4CEBE300C06A2B /* Default@2x.png */,
 				A447FE9A1B4A198B0053D982 /* Info.plist */,
 				A447FE9B1B4A198B0053D982 /* main.m */,
+				A4CC54171B674EAD00950537 /* youku_play.html */,
+				A4CC541C1B67609C00950537 /* start.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -681,6 +734,7 @@
 		A447FEC51B4A24E10053D982 /* third party */ = {
 			isa = PBXGroup;
 			children = (
+				A4CC541E1B676FD400950537 /* UIWebView-YouKu-master */,
 				A41C10261B53B131006E5CF9 /* MBProgressHUD.h */,
 				A41C10271B53B131006E5CF9 /* MBProgressHUD.m */,
 				A412D00A1B4FAB86006180A0 /* AFNetworking */,
@@ -727,6 +781,15 @@
 				A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */,
 			);
 			name = modal;
+			sourceTree = "<group>";
+		};
+		A4CC541E1B676FD400950537 /* UIWebView-YouKu-master */ = {
+			isa = PBXGroup;
+			children = (
+				A4CC54211B676FD400950537 /* UIWebView+YouKu.h */,
+				A4CC54221B676FD400950537 /* UIWebView+YouKu.m */,
+			);
+			path = "UIWebView-YouKu-master";
 			sourceTree = "<group>";
 		};
 		A4D13E021B4CBB9C00C06A2B /* MFSideMenu */ = {
@@ -1048,6 +1111,7 @@
 				A4EFE9001B60D60A00C11133 /* 巫妖.jpg in Resources */,
 				A4EFE9151B60D60A00C11133 /* 小鹿.jpg in Resources */,
 				A4EFE91D1B60D60A00C11133 /* 蓝猫.jpg in Resources */,
+				A4DDDA051B687C6100ACD655 /* mid_fujin@2x.png in Resources */,
 				A4EFE9161B60D60A00C11133 /* 山丘.jpg in Resources */,
 				A4EFE8C61B60D60A00C11133 /* 军团.jpg in Resources */,
 				A447FEFA1B4A84600053D982 /* listCell.xib in Resources */,
@@ -1106,6 +1170,7 @@
 				A4EFE8DD1B60D60A00C11133 /* 小鱼.jpg in Resources */,
 				A4EFE8CE1B60D60A00C11133 /* 小精灵.jpg in Resources */,
 				A4EFE8C21B60D60A00C11133 /* 人马.jpg in Resources */,
+				A4CC4AAC1B672ABA00950537 /* videoViewController.xib in Resources */,
 				A4EFE8D61B60D60A00C11133 /* tb.jpg in Resources */,
 				A4EFE8CB1B60D60A00C11133 /* 大熊猫.jpg in Resources */,
 				A4EFE8F01B60D60A00C11133 /* 小黑.jpg in Resources */,
@@ -1151,6 +1216,7 @@
 				A4EFE8CA1B60D60A00C11133 /* 大树.jpg in Resources */,
 				A4D13E1D1B4CEBE300C06A2B /* Default@2x.png in Resources */,
 				A4EFE8BD1B60D60A00C11133 /* 白牛.jpg in Resources */,
+				A4CC54181B674EAD00950537 /* youku_play.html in Resources */,
 				A4EFE8B31B60D60A00C11133 /* 尸王.jpg in Resources */,
 				A4EFE8C91B60D60A00C11133 /* 大地之灵.jpg in Resources */,
 				A447FEAA1B4A198B0053D982 /* LaunchScreen.xib in Resources */,
@@ -1158,13 +1224,16 @@
 				A42E82A41B662EA800A431E0 /* chat_bubble_white@2x.png in Resources */,
 				A4EFE9181B60D60A00C11133 /* 沉默.jpg in Resources */,
 				A42E82961B660D7400A431E0 /* 大刀.png in Resources */,
+				A4CC4AB61B674A3800950537 /* playVideoViewController.xib in Resources */,
 				A447FEF71B4A80C00053D982 /* mapapi.bundle in Resources */,
 				A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */,
 				A4EFE8F61B60D60A00C11133 /* 猴子.jpg in Resources */,
 				A4EFE8F31B60D60A00C11133 /* 水人.jpg in Resources */,
+				A4CC541D1B67609C00950537 /* start.html in Resources */,
 				A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */,
 				A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */,
 				A4DA56231B4E73280010C95D /* select_selected.png in Resources */,
+				A4CC4AB11B672B3300950537 /* videoTableViewCell.xib in Resources */,
 				A4EFE91A1B60D60A00C11133 /* 炸弹.jpg in Resources */,
 				A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */,
 				A4EFE8CC1B60D60A00C11133 /* 大牛.jpg in Resources */,
@@ -1181,6 +1250,7 @@
 				A4F51BB91B57760C00786FD1 /* pa.jpg in Resources */,
 				A4EFE8F11B60D60A00C11133 /* 巨魔.jpg in Resources */,
 				A4EFE8FD1B60D60A00C11133 /* 冰龙.jpg in Resources */,
+				A4DDDA041B687C6100ACD655 /* mid_ditu@2x.png in Resources */,
 				A42E829C1B661B1C00A431E0 /* moon.png in Resources */,
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
 				A4EFE8CF1B60D60A00C11133 /* 撼地神牛.jpg in Resources */,
@@ -1211,12 +1281,14 @@
 				A412D03F1B4FAB87006180A0 /* UIProgressView+AFNetworking.m in Sources */,
 				A412D0401B4FAB87006180A0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				A412D0411B4FAB87006180A0 /* UIWebView+AFNetworking.m in Sources */,
+				A4CC54251B676FD400950537 /* UIWebView+YouKu.m in Sources */,
 				A4D13E0F1B4CBC5700C06A2B /* SideMenuViewController.m in Sources */,
 				A447FEC21B4A1BBB0053D982 /* loginViewController.m in Sources */,
 				A412D0321B4FAB87006180A0 /* AFHTTPRequestOperationManager.m in Sources */,
 				A4D13E0A1B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m in Sources */,
 				A4CFDE581B5E1B0800EAC77E /* levelInfoViewController.m in Sources */,
 				A412D0361B4FAB87006180A0 /* AFURLConnectionOperation.m in Sources */,
+				A4CC4AB01B672B3300950537 /* videoTableViewCell.m in Sources */,
 				A4D13E131B4CC22800C06A2B /* centerViewController.m in Sources */,
 				A412D03B1B4FAB87006180A0 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */,
@@ -1224,17 +1296,21 @@
 				A4DF4EDD1B58DB6E004E9F59 /* noteTableViewCell.m in Sources */,
 				A412D0371B4FAB87006180A0 /* AFURLRequestSerialization.m in Sources */,
 				A4DA56131B4E1AFA0010C95D /* FXBlurView.m in Sources */,
+				A4CC4AB91B674B8300950537 /* YoukuWebView.m in Sources */,
 				A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */,
 				A412D0331B4FAB87006180A0 /* AFHTTPSessionManager.m in Sources */,
 				A412D0311B4FAB87006180A0 /* AFHTTPRequestOperation.m in Sources */,
 				A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */,
+				A4CC4AAB1B672ABA00950537 /* videoViewController.m in Sources */,
 				A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */,
+				A4CC541B1B67520300950537 /* videoButton.m in Sources */,
 				A412D03A1B4FAB87006180A0 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				A412D0351B4FAB87006180A0 /* AFSecurityPolicy.m in Sources */,
 				A447FEE31B4A48600053D982 /* myMenuViewController.m in Sources */,
 				A412D03E1B4FAB87006180A0 /* UIImageView+AFNetworking.m in Sources */,
 				A4319D9B1B56072500DB8775 /* myPointAnnotation.m in Sources */,
 				A412D0341B4FAB87006180A0 /* AFNetworkReachabilityManager.m in Sources */,
+				A4CC4AB51B674A3800950537 /* playVideoViewController.m in Sources */,
 				A4319DA21B564FFA00DB8775 /* FabonacciNum.m in Sources */,
 				A412D0391B4FAB87006180A0 /* AFURLSessionManager.m in Sources */,
 				A41C10281B53B131006E5CF9 /* MBProgressHUD.m in Sources */,
@@ -1369,6 +1445,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/dotaer/CocoaSecurity/submodules/xctool/Vendor",
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/inc/**";
@@ -1378,6 +1455,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/libs/Release$(EFFECTIVE_PLATFORM_NAME)/\"",
+					"$(PROJECT_DIR)/dotaer/CocoaSecurity/submodules/xctool/xctool/xctool-tests/TestData/KiwiTests/Build/Products/Debug-iphonesimulator",
+					"$(PROJECT_DIR)/dotaer/CocoaSecurity/submodules/xctool/xctool/xctool-tests/TestData/tests-osx-test-bundle",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1393,6 +1472,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/dotaer/CocoaSecurity/submodules/xctool/Vendor",
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/inc/**";
@@ -1402,6 +1482,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/libs/Release$(EFFECTIVE_PLATFORM_NAME)/\"",
+					"$(PROJECT_DIR)/dotaer/CocoaSecurity/submodules/xctool/xctool/xctool-tests/TestData/KiwiTests/Build/Products/Debug-iphonesimulator",
+					"$(PROJECT_DIR)/dotaer/CocoaSecurity/submodules/xctool/xctool/xctool-tests/TestData/tests-osx-test-bundle",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

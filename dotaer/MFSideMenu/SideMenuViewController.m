@@ -14,6 +14,8 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "levelInfoViewController.h"
 
+#import "videoViewController.h"
+
 
 @implementation SideMenuViewController
 
@@ -61,6 +63,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+//    if (indexPath.row == 0) {
+//        videoViewController *videoInfo = [[videoViewController alloc] initWithNibName:@"videoViewController" bundle:nil];
+//        
+//        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+//        NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+//        [temp addObject:videoInfo];
+//        navigationController.viewControllers = temp;
+//        
+//        
+//    }else
     if (indexPath.row == 0) {
         levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
         

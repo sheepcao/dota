@@ -15,7 +15,7 @@
 #import "myMenuViewController.h"
 #import "centerViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<BMKGeneralDelegate>
 
 @end
 

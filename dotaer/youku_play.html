@@ -1,0 +1,40 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <style>
+            html,body {
+                margin: 0px;
+                background-color: #000;
+            }
+        #youkuplayer {
+            width:460px;
+            height:320px;
+            margin-top: 0px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="youkuplayer" style="width:460px;height:320px"></div>
+        <script type="text/javascript" src="http://player.youku.com/jsapi">
+            player = new YKU.Player('youkuplayer',{
+                                    styleid: '0',
+                                    client_id: 'cb52b838b5477abd',
+                                    vid: '%@',
+                                    autoplay: true,
+                                    embsig: '%@'
+                                    });
+                                    
+                                    function playVideo(){
+                                        player.playVideo();
+                                    }
+        function pauseVideo(){
+            player.pauseVideo();
+        }
+        </script>
+    </body>
+</html>

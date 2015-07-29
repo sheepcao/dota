@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI/BMapKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

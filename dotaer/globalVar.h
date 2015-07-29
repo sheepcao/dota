@@ -31,6 +31,10 @@
 
 #define imagePath @"http://localhost/~ericcao/upload/"
 
+#define client_secret @"2d43c235b66c114fece5f67ae504f70a"
+
+
+#define videoInfoService @"http://localhost/~ericcao/videoURL.php"
 
 #import "MBProgressHUD.h"
 

@@ -289,7 +289,7 @@
 
     [cell.userHeadImage setImage:img];
     
-    [cell.cellNumber setText:[NSString stringWithFormat:@"%ld.",self.notesArray.count - indexPath.row]];
+    [cell.cellNumber setText:[NSString stringWithFormat:@"%u.",self.notesArray.count - indexPath.row]];
     
     return cell;
     
