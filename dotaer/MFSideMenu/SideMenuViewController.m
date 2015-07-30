@@ -115,6 +115,7 @@
             
             playInfo.distance = 0;
             
+            
             UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
             NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
             [temp addObject:playInfo];

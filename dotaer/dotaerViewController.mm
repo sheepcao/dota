@@ -97,54 +97,69 @@
 
 -(void)setupCenterView
 {
-        NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
+    NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
     
-        UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64))];
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64))];
     
-        [self.view addSubview:containerView];
-    
-    
-        self.listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height-40)];
-        self.listView.delegate = self;
-        self.listView.dataSource = self;
-       self.listView.rowHeight = 60;
-//        self.listView.backgroundColor = [UIColor whiteColor];
-        _nearbyInfos = [NSMutableArray array];
-
+    [self.view addSubview:containerView];
     
     
-        self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
-        self.mapView.backgroundColor = [UIColor whiteColor];
-        self.mapView.zoomEnabled = YES;
+    self.listView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height-40)];
+    self.listView.delegate = self;
+    self.listView.dataSource = self;
+    self.listView.rowHeight = 70;
+    self.listView.backgroundColor = [UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0];
+    //        self.listView.backgroundColor = [UIColor whiteColor];
+    _nearbyInfos = [NSMutableArray array];
     
-        [containerView addSubview:self.listView];
     
     
-        UIView *searchingBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT - containerView.frame.size.height - containerView.frame.origin.y)];
+    self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
+    self.mapView.backgroundColor = [UIColor whiteColor];
+    self.mapView.zoomEnabled = YES;
     
-        searchingBar.backgroundColor = [UIColor lightGrayColor];
+    [containerView addSubview:self.listView];
     
-        [self.view addSubview:searchingBar];
     
-        UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height, searchingBar.frame.size.height/8, searchingBar.frame.size.height*3/4, searchingBar.frame.size.height*3/4)];
+    UIView *searchingBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT - containerView.frame.size.height - containerView.frame.origin.y)];
     
-  
+    searchingBar.backgroundColor = [UIColor lightGrayColor];
     
-        [searchBtn setTitle:@"查" forState:UIControlStateNormal];
-        [searchBtn setBackgroundColor:[UIColor purpleColor]];
-        [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
-        [searchingBar addSubview:searchBtn];
-        [searchBtn setEnabled:NO];
+    UIImageView *bottomBarBack = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, searchingBar.frame.size.width, searchingBar.frame.size.height)];
+    [bottomBarBack setImage:[UIImage imageNamed:@"bottomBack3.png"]];
+    
+    [searchingBar addSubview:bottomBarBack];
+    
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    
+    UIVisualEffectView *visualEffectView;
+    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    
+    visualEffectView.frame = CGRectMake(-3, 0, bottomBarBack.frame.size.width+6, bottomBarBack.frame.size.height+8);
+    [bottomBarBack addSubview:visualEffectView];
+    
+    [self.view addSubview:searchingBar];
+    
+    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height, searchingBar.frame.size.height/8, searchingBar.frame.size.height*3/4, searchingBar.frame.size.height*3/4)];
+    
+    
+    
+    [searchBtn setTitle:@"查" forState:UIControlStateNormal];
+    [searchBtn setBackgroundColor:[UIColor purpleColor]];
+    [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
+    [searchingBar addSubview:searchBtn];
+    [searchBtn setEnabled:NO];
     [self performSelector:@selector(enableSearch:) withObject:searchBtn afterDelay:1.0];
     
     
-        UIView *pageBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y - 40, SCREEN_WIDTH, 40)];
+    UIView *pageBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y - 40, SCREEN_WIDTH, 40)];
     [pageBar setBackgroundColor:[UIColor clearColor]];
     UIButton *pageUpBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 5, 60, 30)];
     [pageUpBtn setTitle:@"前一页" forState:UIControlStateNormal];
     [pageUpBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [pageUpBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-
+    
     [pageUpBtn addTarget:self action:@selector(pageUp) forControlEvents:UIControlEventTouchUpInside];
     [pageUpBtn setEnabled:NO];
     
@@ -152,7 +167,7 @@
     [pageDownBtn setTitle:@"下一页" forState:UIControlStateNormal];
     [pageDownBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [pageDownBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-
+    
     [pageDownBtn addTarget:self action:@selector(pageDown) forControlEvents:UIControlEventTouchUpInside];
     [pageDownBtn setEnabled:NO];
     
@@ -174,8 +189,12 @@
     slider.minimumValue = 13;
     slider.maximumValue = 31;
     slider.value = 18;
-    _searchRadius = [FabonacciNum calculateFabonacci:slider.value];
 
+    UIImage* minTrack = [UIImage imageNamed:@"find0"];    
+    [slider setThumbImage:minTrack forState:UIControlStateNormal];
+
+    _searchRadius = [FabonacciNum calculateFabonacci:slider.value];
+    
     [slider addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
     
     self.radiusSlider = slider;
@@ -186,10 +205,6 @@
     [self.distanceLabel setTextColor:[UIColor blackColor]];
     self.distanceLabel.font = [UIFont systemFontOfSize:13];
     [searchingBar addSubview:self.distanceLabel];
-
-    
-    
-
 
 }
 
@@ -289,8 +304,7 @@
 }
 
 - (UIBarButtonItem *)rightMenuBarButtonItem {
-//    return [[UIBarButtonItem alloc] initWithTitle:@"地图" style:UIBarButtonItemStylePlain target:self action:@selector(mapTapped:)];
-//    return [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mid_ditu"] style:UIBarButtonItemStylePlain target:self action:@selector(mapTapped:)];
+
     
     UIButton *btnNext1 =[[UIButton alloc] init];
     [btnNext1 setImage:[UIImage imageNamed:@"mid_ditu.png"] forState:UIControlStateNormal];
@@ -417,6 +431,7 @@
     myInfo.email = [userDic objectForKey:@"email"];
     myInfo.createTime = [userDic objectForKey:@"created"];
     myInfo.isReviewed = [userDic objectForKey:@"isReviewed"];
+    myInfo.TTscore = [userDic objectForKey:@"TTscore"];
 
 //    myInfo.id_DB = [userDic objectForKey:@"id"];
     myInfo.headImagePath = [imagePath stringByAppendingString:[userDic objectForKey:@"username"]];
@@ -683,24 +698,40 @@
 
     BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
     cell.userInfo.text = info.userId;
-    cell.userDistance.text = [NSString stringWithFormat:@"%d米   %@", (int)info.distance, info.extInfo];
+    cell.userDistance.text = [NSString stringWithFormat:@"%d米", (int)info.distance];
     
-//    NSString *headPath = [imagePath stringByAppendingString:self.visitorArray[indexPath.row]];
-//    
-//    NSURL *url = [NSURL URLWithString:headPath];
-//    NSData *data = [NSData dataWithContentsOfURL:url];
-//    UIImage *img;
-//    
-//    if (data) {
-//        img = [[UIImage alloc] initWithData:data];
-//    }else
-//    {
-//        img = [UIImage imageNamed:@"defaultHead"];
-//    }
-//
-//    
-//    cell.userHead
-//    
+    NSString *headPath = [imagePath stringByAppendingString:info.userId];
+    
+    NSURL *url = [NSURL URLWithString:headPath];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img;
+    
+    if (data) {
+        img = [[UIImage alloc] initWithData:data];
+    }else
+    {
+        img = [UIImage imageNamed:@"defaultHead"];
+    }
+
+    
+    [cell.userHead setImage:img];
+    
+    NSArray *userExtinfo = [info.extInfo componentsSeparatedByString:@"-"];
+    if (userExtinfo.count>3) {
+        [cell.sexImage setImage:[UIImage imageNamed:userExtinfo[0]]];
+        [cell.ageLabel setText:[NSString stringWithFormat:@"%@岁",userExtinfo[1]]];
+        if ([userExtinfo[2] isEqualToString:@"no"]) {
+            [cell.confirmLevelImage setImage:[UIImage imageNamed:@"levelno"]];
+            [cell.confirmLevelLabel setText:@"暂未认证"];
+            [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:150/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+        }else
+        {
+            [cell.confirmLevelImage setImage:[UIImage imageNamed:@"levelyes"]];
+            [cell.confirmLevelLabel setText:@"已认证"];
+            [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0f]];
+
+        }
+    }
     
     
 
@@ -712,7 +743,7 @@
 #pragma mark Table view delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 70;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -730,7 +761,7 @@
 //    _radarManager.userId =[NSString stringWithFormat:@"dotaer%d",random];
     if (self.myUserInfo.username) {
         _radarManager.userId =self.myUserInfo.username;
-        info.extInfo = [NSString stringWithFormat:@"%@-%@-%@",self.myUserInfo.sex,self.myUserInfo.age,self.myUserInfo.isReviewed];
+        info.extInfo = [NSString stringWithFormat:@"%@-%@-%@-%@",self.myUserInfo.sex,self.myUserInfo.age,self.myUserInfo.isReviewed,self.myUserInfo.TTscore];
         [lock lock];
         
         

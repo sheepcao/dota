@@ -392,10 +392,13 @@ bool emailOK;
 -(void)successLogin:(NSDictionary *)userInfoDic
 {
     NSString *isReviewed = @"yes";
+    NSString *TTscore = [userInfoDic objectForKey:@"TTscore"];
+
     NSLog(@"userinfoDic:%@",userInfoDic);
     NSLog(@"age:%@",[userInfoDic objectForKey:@"age"]);
     if ([[userInfoDic objectForKey:@"isReviewed"] isKindOfClass:[NSNull class]] || [[userInfoDic objectForKey:@"isReviewed"] isEqualToString:@"no"]) {
         isReviewed = @"no";
+        TTscore = @"0";
     }
     
     NSDictionary *userDic = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -404,6 +407,7 @@ bool emailOK;
                              [userInfoDic objectForKey:@"email"],@"email",
                              [userInfoDic objectForKey:@"sex"],@"sex",
                              isReviewed,@"isReviewed",
+                             TTscore,@"TTscore",
                              [userInfoDic objectForKey:@"created"],@"created",
                              nil];
     

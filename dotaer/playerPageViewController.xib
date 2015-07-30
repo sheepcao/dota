@@ -15,7 +15,8 @@
                 <outlet property="ageLabel" destination="v5Z-Fy-etN" id="kOr-IX-bpg"/>
                 <outlet property="blurView" destination="r6g-EI-m67" id="Xhe-ol-5zF"/>
                 <outlet property="contentView" destination="Fgh-SV-7Ke" id="DVg-CE-9Wi"/>
-                <outlet property="distanceLabel" destination="kFI-G8-DbV" id="bWA-32-d76"/>
+                <outlet property="distanceImage" destination="HSp-Vo-8oe" id="H4m-Kd-drf"/>
+                <outlet property="distanceLabel" destination="kFI-G8-DbV" id="OSH-IU-6Jh"/>
                 <outlet property="favorBtn" destination="8Ig-n9-2on" id="mRI-kh-sZB"/>
                 <outlet property="gameIDLabel" destination="bff-KC-b2y" id="4em-nx-GMy"/>
                 <outlet property="headImage" destination="p4a-lZ-R3C" id="qxs-U8-4X7"/>
@@ -85,19 +86,19 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="天梯积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzu-h1-F3D">
                                     <rect key="frame" x="94" y="10" width="78" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="竞技场积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7O-UX-Glo">
-                                    <rect key="frame" x="174" y="10" width="64" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <rect key="frame" x="171" y="10" width="71" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="名将等级" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eul-VS-aFx">
                                     <rect key="frame" x="246" y="10" width="60" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -127,7 +128,7 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="胜率:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5Q-Xg-TVT">
                                     <rect key="frame" x="1" y="78" width="31" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -148,7 +149,7 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnE-OP-aiZ">
                                     <rect key="frame" x="6" y="52" width="21" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -159,7 +160,7 @@
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7iX-oZ-e46">
-                            <rect key="frame" x="0.0" y="317.5" width="375" height="349"/>
+                            <rect key="frame" x="0.0" y="317" width="375" height="350"/>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="hjT-t0-7Ts"/>
@@ -205,7 +206,7 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ig-n9-2on">
                                     <rect key="frame" x="40" y="65" width="45" height="21"/>
-                                    <color key="backgroundColor" red="1" green="0.21443256579999995" blue="0.47741056743421051" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="1" green="0.2144325658" blue="0.11107113489999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                     <size key="titleShadowOffset" width="0.69999999999999996" height="1"/>
                                     <state key="normal" title="+关注">
@@ -255,13 +256,22 @@
                         <constraint firstItem="IiC-HH-iJR" firstAttribute="top" secondItem="Fgh-SV-7Ke" secondAttribute="top" constant="64" id="zfh-QJ-BEe"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="封面1.png" translatesAutoresizingMaskIntoConstraints="NO" id="71r-sO-dAI">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="5wE-Aa-LzN"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Fgh-SV-7Ke" secondAttribute="trailing" id="4AO-gh-jiC"/>
                 <constraint firstItem="Fgh-SV-7Ke" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Jcu-Lo-Cx3"/>
+                <constraint firstAttribute="trailing" secondItem="71r-sO-dAI" secondAttribute="trailing" id="dh2-NV-3BC"/>
                 <constraint firstItem="Fgh-SV-7Ke" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eam-a2-88t"/>
                 <constraint firstAttribute="bottom" secondItem="Fgh-SV-7Ke" secondAttribute="bottom" id="fGp-jr-WZ7"/>
+                <constraint firstItem="71r-sO-dAI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nqp-TF-0CQ"/>
+                <constraint firstItem="71r-sO-dAI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uBv-Bt-0hW"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="589.5" y="252.5"/>

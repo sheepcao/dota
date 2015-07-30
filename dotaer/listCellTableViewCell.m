@@ -12,6 +12,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.userHead.layer.cornerRadius = self.userHead.frame.size.height/2;
+    self.userHead.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

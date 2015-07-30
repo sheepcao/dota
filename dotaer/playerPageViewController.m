@@ -42,13 +42,20 @@
     [self.navigationController.navigationItem.backBarButtonItem setTitle:@"附近"];
     self.title = self.playerName;
     
-    if([[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
+    if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
     {
+//        [self.ageLabel setFrame:CGRectMake(251, 47, 42, 31)];
+//        [self.sexImage setFrame:CGRectMake(35, 57, 19, 22)];
+        
         self.title = @"个人主页";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更新战绩" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
         [self.favorBtn setHidden:YES];
-        [self.ageLabel setFrame:CGRectMake(51, 47, 42, 31)];
-        [self.sexImage setFrame:CGRectMake(35, 47, 19, 22)];
+        [self.distanceImage setHidden:YES];
+        [self.distanceLabel setHidden:YES];
+        [self.addressLabel setHidden:YES];
+
+
+
     }else
     {
         
@@ -61,13 +68,18 @@
         self.favorBtn.layer.borderColor = [UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0].CGColor;
 
         [self.favorBtn setHidden:NO];
+        [self.distanceImage setHidden:NO];
+        [self.distanceLabel setHidden:NO];
+        [self.addressLabel setHidden:NO];
         
        if( [[DataCenter sharedDataCenter] checkFavor:self.playerName])
        {
            [self.favorBtn setTitle:@"已关注" forState:UIControlStateNormal];
+           [self.favorBtn setBackgroundColor:[UIColor colorWithRed:49/255.0f green:185/255.0f blue:163/255.0f alpha:1.0f]];
        }else
        {
            [self.favorBtn setTitle:@"+关注" forState:UIControlStateNormal];
+           [self.favorBtn setBackgroundColor:[UIColor colorWithRed:255/255.0f green:55/255.0f blue:28/255.0f alpha:1.0f]];
 
        }
         
@@ -243,7 +255,7 @@
     }
     [self.headImage setImage:img];
     
-    [self.ageLabel setText:[dic objectForKey:@"age"]];
+    [self.ageLabel setText:[NSString stringWithFormat:@"%@岁",[dic objectForKey:@"age"]]];
     [self.sexImage setImage:[UIImage imageNamed:[dic objectForKey:@"sex"]]];
     [self.distanceLabel setText:[NSString stringWithFormat:@"%ld米",(unsigned long)self.distance]];
     
@@ -285,6 +297,13 @@
         [self.heroFirstLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroFirst"] ofType:@"jpg"]]];
         [self.heroSecondLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroSecond"] ofType:@"jpg"]]];
         [self.heroThirdLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroThird"] ofType:@"jpg"]]];
+    }
+    
+    
+    if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
+    {
+        [self.ageLabel setFrame:CGRectMake(235, 51, 42, 31)];
+        [self.sexImage setFrame:CGRectMake(50, 55, 19, 22)];
     }
     
     

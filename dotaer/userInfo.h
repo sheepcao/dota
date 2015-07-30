@@ -19,6 +19,8 @@
 
 @property (nonatomic ,strong) NSString *headImagePath;
 @property (nonatomic ,strong) NSString *isReviewed;
+@property (nonatomic ,strong) NSString *TTscore;
+
 
 
 @end

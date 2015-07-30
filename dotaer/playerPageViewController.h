@@ -20,7 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UITableView *notePadTable;
 
-@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (strong, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *sexImage;
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UILabel *signatureLabel;
@@ -43,6 +43,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *heroSecondLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *heroThirdLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *distanceImage;
 
 
 @property (strong, nonatomic) userInfo *playerInfo;
