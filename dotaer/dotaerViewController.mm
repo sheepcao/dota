@@ -63,6 +63,9 @@
     [super viewDidLoad];
 
     _radarManager = [BMKRadarManager getRadarManagerInstance];
+    _locServer = [[BMKLocationService alloc] init];
+    _locServer.delegate = self;
+    [_locServer startUserLocationService];
 
     [[DataCenter sharedDataCenter] setIsGuest:NO];
     self.signature = @"";
@@ -72,6 +75,8 @@
     [self.listView registerNib:nib forCellReuseIdentifier:@"listCell"];
     
     [self setupMenuBarButtonItems];
+    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+
     [self setupCenterView];
     
     
@@ -199,7 +204,6 @@
 
 - (void)setupMenuBarButtonItems {
     
-    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
     if(self.menuContainerViewController.menuState == MFSideMenuStateClosed &&
        ![[[self.navigationController viewControllers] objectAtIndex:0] isEqual:self]) {
         self.navigationItem.leftBarButtonItem = [self backBarButtonItem];
@@ -269,12 +273,34 @@
 }
 
 - (UIBarButtonItem *)leftMenuBarButtonItem {
-    return [[UIBarButtonItem alloc] initWithTitle:@"我的" style:UIBarButtonItemStylePlain target:self action:@selector(leftSideMenuButtonPressed:)];
+//    return [[UIBarButtonItem alloc] initWithTitle:@"我的" style:UIBarButtonItemStylePlain target:self action:@selector(leftSideMenuButtonPressed:)];
+    
+    UIButton *btnNext1 =[[UIButton alloc] init];
+    [btnNext1 setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
+    
+    btnNext1.frame = CGRectMake(15, 17, 35, 35);
+    UIBarButtonItem *btnNext =[[UIBarButtonItem alloc] initWithCustomView:btnNext1];
+    btnNext1.tag = 0;
+    [btnNext1 addTarget:self action:@selector(leftSideMenuButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return btnNext;
+
 
 }
 
 - (UIBarButtonItem *)rightMenuBarButtonItem {
-    return [[UIBarButtonItem alloc] initWithTitle:@"地图" style:UIBarButtonItemStylePlain target:self action:@selector(mapTapped:)];
+//    return [[UIBarButtonItem alloc] initWithTitle:@"地图" style:UIBarButtonItemStylePlain target:self action:@selector(mapTapped:)];
+//    return [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mid_ditu"] style:UIBarButtonItemStylePlain target:self action:@selector(mapTapped:)];
+    
+    UIButton *btnNext1 =[[UIButton alloc] init];
+    [btnNext1 setImage:[UIImage imageNamed:@"mid_ditu.png"] forState:UIControlStateNormal];
+    
+    btnNext1.frame = CGRectMake(15, SCREEN_WIDTH-52, 35, 35);
+    UIBarButtonItem *btnNext =[[UIBarButtonItem alloc] initWithCustomView:btnNext1];
+    btnNext1.tag = 0;
+    [btnNext1 addTarget:self action:@selector(mapTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+    return btnNext;
     
 
 }
@@ -390,7 +416,9 @@
     myInfo.sex = [userDic objectForKey:@"sex"];
     myInfo.email = [userDic objectForKey:@"email"];
     myInfo.createTime = [userDic objectForKey:@"created"];
-    myInfo.id_DB = [userDic objectForKey:@"id"];
+    myInfo.isReviewed = [userDic objectForKey:@"isReviewed"];
+
+//    myInfo.id_DB = [userDic objectForKey:@"id"];
     myInfo.headImagePath = [imagePath stringByAppendingString:[userDic objectForKey:@"username"]];
     
     self.myUserInfo = myInfo;
@@ -401,9 +429,23 @@
         UIImage *img = [[UIImage alloc] initWithData:data];
         SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
         
-        [leftMenuVC.headImage setImage:img];
+        if (img) {
+            [leftMenuVC.headImage setImage:img];
+        }else
+        {
+            [leftMenuVC.headImage setImage:[UIImage imageNamed:@"defaultHead.png"]];
+
+        }
         [leftMenuVC.sexImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",myInfo.sex]]];
         [leftMenuVC.ageLabel setText:[NSString stringWithFormat:@"%@岁",myInfo.age]];
+        if ([self.myUserInfo.isReviewed isEqualToString:@"no"]) {
+            leftMenuVC.items = [NSArray arrayWithObjects:@"战绩认证",@"关注",@"消息",@"关于我们", nil];
+            [leftMenuVC.itemsTable  reloadData];
+        }else
+        {
+            leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",@"关注",@"消息",@"关于我们", nil];
+            [leftMenuVC.itemsTable  reloadData];
+        }
         
         
     }
@@ -429,30 +471,28 @@
 
 -(void)uploadLocation
 {
-    _locServer = [[BMKLocationService alloc] init];
-    _locServer.delegate = self;
-    [_locServer startUserLocationService];
-    
+ 
     [_radarManager startAutoUpload:17];
    
 
 }
 -(void)cancelUploadLocation
 {
-    _radarManager = [BMKRadarManager getRadarManagerInstance];
-    _locServer = [[BMKLocationService alloc] init];
-    _locServer.delegate = self;
-    [_locServer startUserLocationService];
+//    _radarManager = [BMKRadarManager getRadarManagerInstance];
+//    _locServer = [[BMKLocationService alloc] init];
+//    _locServer.delegate = self;
+//    [_locServer startUserLocationService];
     
     [_radarManager stopAutoUpload];
 }
 
--(void)mapTapped:(UINavigationItem *)sender
+-(void)mapTapped:(UIButton *)sender
 {
-    if ([sender.title isEqualToString:@"地图"]) {
-        [sender setTitle:@"列表"];
-//        [CATransaction flush];
+    if (sender.tag ==0) {
+        [sender setImage:[UIImage imageNamed:@"list.png"] forState:UIControlStateNormal];
+        [self.navigationItem.rightBarButtonItem setCustomView:sender];
 
+        sender.tag = 1;
         [UIView transitionFromView:self.listView
                             toView:self.mapView
                           duration:0.8
@@ -468,8 +508,10 @@
 
     }else
     {
-        [sender setTitle:@"地图"];
+        [sender setImage:[UIImage imageNamed:@"mid_ditu.png"] forState:UIControlStateNormal];
+        [self.navigationItem.rightBarButtonItem setCustomView:sender];
 
+        sender.tag = 0;
 //        [CATransaction flush];
 
         [UIView transitionFromView:self.mapView
@@ -643,6 +685,22 @@
     cell.userInfo.text = info.userId;
     cell.userDistance.text = [NSString stringWithFormat:@"%d米   %@", (int)info.distance, info.extInfo];
     
+//    NSString *headPath = [imagePath stringByAppendingString:self.visitorArray[indexPath.row]];
+//    
+//    NSURL *url = [NSURL URLWithString:headPath];
+//    NSData *data = [NSData dataWithContentsOfURL:url];
+//    UIImage *img;
+//    
+//    if (data) {
+//        img = [[UIImage alloc] initWithData:data];
+//    }else
+//    {
+//        img = [UIImage imageNamed:@"defaultHead"];
+//    }
+//
+//    
+//    cell.userHead
+//    
     
     
 
@@ -659,7 +717,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
-    [self jumpToPlayer:info.userId andDistance:info.distance andSignature:self.signature];
+    [self jumpToPlayer:info.userId andDistance:info.distance andGeoInfo:info.pt];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
@@ -672,7 +730,7 @@
 //    _radarManager.userId =[NSString stringWithFormat:@"dotaer%d",random];
     if (self.myUserInfo.username) {
         _radarManager.userId =self.myUserInfo.username;
-        info.extInfo = @"hello dota";
+        info.extInfo = [NSString stringWithFormat:@"%@-%@-%@",self.myUserInfo.sex,self.myUserInfo.age,self.myUserInfo.isReviewed];
         [lock lock];
         
         
@@ -803,7 +861,7 @@
             [self.pageFront setEnabled:NO];
         }
         
-        [self.pageNumLabel setText:[NSString stringWithFormat:@"%ld",_curPageIndex+1]];
+        [self.pageNumLabel setText:[NSString stringWithFormat:@"%d",_curPageIndex+1]];
         
 //        if (_searchRadius<1000) {
 //            self.title = [NSString stringWithFormat:@"附近 < %d00米",(int)_searchRadius/100];
@@ -889,7 +947,7 @@
             
             UILabel *userCount = [[UILabel alloc] initWithFrame:CGRectMake(112*annoRatio-6-14, 112*annoRatio-6-13, 16, 16)];
             userCount.textAlignment = NSTextAlignmentCenter;
-            [userCount setText:[NSString stringWithFormat:@"%ld",anno.containUsers.count + 1 ]];
+            [userCount setText:[NSString stringWithFormat:@"%u",anno.containUsers.count + 1 ]];
             userCount.font = [UIFont boldSystemFontOfSize:8.2f];
             [imageview addSubview:userCount];
         }
@@ -929,20 +987,20 @@
         anno = (myPointAnnotation *)view.annotation;
     }
     
-    [self jumpToPlayer:anno.title andDistance:anno.annoUserDistance andSignature:self.signature];
+    [self jumpToPlayer:anno.title andDistance:anno.annoUserDistance andGeoInfo:anno.coordinate];
 
     [_mapView deselectAnnotation:view.annotation animated:YES];
   
 }
 
 
--(void)jumpToPlayer:(NSString *)playerName andDistance:(NSUInteger)distance andSignature:(NSString *)signature
+-(void)jumpToPlayer:(NSString *)playerName andDistance:(NSUInteger)distance andGeoInfo:(CLLocationCoordinate2D)position
 {
     playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
 
     playInfo.playerName = playerName;
     playInfo.distance = distance;
-//    playInfo.userSignature = signature;
+    playInfo.userPosition = position;
     
     [self.navigationController pushViewController:playInfo animated:YES];
     

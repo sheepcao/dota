@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "userInfo.h"
 #import "FXBlurView.h"
+#import <BaiduMapAPI/BMapKit.h>
+
 
 @interface playerPageViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *achieveView;
@@ -24,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *signatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet FXBlurView *blurView;
+@property (weak, nonatomic) IBOutlet UIButton *favorBtn;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *notConfirmLevel;
 
@@ -44,8 +48,9 @@
 @property (strong, nonatomic) userInfo *playerInfo;
 @property (strong, nonatomic) NSString *playerName;
 @property NSUInteger distance;
-@property (strong, nonatomic) NSString *userSignature;
+@property (nonatomic, assign) CLLocationCoordinate2D userPosition;
 
+- (IBAction)favorTap:(UIButton *)sender;
 
 
 @end

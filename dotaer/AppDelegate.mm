@@ -13,7 +13,6 @@
 #import "MFSideMenuContainerViewController.h"
 #import "dotaerViewController.h"
 #import "myMenuViewController.h"
-#import "centerViewController.h"
 
 @interface AppDelegate ()<BMKGeneralDelegate>
 
@@ -39,7 +38,7 @@ BMKMapManager* _mapManager;
     // 要使用百度地图，请先启动BaiduMapManager
     
     _mapManager = [[BMKMapManager alloc]init];
-    BOOL ret = [_mapManager start:@"MWVBk7FngAqgl0fSzErXRGzF" generalDelegate:self];
+    BOOL ret = [_mapManager start:@"TGu2K4h1LofQiXS8yefMlAhX" generalDelegate:self];
     
     if (!ret) {
         NSLog(@"manager start failed!");
@@ -50,7 +49,7 @@ BMKMapManager* _mapManager;
     
     
     SideMenuViewController *leftMenuViewController = [[SideMenuViewController alloc] init];
-    leftMenuViewController.items = [NSArray arrayWithObjects:@"战绩更新",@"关注",@"消息",@"关于我们", nil];
+    leftMenuViewController.items = [NSArray arrayWithObjects:@"我的主页",@"关注",@"消息",@"关于我们", nil];
     MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController
                                                     containerWithCenterViewController:[self navigationController]
                                                     leftMenuViewController:leftMenuViewController

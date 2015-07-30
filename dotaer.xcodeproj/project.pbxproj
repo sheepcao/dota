@@ -80,8 +80,6 @@
 		A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E071B4CBB9C00C06A2B /* MFSideMenuShadow.m */; };
 		A4D13E0C1B4CBB9C00C06A2B /* UIViewController+MFSideMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E091B4CBB9C00C06A2B /* UIViewController+MFSideMenuAdditions.m */; };
 		A4D13E0F1B4CBC5700C06A2B /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E0E1B4CBC5700C06A2B /* SideMenuViewController.m */; };
-		A4D13E131B4CC22800C06A2B /* centerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E111B4CC22800C06A2B /* centerViewController.m */; };
-		A4D13E141B4CC22800C06A2B /* centerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D13E121B4CC22800C06A2B /* centerViewController.xib */; };
 		A4D13E171B4CEA6800C06A2B /* listCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E161B4CEA6800C06A2B /* listCellTableViewCell.m */; };
 		A4D13E1B1B4CEBE300C06A2B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D13E181B4CEBE300C06A2B /* Default-568h@2x.png */; };
 		A4D13E1C1B4CEBE300C06A2B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D13E191B4CEBE300C06A2B /* Default.png */; };
@@ -102,10 +100,14 @@
 		A4DA56271B4E73660010C95D /* female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56251B4E73660010C95D /* female@2x.png */; };
 		A4DA56281B4E73660010C95D /* male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DA56261B4E73660010C95D /* male@2x.png */; };
 		A4DDDA011B686E4100ACD655 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DDDA001B686E4100ACD655 /* MediaPlayer.framework */; };
-		A4DDDA041B687C6100ACD655 /* mid_ditu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DDDA021B687C6100ACD655 /* mid_ditu@2x.png */; };
+		A4DDDA041B687C6100ACD655 /* mid_ditu.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DDDA021B687C6100ACD655 /* mid_ditu.png */; };
 		A4DDDA051B687C6100ACD655 /* mid_fujin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DDDA031B687C6100ACD655 /* mid_fujin@2x.png */; };
+		A4DDDA091B68A43D00ACD655 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DDDA081B68A43D00ACD655 /* list.png */; };
+		A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DDDA0A1B68A49C00ACD655 /* menu.png */; };
+		A4DDDA0D1B68A64900ACD655 /* sideBack.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DDDA0C1B68A64900ACD655 /* sideBack.png */; };
 		A4DF4EDD1B58DB6E004E9F59 /* noteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF4EDB1B58DB6E004E9F59 /* noteTableViewCell.m */; };
 		A4DF4EDE1B58DB6E004E9F59 /* noteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DF4EDC1B58DB6E004E9F59 /* noteTableViewCell.xib */; };
+		A4E02BDE1B69C752000997C0 /* position.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E02BDD1B69C752000997C0 /* position.png */; };
 		A4EFE8381B60910F00C11133 /* defaultHead.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8371B60910F00C11133 /* defaultHead.png */; };
 		A4EFE8B01B60D60A00C11133 /* 夜魔.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE83B1B60D60A00C11133 /* 夜魔.jpg */; };
 		A4EFE8B11B60D60A00C11133 /* 大屁股.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE83C1B60D60A00C11133 /* 大屁股.jpg */; };
@@ -358,9 +360,6 @@
 		A4D13E091B4CBB9C00C06A2B /* UIViewController+MFSideMenuAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MFSideMenuAdditions.m"; sourceTree = "<group>"; };
 		A4D13E0D1B4CBC5700C06A2B /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideMenuViewController.h; path = MFSideMenu/SideMenuViewController.h; sourceTree = "<group>"; };
 		A4D13E0E1B4CBC5700C06A2B /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenuViewController.m; path = MFSideMenu/SideMenuViewController.m; sourceTree = "<group>"; };
-		A4D13E101B4CC22800C06A2B /* centerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = centerViewController.h; sourceTree = "<group>"; };
-		A4D13E111B4CC22800C06A2B /* centerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = centerViewController.m; sourceTree = "<group>"; };
-		A4D13E121B4CC22800C06A2B /* centerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = centerViewController.xib; sourceTree = "<group>"; };
 		A4D13E151B4CEA6800C06A2B /* listCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = listCellTableViewCell.h; sourceTree = "<group>"; };
 		A4D13E161B4CEA6800C06A2B /* listCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = listCellTableViewCell.m; sourceTree = "<group>"; };
 		A4D13E181B4CEBE300C06A2B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -383,11 +382,15 @@
 		A4DA56251B4E73660010C95D /* female@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "female@2x.png"; sourceTree = "<group>"; };
 		A4DA56261B4E73660010C95D /* male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "male@2x.png"; sourceTree = "<group>"; };
 		A4DDDA001B686E4100ACD655 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		A4DDDA021B687C6100ACD655 /* mid_ditu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mid_ditu@2x.png"; sourceTree = "<group>"; };
+		A4DDDA021B687C6100ACD655 /* mid_ditu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mid_ditu.png; sourceTree = "<group>"; };
 		A4DDDA031B687C6100ACD655 /* mid_fujin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mid_fujin@2x.png"; sourceTree = "<group>"; };
+		A4DDDA081B68A43D00ACD655 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		A4DDDA0A1B68A49C00ACD655 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		A4DDDA0C1B68A64900ACD655 /* sideBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sideBack.png; sourceTree = "<group>"; };
 		A4DF4EDA1B58DB6E004E9F59 /* noteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noteTableViewCell.h; sourceTree = "<group>"; };
 		A4DF4EDB1B58DB6E004E9F59 /* noteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noteTableViewCell.m; sourceTree = "<group>"; };
 		A4DF4EDC1B58DB6E004E9F59 /* noteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = noteTableViewCell.xib; sourceTree = "<group>"; };
+		A4E02BDD1B69C752000997C0 /* position.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = position.png; sourceTree = "<group>"; };
 		A4EFE8371B60910F00C11133 /* defaultHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHead.png; sourceTree = "<group>"; };
 		A4EFE83B1B60D60A00C11133 /* 夜魔.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "夜魔.jpg"; sourceTree = "<group>"; };
 		A4EFE83C1B60D60A00C11133 /* 大屁股.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大屁股.jpg"; sourceTree = "<group>"; };
@@ -655,9 +658,6 @@
 				A4D13E0D1B4CBC5700C06A2B /* SideMenuViewController.h */,
 				A4D13E0E1B4CBC5700C06A2B /* SideMenuViewController.m */,
 				A4D13E801B4D1A2300C06A2B /* SideMenuViewController.xib */,
-				A4D13E101B4CC22800C06A2B /* centerViewController.h */,
-				A4D13E111B4CC22800C06A2B /* centerViewController.m */,
-				A4D13E121B4CC22800C06A2B /* centerViewController.xib */,
 				A4F51BAA1B57430B00786FD1 /* playerPageViewController.h */,
 				A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */,
 				A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */,
@@ -677,7 +677,11 @@
 		A447FE991B4A198B0053D982 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A4DDDA021B687C6100ACD655 /* mid_ditu@2x.png */,
+				A4DDDA0C1B68A64900ACD655 /* sideBack.png */,
+				A4DDDA021B687C6100ACD655 /* mid_ditu.png */,
+				A4DDDA0A1B68A49C00ACD655 /* menu.png */,
+				A4DDDA081B68A43D00ACD655 /* list.png */,
+				A4E02BDD1B69C752000997C0 /* position.png */,
 				A4DDDA031B687C6100ACD655 /* mid_fujin@2x.png */,
 				A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */,
 				A42E82A31B662EA800A431E0 /* chat_bubble_white@2x.png */,
@@ -1164,6 +1168,7 @@
 				A4EFE8C11B60D60A00C11133 /* sven.jpg in Resources */,
 				A4EFE9021B60D60A00C11133 /* 暗牧.jpg in Resources */,
 				A4EFE8EB1B60D60A00C11133 /* sa.jpg in Resources */,
+				A4E02BDE1B69C752000997C0 /* position.png in Resources */,
 				A4EFE8B01B60D60A00C11133 /* 夜魔.jpg in Resources */,
 				A4EFE8F21B60D60A00C11133 /* 拍拍.jpg in Resources */,
 				A4EFE8DC1B60D60A00C11133 /* 小强.jpg in Resources */,
@@ -1178,8 +1183,10 @@
 				A4EFE9031B60D60A00C11133 /* 术士.jpg in Resources */,
 				A4DA56201B4E4C700010C95D /* username1.png in Resources */,
 				A4EFE8D21B60D60A00C11133 /* 神灵.jpg in Resources */,
+				A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */,
 				A4F51BB71B57760C00786FD1 /* nc.jpg in Resources */,
 				A4EFE8EA1B60D60A00C11133 /* pom.jpg in Resources */,
+				A4DDDA0D1B68A64900ACD655 /* sideBack.png in Resources */,
 				A4EFE90A1B60D60A00C11133 /* 骨法.jpg in Resources */,
 				A4EFE8B21B60D60A00C11133 /* 大鱼.jpg in Resources */,
 				A4EFE8DB1B60D60A00C11133 /* 地卜.jpg in Resources */,
@@ -1201,7 +1208,6 @@
 				A4EFE8C81B60D60A00C11133 /* 发条.jpg in Resources */,
 				A4EFE9101B60D60A00C11133 /* 冰女.jpg in Resources */,
 				A4F51BBB1B57777200786FD1 /* Hvwd.jpg in Resources */,
-				A4D13E141B4CC22800C06A2B /* centerViewController.xib in Resources */,
 				A4EFE8C41B60D60A00C11133 /* 全能.jpg in Resources */,
 				A4EFE90C1B60D60A00C11133 /* tk.jpg in Resources */,
 				A4EFE8FF1B60D60A00C11133 /* 巫医.jpg in Resources */,
@@ -1235,6 +1241,7 @@
 				A4DA56231B4E73280010C95D /* select_selected.png in Resources */,
 				A4CC4AB11B672B3300950537 /* videoTableViewCell.xib in Resources */,
 				A4EFE91A1B60D60A00C11133 /* 炸弹.jpg in Resources */,
+				A4DDDA091B68A43D00ACD655 /* list.png in Resources */,
 				A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */,
 				A4EFE8CC1B60D60A00C11133 /* 大牛.jpg in Resources */,
 				A4EFE8E51B60D60A00C11133 /* 骨弓.jpg in Resources */,
@@ -1250,7 +1257,7 @@
 				A4F51BB91B57760C00786FD1 /* pa.jpg in Resources */,
 				A4EFE8F11B60D60A00C11133 /* 巨魔.jpg in Resources */,
 				A4EFE8FD1B60D60A00C11133 /* 冰龙.jpg in Resources */,
-				A4DDDA041B687C6100ACD655 /* mid_ditu@2x.png in Resources */,
+				A4DDDA041B687C6100ACD655 /* mid_ditu.png in Resources */,
 				A42E829C1B661B1C00A431E0 /* moon.png in Resources */,
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
 				A4EFE8CF1B60D60A00C11133 /* 撼地神牛.jpg in Resources */,
@@ -1289,7 +1296,6 @@
 				A4CFDE581B5E1B0800EAC77E /* levelInfoViewController.m in Sources */,
 				A412D0361B4FAB87006180A0 /* AFURLConnectionOperation.m in Sources */,
 				A4CC4AB01B672B3300950537 /* videoTableViewCell.m in Sources */,
-				A4D13E131B4CC22800C06A2B /* centerViewController.m in Sources */,
 				A412D03B1B4FAB87006180A0 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */,
 				A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */,

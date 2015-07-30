@@ -10,10 +10,13 @@
 #import "globalVar.h"
 #import "noteTableViewCell.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "levelInfoViewController.h"
 #import "AFURLSessionManager.h"
 #import "DataCenter.h"
 
-@interface playerPageViewController ()<UITextFieldDelegate>
+
+
+@interface playerPageViewController ()<UITextFieldDelegate,BMKGeoCodeSearchDelegate>
 @property (nonatomic,strong) UITextField *invisibleTextFiled;
 
 @property (nonatomic,strong) NSMutableDictionary *NoteInfoDic;
@@ -21,12 +24,14 @@
 @property (nonatomic,strong) NSMutableArray *visitorArray;
 @property (nonatomic,strong) NSMutableArray *createTimeArray;
 
+@property (nonatomic,strong) BMKGeoCodeSearch *geocodesearch;
 
 
 @end
 
 @implementation playerPageViewController
 
+@synthesize geocodesearch;
 @synthesize contentView;
 @synthesize invisibleTextFiled;
 
@@ -36,6 +41,38 @@
     
     [self.navigationController.navigationItem.backBarButtonItem setTitle:@"附近"];
     self.title = self.playerName;
+    
+    if([[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
+    {
+        self.title = @"个人主页";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更新战绩" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
+        [self.favorBtn setHidden:YES];
+        [self.ageLabel setFrame:CGRectMake(51, 47, 42, 31)];
+        [self.sexImage setFrame:CGRectMake(35, 47, 19, 22)];
+    }else
+    {
+        
+        self.favorBtn.layer.cornerRadius = 4.2f;
+        self.favorBtn.layer.shadowOffset = CGSizeMake(1, 1);
+        self.favorBtn.layer.shadowRadius = 0.5;
+        self.favorBtn.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+        self.favorBtn.layer.shadowOpacity = 0.4;
+        self.favorBtn.layer.borderWidth = 1.0;
+        self.favorBtn.layer.borderColor = [UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0].CGColor;
+
+        [self.favorBtn setHidden:NO];
+        
+       if( [[DataCenter sharedDataCenter] checkFavor:self.playerName])
+       {
+           [self.favorBtn setTitle:@"已关注" forState:UIControlStateNormal];
+       }else
+       {
+           [self.favorBtn setTitle:@"+关注" forState:UIControlStateNormal];
+
+       }
+        
+
+    }
 
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -46,7 +83,16 @@
     visualEffectView.frame = self.achieveBlur.bounds;
     [self.achieveBlur addSubview:visualEffectView];
     
-    self.blurView.blurRadius = 3.9f;
+    
+    
+    UIVisualEffectView *visualEffectView2;
+    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    
+    visualEffectView2.frame = self.infoBackImage.bounds;
+    [self.infoBackImage addSubview:visualEffectView2];
+    
+    
+    self.blurView.blurRadius = 7.0f;
     self.headImage.layer.cornerRadius = 49.0f;
     self.headImage.layer.masksToBounds = YES;
     self.notConfirmLevel.layer.cornerRadius = 4.5f;
@@ -70,7 +116,56 @@
 
     
     [self requestPlayerInfo];
+    [self requestReverseGeocode];
+
 }
+
+-(void)requestReverseGeocode
+{
+    geocodesearch =[[BMKGeoCodeSearch alloc]init];
+    geocodesearch.delegate = self;
+    
+    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
+    reverseGeocodeSearchOption.reverseGeoPoint = self.userPosition;
+    BOOL flag = [geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
+    if(flag)
+    {
+        NSLog(@"反geo检索发送成功");
+    }
+    else
+    {
+        NSLog(@"反geo检索发送失败");
+    }
+    
+}
+
+#pragma mark reverseGeo delegate
+-(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+{
+
+    if (error == 0) {
+        
+        NSString *streetName = result.addressDetail.streetName;
+        NSString *district = result.addressDetail.district;
+        NSString *city = result.addressDetail.city;
+        
+        NSString *address = [NSString stringWithFormat:@"%@,%@\n%@",city,district,streetName];
+        [self.addressLabel setText:address];
+        
+    }else
+    {
+        NSLog(@"error geo reverse%u",error);
+    }
+}
+
+- (void)updateLevel {
+
+    
+    levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:levelInfo animated:YES];
+}
+
 
 -(void)requestPlayerInfo
 {
@@ -150,7 +245,7 @@
     
     [self.ageLabel setText:[dic objectForKey:@"age"]];
     [self.sexImage setImage:[UIImage imageNamed:[dic objectForKey:@"sex"]]];
-    [self.distanceLabel setText:[NSString stringWithFormat:@"%ld米",self.distance]];
+    [self.distanceLabel setText:[NSString stringWithFormat:@"%ld米",(unsigned long)self.distance]];
     
     if ([[dic objectForKey:@"content"] isKindOfClass:[NSNull class]] || [[dic objectForKey:@"content"] isEqualToString:@"编辑个人签名..."]) {
         [self.signatureLabel setText:@"签名的力气都用去打dota了!"];
@@ -551,5 +646,16 @@
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];// this will do the trick
+}
+- (IBAction)favorTap:(UIButton *)sender {
+    if ([sender.titleLabel.text isEqualToString:@"已关注"]) {
+        [[DataCenter sharedDataCenter] removeFavor:self.playerName];
+        [sender setTitle:@"+关注" forState:UIControlStateNormal];
+    }else
+    {
+        [[DataCenter sharedDataCenter] addFavor:self.playerName];
+        [sender setTitle:@"已关注" forState:UIControlStateNormal];
+
+    }
 }
 @end

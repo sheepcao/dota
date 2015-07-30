@@ -14,6 +14,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "levelInfoViewController.h"
 
+#import "playerPageViewController.h"
 #import "videoViewController.h"
 
 
@@ -26,7 +27,35 @@
     self.headImage.layer.masksToBounds = YES;
     
 
+    
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    UIVisualEffectView *visualEffectView;
+    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    
+    visualEffectView.frame = self.sideBackImage.bounds;
+    [self.sideBackImage addSubview:visualEffectView];
+    
+    
+    
 }
+
+
+-(void)viewDidLayoutSubviews
+{
+    if(!IS_IPHONE_4_OR_LESS)
+    {
+        [self.loginOut_upConstrains setConstant:50];
+        [self.logoutBtn setNeedsUpdateConstraints];
+
+        [self.view setNeedsUpdateConstraints];
+        [self.view layoutIfNeeded];
+        
+    }
+
+}
+
 
 #pragma mark -
 #pragma mark - UITableViewDataSource
@@ -52,7 +81,10 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
+    cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = self.items[indexPath.row];
+    cell.textLabel.textColor = [UIColor colorWithRed:242/255.0f green:242/255.0f blue:242/255.0f alpha:1.0f];
+
     cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
     
     return cell;
@@ -74,13 +106,28 @@
 //        
 //    }else
     if (indexPath.row == 0) {
-        levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
         
-        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-        NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
-        [temp addObject:levelInfo];
-        navigationController.viewControllers = temp;
-
+        if([[tableView cellForRowAtIndexPath:indexPath].textLabel.text isEqualToString:@"我的主页"])
+        {
+            playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
+            
+            playInfo.playerName = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
+            
+            playInfo.distance = 0;
+            
+            UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+            NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+            [temp addObject:playInfo];
+            navigationController.viewControllers = temp;
+        }else
+        {
+            levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
+            
+            UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+            NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+            [temp addObject:levelInfo];
+            navigationController.viewControllers = temp;
+        }
 
     }
 //    loginViewController *demoController = [[loginViewController alloc] initWithNibName:@"loginViewController" bundle:nil];
@@ -161,7 +208,6 @@
     
     [self.headImage setImage:image];
     [self uploadNewHead:image forImagePicker:picker];
-    
     
     
 }
@@ -267,7 +313,8 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR233: %@",  operation.responseString);
-        
+        [self.signatureTextView setText:@""];
+
         
     }];
     

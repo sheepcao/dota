@@ -21,7 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *sexImg;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *sideBackImage;
 -(NSString *)requestSignature;
 - (IBAction)changeHeadImg:(UIButton *)sender;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginOut_upConstrains;
 @end

@@ -18,5 +18,7 @@
 @property (nonatomic ,strong) NSString *id_DB;
 
 @property (nonatomic ,strong) NSString *headImagePath;
+@property (nonatomic ,strong) NSString *isReviewed;
+
 
 @end

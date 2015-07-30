@@ -391,11 +391,21 @@ bool emailOK;
 
 -(void)successLogin:(NSDictionary *)userInfoDic
 {
-    
+    NSString *isReviewed = @"yes";
     NSLog(@"userinfoDic:%@",userInfoDic);
     NSLog(@"age:%@",[userInfoDic objectForKey:@"age"]);
+    if ([[userInfoDic objectForKey:@"isReviewed"] isKindOfClass:[NSNull class]] || [[userInfoDic objectForKey:@"isReviewed"] isEqualToString:@"no"]) {
+        isReviewed = @"no";
+    }
     
-    NSDictionary *userDic = [NSDictionary dictionaryWithObjectsAndKeys:[userInfoDic objectForKey:@"username"],@"username",[userInfoDic objectForKey:@"age"],@"age",[userInfoDic objectForKey:@"email"],@"email",[userInfoDic objectForKey:@"sex"],@"sex",[userInfoDic objectForKey:@"id"],@"id",[userInfoDic objectForKey:@"created"],@"created", nil];
+    NSDictionary *userDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [userInfoDic objectForKey:@"username"],@"username",
+                             [userInfoDic objectForKey:@"age"],@"age",
+                             [userInfoDic objectForKey:@"email"],@"email",
+                             [userInfoDic objectForKey:@"sex"],@"sex",
+                             isReviewed,@"isReviewed",
+                             [userInfoDic objectForKey:@"created"],@"created",
+                             nil];
     
     [[NSUserDefaults standardUserDefaults] setObject:userDic forKey:@"userInfoDic"];
     [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"haveDefaultUser"];

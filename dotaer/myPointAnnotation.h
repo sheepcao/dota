@@ -14,6 +14,7 @@
 @property (nonatomic ,strong) NSMutableArray *containUsers;
 @property (nonatomic ,strong) NSString *annoUserInfo;
 @property NSUInteger annoUserDistance;
+@property (nonatomic ,strong) NSString *annoUserGeo;
 
 
 @end

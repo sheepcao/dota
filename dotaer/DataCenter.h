@@ -12,6 +12,11 @@
 
 @property BOOL isGuest;
 @property BOOL needConfirmLevelInfo;
+//@property (nonatomic,strong) NSMutableArray *favorArray;
+
 
 + (id)sharedDataCenter ;
+- (BOOL)checkFavor:(NSString *)username;
+- (void)addFavor:(NSString *)username;
+- (void)removeFavor:(NSString *)username;
 @end
