@@ -141,12 +141,23 @@
     
     [self.view addSubview:searchingBar];
     
-    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height, searchingBar.frame.size.height/8, searchingBar.frame.size.height*3/4, searchingBar.frame.size.height*3/4)];
+    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height*1.1, searchingBar.frame.size.height/6, searchingBar.frame.size.height*2/3, searchingBar.frame.size.height*2/3)];
     
     
     
-    [searchBtn setTitle:@"查" forState:UIControlStateNormal];
-    [searchBtn setBackgroundColor:[UIColor purpleColor]];
+//    [searchBtn setTitle:@"查" forState:UIControlStateNormal];
+
+    [searchBtn setImage:[UIImage imageNamed:@"search1.png"] forState:UIControlStateNormal];
+//    searchBtn.layer.cornerRadius = searchBtn.frame.size.width/2;
+//    searchBtn.imageView.layer.cornerRadius = searchBtn.frame.size.width/2;
+//    searchBtn.imageView.layer.masksToBounds =YES;
+//    searchBtn.layer.shadowOffset = CGSizeMake(0, 5);
+//    searchBtn.layer.shadowRadius = searchBtn.frame.size.width/2;
+//    searchBtn.layer.shadowColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f].CGColor;
+//    searchBtn.layer.shadowOpacity = 0.9f;
+//    searchBtn.layer.borderWidth = 0;
+//    searchBtn.layer.borderColor = [UIColor colorWithRed:0/255.0f green:55/255.0f blue:75/255.0f alpha:1.0].CGColor;
+
     [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
     [searchingBar addSubview:searchBtn];
     [searchBtn setEnabled:NO];
@@ -189,8 +200,11 @@
     slider.minimumValue = 13;
     slider.maximumValue = 31;
     slider.value = 18;
+    slider.maximumTrackTintColor = [UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f];
+    slider.minimumTrackTintColor = [UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f];
 
-    UIImage* minTrack = [UIImage imageNamed:@"find0"];    
+
+    UIImage* minTrack = [UIImage imageNamed:@"find8"];
     [slider setThumbImage:minTrack forState:UIControlStateNormal];
 
     _searchRadius = [FabonacciNum calculateFabonacci:slider.value];
@@ -200,10 +214,10 @@
     self.radiusSlider = slider;
     [searchingBar addSubview:slider];
     
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, searchingBar.frame.size.height/8, 55, searchingBar.frame.size.height*3/4)];
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, searchingBar.frame.size.height/8, 60, searchingBar.frame.size.height*3/4)];
     [self.distanceLabel setText:@"< 2KM"];
-    [self.distanceLabel setTextColor:[UIColor blackColor]];
-    self.distanceLabel.font = [UIFont systemFontOfSize:13];
+    [self.distanceLabel setTextColor:[UIColor colorWithRed:23/255.0f green:168/255.0f blue:144/255.0f alpha:1.0f]];
+    self.distanceLabel.font = [UIFont systemFontOfSize:14.0f];
     [searchingBar addSubview:self.distanceLabel];
 
 }
@@ -276,12 +290,21 @@
                 [leftMenuVC.logoutBtn setTitle:@"注销" forState:UIControlStateNormal];
                 [leftMenuVC.unLoginLabel setHidden:YES];
                 [leftMenuVC.itemsTable setHidden:NO];
-                [leftMenuVC.itemsTable setHidden:NO];
                 [leftMenuVC.ageLabel setHidden:NO];
                 [leftMenuVC.headImage setHidden:NO];
                 [leftMenuVC.headBtn setHidden:NO];
                 [leftMenuVC.signatureTextView setHidden:NO];
                 [leftMenuVC.sexImg setHidden:NO];
+                
+                NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+                NSString *favorString = @"关注";
+                if (favorArray && favorArray.count>0)
+                {
+                    favorString = [NSString stringWithFormat:@"关注(%lu)",(unsigned long)favorArray.count];
+                }
+                
+                leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
+                [leftMenuVC.itemsTable reloadData];
             }
         }
     }
@@ -453,12 +476,21 @@
         }
         [leftMenuVC.sexImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",myInfo.sex]]];
         [leftMenuVC.ageLabel setText:[NSString stringWithFormat:@"%@岁",myInfo.age]];
+        
+        NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+        NSString *favorString = @"关注";
+        if (favorArray && favorArray.count>0)
+        {
+            favorString = [NSString stringWithFormat:@"关注(%lu)",(unsigned long)favorArray.count];
+        }
+        
+
         if ([self.myUserInfo.isReviewed isEqualToString:@"no"]) {
-            leftMenuVC.items = [NSArray arrayWithObjects:@"战绩认证",@"关注",@"消息",@"关于我们", nil];
+            leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
             [leftMenuVC.itemsTable  reloadData];
         }else
         {
-            leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",@"关注",@"消息",@"关于我们", nil];
+            leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
             [leftMenuVC.itemsTable  reloadData];
         }
         
@@ -724,11 +756,14 @@
             [cell.confirmLevelImage setImage:[UIImage imageNamed:@"levelno"]];
             [cell.confirmLevelLabel setText:@"暂未认证"];
             [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:150/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+            [cell.scoreLabel setHidden:YES];
         }else
         {
             [cell.confirmLevelImage setImage:[UIImage imageNamed:@"levelyes"]];
             [cell.confirmLevelLabel setText:@"已认证"];
             [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0f]];
+            [cell.scoreLabel setHidden:NO];
+            [cell.scoreLabel setText:[NSString stringWithFormat:@"天梯:%@",userExtinfo[3] ]];
 
         }
     }

@@ -21,6 +21,16 @@
 }
 
 
+- (id)fetchFavors {
+    
+    
+    NSMutableArray *favorArray =[NSMutableArray arrayWithArray: [[NSUserDefaults standardUserDefaults] objectForKey:@"favor"]];
+    if(favorArray)
+        return favorArray;
+    else
+        return nil;
+}
+
 - (BOOL)checkFavor:(NSString *)username {
 
     NSMutableArray *favorArray =[NSMutableArray arrayWithArray: [[NSUserDefaults standardUserDefaults] objectForKey:@"favor"]];

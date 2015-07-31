@@ -16,6 +16,7 @@
 
 
 + (id)sharedDataCenter ;
+- (id)fetchFavors;
 - (BOOL)checkFavor:(NSString *)username;
 - (void)addFavor:(NSString *)username;
 - (void)removeFavor:(NSString *)username;

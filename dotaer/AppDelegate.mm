@@ -13,6 +13,7 @@
 #import "MFSideMenuContainerViewController.h"
 #import "dotaerViewController.h"
 #import "myMenuViewController.h"
+#import "DataCenter.h"
 
 @interface AppDelegate ()<BMKGeneralDelegate>
 
@@ -47,9 +48,15 @@ BMKMapManager* _mapManager;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+    NSString *favorString = @"关注";
+    if (favorArray && favorArray.count>0)
+    {
+        favorString = [NSString stringWithFormat:@"关注(%lu)",(unsigned long)favorArray.count];
+    }
     
     SideMenuViewController *leftMenuViewController = [[SideMenuViewController alloc] init];
-    leftMenuViewController.items = [NSArray arrayWithObjects:@"我的主页",@"关注",@"消息",@"关于我们", nil];
+    leftMenuViewController.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
     MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController
                                                     containerWithCenterViewController:[self navigationController]
                                                     leftMenuViewController:leftMenuViewController

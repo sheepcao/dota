@@ -15,7 +15,7 @@
 #import "levelInfoViewController.h"
 
 #import "playerPageViewController.h"
-#import "videoViewController.h"
+#import "favorViewController.h"
 
 
 @implementation SideMenuViewController
@@ -82,6 +82,9 @@
     }
     
     cell.backgroundColor = [UIColor clearColor];
+    cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     cell.textLabel.text = self.items[indexPath.row];
     cell.textLabel.textColor = [UIColor colorWithRed:242/255.0f green:242/255.0f blue:242/255.0f alpha:1.0f];
 
@@ -130,10 +133,24 @@
             navigationController.viewControllers = temp;
         }
 
+    } else if (indexPath.row == 1)
+    {
+        NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+        if (favorArray && favorArray.count>0)
+        {
+            favorViewController *favorVC = [[favorViewController alloc] initWithNibName:@"favorViewController" bundle:nil];
+            UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+            NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+            [temp addObject:favorVC];
+            navigationController.viewControllers = temp;
+        }else
+        {
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+            return;
+        }
     }
-//    loginViewController *demoController = [[loginViewController alloc] initWithNibName:@"loginViewController" bundle:nil];
-//    demoController.title = [NSString stringWithFormat:@"login #%d-%d", indexPath.section, indexPath.row];
-//    
+
+   
     [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
 }
 

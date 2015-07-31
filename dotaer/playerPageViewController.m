@@ -59,10 +59,12 @@
     }else
     {
         
+      
+        
         self.favorBtn.layer.cornerRadius = 4.2f;
-        self.favorBtn.layer.shadowOffset = CGSizeMake(1, 1);
+        self.favorBtn.layer.shadowOffset = CGSizeMake(0.2, 0.2);
         self.favorBtn.layer.shadowRadius = 0.5;
-        self.favorBtn.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+        self.favorBtn.layer.shadowColor = [UIColor darkGrayColor].CGColor;
         self.favorBtn.layer.shadowOpacity = 0.4;
         self.favorBtn.layer.borderWidth = 1.0;
         self.favorBtn.layer.borderColor = [UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0].CGColor;
@@ -304,6 +306,16 @@
     {
         [self.ageLabel setFrame:CGRectMake(235, 51, 42, 31)];
         [self.sexImage setFrame:CGRectMake(50, 55, 19, 22)];
+    }else
+    {
+        if(self.distance == -1)
+        {
+            [self.ageLabel setFrame:CGRectMake(235, 45, 42, 31)];
+            [self.sexImage setFrame:CGRectMake(50, 37, 19, 22)];
+            [self.distanceImage setHidden:YES];
+            [self.distanceLabel setHidden:YES];
+            [self.addressLabel setHidden:YES];
+        }
     }
     
     
@@ -403,7 +415,7 @@
 
     [cell.userHeadImage setImage:img];
     
-    [cell.cellNumber setText:[NSString stringWithFormat:@"%u.",self.notesArray.count - indexPath.row]];
+    [cell.cellNumber setText:[NSString stringWithFormat:@"%lu.",self.notesArray.count - indexPath.row]];
     
     return cell;
     
@@ -670,10 +682,14 @@
     if ([sender.titleLabel.text isEqualToString:@"已关注"]) {
         [[DataCenter sharedDataCenter] removeFavor:self.playerName];
         [sender setTitle:@"+关注" forState:UIControlStateNormal];
+        [self.favorBtn setBackgroundColor:[UIColor colorWithRed:255/255.0f green:55/255.0f blue:28/255.0f alpha:1.0f]];
+
     }else
     {
         [[DataCenter sharedDataCenter] addFavor:self.playerName];
         [sender setTitle:@"已关注" forState:UIControlStateNormal];
+        [self.favorBtn setBackgroundColor:[UIColor colorWithRed:49/255.0f green:185/255.0f blue:163/255.0f alpha:1.0f]];
+
 
     }
 }
