@@ -40,7 +40,7 @@ class DB_Functions {
      * Get user by email and password
      */
     public function getUserByNameAndPassword($name, $password) {
-        $result = mysql_query("SELECT * FROM userinfo WHERE unique_id = '$name'") or die(mysql_error());
+        $result = mysql_query("SELECT * FROM userinfo u left join levelinfo l on l.username = u.unique_id WHERE unique_id = '$name'") or die(mysql_error());
         // check for result 
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {

@@ -104,14 +104,15 @@
                 // user found
                 // echo json with success = 1
                 $response["success"] = 1;
-                $response["id"] = $user["id"];
-
                 $response["username"] = $user["unique_id"];
                 $response["email"] = $user["email"];
                 $response["age"] = $user["age"];
                 $response["sex"] = $user["sex"];
                 $response["created"] = $user["created_at"];
                 $response["updated"] = $user["updated_at"];
+                $response["isReviewed"] = $user["isReviewed"];
+                $response["TTscore"] = $user["TTscore"];
+
                 sendResponse(200,json_encode($response));
             } else {
                 // user not found
