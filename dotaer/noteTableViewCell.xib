@@ -48,6 +48,12 @@
                         <color key="textColor" red="0.39412006579999997" green="0.38268400489999999" blue="0.40095600329999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19q-L5-LpJ">
+                        <rect key="frame" x="13" y="6" width="69" height="46"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
@@ -59,6 +65,7 @@
                 <outlet property="noteTimeLabel" destination="jE6-HH-IWf" id="uGS-r3-h4L"/>
                 <outlet property="userHeadImage" destination="U3O-Ot-khi" id="3fb-Ou-MVM"/>
                 <outlet property="usernameLabel" destination="VMF-FE-F6z" id="rhk-F8-R9I"/>
+                <outlet property="visitorDetailBtn" destination="19q-L5-LpJ" id="E2a-Ny-EOp"/>
             </connections>
             <point key="canvasLocation" x="280" y="167"/>
         </tableViewCell>

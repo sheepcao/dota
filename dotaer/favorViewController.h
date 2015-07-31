@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BaiduMapAPI/BMapKit.h>
+
 
 @interface favorViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *favorTable;
+@property(strong,nonatomic) NSMutableArray *favorArray;
 
+@property BOOL isFromFavor;
+@property NSUInteger distance;
+@property (nonatomic, assign) CLLocationCoordinate2D userPosition;
 @end

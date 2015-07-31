@@ -334,6 +334,8 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+ 
 }
 
 
@@ -387,6 +389,7 @@
     if (nil == cell)
     {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"noteTableViewCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
     cell.backgroundColor = [UIColor clearColor];
     
@@ -417,7 +420,25 @@
     
     [cell.cellNumber setText:[NSString stringWithFormat:@"%lu.",self.notesArray.count - indexPath.row]];
     
+    if (![self.visitorArray[indexPath.row] isEqualToString: @"匿名游客"]) {
+        cell.visitorDetailBtn.tag = indexPath.row;
+        [cell.visitorDetailBtn addTarget:self action:@selector(visotorDetail:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    
+    
     return cell;
+    
+}
+-(void)visotorDetail:(UIButton *)sender
+{
+    playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
+    
+    playInfo.playerName =  self.visitorArray[sender.tag];
+    
+    playInfo.distance = -1;
+    
+    [self.navigationController pushViewController:playInfo animated:YES];
     
 }
 

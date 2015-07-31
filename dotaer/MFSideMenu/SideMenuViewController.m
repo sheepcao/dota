@@ -139,6 +139,8 @@
         if (favorArray && favorArray.count>0)
         {
             favorViewController *favorVC = [[favorViewController alloc] initWithNibName:@"favorViewController" bundle:nil];
+            favorVC.isFromFavor = YES;
+            
             UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
             NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
             [temp addObject:favorVC];

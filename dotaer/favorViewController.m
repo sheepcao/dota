@@ -14,7 +14,6 @@
 
 @interface favorViewController ()
 
-@property(strong,nonatomic) NSMutableArray *favorArray;
 @end
 
 @implementation favorViewController
@@ -23,7 +22,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"关注";
+    if (self.isFromFavor)
+    {
+        self.title = @"关注";
+
+    }else
+    {
+        self.title = @"玩家";
+    }
 
     
 }
@@ -31,9 +37,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.favorArray = [[DataCenter sharedDataCenter] fetchFavors];
     
-    [self.favorTable reloadData];
+    if(self.isFromFavor)
+    {
+        self.favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+        
+        [self.favorTable reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,17 +104,35 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    if(self.isFromFavor)
+    {
+        
+        playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
+        
+        playInfo.playerName = self.favorArray[indexPath.row];
+        
+        playInfo.distance = -1;
+        
+        [self.navigationController pushViewController:playInfo animated:YES];
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }else
+    {
+        [self jumpToPlayer: self.favorArray[indexPath.row] andDistance:self.distance andGeoInfo:self.userPosition];
+    }
+}
+
+-(void)jumpToPlayer:(NSString *)playerName andDistance:(NSUInteger)distance andGeoInfo:(CLLocationCoordinate2D)position
+{
     playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
     
-    playInfo.playerName = self.favorArray[indexPath.row];
-
-    playInfo.distance = -1;
+    playInfo.playerName = playerName;
+    playInfo.distance = distance;
+    playInfo.userPosition = position;
     
     [self.navigationController pushViewController:playInfo animated:YES];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
-
-
 @end

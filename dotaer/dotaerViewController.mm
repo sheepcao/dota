@@ -19,6 +19,7 @@
 #import "SideMenuViewController.h"
 #import "DataCenter.h"
 #import "levelInfoViewController.h"
+#import "favorViewController.h"
 
 #define annoRatio 0.37
 #define userCoverRatio 0.0025
@@ -1053,7 +1054,24 @@
         anno = (myPointAnnotation *)view.annotation;
     }
     
-    [self jumpToPlayer:anno.title andDistance:anno.annoUserDistance andGeoInfo:anno.coordinate];
+    if (anno.containUsers.count>0)
+    {
+        favorViewController * allUserVC = [[favorViewController alloc] initWithNibName:@"favorViewController" bundle:nil];
+        allUserVC.isFromFavor = NO;
+        allUserVC.distance = anno.annoUserDistance;
+        allUserVC.userPosition = anno.coordinate;
+        allUserVC.favorArray = [NSMutableArray arrayWithObjects:anno.title, nil];
+        for (myPointAnnotation *tempAnno in anno.containUsers) {
+            [allUserVC.favorArray addObject:tempAnno.title];
+        }
+        
+        [self.navigationController pushViewController:allUserVC animated:YES];
+        
+    }else
+    {
+        [self jumpToPlayer:anno.title andDistance:anno.annoUserDistance andGeoInfo:anno.coordinate];
+
+    }
 
     [_mapView deselectAnnotation:view.annotation animated:YES];
   

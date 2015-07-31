@@ -19,4 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bubbleView;
 @property (weak, nonatomic) IBOutlet UIImageView *bubbleArrow;
 
+@property (weak, nonatomic) IBOutlet UIButton *visitorDetailBtn;
+
 @end
