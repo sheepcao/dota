@@ -201,6 +201,7 @@ bool emailOK;
     
     NSLog(@"set guest!!!");
     [[DataCenter sharedDataCenter] setIsGuest:YES];
+    self.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -414,7 +415,7 @@ bool emailOK;
     [[NSUserDefaults standardUserDefaults] setObject:userDic forKey:@"userInfoDic"];
     [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"haveDefaultUser"];
 
-    
+    self.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }

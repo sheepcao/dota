@@ -95,6 +95,14 @@
 		A4B8A7621B6B5D1300BFEDDC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7611B6B5D1300BFEDDC /* ImageIO.framework */; };
 		A4B8A7651B6B5EE700BFEDDC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7641B6B5EE700BFEDDC /* libsqlite3.dylib */; };
 		A4B8A7671B6B600100BFEDDC /* ICON 512.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B8A7661B6B600100BFEDDC /* ICON 512.png */; };
+		A4B8A7691B6B77EA00BFEDDC /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7681B6B77EA00BFEDDC /* GoogleMobileAds.framework */; };
+		A4B8A76B1B6B78D700BFEDDC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A76A1B6B78D700BFEDDC /* AdSupport.framework */; };
+		A4B8A76D1B6B78DD00BFEDDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A76C1B6B78DD00BFEDDC /* AudioToolbox.framework */; };
+		A4B8A76F1B6B78E300BFEDDC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A76E1B6B78E300BFEDDC /* AVFoundation.framework */; };
+		A4B8A7711B6B78ED00BFEDDC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7701B6B78ED00BFEDDC /* CoreMedia.framework */; };
+		A4B8A7731B6B78FA00BFEDDC /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7721B6B78FA00BFEDDC /* EventKit.framework */; };
+		A4B8A7751B6B78FE00BFEDDC /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7741B6B78FE00BFEDDC /* EventKitUI.framework */; };
+		A4B8A7771B6B790900BFEDDC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7761B6B790900BFEDDC /* StoreKit.framework */; };
 		A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */; };
 		A4CC4AAB1B672ABA00950537 /* videoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AA91B672ABA00950537 /* videoViewController.m */; };
 		A4CC4AAC1B672ABA00950537 /* videoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AAA1B672ABA00950537 /* videoViewController.xib */; };
@@ -408,6 +416,14 @@
 		A4B8A7631B6B5E3D00BFEDDC /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = UMSocial_Sdk_4.2.1/MobClick.h; sourceTree = "<group>"; };
 		A4B8A7641B6B5EE700BFEDDC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A4B8A7661B6B600100BFEDDC /* ICON 512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ICON 512.png"; sourceTree = "<group>"; };
+		A4B8A7681B6B77EA00BFEDDC /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		A4B8A76A1B6B78D700BFEDDC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		A4B8A76C1B6B78DD00BFEDDC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A4B8A76E1B6B78E300BFEDDC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A4B8A7701B6B78ED00BFEDDC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A4B8A7721B6B78FA00BFEDDC /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		A4B8A7741B6B78FE00BFEDDC /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		A4B8A7761B6B790900BFEDDC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hero_terminable_skin_bg_hover@2x.png"; sourceTree = "<group>"; };
 		A4CC4AA81B672ABA00950537 /* videoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoViewController.h; sourceTree = "<group>"; };
 		A4CC4AA91B672ABA00950537 /* videoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoViewController.m; sourceTree = "<group>"; };
@@ -602,14 +618,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4B8A7771B6B790900BFEDDC /* StoreKit.framework in Frameworks */,
 				A4D13E531B4CF96A00C06A2B /* MessageUI.framework in Frameworks */,
+				A4B8A7751B6B78FE00BFEDDC /* EventKitUI.framework in Frameworks */,
+				A4B8A7731B6B78FA00BFEDDC /* EventKit.framework in Frameworks */,
+				A4B8A75A1B6B5CEB00BFEDDC /* CoreTelephony.framework in Frameworks */,
+				A4B8A7711B6B78ED00BFEDDC /* CoreMedia.framework in Frameworks */,
+				A447FEF31B4A803C0053D982 /* CoreGraphics.framework in Frameworks */,
+				A4B8A76F1B6B78E300BFEDDC /* AVFoundation.framework in Frameworks */,
+				A4B8A76D1B6B78DD00BFEDDC /* AudioToolbox.framework in Frameworks */,
+				A4B8A76B1B6B78D700BFEDDC /* AdSupport.framework in Frameworks */,
 				A4B8A7651B6B5EE700BFEDDC /* libsqlite3.dylib in Frameworks */,
 				A4B8A7621B6B5D1300BFEDDC /* ImageIO.framework in Frameworks */,
+				A4B8A7691B6B77EA00BFEDDC /* GoogleMobileAds.framework in Frameworks */,
 				A4B8A7601B6B5D0C00BFEDDC /* JavaScriptCore.framework in Frameworks */,
 				A447FEF51B4A80450053D982 /* Security.framework in Frameworks */,
 				A4B8A75E1B6B5CFE00BFEDDC /* libz.1.2.5.dylib in Frameworks */,
 				A4B8A75C1B6B5CF600BFEDDC /* libicucore.dylib in Frameworks */,
-				A4B8A75A1B6B5CEB00BFEDDC /* CoreTelephony.framework in Frameworks */,
 				A447FEDF1B4A27600053D982 /* QuartzCore.framework in Frameworks */,
 				A447FEF11B4A80300053D982 /* SystemConfiguration.framework in Frameworks */,
 				A4DDDA011B686E4100ACD655 /* MediaPlayer.framework in Frameworks */,
@@ -621,7 +646,6 @@
 				A4B8A74F1B6B5C1C00BFEDDC /* TencentOpenAPI.framework in Frameworks */,
 				A4B8A74A1B6B5C1C00BFEDDC /* WeChatConnection.framework in Frameworks */,
 				A4B8A7541B6B5C1C00BFEDDC /* ShareSDK.framework in Frameworks */,
-				A447FEF31B4A803C0053D982 /* CoreGraphics.framework in Frameworks */,
 				A4B8A7511B6B5C1C00BFEDDC /* libWeiboSDK.a in Frameworks */,
 				A4B8A7461B6B5C1C00BFEDDC /* QQConnection.framework in Frameworks */,
 				A4B8A7581B6B5C1C00BFEDDC /* libMobClickLibrary.a in Frameworks */,
@@ -650,6 +674,13 @@
 		32E18A50145E6971EB5512EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4B8A7761B6B790900BFEDDC /* StoreKit.framework */,
+				A4B8A7741B6B78FE00BFEDDC /* EventKitUI.framework */,
+				A4B8A7721B6B78FA00BFEDDC /* EventKit.framework */,
+				A4B8A7701B6B78ED00BFEDDC /* CoreMedia.framework */,
+				A4B8A76E1B6B78E300BFEDDC /* AVFoundation.framework */,
+				A4B8A76C1B6B78DD00BFEDDC /* AudioToolbox.framework */,
+				A4B8A76A1B6B78D700BFEDDC /* AdSupport.framework */,
 				A4B8A7641B6B5EE700BFEDDC /* libsqlite3.dylib */,
 				A4B8A7611B6B5D1300BFEDDC /* ImageIO.framework */,
 				A4B8A75F1B6B5D0C00BFEDDC /* JavaScriptCore.framework */,
@@ -721,6 +752,7 @@
 		A447FE8D1B4A198B0053D982 = {
 			isa = PBXGroup;
 			children = (
+				A4B8A7681B6B77EA00BFEDDC /* GoogleMobileAds.framework */,
 				A447FEF61B4A80C00053D982 /* mapapi.bundle */,
 				A4D13E1E1B4CEC8200C06A2B /* BaiduMapAPI.framework */,
 				A447FEF41B4A80450053D982 /* Security.framework */,

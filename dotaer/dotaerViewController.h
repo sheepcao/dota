@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-
+@class GADBannerView;
 
 
 @interface dotaerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property(nonatomic, strong)  GADBannerView *bannerView;
 
 -(void)showLoginPage;
 @end

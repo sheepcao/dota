@@ -5,6 +5,7 @@
 //  Created by Eric Cao on 7/6/15.
 //  Copyright (c) 2015 sheepcao. All rights reserved.
 //
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 #import "dotaerViewController.h"
 #import "loginViewController.h"
@@ -24,7 +25,7 @@
 #define annoRatio 0.37
 #define userCoverRatio 0.0025
 
-@interface dotaerViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate, BMKRadarManagerDelegate> {
+@interface dotaerViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate, BMKRadarManagerDelegate,GADBannerViewDelegate> {
     BMKLocationService *_locServer;
     BMKRadarManager *_radarManager;
     CLLocationCoordinate2D _curLocation;
@@ -98,9 +99,29 @@
 
 -(void)setupCenterView
 {
+    
+    
+    
     NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
     
-    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64))];
+    
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,64,SCREEN_WIDTH, 50)];
+    self.bannerView.delegate = self;
+    self.bannerView.adUnitID =ADMOB_ID;
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    // Requests test ads on devices you specify. Your test device ID is printed to the console when
+    // an ad request is made. GADBannerView automatically returns test ads when running on a
+    // simulator.
+//    request.testDevices = @[
+//                            @"df49cbdc51415aab50e8dee3cac69ff5"  // Eric's iPod Touch
+//                            ];
+    [self.bannerView loadRequest:request];
+    
+    [self.view addSubview:self.bannerView];
+    
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64+50, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64-50))];
     
     [self.view addSubview:containerView];
     
