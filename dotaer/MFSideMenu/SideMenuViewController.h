@@ -6,8 +6,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import <MessageUI/MessageUI.h>
 
-@interface SideMenuViewController : UIViewController<UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface SideMenuViewController : UIViewController<UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MFMailComposeViewControllerDelegate>
 
 @property (strong,nonatomic) NSArray *items;
 @property (weak, nonatomic) IBOutlet UITableView *itemsTable;

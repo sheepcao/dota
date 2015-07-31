@@ -65,7 +65,11 @@ BMKMapManager* _mapManager;
     
     [self.window makeKeyAndVisible];
     
-   
+    [MobClick startWithAppkey:@"5508d14dfd98c530ab00043f" reportPolicy:REALTIME   channelId:nil];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+    
+    [self setShareIDs];
     
     return YES;
 }
@@ -108,6 +112,51 @@ BMKMapManager* _mapManager;
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url
+                        wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
+}
+
+
+-(void)setShareIDs
+{
+    [ShareSDK registerApp:@"943060bfe881"];//字符串api20为您的ShareSDK的AppKey
+    
+    //添加新浪微博应用 注册网址 http://open.weibo.com
+    [ShareSDK connectSinaWeiboWithAppKey:@"1054017016"
+                               appSecret:@"f724ecce1e644e16c1cb44c349f2df27"
+                             redirectUri:@"https://api.weibo.com/oauth2/default.html"];
+    
+    //当使用新浪微博客户端分享的时候需要按照下面的方法来初始化新浪的平台
+    [ShareSDK  connectSinaWeiboWithAppKey:@"1054017016"
+                                appSecret:@"f724ecce1e644e16c1cb44c349f2df27"
+                              redirectUri:@"https://api.weibo.com/oauth2/default.html"
+                              weiboSDKCls:[WeiboSDK class]];
+       //添加微信应用 注册网址 http://open.weixin.qq.com
+    [ShareSDK connectWeChatWithAppId:@"wx59625f48a74bdc1b"
+                           wechatCls:[WXApi class]];
+    
+    
+    [ShareSDK connectWeChatWithAppId:@"wx59625f48a74bdc1b"   //微信APPID
+                           appSecret:@"35026f787626340e50a248a223dfdb52"  //微信APPSecret
+                           wechatCls:[WXApi class]];
+    
+    
 }
 
 

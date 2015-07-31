@@ -37,6 +37,16 @@
 #define videoInfoService @"http://localhost/~ericcao/videoURL.php"
 
 #import "MBProgressHUD.h"
+#import <ShareSDK/ShareSDK.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "WXApi.h"
+#import "WeiboSDK.h"
+#import "MobClick.h"
+
+
+#define REVIEW_URL @"https://itunes.apple.com/us/app/anime-face/id983454917?ls=1&mt=8"
+#define VERSIONNUMBER   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
 #endif
 

@@ -148,6 +148,12 @@
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
             return;
         }
+    }else if(indexPath.row == 2)
+    {
+        [self shareAppTapped];
+    }else if (indexPath.row == 3)
+    {
+        [self contactTapped];
     }
 
    
@@ -384,5 +390,145 @@
     [txtView resignFirstResponder];
     return NO;
 }
+
+
+-(void)shareAppTapped
+
+{
+    [MobClick event:@"shareApp"];
+    
+    
+    UIImage *icon = [UIImage imageNamed:@"ICON 512"];
+    
+    id<ISSContent> publishContent = [ShareSDK content:@"dota圈子"
+                                       defaultContent:NSLocalizedString(@"",nil)
+                                                image:[ShareSDK pngImageWithImage:icon]
+                                                title:@"dota圈子"
+                                                  url:REVIEW_URL
+                                          description:NSLocalizedString(@"轻松组队，开黑必备！\n一个真实的dota社交圈子。",nil)
+                                            mediaType:SSPublishContentMediaTypeNews];
+    //创建弹出菜单容器
+    id<ISSContainer> container = [ShareSDK container];
+    
+    //弹出分享菜单
+    [ShareSDK showShareActionSheet:container
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions:nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    //eric: to be sned da bai....
+                                    NSLog(NSLocalizedString(@"TEXT_ShARE_SUC", @"分享成功"));
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(NSLocalizedString(@"TEXT_ShARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+                                }
+                            }];
+    
+    
+    
+}
+
+-(void)contactTapped
+{
+    
+    [MobClick event:@"email"];
+    
+    
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    [picker.view setFrame:CGRectMake(0,20 , 320, self.view.frame.size.height-20)];
+    picker.mailComposeDelegate = self;
+    
+    
+    
+    // Set up recipients
+    NSArray *toRecipients = [NSArray arrayWithObject:@"sheepcao1986@163.com"];
+    
+    
+    [picker setToRecipients:toRecipients];
+    
+    NSString *emailBody= @"";
+    [picker setSubject:@"意见反馈-dota圈子"];
+    emailBody = @"感谢您使用dota圈子，请留下您的宝贵意见，我们将持续更新！";
+    
+    
+    [picker setMessageBody:emailBody isHTML:NO];
+    [self presentViewController:picker animated:YES completion:nil];
+}
+- (void)alertWithTitle: (NSString *)_title_ msg: (NSString *)msg
+
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_title_
+                          
+                                                    message:msg
+                          
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                          
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+}
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+
+{
+    
+    NSString *title = @"发送状态";
+    
+    NSString *msg;
+    
+    switch (result)
+    
+    {
+            
+        case MFMailComposeResultCancelled:
+            
+            msg = @"Mail canceled";//@"邮件发送取消";
+            
+            break;
+            
+        case MFMailComposeResultSaved:
+            
+            msg = @"邮件保存成功";//@"邮件保存成功";
+            
+            [self alertWithTitle:title msg:msg];
+            
+            break;
+            
+        case MFMailComposeResultSent:
+            
+            msg = @"邮件发送成功";//@"邮件发送成功";
+            
+            [self alertWithTitle:title msg:msg];
+            
+            break;
+            
+        case MFMailComposeResultFailed:
+            
+            msg = @"邮件发送失败";//@"邮件发送失败";
+            
+            [self alertWithTitle:title msg:msg];
+            
+            break;
+            
+        default:
+            
+            msg = @"邮件尚未发送";
+            
+            [self alertWithTitle:title msg:msg];
+            
+            break;
+            
+    }
+    
+    [self  dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
 
 @end
