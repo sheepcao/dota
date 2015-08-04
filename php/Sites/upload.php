@@ -82,11 +82,12 @@
         // get tag
         $tag = $_POST['tag'];
         
-        
+//        sendResponse(200,json_encode($_POST));
+
         // include db handler
         require_once 'include/DB_Functions.php';
         $db = new DB_Functions();
-        
+
         // response Array
         $response = array("tag" => $tag, "success" => 0, "error" => 0);
         
@@ -112,6 +113,8 @@
                 $response["updated"] = $user["updated_at"];
                 $response["isReviewed"] = $user["isReviewed"];
                 $response["TTscore"] = $user["TTscore"];
+                $response["JJCscore"] = $user["JJCscore"];
+
 
                 sendResponse(200,json_encode($response));
             } else {
@@ -152,7 +155,9 @@
                     $response["sex"] = $user["sex"];
                     $response["created_at"] = $user["created_at"];
                     $response["updated_at"] = $user["updated_at"];
-                    
+                    $response["isReviewed"] = $user["isReviewed"];
+                    $response["TTscore"] = $user["TTscore"];
+                    $response["JJCscore"] = $user["JJCscore"];
                     
                     
                     if ((($_FILES["file"]["type"] == "image/gif")
@@ -452,7 +457,7 @@
         
         
     } else {
-        echo "Access Denied";
+        echo "Access Denied!!";
     }
 
     

@@ -75,13 +75,11 @@
     }
 
 //
-//    sendResponse(2300,json_encode($_FILES));
     
     if (isset($_POST['tag']) && $_POST['tag'] != '') {
-        // get tag
         $tag = $_POST['tag'];
 
-
+    
         // include db handler
         require_once 'include/DB_Functions.php';
         $db = new DB_Functions();
@@ -93,39 +91,145 @@
             
             $username = $_POST['username'];
             $gameID = $_POST['gameID'];
-            $JJCscore = $_POST['JJCscore'];
-            $TTscore = $_POST['TTscore'];
-            $ratio = $_POST['ratio'];
-            $soldier = $_POST['soldier'];
-            $heroFirst = $_POST['heroFirst'];
-            $heroSecond = $_POST['heroSecond'];
-            $heroThird = $_POST['heroThird'];
+            $gameName = $_POST['gameName'];
+//            sendResponse(200,json_encode($gameName));
+
+            $JJCinfo["haveScore"] = $_POST['JJChaveScore'];
+            $TTinfo["haveScore"] = $_POST['TThaveScore'];
+            $MJinfo["haveScore"] = $_POST['MJhaveScore'];
+
+            if ($_POST['JJChaveScore'] == "yes")
+            {
+                
+                $JJCinfo["JJCscore"] = $_POST['JJCscore'];
+                $JJCinfo["JJCtotal"] = $_POST['JJCtotal'];
+                $JJCinfo["JJCmvp"] = $_POST['JJCmvp'];
+                $JJCinfo["JJCPianJiang"] = $_POST['JJCPianJiang'];
+                $JJCinfo["JJCPoDi"] = $_POST['JJCPoDi'];
+                $JJCinfo["JJCPoJun"] = $_POST['JJCPoJun'];
+                $JJCinfo["JJCYingHun"] = $_POST['JJCYingHun'];
+                $JJCinfo["JJCBuWang"] = $_POST['JJCBuWang'];
+                $JJCinfo["JJCFuHao"] = $_POST['JJCFuHao'];
+                $JJCinfo["JJCDoubleKill"] = $_POST['JJCDoubleKill'];
+                $JJCinfo["JJCTripleKill"] = $_POST['JJCTripleKill'];
+                $JJCinfo["JJCWinRatio"] = $_POST['JJCWinRatio'];
+                $JJCinfo["JJCheroFirst"] = $_POST['JJCheroFirst'];
+                $JJCinfo["JJCheroSecond"] = $_POST['JJCheroSecond'];
+                $JJCinfo["JJCheroThird"] = $_POST['JJCheroThird'];
+            }
             
+            if ($_POST['TThaveScore'] == "yes")
+            {
+                $TTinfo["TTscore"] = $_POST['TTscore'];
+                $TTinfo["TTtotal"] = $_POST['TTtotal'];
+                $TTinfo["TTmvp"] = $_POST['TTmvp'];
+                $TTinfo["TTPianJiang"] = $_POST['TTPianJiang'];
+                $TTinfo["TTPoDi"] = $_POST['TTPoDi'];
+                $TTinfo["TTPoJun"] = $_POST['TTPoJun'];
+                $TTinfo["TTYingHun"] = $_POST['TTYingHun'];
+                $TTinfo["TTBuWang"] = $_POST['TTBuWang'];
+                $TTinfo["TTFuHao"] = $_POST['TTFuHao'];
+                $TTinfo["TTDoubleKill"] = $_POST['TTDoubleKill'];
+                $TTinfo["TTTripleKill"] = $_POST['TTTripleKill'];
+                $TTinfo["TTWinRatio"] = $_POST['TTWinRatio'];
+                $TTinfo["TTheroFirst"] = $_POST['TTheroFirst'];
+                $TTinfo["TTheroSecond"] = $_POST['TTheroSecond'];
+                $TTinfo["TTheroThird"] = $_POST['TTheroThird'];
+            }
             
-            $user = $db->updateUserLevel($username,$isReviewed,$gameID,$JJCscore,$TTscore,$ratio,$soldier,$heroFirst,$heroSecond,$heroThird);
+            if ($_POST['MJhaveScore'] == "yes")
+            {
+                $MJinfo["MJscore"] = $_POST['MJscore'];
+                $MJinfo["MJtotal"] = $_POST['MJtotal'];
+                $MJinfo["MJmvp"] = $_POST['MJmvp'];
+                $MJinfo["MJPianJiang"] = $_POST['MJPianJiang'];
+                $MJinfo["MJPoDi"] = $_POST['MJPoDi'];
+                $MJinfo["MJPoJun"] = $_POST['MJPoJun'];
+                $MJinfo["MJYingHun"] = $_POST['MJYingHun'];
+                $MJinfo["MJBuWang"] = $_POST['MJBuWang'];
+                $MJinfo["MJFuHao"] = $_POST['MJFuHao'];
+                $MJinfo["MJDoubleKill"] = $_POST['MJDoubleKill'];
+                $MJinfo["MJTripleKill"] = $_POST['MJTripleKill'];
+                $MJinfo["MJWinRatio"] = $_POST['MJWinRatio'];
+                $MJinfo["MJheroFirst"] = $_POST['MJheroFirst'];
+                $MJinfo["MJheroSecond"] = $_POST['MJheroSecond'];
+                $MJinfo["MJheroThird"] = $_POST['MJheroThird'];
+            }
             
+//            sendResponse(200,json_encode($_POST));
+        
+        
+            $user = $db->updateUserLevel($username,$isReviewed,$gameID,$gameName,$JJCinfo,$TTinfo,$MJinfo);
             
+
             
             if ($user != false) {
                 $response["success"] = 1;
-
-             
-
-
-           
                 
-                $response["username"] = $user["username"];
+                $response["username"] = $user["unique_id"];
                 $response["isReviewed"] = $user["isReviewed"];
-                $response["JJCscore"] = $user["JJCscore"];
                 $response["gameID"] = $user["gameID"];
-                $response["TTscore"] = $user["TTscore"];
-                $response["WinRatio"] = $user["WinRatio"];
-                $response["soldier"] = $user["soldier"];
-                $response["heroFirst"] = $user["heroFirst"];
-                $response["heroSecond"] = $user["heroSecond"];
-                $response["heroThird"] = $user["heroThird"];
-                $response["created_Time"] = $user["created_Time"];
-                
+//                $response["user"] = $user;
+
+                if(isset($user["JJCscore"]) && $user["JJCscore"] != '')
+                {
+                    $response["JJCinfo"]["JJCscore"] = $user["JJCscore"];
+                    $response["JJCinfo"]["JJCtotal"] = $user["JJCtotal"];
+                    $response["JJCinfo"]["JJCmvp"] = $user["JJCmvp"];
+                    $response["JJCinfo"]["JJCPianJiang"] = $user["JJCPianJiang"];
+                    $response["JJCinfo"]["JJCPoDi"] = $user["JJCPoDi"];
+                    $response["JJCinfo"]["JJCPoJun"] = $user["JJCPoJun"];
+                    $response["JJCinfo"]["JJCYingHun"] = $user["JJCYingHun"];
+                    $response["JJCinfo"]["JJCBuWang"] = $user["JJCBuWang"];
+                    $response["JJCinfo"]["JJCFuHao"] = $user["JJCFuHao"];
+                    $response["JJCinfo"]["JJCDoubleKill"] = $user["JJCDoubleKill"];
+                    $response["JJCinfo"]["JJCTripleKill"] = $user["JJCTripleKill"];
+                    $response["JJCinfo"]["JJCWinRatio"] = $user["JJCWinRatio"];
+                    $response["JJCinfo"]["JJCheroFirst"] = $user["JJCheroFirst"];
+                    $response["JJCinfo"]["JJCheroSecond"] = $user["JJCheroSecond"];
+                    $response["JJCinfo"]["JJCheroThird"] = $user["JJCheroThird"];
+                    $response["JJCinfo"]["JJCcreated_Time"] = $user["JJCcreated_Time"];
+                }
+//
+                if($user["TTscore"])
+                {
+                    $response["TTinfo"]["TTscore"] = $user["TTscore"];
+                    $response["TTinfo"]["TTtotal"] = $user["TTtotal"];
+                    $response["TTinfo"]["TTmvp"] = $user["TTmvp"];
+                    $response["TTinfo"]["TTPianJiang"] = $user["TTPianJiang"];
+                    $response["TTinfo"]["TTPoDi"] = $user["TTPoDi"];
+                    $response["TTinfo"]["TTPoJun"] = $user["TTPoJun"];
+                    $response["TTinfo"]["TTYingHun"] = $user["TTYingHun"];
+                    $response["TTinfo"]["TTBuWang"] = $user["TTBuWang"];
+                    $response["TTinfo"]["TTFuHao"] = $user["TTFuHao"];
+                    $response["TTinfo"]["TTDoubleKill"] = $user["TTDoubleKill"];
+                    $response["TTinfo"]["TTTripleKill"] = $user["TTTripleKill"];
+                    $response["TTinfo"]["TTWinRatio"] = $user["TTWinRatio"];
+                    $response["TTinfo"]["TTheroFirst"] = $user["TTheroFirst"];
+                    $response["TTinfo"]["TTheroSecond"] = $user["TTheroSecond"];
+                    $response["TTinfo"]["TTheroThird"] = $user["TTheroThird"];
+                    $response["TTinfo"]["TTcreated_Time"] = $user["TTcreated_Time"];
+                    
+                }
+                if($user["MJscore"])
+                {
+                    $response["MJinfo"]["MJscore"] = $user["MJscore"];
+                    $response["MJinfo"]["MJtotal"] = $user["MJtotal"];
+                    $response["MJinfo"]["MJmvp"] = $user["MJmvp"];
+                    $response["MJinfo"]["MJPianJiang"] = $user["MJPianJiang"];
+                    $response["MJinfo"]["MJPoDi"] = $user["MJPoDi"];
+                    $response["MJinfo"]["MJPoJun"] = $user["MJPoJun"];
+                    $response["MJinfo"]["MJYingHun"] = $user["MJYingHun"];
+                    $response["MJinfo"]["MJBuWang"] = $user["MJBuWang"];
+                    $response["MJinfo"]["MJFuHao"] = $user["MJFuHao"];
+                    $response["MJinfo"]["MJDoubleKill"] = $user["MJDoubleKill"];
+                    $response["MJinfo"]["MJTripleKill"] = $user["MJTripleKill"];
+                    $response["MJinfo"]["MJWinRatio"] = $user["MJWinRatio"];
+                    $response["MJinfo"]["MJheroFirst"] = $user["MJheroFirst"];
+                    $response["MJinfo"]["MJheroSecond"] = $user["MJheroSecond"];
+                    $response["MJinfo"]["MJheroThird"] = $user["MJheroThird"];
+                    $response["MJinfo"]["MJcreated_Time"] = $user["MJcreated_Time"];
+                }
                 sendResponse(200,json_encode($response));
 
             } else {
@@ -135,11 +239,14 @@
                 $response["error_msg"] = "confirm failed";
                 sendResponse(4030,json_encode($response));
             }
+
         }
         
+    
+//
     } else {
         echo "Access Denied";
     }
-
-    
+//
+//    
 ?>

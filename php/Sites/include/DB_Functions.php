@@ -24,7 +24,8 @@ class DB_Functions {
      */
     public function storeUser($name, $email, $password, $age, $sex) {
 
-		$result = mysql_query("INSERT INTO userinfo(unique_id, email, password, age, sex, created_at) VALUES('$name', '$email', '$password', '$age','$sex', NOW())");
+        $isReviewed = "no";
+		$result = mysql_query("INSERT INTO userinfo(unique_id, email, password, age, sex, isReviewed, created_at) VALUES('$name', '$email', '$password', '$age','$sex', '$isReviewed', NOW())");
         // check for successful store
         if ($result) {
             // get user details 
@@ -40,7 +41,7 @@ class DB_Functions {
      * Get user by email and password
      */
     public function getUserByNameAndPassword($name, $password) {
-        $result = mysql_query("SELECT * FROM userinfo u left join levelinfo l on l.username = u.unique_id WHERE unique_id = '$name'") or die(mysql_error());
+        $result = mysql_query("SELECT * FROM userinfo u left join JJCinfo j on j.JJCusername = u.unique_id left join TTinfo t on t.TTusername = u.unique_id left join MJinfo m on m.MJusername = u.unique_id WHERE unique_id = '$name'") or die(mysql_error());
         // check for result 
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {
@@ -79,7 +80,7 @@ class DB_Functions {
      * Get playerInfo by name
      */
     public function getUserInfoByName($name) {
-        $result = mysql_query("SELECT * FROM userinfo u left join levelinfo l on l.username = u.unique_id left join signatureinfo s on s.username = u.unique_id WHERE unique_id = '$name'") or die(mysql_error());
+        $result = mysql_query("SELECT * FROM userinfo u left join JJCinfo j on j.JJCusername = u.unique_id left join TTinfo t on t.TTusername = u.unique_id left join MJinfo m on m.MJusername = u.unique_id left join signatureinfo s on s.username = u.unique_id WHERE unique_id = '$name'") or die(mysql_error());
         // check for result
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {
@@ -170,7 +171,7 @@ class DB_Functions {
         }
     }
 
-    
+
     /**
      * Storing level
      *
@@ -230,7 +231,7 @@ class DB_Functions {
         
         }
     }
-    
+
     /**
      * get Reviews
      * returns Reviews
@@ -249,46 +250,249 @@ class DB_Functions {
             return false;
         }
     }
+
     
-    public function updateUserLevel($username,$isReviewed,$gameID,$JJCscore,$TTscore,$ratio,$soldier,$heroFirst,$heroSecond,$heroThird) {
+    public function updateUserLevel($username,$isReviewed,$gameID,$gameName,$JJCinfo,$TTinfo,$MJinfo)
+    {
         
-        $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
-        // check for result
+        
+        $updateUserinfo = mysql_query("update userinfo set isReviewed ='$isReviewed',gameID = '$gameID', gameName = '$gameName' where unique_id = '$username'") or die(mysql_error());
+        
+        if($updateUserinfo)
+        {
+            
+            $this->updateJJCLevel($username,$JJCinfo);
+            $this->updateTTLevel($username,$TTinfo);
+            $this->updateMJLevel($username,$MJinfo);
+            
+            
+            $result = mysql_query("SELECT * FROM userinfo u left join JJCinfo j on j.JJCusername = u.unique_id left join TTinfo t on t.TTusername = u.unique_id left join MJinfo m on m.MJusername = u.unique_id WHERE unique_id = '$username'") or die(mysql_error());
+            // check for result
+            $no_of_rows = mysql_num_rows($result);
+            if ($no_of_rows > 0) {
+                $result = mysql_fetch_array($result);
+                return $result;
+            }else {
+                // user not found
+                return $result;
+            }
+
+            
+            
+        }else
+        {
+            return false;
+        }
+
+        
+        
+    }
+    
+
+    public function updateJJCLevel($username,$JJCinfo) {
+        
+        $result = mysql_query("SELECT * FROM JJCinfo WHERE JJCusername = '$username'") or die(mysql_error());
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {
             
+            $JJCHaveScore = $JJCinfo["haveScore"];
             
-            $update = mysql_query("update levelinfo set isReviewed ='$isReviewed',gameID = '$gameID', JJCscore = '$JJCscore', TTscore = '$TTscore', WinRatio = '$ratio',soldier = '$soldier', heroFirst = '$heroFirst', heroSecond = '$heroSecond', heroThird = '$heroThird' where username = '$username'") or die(mysql_error());
             
-            if($update)
+            if ($JJCHaveScore == "yes")
             {
+                $JJCscore = $JJCinfo["JJCscore"];
+                $JJCtotal = $JJCinfo["JJCtotal"];
+                $JJCoffline = $JJCinfo["JJCoffline"];
+                $JJCmvp = $JJCinfo["JJCmvp"];
+                $JJCPianJiang = $JJCinfo["JJCPianJiang"];
+                $JJCPoDi = $JJCinfo["JJCPoDi"];
+                $JJCPoJun = $JJCinfo["JJCPoJun"];
+                $JJCYingHun = $JJCinfo["JJCYingHun"];
+                $JJCBuWang = $JJCinfo["JJCBuWang"];
+                $JJCFuHao = $JJCinfo["JJCFuHao"];
+                $JJCDoubleKill = $JJCinfo["JJCDoubleKill"];
+                $JJCTripleKill = $JJCinfo["JJCTripleKill"];
+                $JJCWinRatio = $JJCinfo["JJCWinRatio"];
+                $JJCheroFirst = $JJCinfo["JJCheroFirst"];
+                $JJCheroSecond = $JJCinfo["JJCheroSecond"];
+                $JJCheroThird = $JJCinfo["JJCheroThird"];
                 
-                $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
-                if ($result)
-                {
-                    return mysql_fetch_array($result);
-                    
-                }else
-                {
-                    return false;
-                }
-            }else
-            {
-                return false;
+                
+                $update = mysql_query("update JJCinfo set JJCscore = '$JJCscore', JJCtotal = '$JJCtotal', JJCoffline = '$JJCoffline',JJCmvp = '$JJCmvp', JJCPianJiang = '$JJCPianJiang', JJCPoDi = '$JJCPoDi', JJCPoJun = '$JJCPoJun' ,JJCYingHun = '$JJCYingHun',JJCBuWang = '$JJCBuWang', JJCFuHao = '$JJCFuHao', JJCDoubleKill = '$JJCDoubleKill', JJCTripleKill = '$JJCTripleKill', JJCWinRatio = '$JJCWinRatio', JJCheroFirst = '$JJCheroFirst' ,JJCheroSecond = '$JJCheroSecond', JJCheroThird = '$JJCheroThird', JJCcreated_Time = NOW() where JJCusername = '$username'") or die(mysql_error());
+                
             }
             
-
-        }else {
-            // user not found
-            return false;
+        }else
+        {
+            $JJCHaveScore = $JJCinfo["haveScore"];
+            
+            
+            if ($JJCHaveScore == "yes")
+            {
+                $JJCscore = $JJCinfo["JJCscore"];
+                $JJCtotal = $JJCinfo["JJCtotal"];
+                $JJCmvp = $JJCinfo["JJCmvp"];
+                $JJCPianJiang = $JJCinfo["JJCPianJiang"];
+                $JJCPoDi = $JJCinfo["JJCPoDi"];
+                $JJCPoJun = $JJCinfo["JJCPoJun"];
+                $JJCYingHun = $JJCinfo["JJCYingHun"];
+                $JJCBuWang = $JJCinfo["JJCBuWang"];
+                $JJCFuHao = $JJCinfo["JJCFuHao"];
+                $JJCDoubleKill = $JJCinfo["JJCDoubleKill"];
+                $JJCTripleKill = $JJCinfo["JJCTripleKill"];
+                $JJCWinRatio = $JJCinfo["JJCWinRatio"];
+                $JJCheroFirst = $JJCinfo["JJCheroFirst"];
+                $JJCheroSecond = $JJCinfo["JJCheroSecond"];
+                $JJCheroThird = $JJCinfo["JJCheroThird"];
+                
+                
+                $insert = mysql_query("INSERT INTO JJCinfo(JJCusername,JJCscore, JJCtotal, JJCmvp, JJCPianJiang, JJCPoDi, JJCPoJun, JJCYingHun, JJCBuWang, JJCFuHao, JJCDoubleKill, JJCTripleKill, JJCWinRatio, JJCheroFirst, JJCheroSecond, JJCheroThird, JJCcreated_Time) VALUES ('$username', '$JJCscore', '$JJCtotal','$JJCmvp', '$JJCPianJiang', '$JJCPoDi', '$JJCPoJun' , '$JJCYingHun', '$JJCBuWang', '$JJCFuHao', '$JJCDoubleKill', '$JJCTripleKill', '$JJCWinRatio','$JJCheroFirst' ,'$JJCheroSecond','$JJCheroThird',NOW())") or die(mysql_error());
+                
+            }
+            
+            
         }
+        
     }
+
     
     
-    /**
-     * Storing new note
-     * returns visitor note
-     */
+    public function updateTTLevel($username,$TTinfo) {
+        
+        $result = mysql_query("SELECT * FROM TTinfo WHERE TTusername = '$username'") or die(mysql_error());
+        $no_of_rows = mysql_num_rows($result);
+        if ($no_of_rows > 0) {
+            
+            $TTHaveScore = $TTinfo["haveScore"];
+            
+            
+            if ($TTHaveScore == "yes")
+            {
+                $TTscore = $TTinfo["TTscore"];
+                $TTtotal = $TTinfo["TTtotal"];
+                $TTmvp = $TTinfo["TTmvp"];
+                $TTPianJiang = $TTinfo["TTPianJiang"];
+                $TTPoDi = $TTinfo["TTPoDi"];
+                $TTPoJun = $TTinfo["TTPoJun"];
+                $TTYingHun = $TTinfo["TTYingHun"];
+                $TTBuWang = $TTinfo["TTBuWang"];
+                $TTFuHao = $TTinfo["TTFuHao"];
+                $TTDoubleKill = $TTinfo["TTDoubleKill"];
+                $TTTripleKill = $TTinfo["TTTripleKill"];
+                $TTWinRatio = $TTinfo["TTWinRatio"];
+                $TTheroFirst = $TTinfo["TTheroFirst"];
+                $TTheroSecond = $TTinfo["TTheroSecond"];
+                $TTheroThird = $TTinfo["TTheroThird"];
+                
+                
+                $update = mysql_query("update TTinfo set TTscore = '$TTscore', TTtotal = '$TTtotal', TTmvp = '$TTmvp', TTPianJiang = '$TTPianJiang', TTPoDi = '$TTPoDi', TTPoJun = '$TTPoJun' ,TTYingHun = '$TTYingHun',TTBuWang = '$TTBuWang', TTFuHao = '$TTFuHao', TTDoubleKill = '$TTDoubleKill', TTTripleKill = '$TTTripleKill', TTWinRatio = '$TTWinRatio', TTheroFirst = '$TTheroFirst' ,TTheroSecond = '$TTheroSecond', TTheroThird = '$TTheroThird', TTcreated_Time = NOW() where TTusername = '$username'") or die(mysql_error());
+                
+            }
+//
+        }else
+        {
+            $TTHaveScore = $TTinfo["haveScore"];
+
+            if ($TTHaveScore == "yes")
+            {
+                $TTscore = $TTinfo["TTscore"];
+                $TTtotal = $TTinfo["TTtotal"];
+                $TTmvp = $TTinfo["TTmvp"];
+                $TTPianJiang = $TTinfo["TTPianJiang"];
+                $TTPoDi = $TTinfo["TTPoDi"];
+                $TTPoJun = $TTinfo["TTPoJun"];
+                $TTYingHun = $TTinfo["TTYingHun"];
+                $TTBuWang = $TTinfo["TTBuWang"];
+                $TTFuHao = $TTinfo["TTFuHao"];
+                $TTDoubleKill = $TTinfo["TTDoubleKill"];
+                $TTTripleKill = $TTinfo["TTTripleKill"];
+                $TTWinRatio = $TTinfo["TTWinRatio"];
+                $TTheroFirst = $TTinfo["TTheroFirst"];
+                $TTheroSecond = $TTinfo["TTheroSecond"];
+                $TTheroThird = $TTinfo["TTheroThird"];
+//
+
+//                
+
+                $insert = mysql_query("INSERT INTO TTinfo(TTusername, TTscore, TTtotal, TTmvp, TTPianJiang, TTPoDi, TTPoJun, TTYingHun, TTBuWang, TTFuHao, TTDoubleKill, TTTripleKill, TTWinRatio, TTheroFirst, TTheroSecond, TTheroThird, TTcreated_Time) VALUES ('$username','$TTscore', '$TTtotal','$TTmvp', '$TTPianJiang', '$TTPoDi', '$TTPoJun' , '$TTYingHun', '$TTBuWang', '$TTFuHao', '$TTDoubleKill', '$TTTripleKill', '$TTWinRatio','$TTheroFirst' ,'$TTheroSecond','$TTheroThird',NOW())") or die(mysql_error());
+                
+            }
+            
+            
+        }
+        
+    }
+//
+    public function updateMJLevel($username,$MJinfo) {
+        
+        $result = mysql_query("SELECT * FROM MJinfo WHERE MJusername = '$username'") or die(mysql_error());
+        $no_of_rows = mysql_num_rows($result);
+        if ($no_of_rows > 0) {
+            
+            $MJHaveScore = $MJinfo["haveScore"];
+            
+            
+            if ($MJHaveScore == "yes")
+            {
+                $JJCscore = $MJinfo["MJscore"];
+                $JJCtotal = $MJinfo["MJtotal"];
+                $JJCmvp = $MJinfo["MJmvp"];
+                $JJCPianJiang = $MJinfo["MJPianJiang"];
+                $JJCPoDi = $MJinfo["MJPoDi"];
+                $JJCPoJun = $MJinfo["MJPoJun"];
+                $JJCYingHun = $MJinfo["MJYingHun"];
+                $JJCBuWang = $MJinfo["MJBuWang"];
+                $JJCFuHao = $MJinfo["MJFuHao"];
+                $JJCDoubleKill = $MJinfo["MJDoubleKill"];
+                $JJCTripleKill = $MJinfo["MJTripleKill"];
+                $JJCWinRatio = $MJinfo["MJWinRatio"];
+                $JJCheroFirst = $MJinfo["MJheroFirst"];
+                $JJCheroSecond = $MJinfo["MJheroSecond"];
+                $JJCheroThird = $MJinfo["MJheroThird"];
+                
+                
+                $update = mysql_query("update MJinfo set MJscore = '$JJCscore', MJtotal = '$JJCtotal', MJmvp = '$JJCmvp', MJPianJiang = '$JJCPianJiang', MJPoDi = '$JJCPoDi', MJPoJun = '$JJCPoJun' ,MJYingHun = '$JJCYingHun',MJBuWang = '$JJCBuWang', MJFuHao = '$JJCFuHao', MJDoubleKill = '$JJCDoubleKill', MJTripleKill = '$JJCTripleKill', MJWinRatio = '$JJCWinRatio', MJheroFirst = '$JJCheroFirst' ,MJheroSecond = '$JJCheroSecond', MJheroThird = '$JJCheroThird', MJcreated_Time = NOW() where MJusername = '$username'") or die(mysql_error());
+                
+            }
+            
+        }else
+        {
+            $MJHaveScore = $MJinfo["haveScore"];
+            
+            
+            if ($MJHaveScore == "yes")
+            {
+                $JJCscore = $MJinfo["MJscore"];
+                $JJCtotal = $MJinfo["MJtotal"];
+                $JJCmvp = $MJinfo["MJmvp"];
+                $JJCPianJiang = $MJinfo["MJPianJiang"];
+                $JJCPoDi = $MJinfo["MJPoDi"];
+                $JJCPoJun = $MJinfo["MJPoJun"];
+                $JJCYingHun = $MJinfo["MJYingHun"];
+                $JJCBuWang = $MJinfo["MJBuWang"];
+                $JJCFuHao = $MJinfo["MJFuHao"];
+                $JJCDoubleKill = $MJinfo["MJDoubleKill"];
+                $JJCTripleKill = $MJinfo["MJTripleKill"];
+                $JJCWinRatio = $MJinfo["MJWinRatio"];
+                $JJCheroFirst = $MJinfo["MJheroFirst"];
+                $JJCheroSecond = $MJinfo["MJheroSecond"];
+                $JJCheroThird = $MJinfo["MJheroThird"];
+                
+                
+                
+                $insert = mysql_query("INSERT INTO MJinfo(MJusername, MJscore, MJtotal, MJmvp, MJPianJiang, MJPoDi, MJPoJun, MJYingHun, MJBuWang, MJFuHao, MJDoubleKill, MJTripleKill, MJWinRatio, MJheroFirst, MJheroSecond, MJheroThird, MJcreated_Time) VALUES ('$username','$JJCscore', '$JJCtotal','$JJCmvp', '$JJCPianJiang', '$JJCPoDi', '$JJCPoJun' , '$JJCYingHun', '$JJCBuWang', '$JJCFuHao', '$JJCDoubleKill', '$JJCTripleKill', '$JJCWinRatio','$JJCheroFirst' ,'$JJCheroSecond','$JJCheroThird',NOW())") or die(mysql_error());
+                
+            }
+            
+            
+        }
+        
+    }
+//
+//    /**
+//     * Storing new note
+//     * returns visitor note
+//     */
     public function storeNote($content,$username,$visitor) {
         
         $result = mysql_query("INSERT INTO noteinfo(username, visitor, note_content,createdAt) VALUES('$username', '$visitor', '$content', NOW())") or die(mysql_error());
