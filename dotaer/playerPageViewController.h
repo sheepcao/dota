@@ -46,6 +46,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *distanceImage;
 
 
+@property (weak, nonatomic) IBOutlet UITableView *infoTableView;
+
+
+
 @property (strong, nonatomic) userInfo *playerInfo;
 @property (strong, nonatomic) NSString *playerName;
 @property NSUInteger distance;

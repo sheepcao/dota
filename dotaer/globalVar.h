@@ -28,6 +28,7 @@
 #define playerInfoService @"http://localhost/~ericcao/playerInfo.php"
 #define signatureService @"http://localhost/~ericcao/signature.php"
 #define noteService @"http://localhost/~ericcao/note.php"
+#define confirmLevel @"http://localhost/~ericcao/confirmLevel.php"
 
 #define imagePath @"http://localhost/~ericcao/upload/"
 

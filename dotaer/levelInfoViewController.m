@@ -10,12 +10,17 @@
 #import "globalVar.h"
 #import "AFHTTPRequestOperationManager.h"
 
-@interface levelInfoViewController ()<UIAlertViewDelegate>
+@interface levelInfoViewController ()<UIAlertViewDelegate,NSURLConnectionDelegate>
+@property (strong,nonatomic) NSURLConnection *theConnection;
+@property (strong,nonatomic) NSMutableData *aData;
+@property (strong,nonatomic) NSString *gameID;
+@property (strong,nonatomic) NSString *gameName;
 
 @end
 
 @implementation levelInfoViewController
-
+@synthesize  theConnection;
+@synthesize aData;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -40,7 +45,83 @@
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
     NSLog(@"webViewDidFinishLoad");
+    
+    NSString  *html = [webView stringByEvaluatingJavaScriptFromString: @"document.body.innerHTML"];
+    NSLog(@"html:%@",html);
+    NSError *error;
+    
+  
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"YY.d.u = (.+)" options:0 error:&error];
+    
+    if (regex != nil) {
+        
+        NSTextCheckingResult *firstMatch=[regex firstMatchInString:html options:0 range:NSMakeRange(0, [html length])];
+        
+        if (firstMatch) {
+            
+            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
+            
+            //从urlString当中截取数据
+            
+            NSString *result=[html substringWithRange:resultRange];
+            
+            //输出结果
+            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSLog(@"result-------%@",result);
+            
+            NSArray *resultArray = [result componentsSeparatedByString:@","];
+            if(resultArray.count>2)
+            {
+                NSString *first = [resultArray[0] componentsSeparatedByString:@"="][1];
+                NSString *second = [resultArray[1] componentsSeparatedByString:@"="][1];
+                second = [second stringByReplacingOccurrencesOfString:@"'" withString:@""];
+             
+                NSLog(@"first:%@  and second :%@",first,second);
+                self.gameID = first;
+                self.gameName = second;
+            }
+            
+        }
+    }
+    
+    NSString *URLString = [NSString stringWithFormat:@"%@", [webView.request URL]] ;
+    
+    NSArray *seperateByMID = [URLString componentsSeparatedByString:@"Login"];
+    if (seperateByMID.count>1) {
+        
+        
+    }else
+    {
+        
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+
+        
+        NSTimeInterval stamp = [[NSDate date] timeIntervalSince1970];
+
+        NSString *infoURLstring = [NSString stringWithFormat:@"http://i.5211game.com/request/rating/?r=%.0f",stamp*1000];
+        
+        NSDictionary *parameters = @{@"method": @"getrating",@"u":self.gameID,@"t":@"10001"};
+
+        [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+            
+            NSLog(@"JSON: %@", responseObject);
+
+            [self submitLevel:responseObject];
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+            NSLog(@"JSON ERROR: %@",  operation.responseString);
+        }];
+    }
+    
+    
 }
+
+
+
 - (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"didFailLoadWithError:%@", error);
@@ -99,6 +180,273 @@
         [self doUpload:levelImage];
     }
 }
+
+
+-(void)submitLevel:(NSDictionary *)dic
+{
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"Uploading";
+    hud.dimBackground = YES;
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    
+    NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
+    
+   
+//------------setup JJC info
+    NSMutableDictionary *JJCinfoFull = [NSMutableDictionary dictionaryWithObject:@"no" forKey:@"haveScore"];
+    NSDictionary *JJCdetail = [dic objectForKey:@"jjcInfos"];
+    if (![JJCdetail isKindOfClass:[NSNull class]]) {
+        NSDictionary *JJCinfo = @{
+                                  @"haveScore":@"yes",
+                                  @"JJCscore":[dic objectForKey:@"jjcRating"],
+                                  @"JJCtotal":[JJCdetail objectForKey:@"Total"],
+                                  @"JJCmvp":[JJCdetail objectForKey:@"MVP"],
+                                  @"JJCPianJiang":[JJCdetail objectForKey:@"PianJiang"],
+                                  @"JJCPoDi":[JJCdetail objectForKey:@"PoDi"],
+                                  @"JJCPoJun":[JJCdetail objectForKey:@"PoJun"],
+                                  @"JJCYingHun":[JJCdetail objectForKey:@"YingHun"],
+                                  @"JJCBuWang":[JJCdetail objectForKey:@"BuWang"],
+                                  @"JJCFuHao":[JJCdetail objectForKey:@"FuHao"],
+                                  @"JJCDoubleKill":[JJCdetail objectForKey:@"DoubleKill"],
+                                  @"JJCTripleKill":[JJCdetail objectForKey:@"TripleKill"],
+                                  @"JJCWinRatio":[JJCdetail objectForKey:@"R_Win"],
+                                  @"JJCheroFirst":[JJCdetail objectForKey:@"AdeptHeroName1"]
+                                  };
+        
+        JJCinfoFull = [NSMutableDictionary dictionaryWithDictionary:JJCinfo];
+        if ([JJCdetail objectForKey:@"AdeptHeroName2"]) {
+            [JJCinfoFull setObject:[JJCdetail objectForKey:@"AdeptHeroName2"] forKey:@"JJCheroSecond"];
+        }else
+        {
+            [JJCinfoFull setObject:@"none" forKey:@"JJCheroSecond"];
+
+        }
+        if ([JJCdetail objectForKey:@"AdeptHeroName3"]) {
+            [JJCinfoFull setObject:[JJCdetail objectForKey:@"AdeptHeroName3"] forKey:@"JJCheroThird"];
+        }else
+        {
+            [JJCinfoFull setObject:@"none" forKey:@"JJCheroThird"];
+            
+        }
+        
+        NSMutableArray *JJCheroIDs = [NSMutableArray arrayWithObject:[JJCdetail objectForKey:@"AdeptHero1"]];
+        
+        if ([JJCdetail objectForKey:@"AdeptHero2"]) {
+            [JJCheroIDs addObject:[JJCdetail objectForKey:@"AdeptHero2"]];
+        }
+        if ([JJCdetail objectForKey:@"AdeptHero3"]) {
+            [JJCheroIDs addObject:[JJCdetail objectForKey:@"AdeptHero3"]];
+        }
+        
+        NSLog(@"JJC info:%@  heroIDs:--%@",JJCinfoFull,JJCheroIDs);
+
+    }
+    
+    
+    //------------setup TT info
+    NSDictionary *TTdetail = [dic objectForKey:@"ttInfos"];
+    NSMutableDictionary *TTinfoFull = [NSMutableDictionary dictionaryWithObject:@"no" forKey:@"haveScore"];
+    if (![TTdetail isKindOfClass:[NSNull class]]) {
+        
+       
+        NSDictionary *TTinfo = @{
+                                 @"haveScore":@"yes",
+                                 @"TTscore":[dic objectForKey:@"rating"],
+                                 @"TTtotal":[TTdetail objectForKey:@"Total"],
+                                 @"TTmvp":[TTdetail objectForKey:@"MVP"],
+                                 @"TTPianJiang":[TTdetail objectForKey:@"PianJiang"],
+                                 @"TTPoDi":[TTdetail objectForKey:@"PoDi"],
+                                 @"TTPoJun":[TTdetail objectForKey:@"PoJun"],
+                                 @"TTYingHun":[TTdetail objectForKey:@"YingHun"],
+                                 @"TTBuWang":[TTdetail objectForKey:@"BuWang"],
+                                 @"TTFuHao":[TTdetail objectForKey:@"FuHao"],
+                                 @"TTDoubleKill":[TTdetail objectForKey:@"DoubleKill"],
+                                 @"TTTripleKill":[TTdetail objectForKey:@"TripleKill"],
+                                 @"TTWinRatio":[TTdetail objectForKey:@"R_Win"],
+                                 @"TTheroFirst":[TTdetail objectForKey:@"AdeptHeroName1"]
+                                 };
+        
+        TTinfoFull = [NSMutableDictionary dictionaryWithDictionary:TTinfo];
+        if ([TTdetail objectForKey:@"AdeptHeroName2"]) {
+            [TTinfoFull setObject:[TTdetail objectForKey:@"AdeptHeroName2"] forKey:@"TTheroSecond"];
+        }else
+        {
+            [TTinfoFull setObject:@"none" forKey:@"TTheroSecond"];
+            
+        }
+        
+        if ([TTdetail objectForKey:@"AdeptHeroName3"]) {
+            [TTinfoFull setObject:[TTdetail objectForKey:@"AdeptHeroName3"] forKey:@"TTheroThird"];
+        }else
+        {
+            [TTinfoFull setObject:@"none" forKey:@"TTheroThird"];
+            
+        }
+        
+        NSMutableArray *TTheroIDs = [NSMutableArray arrayWithObject:[TTdetail objectForKey:@"AdeptHero1"]];
+        
+        if ([TTdetail objectForKey:@"AdeptHero2"]) {
+            [TTheroIDs addObject:[TTdetail objectForKey:@"AdeptHero2"]];
+        }
+        if ([TTdetail objectForKey:@"AdeptHero3"]) {
+            [TTheroIDs addObject:[TTdetail objectForKey:@"AdeptHero3"]];
+        }
+        
+        NSLog(@"TT info:%@  heroIDs:--%@",TTinfoFull,TTheroIDs);
+        
+        
+
+    }
+    
+    
+    //------------setup MJ info
+    NSDictionary *MJdetail = [dic objectForKey:@"mjInfos"];
+    NSMutableDictionary *MJinfoFull = [NSMutableDictionary dictionaryWithObject:@"no" forKey:@"MJhaveScore"];
+    if (![MJdetail isKindOfClass:[NSNull class]]) {
+        NSDictionary *MJinfo = @{
+                                 @"MJhaveScore":@"yes",
+                                 @"MJscore":[MJdetail objectForKey:@"MingJiang"],
+                                 @"MJtotal":[MJdetail objectForKey:@"Total"],
+                                 @"MJmvp":[MJdetail objectForKey:@"MVP"],
+                                 @"MJPianJiang":[MJdetail objectForKey:@"PianJiang"],
+                                 @"MJPoDi":[MJdetail objectForKey:@"PoDi"],
+                                 @"MJPoJun":[MJdetail objectForKey:@"PoJun"],
+                                 @"MJYingHun":[MJdetail objectForKey:@"YingHun"],
+                                 @"MJBuWang":[MJdetail objectForKey:@"BuWang"],
+                                 @"MJFuHao":[MJdetail objectForKey:@"FuHao"],
+                                 @"MJDoubleKill":[MJdetail objectForKey:@"DoubleKill"],
+                                 @"MJTripleKill":[MJdetail objectForKey:@"TripleKill"],
+                                 @"MJWinRatio":[MJdetail objectForKey:@"R_Win"],
+                                 @"MJheroFirst":[MJdetail objectForKey:@"AdeptHeroName1"]
+                                 };
+        
+        MJinfoFull = [NSMutableDictionary dictionaryWithDictionary:MJinfo];
+        if ([MJdetail objectForKey:@"AdeptHeroName2"]) {
+            [MJinfoFull setObject:[MJdetail objectForKey:@"AdeptHeroName2"] forKey:@"MJheroSecond"];
+        }else
+        {
+            [MJinfoFull setObject:@"none" forKey:@"MJheroSecond"];
+
+        }
+        
+        if ([MJdetail objectForKey:@"AdeptHeroName3"]) {
+            [MJinfoFull setObject:[MJdetail objectForKey:@"AdeptHeroName3"] forKey:@"MJheroThird"];
+        }else
+        {
+            [MJinfoFull setObject:@"none" forKey:@"MJheroThird"];
+            
+        }
+        
+        NSMutableArray *MJheroIDs = [NSMutableArray arrayWithObject:[MJdetail objectForKey:@"AdeptHero1"]];
+        
+        if ([MJdetail objectForKey:@"AdeptHero2"]) {
+            [MJheroIDs addObject:[MJdetail objectForKey:@"AdeptHero2"]];
+        }
+        if ([MJdetail objectForKey:@"AdeptHero3"]) {
+            [MJheroIDs addObject:[MJdetail objectForKey:@"AdeptHero3"]];
+        }
+        
+        NSLog(@"JJC info:%@  heroIDs:--%@",MJinfoFull,MJheroIDs);
+        
+        
+    }
+  
+    
+    
+    
+    NSDictionary *para = @{@"tag": @"confirmLevel",@"username":username,@"gameID":self.gameID,@"gameName":self.gameName};
+    NSMutableDictionary *paraTemp = [NSMutableDictionary dictionaryWithDictionary:para];
+    if (JJCinfoFull.count>1) {
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"haveScore"] forKey:@"JJChaveScore"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCscore"] forKey:@"JJCscore"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCtotal"] forKey:@"JJCtotal"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCmvp"] forKey:@"JJCmvp"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCPianJiang"] forKey:@"JJCPianJiang"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCPoDi"] forKey:@"JJCPoDi"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCPoJun"] forKey:@"JJCPoJun"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCYingHun"] forKey:@"JJCYingHun"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCBuWang"] forKey:@"JJCBuWang"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCFuHao"] forKey:@"JJCFuHao"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCDoubleKill"] forKey:@"JJCDoubleKill"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCTripleKill"] forKey:@"JJCTripleKill"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCWinRatio"] forKey:@"JJCWinRatio"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCheroFirst"] forKey:@"JJCheroFirst"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCheroSecond"] forKey:@"JJCheroSecond"];
+        [paraTemp setObject:[JJCinfoFull objectForKey:@"JJCheroThird"] forKey:@"JJCheroThird"];
+
+    }
+    
+    if (TTinfoFull.count>1) {
+        [paraTemp setObject:[TTinfoFull objectForKey:@"haveScore"] forKey:@"TThaveScore"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTscore"] forKey:@"TTscore"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTtotal"] forKey:@"TTtotal"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTmvp"] forKey:@"TTmvp"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTPianJiang"] forKey:@"TTPianJiang"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTPoDi"] forKey:@"TTPoDi"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTPoJun"] forKey:@"TTPoJun"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTYingHun"] forKey:@"TTYingHun"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTBuWang"] forKey:@"TTBuWang"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTFuHao"] forKey:@"TTFuHao"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTDoubleKill"] forKey:@"TTDoubleKill"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTTripleKill"] forKey:@"TTTripleKill"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTWinRatio"] forKey:@"TTWinRatio"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTheroFirst"] forKey:@"TTheroFirst"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTheroSecond"] forKey:@"TTheroSecond"];
+        [paraTemp setObject:[TTinfoFull objectForKey:@"TTheroThird"] forKey:@"TTheroThird"];
+        
+    }
+
+    if (MJinfoFull.count>1) {
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJhaveScore"] forKey:@"MJhaveScore"];
+
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJscore"] forKey:@"MJscore"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJtotal"] forKey:@"MJtotal"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJmvp"] forKey:@"MJmvp"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJPianJiang"] forKey:@"MJPianJiang"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJPoDi"] forKey:@"MJPoDi"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJPoJun"] forKey:@"MJPoJun"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJYingHun"] forKey:@"MJYingHun"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJBuWang"] forKey:@"MJBuWang"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJFuHao"] forKey:@"MJFuHao"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJDoubleKill"] forKey:@"MJDoubleKill"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJTripleKill"] forKey:@"MJTripleKill"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJWinRatio"] forKey:@"MJWinRatio"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJheroFirst"] forKey:@"MJheroFirst"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJheroSecond"] forKey:@"MJheroSecond"];
+        [paraTemp setObject:[MJinfoFull objectForKey:@"MJheroThird"] forKey:@"MJheroThird"];
+        
+    }
+    NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:paraTemp];
+   
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    
+    
+    [manager POST:confirmLevel parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"Completed";
+        [hud hide:YES afterDelay:1.0];
+        NSLog(@"JSON: %@", responseObject);
+        
+        NSLog(@"JJCheroFirst: %@", [[responseObject objectForKey:@"JJCinfo"] objectForKey:@"JJCheroFirst"]);
+        
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        [hud hide:YES];
+        
+        
+    }];
+}
+
+
 
 -(void)doUpload:(UIImage *)levelImage
 {

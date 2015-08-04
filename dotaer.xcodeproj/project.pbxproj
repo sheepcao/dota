@@ -103,6 +103,8 @@
 		A4B8A7731B6B78FA00BFEDDC /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7721B6B78FA00BFEDDC /* EventKit.framework */; };
 		A4B8A7751B6B78FE00BFEDDC /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7741B6B78FE00BFEDDC /* EventKitUI.framework */; };
 		A4B8A7771B6B790900BFEDDC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B8A7761B6B790900BFEDDC /* StoreKit.framework */; };
+		A4BA89B41B70A7A000B94279 /* achieveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BA89B21B70A7A000B94279 /* achieveTableViewCell.m */; };
+		A4BA89B51B70A7A000B94279 /* achieveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BA89B31B70A7A000B94279 /* achieveTableViewCell.xib */; };
 		A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */; };
 		A4CC4AAB1B672ABA00950537 /* videoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AA91B672ABA00950537 /* videoViewController.m */; };
 		A4CC4AAC1B672ABA00950537 /* videoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AAA1B672ABA00950537 /* videoViewController.xib */; };
@@ -424,6 +426,9 @@
 		A4B8A7721B6B78FA00BFEDDC /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		A4B8A7741B6B78FE00BFEDDC /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		A4B8A7761B6B790900BFEDDC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A4BA89B11B70A7A000B94279 /* achieveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = achieveTableViewCell.h; sourceTree = "<group>"; };
+		A4BA89B21B70A7A000B94279 /* achieveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = achieveTableViewCell.m; sourceTree = "<group>"; };
+		A4BA89B31B70A7A000B94279 /* achieveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = achieveTableViewCell.xib; sourceTree = "<group>"; };
 		A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hero_terminable_skin_bg_hover@2x.png"; sourceTree = "<group>"; };
 		A4CC4AA81B672ABA00950537 /* videoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoViewController.h; sourceTree = "<group>"; };
 		A4CC4AA91B672ABA00950537 /* videoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoViewController.m; sourceTree = "<group>"; };
@@ -794,6 +799,9 @@
 				A4F51BAA1B57430B00786FD1 /* playerPageViewController.h */,
 				A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */,
 				A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */,
+				A4BA89B11B70A7A000B94279 /* achieveTableViewCell.h */,
+				A4BA89B21B70A7A000B94279 /* achieveTableViewCell.m */,
+				A4BA89B31B70A7A000B94279 /* achieveTableViewCell.xib */,
 				A447FEA01B4A198B0053D982 /* dotaerViewController.h */,
 				A447FEA11B4A198B0053D982 /* dotaerViewController.mm */,
 				A447FEE71B4A4AF80053D982 /* dotaerViewController.xib */,
@@ -1468,6 +1476,7 @@
 				A42E82A21B662B5400A431E0 /* chat_bg_left@2x.png in Resources */,
 				A4EFE9191B60D60A00C11133 /* 火女.jpg in Resources */,
 				A4EFE8D41B60D60A00C11133 /* 龙骑.jpg in Resources */,
+				A4BA89B51B70A7A000B94279 /* achieveTableViewCell.xib in Resources */,
 				A4EFE8BB1B60D60A00C11133 /* 狼人.jpg in Resources */,
 				A4EFE8EE1B60D60A00C11133 /* 小娜jia.jpg in Resources */,
 				A4EFE8D01B60D60A00C11133 /* 海民.jpg in Resources */,
@@ -1582,6 +1591,7 @@
 				A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */,
 				A412D0331B4FAB87006180A0 /* AFHTTPSessionManager.m in Sources */,
 				A412D0311B4FAB87006180A0 /* AFHTTPRequestOperation.m in Sources */,
+				A4BA89B41B70A7A000B94279 /* achieveTableViewCell.m in Sources */,
 				A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */,
 				A4CC4AAB1B672ABA00950537 /* videoViewController.m in Sources */,
 				A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */,

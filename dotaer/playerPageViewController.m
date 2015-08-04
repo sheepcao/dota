@@ -9,6 +9,7 @@
 #import "playerPageViewController.h"
 #import "globalVar.h"
 #import "noteTableViewCell.h"
+#import "achieveTableViewCell.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "levelInfoViewController.h"
 #import "AFURLSessionManager.h"
@@ -131,6 +132,9 @@
     
     [self requestPlayerInfo];
     [self requestReverseGeocode];
+    
+    
+    
 
 }
 
@@ -324,12 +328,21 @@
 #pragma mark -
 #pragma mark Table view delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
+{    if (tableView == self.notePadTable) {
+        return 60;
+    }else
+    {
+        return tableView.frame.size.height;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 35;
+    if (tableView == self.notePadTable) {
+        return 35;
+    }else
+    {
+        return 1.5;
+    }
 }
 
 
@@ -353,81 +366,110 @@
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 1, 60, 28)];
-    title.backgroundColor = [UIColor clearColor];
-    title.font=[UIFont fontWithName:@"Helvetica-Bold" size:13];
-    title.textColor = [UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0];
-    [title setText:@"留言板"];
-    
-    UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 3.5, 47, 25)];
-    btn.backgroundColor = [UIColor purpleColor];
-    btn.layer.cornerRadius = 4.2f;
-    btn.layer.shadowOffset = CGSizeMake(1.5, 1.8);
-    btn.layer.shadowRadius = 0.5;
-    btn.layer.shadowOpacity = 0.4;
-    
-    btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:13];
-    [btn setTitle:@"留言" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(leaveMesg) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView * sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionHeaderHeight)];
-    [sectionView setBackgroundColor:[UIColor colorWithRed:239/255.0f green:239/255.0f blue:239/255.0f alpha:1.0]];
-    [sectionView addSubview:btn];
-    [sectionView addSubview:title];
+    if (tableView == self.notePadTable) {
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 1, 60, 28)];
+        title.backgroundColor = [UIColor clearColor];
+        title.font=[UIFont fontWithName:@"Helvetica-Bold" size:13];
+        title.textColor = [UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0];
+        [title setText:@"留言板"];
+        
+        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 3.5, 47, 25)];
+        btn.backgroundColor = [UIColor purpleColor];
+        btn.layer.cornerRadius = 4.2f;
+        btn.layer.shadowOffset = CGSizeMake(1.5, 1.8);
+        btn.layer.shadowRadius = 0.5;
+        btn.layer.shadowOpacity = 0.4;
+        
+        btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:13];
+        [btn setTitle:@"留言" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(leaveMesg) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIView * sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionHeaderHeight)];
+        [sectionView setBackgroundColor:[UIColor colorWithRed:239/255.0f green:239/255.0f blue:239/255.0f alpha:1.0]];
+        [sectionView addSubview:btn];
+        [sectionView addSubview:title];
+        
+        return sectionView;
+    }else
+    {
+        UIView *tet = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 1.5)];
+        [tet setBackgroundColor:[UIColor colorWithRed:1 green:152/255.0f blue:25/255.0f alpha:1.0]];
+        return tet;
+    }
 
-    return sectionView;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.notesArray.count;
+    if (tableView == self.notePadTable) {
+        return self.notesArray.count;
+    }else
+    {
+        return 4;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    noteTableViewCell *cell =(noteTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"noteCell"];
-    if (nil == cell)
-    {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"noteTableViewCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
-        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-    }
-    cell.backgroundColor = [UIColor clearColor];
+    if (tableView == self.notePadTable) {
+        
+        noteTableViewCell *cell =(noteTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"noteCell"];
+        if (nil == cell)
+        {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"noteTableViewCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
+            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        }
+        cell.backgroundColor = [UIColor clearColor];
+        
+        cell.usernameLabel.text = self.visitorArray[indexPath.row];
+        cell.noteTextLabel.text = self.notesArray[indexPath.row];
+        
+        NSArray *timeArray = [self.createTimeArray[indexPath.row] componentsSeparatedByString:@":"];
+        if (timeArray.count == 3) {
+            NSString *timeCreated = [[timeArray[0] stringByAppendingString:@":"] stringByAppendingString:timeArray[1]];
+            cell.noteTimeLabel.text = timeCreated;
+            
+        }
+        
+        NSString *headPath = [imagePath stringByAppendingString:self.visitorArray[indexPath.row]];
+        
+        NSURL *url = [NSURL URLWithString:headPath];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *img;
+        
+        if (data) {
+            img = [[UIImage alloc] initWithData:data];
+        }else
+        {
+            img = [UIImage imageNamed:@"defaultHead"];
+        }
+        
+        [cell.userHeadImage setImage:img];
+        
+        [cell.cellNumber setText:[NSString stringWithFormat:@"%lu.",self.notesArray.count - indexPath.row]];
+        
+        if (![self.visitorArray[indexPath.row] isEqualToString: @"匿名游客"]) {
+            cell.visitorDetailBtn.tag = indexPath.row;
+            [cell.visitorDetailBtn addTarget:self action:@selector(visotorDetail:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        
+        
+        return cell;
     
-    cell.usernameLabel.text = self.visitorArray[indexPath.row];
-    cell.noteTextLabel.text = self.notesArray[indexPath.row];
-    
-    NSArray *timeArray = [self.createTimeArray[indexPath.row] componentsSeparatedByString:@":"];
-    if (timeArray.count == 3) {
-        NSString *timeCreated = [[timeArray[0] stringByAppendingString:@":"] stringByAppendingString:timeArray[1]];
-        cell.noteTimeLabel.text = timeCreated;
-
-    }
-    
-    NSString *headPath = [imagePath stringByAppendingString:self.visitorArray[indexPath.row]];
-    
-    NSURL *url = [NSURL URLWithString:headPath];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img;
-
-    if (data) {
-        img = [[UIImage alloc] initWithData:data];
     }else
     {
-        img = [UIImage imageNamed:@"defaultHead"];
-    }
+        achieveTableViewCell *cell =(achieveTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"achieveTableViewCell"];
+        if (nil == cell)
+        {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"achieveTableViewCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        return cell;
 
-    [cell.userHeadImage setImage:img];
-    
-    [cell.cellNumber setText:[NSString stringWithFormat:@"%lu.",self.notesArray.count - indexPath.row]];
-    
-    if (![self.visitorArray[indexPath.row] isEqualToString: @"匿名游客"]) {
-        cell.visitorDetailBtn.tag = indexPath.row;
-        [cell.visitorDetailBtn addTarget:self action:@selector(visotorDetail:) forControlEvents:UIControlEventTouchUpInside];
     }
-
     
-    
-    return cell;
     
 }
 -(void)visotorDetail:(UIButton *)sender
