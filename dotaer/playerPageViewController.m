@@ -17,7 +17,7 @@
 
 
 
-@interface playerPageViewController ()<UITextFieldDelegate,BMKGeoCodeSearchDelegate>
+@interface playerPageViewController ()<UITextFieldDelegate,BMKGeoCodeSearchDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UITextField *invisibleTextFiled;
 
 @property (nonatomic,strong) NSMutableDictionary *NoteInfoDic;
@@ -91,12 +91,12 @@
 
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    
-    UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    
-    visualEffectView.frame = self.achieveBlur.bounds;
-    [self.achieveBlur addSubview:visualEffectView];
+//
+//    UIVisualEffectView *visualEffectView;
+//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    
+//    visualEffectView.frame = self.achieveBlur.bounds;
+//    [self.achieveBlur addSubview:visualEffectView];
     
     
     
@@ -128,6 +128,7 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     [self initCustomTextViewWithY:SCREEN_HEIGHT];
+
 
     
     [self requestPlayerInfo];
@@ -178,6 +179,8 @@
 
 - (void)updateLevel {
 
+    [self.view endEditing:YES];// this will do the trick
+
     
     levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
     
@@ -203,11 +206,10 @@
         
         [hud hide:YES];
 
-        NSLog(@"JSON: %@", responseObject);
+        NSLog(@"JSON player info: %@", responseObject);
         
         [self setupPageWithDic:responseObject];
         
-        [self fetchNote];
 
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -226,14 +228,14 @@
         
         [self.notConfirmLevel setHidden:NO];
 
-        
-        UILabel *noNoteLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.notePadTable.frame.origin.x, self.notePadTable.frame.origin.y+35, self.notePadTable.frame.size.width, self.notePadTable.frame.size.height-35) ];
-        [noNoteLabel setText:@"暂无留言"];
-        noNoteLabel.tag = 555;
-        noNoteLabel.textAlignment = NSTextAlignmentCenter;
-        [noNoteLabel setBackgroundColor:[UIColor whiteColor]];
-        
-        [self.view addSubview:noNoteLabel];
+//        
+//        UILabel *noNoteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height-35) ];
+//        [noNoteLabel setText:@"暂无留言"];
+//        noNoteLabel.tag = 555;
+//        noNoteLabel.textAlignment = NSTextAlignmentCenter;
+//        [noNoteLabel setBackgroundColor:[UIColor whiteColor]];
+//        
+//        [self.notePadTable addSubview:noNoteLabel];
         
         UIAlertView *alet = [[UIAlertView alloc] initWithTitle:@"错误" message:@"网络请求失败，请检查您的网络状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alet show];
@@ -274,36 +276,39 @@
     }
 
     
-    if ( [[dic objectForKey:@"isReviewed"] isKindOfClass:[NSNull class]] || [[dic objectForKey:@"isReviewed"] isEqualToString:@"no"]) {
-       
-//        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.achieveView.frame.size.width, self.achieveView.frame.size.height)];
-//        [noRecordLabel setText:@"暂无战绩认证"];
-//        noRecordLabel.textAlignment = NSTextAlignmentCenter;
-//        noRecordLabel.tag = 666;
-//        [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
+    //level info...
+    
+//    
+//    if ( [[dic objectForKey:@"isReviewed"] isKindOfClass:[NSNull class]] || [[dic objectForKey:@"isReviewed"] isEqualToString:@"no"]) {
+//       
+////        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.achieveView.frame.size.width, self.achieveView.frame.size.height)];
+////        [noRecordLabel setText:@"暂无战绩认证"];
+////        noRecordLabel.textAlignment = NSTextAlignmentCenter;
+////        noRecordLabel.tag = 666;
+////        [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
+////        
+////        [self.achieveView addSubview:noRecordLabel];
 //        
-//        [self.achieveView addSubview:noRecordLabel];
-        
-        [self.notConfirmLevel setHidden:NO];
-        
-    }else
-    {
-        
-        [self.notConfirmLevel setHidden:YES];
-
-        
-        
-//        [self.gameIDLabel setText:@"ID:不是故意的啥了"];
-        [self.gameIDLabel setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"gameID"]]];
-
-        [self.JJCLabel setText:[dic objectForKey:@"JJCscore"]];
-        [self.TTLabel setText:[dic objectForKey:@"TTscore"]];
-        [self.soldierLabel setText:[dic objectForKey:@"soldier"]];
-        [self.ratioLabel setText:[NSString stringWithFormat:@"%@%%",[dic objectForKey:@"WinRatio"]]];
-        [self.heroFirstLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroFirst"] ofType:@"jpg"]]];
-        [self.heroSecondLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroSecond"] ofType:@"jpg"]]];
-        [self.heroThirdLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroThird"] ofType:@"jpg"]]];
-    }
+//        [self.notConfirmLevel setHidden:NO];
+//        
+//    }else
+//    {
+//        
+//        [self.notConfirmLevel setHidden:YES];
+//
+//        
+//        
+////        [self.gameIDLabel setText:@"ID:不是故意的啥了"];
+//        [self.gameIDLabel setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"gameID"]]];
+//
+//        [self.JJCLabel setText:[dic objectForKey:@"JJCscore"]];
+//        [self.TTLabel setText:[dic objectForKey:@"TTscore"]];
+//        [self.soldierLabel setText:[dic objectForKey:@"soldier"]];
+//        [self.ratioLabel setText:[NSString stringWithFormat:@"%@%%",[dic objectForKey:@"WinRatio"]]];
+//        [self.heroFirstLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroFirst"] ofType:@"jpg"]]];
+//        [self.heroSecondLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroSecond"] ofType:@"jpg"]]];
+//        [self.heroThirdLabel setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[dic objectForKey:@"heroThird"] ofType:@"jpg"]]];
+//    }
     
     
     if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
@@ -341,7 +346,7 @@
         return 35;
     }else
     {
-        return 1.5;
+        return 0;
     }
 }
 
@@ -373,7 +378,7 @@
         title.textColor = [UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0];
         [title setText:@"留言板"];
         
-        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 3.5, 47, 25)];
+        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-60-30, 3.5, 47, 25)];
         btn.backgroundColor = [UIColor purpleColor];
         btn.layer.cornerRadius = 4.2f;
         btn.layer.shadowOffset = CGSizeMake(1.5, 1.8);
@@ -388,6 +393,16 @@
         [sectionView setBackgroundColor:[UIColor colorWithRed:239/255.0f green:239/255.0f blue:239/255.0f alpha:1.0]];
         [sectionView addSubview:btn];
         [sectionView addSubview:title];
+        
+        
+        if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
+        {
+            [btn setHidden:YES];
+        }else
+        {
+            [btn setHidden:NO];
+
+        }
         
         return sectionView;
     }else
@@ -452,6 +467,9 @@
             cell.visitorDetailBtn.tag = indexPath.row;
             [cell.visitorDetailBtn addTarget:self action:@selector(visotorDetail:) forControlEvents:UIControlEventTouchUpInside];
         }
+        cell.replyBtn.tag = indexPath.row + 100;
+        [cell.replyBtn addTarget:self action:@selector(replyNote:) forControlEvents:UIControlEventTouchUpInside];
+
         
         
         
@@ -459,21 +477,64 @@
     
     }else
     {
-        achieveTableViewCell *cell =(achieveTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"achieveTableViewCell"];
-        if (nil == cell)
+        UITableViewCell *cell;
+        
+        if (indexPath.row == 3)
         {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"achieveTableViewCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SysCell"];
+            
+            if( cell == nil){
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SysCell"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                self.notePadTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height) style:UITableViewStylePlain];
+                
+                self.notePadTable.allowsSelection = NO;
+                self.notePadTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+                self.notePadTable.backgroundColor = [UIColor colorWithRed:239/255.0f green:239/255.0f blue:239/255.0f alpha:1.0f];
+                
+                self.notePadTable.delegate = self;
+                self.notePadTable.dataSource =self;
+                
+                [cell addSubview:self.notePadTable];
+                [self fetchNote];
+
+                
+            }
+            
+            
+            
+
+        }else
+        {
+            achieveTableViewCell *achieveCell =(achieveTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"achieveTableViewCell"];
+            if (nil == achieveCell)
+            {
+                achieveCell = [[[NSBundle mainBundle]loadNibNamed:@"achieveTableViewCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
+                achieveCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            
+            [achieveCell.mvpLabel setText:[NSString stringWithFormat:@"%lu",indexPath.row+1]];
+            
+            cell = achieveCell;
         }
         
         return cell;
+
+        
 
     }
     
     
 }
+
+
+
 -(void)visotorDetail:(UIButton *)sender
+
 {
+    [self.view endEditing:YES];// this will do the trick
+
     playerPageViewController *playInfo = [[playerPageViewController alloc] initWithNibName:@"playerPageViewController" bundle:nil];
     
     playInfo.playerName =  self.visitorArray[sender.tag];
@@ -489,12 +550,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)replyNote:(UIButton *)sender
+{
+    [invisibleTextFiled setHidden:NO];
+    invisibleTextFiled.placeholder = [NSString stringWithFormat:@"回复:%@",self.visitorArray[sender.tag-100]];
+    invisibleTextFiled.tag = 1;
+    [invisibleTextFiled becomeFirstResponder];
+}
+
 -(void)leaveMesg
 {
     NSLog(@"tao leave message...");
     
     [invisibleTextFiled setHidden:NO];
     invisibleTextFiled.placeholder = @"留言:";
+    invisibleTextFiled.tag = 2;
+
     [invisibleTextFiled becomeFirstResponder];
 //    UIView *sendNoteView = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
 //    [sendNoteView setBackgroundColor:[UIColor clearColor]];
@@ -543,7 +615,7 @@
     invisibleTextFiled.delegate = self;
     invisibleTextFiled.returnKeyType = UIReturnKeyDone;
     
-    invisibleTextFiled.tag = 7;
+    invisibleTextFiled.tag = 0;
     
 //    UIButton *doInput = [[UIButton alloc] initWithFrame:CGRectMake(customTextView.frame.size.width-78, 2, 75, 36)];
 //    [doInput setTitle:@"输入" forState:UIControlStateNormal];
@@ -649,13 +721,13 @@
         NSLog(@"JSON ERROR: %@",  operation.responseString);
         
         
-        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.notePadTable.frame.origin.x, self.notePadTable.frame.origin.y+35, self.notePadTable.frame.size.width, self.notePadTable.frame.size.height-35) ];
+        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.notePadTable.frame.size.width, self.notePadTable.frame.size.height-35) ];
         [noRecordLabel setText:@"暂无留言"];
         noRecordLabel.tag = 555;
         noRecordLabel.textAlignment = NSTextAlignmentCenter;
         [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
         
-        [self.view addSubview:noRecordLabel];
+        [self.notePadTable addSubview:noRecordLabel];
         
         [hud hide:YES];
         
@@ -666,21 +738,28 @@
 }
 
 
--(void)inputText
+-(void)inputTextFor:(UITextField *)txtfld;
 {
-    UIView *customTextView = [self.view viewWithTag:777];
-    UITextField *txtField = (UITextField *)[customTextView viewWithTag:7];
+//    UIView *customTextView = [self.view viewWithTag:777];
+//    UITextField *txtField = (UITextField *)[customTextView viewWithTag:7];
+    NSString *note;
+    if (txtfld.tag == 1) {
+        note = [NSString stringWithFormat:@"%@, %@",txtfld.placeholder,txtfld.text];
+    }else
+    {
+        note = txtfld.text;
+    }
     
     if ([[DataCenter sharedDataCenter] isGuest]) {
         
-        [self addNewNote:txtField.text OfVisitor:@"匿名游客"];
+        [self addNewNote:note OfVisitor:@"匿名游客"];
     }else
     {
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"haveDefaultUser"] isEqualToString:@"yes"]) {
             
             NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
             
-            [self addNewNote:txtField.text OfVisitor:[userDic objectForKey:@"username"]];
+            [self addNewNote:note OfVisitor:[userDic objectForKey:@"username"]];
 
         }else
         {
@@ -733,7 +812,7 @@
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     
-    [self inputText];
+    [self inputTextFor:textField];
     
     [textField resignFirstResponder];
     return YES;
@@ -755,5 +834,14 @@
 
 
     }
+}
+
+- (IBAction)segChange:(UIButton *)sender {
+    
+    [self.view endEditing:YES];// this will do the trick
+
+        [self.infoTableView setContentOffset:CGPointMake(0, self.infoTableView.frame.size.height*(sender.tag-1))];
+
+    
 }
 @end

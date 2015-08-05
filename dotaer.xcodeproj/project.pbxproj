@@ -60,6 +60,8 @@
 		A447FEF51B4A80450053D982 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A447FEF41B4A80450053D982 /* Security.framework */; };
 		A447FEF71B4A80C00053D982 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A447FEF61B4A80C00053D982 /* mapapi.bundle */; };
 		A447FEFA1B4A84600053D982 /* listCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447FEF91B4A84600053D982 /* listCell.xib */; };
+		A478DAC91B70E5AB0005CB41 /* 黑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A478DAC81B70E5AB0005CB41 /* 黑.jpg */; };
+		A478DACF1B70E6EE0005CB41 /* 剑圣1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A478DACE1B70E6EE0005CB41 /* 剑圣1.jpg */; };
 		A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */; };
 		A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FE3A1B54FA890065C0CA /* userInfo.m */; };
 		A4B8A7151B6B073900BFEDDC /* search1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B8A7131B6B073900BFEDDC /* search1.png */; };
@@ -374,6 +376,8 @@
 		A447FEF41B4A80450053D982 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A447FEF61B4A80C00053D982 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = BaiduMapAPI.framework/Resources/mapapi.bundle; sourceTree = "<group>"; };
 		A447FEF91B4A84600053D982 /* listCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = listCell.xib; sourceTree = "<group>"; };
+		A478DAC81B70E5AB0005CB41 /* 黑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "黑.jpg"; sourceTree = "<group>"; };
+		A478DACE1B70E6EE0005CB41 /* 剑圣1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "剑圣1.jpg"; sourceTree = "<group>"; };
 		A4A166EB1B5CDEA8003A8F3D /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
 		A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
 		A4A1FE391B54FA890065C0CA /* userInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfo.h; sourceTree = "<group>"; };
@@ -1280,6 +1284,8 @@
 			children = (
 				A4EFE8391B60D60A00C11133 /* Dota-英雄头像64x64 */,
 				A4EFE8371B60910F00C11133 /* defaultHead.png */,
+				A478DAC81B70E5AB0005CB41 /* 黑.jpg */,
+				A478DACE1B70E6EE0005CB41 /* 剑圣1.jpg */,
 				A4F51BBA1B57777200786FD1 /* Hvwd.jpg */,
 				A4F51BB41B57760C00786FD1 /* nc.jpg */,
 				A4F51BB51B57760C00786FD1 /* nw.jpg */,
@@ -1386,6 +1392,7 @@
 				A4EFE91D1B60D60A00C11133 /* 蓝猫.jpg in Resources */,
 				A4DDDA051B687C6100ACD655 /* mid_fujin@2x.png in Resources */,
 				A4EFE9161B60D60A00C11133 /* 山丘.jpg in Resources */,
+				A478DAC91B70E5AB0005CB41 /* 黑.jpg in Resources */,
 				A4EFE8C61B60D60A00C11133 /* 军团.jpg in Resources */,
 				A447FEFA1B4A84600053D982 /* listCell.xib in Resources */,
 				A4EFE8E81B60D60A00C11133 /* jugg.jpg in Resources */,
@@ -1434,6 +1441,7 @@
 				A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */,
 				A447FEC31B4A1BBB0053D982 /* loginViewController.xib in Resources */,
 				A4EFE8DA1B60D60A00C11133 /* 剧毒.jpg in Resources */,
+				A478DACF1B70E6EE0005CB41 /* 剑圣1.jpg in Resources */,
 				A4DF4EDE1B58DB6E004E9F59 /* noteTableViewCell.xib in Resources */,
 				A42E829E1B6621E000A431E0 /* thumb.png in Resources */,
 				A4EFE8C11B60D60A00C11133 /* sven.jpg in Resources */,

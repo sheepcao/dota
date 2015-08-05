@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *infoBackImage;
 //@property (strong, nonatomic) UIScrollView *mainScroll;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UITableView *notePadTable;
+@property (strong, nonatomic) UITableView *notePadTable;
 
 @property (strong, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *sexImage;
@@ -56,6 +56,7 @@
 @property (nonatomic, assign) CLLocationCoordinate2D userPosition;
 
 - (IBAction)favorTap:(UIButton *)sender;
+- (IBAction)segChange:(UIButton *)sender;
 
 
 @end
