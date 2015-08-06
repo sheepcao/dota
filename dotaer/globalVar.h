@@ -44,6 +44,7 @@
 #import "WXApi.h"
 #import "WeiboSDK.h"
 #import "MobClick.h"
+#import "UIImageView+AFNetworking.h"
 
 
 #define REVIEW_URL @"https://itunes.apple.com/us/app/anime-face/id983454917?ls=1&mt=8"

@@ -267,7 +267,9 @@ bool emailOK;
   
         //upload head image
         UIImage *image = self.headImg.image;
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        
+        UIImage *lowImg = [[DataCenter sharedDataCenter] compressImage:image];
+        NSData *imageData = UIImageJPEGRepresentation(lowImg, 0.5);
 
         AFHTTPRequestOperationManager *manager2 = [AFHTTPRequestOperationManager manager];
         [manager2 setRequestSerializer:[AFHTTPRequestSerializer serializer]];

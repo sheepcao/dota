@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "561"
-            endingLineNumber = "561"
+            startingLineNumber = "568"
+            endingLineNumber = "568"
             landmarkName = "-mapTapped:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "nearbyInfos"
             landmarkType = "19">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "918"
-            endingLineNumber = "918"
+            startingLineNumber = "943"
+            endingLineNumber = "943"
             landmarkName = "-didFailToLocateUserWithError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "737"
-            endingLineNumber = "737"
+            startingLineNumber = "758"
+            endingLineNumber = "758"
             landmarkName = "@implementation dotaerViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "-setupCenterView"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "-setupCenterView"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "-setupCenterView"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-menuStateEventOccurred:"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "696"
-            endingLineNumber = "696"
+            startingLineNumber = "717"
+            endingLineNumber = "717"
             landmarkName = "-nearbySearchWithPageIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "601"
-            endingLineNumber = "601"
+            startingLineNumber = "608"
+            endingLineNumber = "608"
             landmarkName = "-setNearbyInfos:"
             landmarkType = "5">
          </BreakpointContent>
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "751"
-            endingLineNumber = "751"
+            startingLineNumber = "772"
+            endingLineNumber = "772"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "949"
-            endingLineNumber = "949"
+            startingLineNumber = "974"
+            endingLineNumber = "974"
             landmarkName = "-onGetRadarNearbySearchResult:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "819"
-            endingLineNumber = "819"
+            startingLineNumber = "844"
+            endingLineNumber = "844"
             landmarkName = "-getCurrInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -666,11 +666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/loginViewController.m"
-            timestampString = "460546714.452108"
+            timestampString = "460556398.13572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "-userLogin:"
             landmarkType = "5">
          </BreakpointContent>
@@ -682,11 +682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "873"
-            endingLineNumber = "873"
+            startingLineNumber = "898"
+            endingLineNumber = "898"
             landmarkName = "-onGetRadarClearMyInfoResult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -698,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "881"
-            endingLineNumber = "881"
+            startingLineNumber = "906"
+            endingLineNumber = "906"
             landmarkName = "@implementation dotaerViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -714,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "939"
-            endingLineNumber = "939"
+            startingLineNumber = "964"
+            endingLineNumber = "964"
             landmarkName = "-onGetRadarNearbySearchResult:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -730,11 +730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/loginViewController.m"
-            timestampString = "460546714.452108"
+            timestampString = "460556398.13572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
             landmarkName = "-successLogin:"
             landmarkType = "5">
          </BreakpointContent>
@@ -746,11 +746,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -778,11 +778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1063"
-            endingLineNumber = "1063"
+            startingLineNumber = "1091"
+            endingLineNumber = "1091"
             landmarkName = "-getImageFromView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -794,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "880"
-            endingLineNumber = "880"
+            startingLineNumber = "905"
+            endingLineNumber = "905"
             landmarkName = "@implementation dotaerViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -810,11 +810,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "631"
-            endingLineNumber = "631"
+            startingLineNumber = "652"
+            endingLineNumber = "652"
             landmarkName = "-setNearbyInfos:"
             landmarkType = "5">
             <Locations>
@@ -858,11 +858,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "618"
-            endingLineNumber = "618"
+            startingLineNumber = "639"
+            endingLineNumber = "639"
             landmarkName = "-setNearbyInfos:"
             landmarkType = "5">
          </BreakpointContent>
@@ -874,11 +874,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1036"
-            endingLineNumber = "1036"
+            startingLineNumber = "1064"
+            endingLineNumber = "1064"
             landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -890,11 +890,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "844"
-            endingLineNumber = "844"
+            startingLineNumber = "869"
+            endingLineNumber = "869"
             landmarkName = "@implementation dotaerViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -906,11 +906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "957"
-            endingLineNumber = "957"
+            startingLineNumber = "982"
+            endingLineNumber = "982"
             landmarkName = "-onGetRadarNearbySearchResult:error:"
             landmarkType = "5">
          </BreakpointContent>
@@ -922,11 +922,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "633"
-            endingLineNumber = "633"
+            startingLineNumber = "654"
+            endingLineNumber = "654"
             landmarkName = "-setNearbyInfos:"
             landmarkType = "5">
          </BreakpointContent>
@@ -938,11 +938,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-showLoginPage"
             landmarkType = "5">
          </BreakpointContent>
@@ -954,11 +954,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
+            startingLineNumber = "409"
+            endingLineNumber = "409"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -970,11 +970,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
+            startingLineNumber = "549"
+            endingLineNumber = "549"
             landmarkName = "-viewWillDisappear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1044,11 +1044,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "849"
-            endingLineNumber = "849"
+            startingLineNumber = "874"
+            endingLineNumber = "874"
             landmarkName = "-getRadarAutoUploadInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -1060,11 +1060,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "535"
-            endingLineNumber = "535"
+            startingLineNumber = "542"
+            endingLineNumber = "542"
             landmarkName = "-viewWillDisappear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1092,11 +1092,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560955.918592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
+            startingLineNumber = "517"
+            endingLineNumber = "517"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1108,11 +1108,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/loginViewController.m"
-            timestampString = "460027298.300694"
+            timestampString = "460556398.13572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "-submitRegister:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1140,11 +1140,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "-setupPageWithDic:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1236,11 +1236,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "472"
-            endingLineNumber = "472"
+            startingLineNumber = "473"
+            endingLineNumber = "473"
             landmarkName = "-configUserInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1252,11 +1252,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460029466.710595"
+            timestampString = "460560389.743881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
+            startingLineNumber = "486"
+            endingLineNumber = "486"
             landmarkName = "-configUserInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1268,11 +1268,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "755"
-            endingLineNumber = "755"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1284,11 +1284,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "810"
-            endingLineNumber = "810"
+            startingLineNumber = "835"
+            endingLineNumber = "835"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1300,11 +1300,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1107"
-            endingLineNumber = "1107"
+            startingLineNumber = "1135"
+            endingLineNumber = "1135"
             landmarkName = "-jumpToPlayer:andDistance:andGeoInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1316,11 +1316,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
+            startingLineNumber = "512"
+            endingLineNumber = "512"
             landmarkName = "-configUserInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1368,11 +1368,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1083"
-            endingLineNumber = "1083"
+            startingLineNumber = "1111"
+            endingLineNumber = "1111"
             landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1572,15 +1572,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "-setupPageWithDic:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1592,11 +1592,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560955.918592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1608,11 +1608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560955.918592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1624,11 +1624,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560955.918592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "981"
-            endingLineNumber = "981"
+            startingLineNumber = "992"
+            endingLineNumber = "992"
             landmarkName = "-fetchNote"
             landmarkType = "5">
          </BreakpointContent>
@@ -1640,11 +1640,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560955.918592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "602"
+            endingLineNumber = "602"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1656,11 +1656,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/dotaerViewController.mm"
-            timestampString = "460533646.495756"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1120"
-            endingLineNumber = "1120"
+            startingLineNumber = "1148"
+            endingLineNumber = "1148"
             landmarkName = "-fillTTScore:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1688,11 +1688,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560955.918592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "643"
-            endingLineNumber = "643"
+            startingLineNumber = "652"
+            endingLineNumber = "652"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1704,11 +1704,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560955.918592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "556"
-            endingLineNumber = "556"
+            startingLineNumber = "565"
+            endingLineNumber = "565"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1720,11 +1720,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/playerPageViewController.m"
-            timestampString = "460535984.05832"
+            timestampString = "460560760.143244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "-setupPageWithDic:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1736,11 +1736,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/loginViewController.m"
-            timestampString = "460546714.452108"
+            timestampString = "460556398.13572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "-userLogin:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1752,11 +1752,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/loginViewController.m"
-            timestampString = "460546714.452108"
+            timestampString = "460556398.13572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
             landmarkName = "-userLogin:"
             landmarkType = "5">
             <Locations>
@@ -1768,12 +1768,12 @@
                   moduleName = "dotaer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ericcao/Documents/develop/iOSTest/dotaer/dotaer/loginViewController.m"
-                  timestampString = "460548011.783041"
+                  timestampString = "460557423.268226"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "355"
-                  endingLineNumber = "355"
-                  offsetFromSymbolStart = "1330">
+                  startingLineNumber = "357"
+                  endingLineNumber = "357"
+                  offsetFromSymbolStart = "1151">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1783,12 +1783,12 @@
                   moduleName = "dotaer"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ericcao/Documents/develop/iOSTest/dotaer/dotaer/loginViewController.m"
-                  timestampString = "460548011.783198"
+                  timestampString = "460557423.26844"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "355"
-                  endingLineNumber = "355"
-                  offsetFromSymbolStart = "72">
+                  startingLineNumber = "357"
+                  endingLineNumber = "357"
+                  offsetFromSymbolStart = "66">
                </Location>
             </Locations>
          </BreakpointContent>

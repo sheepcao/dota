@@ -74,21 +74,23 @@
     
     cell.usernameLabel.text = self.favorArray[indexPath.row];
     
-    NSString *headPath = [imagePath stringByAppendingString:self.favorArray[indexPath.row]];
-    
-    NSURL *url = [NSURL URLWithString:headPath];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img;
-    
-    if (data) {
-        img = [[UIImage alloc] initWithData:data];
-    }else
-    {
-        img = [UIImage imageNamed:@"defaultHead"];
-    }
-    
-    
-    [cell.userHeadImg setImage:img];
+    NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,self.favorArray[indexPath.row]];
+
+    NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [cell.userHeadImg setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
+
+//    NSData *data = [NSData dataWithContentsOfURL:url];
+//    UIImage *img;
+//    
+//    if (data) {
+//        img = [[UIImage alloc] initWithData:data];
+//    }else
+//    {
+//        img = [UIImage imageNamed:@"defaultHead"];
+//    }
+//    
+//    
+//    [cell.userHeadImg setImage:img];
     
 
     

@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface DataCenter : NSObject
 
 @property BOOL isGuest;
 @property BOOL needConfirmLevelInfo;
+@property (strong,nonatomic) NSMutableDictionary *userImgDic;
 //@property (nonatomic,strong) NSMutableArray *favorArray;
 
 
@@ -20,4 +21,6 @@
 - (BOOL)checkFavor:(NSString *)username;
 - (void)addFavor:(NSString *)username;
 - (void)removeFavor:(NSString *)username;
+
+-(UIImage *)compressImage:(UIImage *)image;
 @end

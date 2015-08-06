@@ -251,7 +251,7 @@
     
     //upload head image
     UIImage *image = headIMG;
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.2);
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager setRequestSerializer:[AFHTTPRequestSerializer serializer]];

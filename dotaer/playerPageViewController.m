@@ -276,18 +276,22 @@
 
 -(void)setupPageWithDic:(NSDictionary *)dic
 {
-    NSString *headPath = [imagePath stringByAppendingString:self.playerName];
+//    NSString *headPath = [imagePath stringByAppendingString:self.playerName];
+    NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,self.playerName];
+
+    NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    NSURL *url = [NSURL URLWithString:headPath];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img;
-    if (data) {
-        img = [[UIImage alloc] initWithData:data];
-    }else
-    {
-        img = [UIImage imageNamed:@"defaultHead"];
-    }
-    [self.headImage setImage:img];
+    [self.headImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
+
+//    NSData *data = [NSData dataWithContentsOfURL:url];
+//    UIImage *img;
+//    if (data) {
+//        img = [[UIImage alloc] initWithData:data];
+//    }else
+//    {
+//        img = [UIImage imageNamed:@"defaultHead"];
+//    }
+//    [self.headImage setImage:img];
     
     [self.ageLabel setText:[NSString stringWithFormat:@"%@岁",[dic objectForKey:@"age"]]];
     [self.sexImage setImage:[UIImage imageNamed:[dic objectForKey:@"sex"]]];
@@ -340,6 +344,7 @@
         [self.ttBtn setEnabled:NO];
         [self.jjcBtn setEnabled:NO];
         [self.mjBtn setEnabled:NO];
+        [self.infoTableView setScrollEnabled:NO];
         
         [self.notConfirmLevel setHidden:NO];
         
@@ -354,7 +359,8 @@
         [self.ttBtn setEnabled:YES];
         [self.jjcBtn setEnabled:YES];
         [self.mjBtn setEnabled:YES];
-        
+        [self.infoTableView setScrollEnabled:YES];
+
         
         if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
         {
@@ -520,20 +526,23 @@
             
         }
         
-        NSString *headPath = [imagePath stringByAppendingString:self.visitorArray[indexPath.row]];
+        NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,self.visitorArray[indexPath.row]];
+
+        NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
-        NSURL *url = [NSURL URLWithString:headPath];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *img;
-        
-        if (data) {
-            img = [[UIImage alloc] initWithData:data];
-        }else
-        {
-            img = [UIImage imageNamed:@"defaultHead"];
-        }
-        
-        [cell.userHeadImage setImage:img];
+        [cell.userHeadImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
+
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        UIImage *img;
+//        
+//        if (data) {
+//            img = [[UIImage alloc] initWithData:data];
+//        }else
+//        {
+//            img = [UIImage imageNamed:@"defaultHead"];
+//        }
+//        
+//        [cell.userHeadImage setImage:img];
         
         [cell.cellNumber setText:[NSString stringWithFormat:@"%u.",self.notesArray.count - indexPath.row]];
         
@@ -778,7 +787,9 @@
 
 -(UIImage *)loadheroImg:(NSString *)ImgName
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://i.5211game.com/img/dota/hero/%@.jpg",ImgName]];
+    NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://i.5211game.com/img/dota/hero/%@.jpg",ImgName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *img;
     img = [[UIImage alloc] initWithData:data];

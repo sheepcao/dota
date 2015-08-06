@@ -22,6 +22,7 @@
 #import "levelInfoViewController.h"
 #import "favorViewController.h"
 
+
 #define annoRatio 0.37
 #define userCoverRatio 0.0025
 
@@ -485,18 +486,24 @@
     
     if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
         
-        NSURL *url = [NSURL URLWithString:[myInfo.headImagePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *img = [[UIImage alloc] initWithData:data];
-        SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
         
-        if (img) {
-            [leftMenuVC.headImage setImage:img];
-        }else
-        {
-            [leftMenuVC.headImage setImage:[UIImage imageNamed:@"defaultHead.png"]];
+        SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
 
-        }
+        NSURL *url = [NSURL URLWithString:[myInfo.headImagePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        [leftMenuVC.headImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
+
+        
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        UIImage *img = [[UIImage alloc] initWithData:data];
+//
+//        if (img) {
+//            [leftMenuVC.headImage setImage:img];
+//        }else
+//        {
+//            [leftMenuVC.headImage setImage:[UIImage imageNamed:@"defaultHead.png"]];
+//
+//        }
         
         [leftMenuVC.usernameLabel setText:myInfo.username];
         [leftMenuVC.sexImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",myInfo.sex]]];
@@ -601,15 +608,29 @@
 - (void)setNearbyInfos:(NSMutableArray *)nearbyInfos {
     [_nearbyInfos removeAllObjects];
     [_nearbyInfos addObjectsFromArray:nearbyInfos];
+
     [self.listView reloadData];
     [_mapView removeAnnotations:_mapView.annotations];
     NSMutableArray *annotations = [NSMutableArray array];
     for (BMKRadarNearbyInfo *info in _nearbyInfos) {
         
+        
         myPointAnnotation *annotation = [[myPointAnnotation alloc] init];
         annotation.coordinate = info.pt;
         annotation.title = info.userId;
         annotation.annoUserDistance = info.distance;
+        
+//        NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,info.userId];
+//        
+//        NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        if (data) {
+//            UIImage *img = [[UIImage alloc] initWithData:data];
+//            DataCenter *dataCenterInstance = [DataCenter sharedDataCenter];
+//            [dataCenterInstance.userImgDic setObject:img forKey:info.userId];
+//        }
+    
+        
         
         //distance....
         
@@ -757,21 +778,25 @@
     cell.userInfo.text = info.userId;
     cell.userDistance.text = [NSString stringWithFormat:@"%d米", (int)info.distance];
     
-    NSString *headPath = [imagePath stringByAppendingString:info.userId];
-    
-    NSURL *url = [NSURL URLWithString:headPath];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img;
-    
-    if (data) {
-        img = [[UIImage alloc] initWithData:data];
-    }else
-    {
-        img = [UIImage imageNamed:@"defaultHead"];
-    }
+    NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,info.userId];
 
+    NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    [cell.userHead setImage:img];
+    [cell.userHead setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead"]];
+    
+    
+//    NSData *data = [NSData dataWithContentsOfURL:url];
+//    UIImage *img;
+//    
+//    if (data) {
+//        img = [[UIImage alloc] initWithData:data];
+//    }else
+//    {
+//        img = [UIImage imageNamed:@"defaultHead"];
+//    }
+//
+//    
+//    [cell.userHead setImage:img];
     
     NSArray *userExtinfo = [info.extInfo componentsSeparatedByString:@"-"];
     if (userExtinfo.count>3) {
@@ -1020,14 +1045,17 @@
         
         
         myPointAnnotation *anno = (myPointAnnotation *)annotation;
-        NSString *headPath = [imagePath stringByAppendingString:anno.title];
-        
+        NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,anno.title];
+
         NSLog(@"anno.title---%@",anno.title);
         
-        NSURL *url = [NSURL URLWithString:headPath];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *img = [[UIImage alloc] initWithData:data];
-        [imageview setImage:img];
+        NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [imageview setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
+
+
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        UIImage *img = [[UIImage alloc] initWithData:data];
+//        [imageview setImage:img];
 
         if (anno.containUsers.count>0) {
             
