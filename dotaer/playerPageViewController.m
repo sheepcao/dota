@@ -25,6 +25,13 @@
 @property (nonatomic,strong) NSMutableArray *visitorArray;
 @property (nonatomic,strong) NSMutableArray *createTimeArray;
 
+@property (nonatomic,strong) NSMutableDictionary *JJCinfoDic;
+@property (nonatomic,strong) NSMutableDictionary *TTinfoDic;
+@property (nonatomic,strong) NSMutableDictionary *MJinfoDic;
+@property (nonatomic,strong) NSMutableDictionary *playerLevelInfoDic;
+
+
+
 @property (nonatomic,strong) BMKGeoCodeSearch *geocodesearch;
 
 
@@ -91,14 +98,6 @@
 
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//
-//    UIVisualEffectView *visualEffectView;
-//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//    
-//    visualEffectView.frame = self.achieveBlur.bounds;
-//    [self.achieveBlur addSubview:visualEffectView];
-    
-    
     
     UIVisualEffectView *visualEffectView2;
     visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
@@ -131,11 +130,17 @@
 
 
     
-    [self requestPlayerInfo];
     [self requestReverseGeocode];
     
     
     
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self requestPlayerInfo];
 
 }
 
@@ -212,19 +217,40 @@
         
 
         
+
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR: %@",  operation.responseString);
         
         [hud hide:YES];
         
-//        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.achieveView.frame.size.width, self.achieveView.frame.size.height)];
-//        [noRecordLabel setText:@"暂无战绩认证"];
-//        noRecordLabel.textAlignment = NSTextAlignmentCenter;
-//        noRecordLabel.tag = 666;
-//        [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
-//        
-//        [self.achieveView addSubview:noRecordLabel];
+        
+        UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
+        noRecordView.tag = 666;
+
+        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
+        [noRecordLabel setText:@"暂未战绩认证"];
+        [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+        noRecordLabel.textAlignment = NSTextAlignmentCenter;
+        [noRecordLabel setBackgroundColor:[UIColor clearColor]];
+        
+        UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
+        [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+        
+        UIVisualEffect *blurEffect;
+        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *visualEffectView2;
+        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        visualEffectView2.frame = backIMG.bounds;
+        [backIMG addSubview:visualEffectView2];
+        
+        [noRecordView addSubview:backIMG];
+        [noRecordView addSubview:noRecordLabel];
+        
+        [self.infoTableView addSubview:noRecordView];
+        
+        
         
         [self.notConfirmLevel setHidden:NO];
 
@@ -278,25 +304,73 @@
     
     //level info...
     
-//    
-//    if ( [[dic objectForKey:@"isReviewed"] isKindOfClass:[NSNull class]] || [[dic objectForKey:@"isReviewed"] isEqualToString:@"no"]) {
-//       
-////        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.achieveView.frame.size.width, self.achieveView.frame.size.height)];
-////        [noRecordLabel setText:@"暂无战绩认证"];
-////        noRecordLabel.textAlignment = NSTextAlignmentCenter;
-////        noRecordLabel.tag = 666;
-////        [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
-////        
-////        [self.achieveView addSubview:noRecordLabel];
-//        
-//        [self.notConfirmLevel setHidden:NO];
-//        
-//    }else
-//    {
-//        
-//        [self.notConfirmLevel setHidden:YES];
+    
+    UIView *noRecordView = [self.infoTableView viewWithTag:666];
+    if (noRecordView) {
+        [noRecordView removeFromSuperview];
+    }
+    
 //
-//        
+    if ( [[dic objectForKey:@"isReviewed"] isKindOfClass:[NSNull class]] || [[dic objectForKey:@"isReviewed"] isEqualToString:@"no"]) {
+       
+        UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
+        noRecordView.tag = 666;
+        
+        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
+        [noRecordLabel setText:@"暂未战绩认证"];
+        [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+        noRecordLabel.textAlignment = NSTextAlignmentCenter;
+        [noRecordLabel setBackgroundColor:[UIColor clearColor]];
+        
+        UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
+        [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+        
+        UIVisualEffect *blurEffect;
+        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *visualEffectView2;
+        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        visualEffectView2.frame = backIMG.bounds;
+        [backIMG addSubview:visualEffectView2];
+        
+        [noRecordView addSubview:backIMG];
+        [noRecordView addSubview:noRecordLabel];
+        
+        [self.infoTableView addSubview:noRecordView];
+        
+        [self.ttBtn setEnabled:NO];
+        [self.jjcBtn setEnabled:NO];
+        [self.mjBtn setEnabled:NO];
+        
+        [self.notConfirmLevel setHidden:NO];
+        
+        if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
+        {
+            
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"战绩认证" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
+        }
+        
+    }else
+    {
+        [self.ttBtn setEnabled:YES];
+        [self.jjcBtn setEnabled:YES];
+        [self.mjBtn setEnabled:YES];
+        
+        
+        if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
+        {
+            
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更新战绩" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
+        }
+        
+        [self.notConfirmLevel setHidden:YES];
+        self.playerLevelInfoDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        self.JJCinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"JJCinfo"]];
+        self.TTinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"TTinfo"]];
+        self.MJinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"MJinfo"]];
+        [self.infoTableView reloadData];
+    }
+//
+//
 //        
 ////        [self.gameIDLabel setText:@"ID:不是故意的啥了"];
 //        [self.gameIDLabel setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"gameID"]]];
@@ -461,7 +535,7 @@
         
         [cell.userHeadImage setImage:img];
         
-        [cell.cellNumber setText:[NSString stringWithFormat:@"%lu.",self.notesArray.count - indexPath.row]];
+        [cell.cellNumber setText:[NSString stringWithFormat:@"%u.",self.notesArray.count - indexPath.row]];
         
         if (![self.visitorArray[indexPath.row] isEqualToString: @"匿名游客"]) {
             cell.visitorDetailBtn.tag = indexPath.row;
@@ -514,7 +588,181 @@
                 achieveCell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             
-            [achieveCell.mvpLabel setText:[NSString stringWithFormat:@"%lu",indexPath.row+1]];
+            [achieveCell.gameNameLabel setText:[self.playerLevelInfoDic objectForKey:@"gameName"]];
+            if (indexPath.row == 0) {
+                
+                
+                UIView *noRecordView = [achieveCell viewWithTag:888];
+                if (noRecordView) {
+                    [noRecordView removeFromSuperview];
+                }
+                if ([[self.TTinfoDic objectForKey:@"TTscore"] isKindOfClass:[NSNull class]]) {
+                    
+                    UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
+                    noRecordView.tag = 888;
+                    
+                    UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
+                    [noRecordLabel setText:@"暂未战斗"];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+                    noRecordLabel.textAlignment = NSTextAlignmentCenter;
+                    [noRecordLabel setBackgroundColor:[UIColor clearColor]];
+                    
+                    UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
+                    [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+                    
+                    UIVisualEffect *blurEffect;
+                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+                    UIVisualEffectView *visualEffectView2;
+                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+                    visualEffectView2.frame = backIMG.bounds;
+                    [backIMG addSubview:visualEffectView2];
+                    
+                    [noRecordView addSubview:backIMG];
+                    [noRecordView addSubview:noRecordLabel];
+                    
+                    [achieveCell addSubview:noRecordView];
+                    
+
+                }else
+                {
+                    
+                    [achieveCell.scoreType setText:@"天梯积分"];
+                    [achieveCell.scoreLabel setText:[self.TTinfoDic objectForKey:@"TTscore"]];
+                    [achieveCell.totalGameLabel setText:[self.TTinfoDic objectForKey:@"TTtotal"]];
+                    [achieveCell.mvpLabel setText:[self.TTinfoDic objectForKey:@"TTmvp"]];
+                    [achieveCell.pianjiangLabel setText:[self.TTinfoDic objectForKey:@"TTPianJiang"]];
+                    [achieveCell.podiLabel setText:[self.TTinfoDic objectForKey:@"TTPoDi"]];
+                    [achieveCell.pojunLabel setText:[self.TTinfoDic objectForKey:@"TTPoJun"]];
+                    [achieveCell.yinghunLabel setText:[self.TTinfoDic objectForKey:@"TTYingHun"]];
+                    [achieveCell.buwangLabel setText:[self.TTinfoDic objectForKey:@"TTBuWang"]];
+                    [achieveCell.fuhaoLabel setText:[self.TTinfoDic objectForKey:@"TTFuHao"]];
+                    [achieveCell.doubleKillLabel setText:[self.TTinfoDic objectForKey:@"TTDoubleKill"]];
+                    [achieveCell.tripleKillLabel setText:[self.TTinfoDic objectForKey:@"TTTripleKill"]];
+                    [achieveCell.winRatioLabel setText:[self.TTinfoDic objectForKey:@"TTWinRatio"]];
+                    
+                    
+                    [achieveCell.heroFirstImg setImage:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroFirst"]]];
+                    [achieveCell.heroSecondImg setImage:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroSecond"]]];
+                    [achieveCell.heroThirdImg setImage:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroThird"]]];
+                }
+
+            }else if(indexPath.row == 1)
+            {
+
+                UIView *noRecordView = [achieveCell viewWithTag:888];
+                if (noRecordView) {
+                    [noRecordView removeFromSuperview];
+                }
+                if ([[self.JJCinfoDic objectForKey:@"JJCscore"] isKindOfClass:[NSNull class]]) {
+                    
+                    UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
+                    noRecordView.tag = 888;
+                    
+                    UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
+                    [noRecordLabel setText:@"暂未战斗"];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+                    noRecordLabel.textAlignment = NSTextAlignmentCenter;
+                    [noRecordLabel setBackgroundColor:[UIColor clearColor]];
+                    
+                    UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
+                    [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+                    
+                    UIVisualEffect *blurEffect;
+                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+                    UIVisualEffectView *visualEffectView2;
+                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+                    visualEffectView2.frame = backIMG.bounds;
+                    [backIMG addSubview:visualEffectView2];
+                    
+                    [noRecordView addSubview:backIMG];
+                    [noRecordView addSubview:noRecordLabel];
+                    
+                    [achieveCell addSubview:noRecordView];
+                }else
+                {
+                    
+                    [achieveCell.scoreType setText:@"竞技场积分"];
+                [achieveCell.scoreLabel setText:[self.JJCinfoDic objectForKey:@"JJCscore"]];
+                [achieveCell.totalGameLabel setText:[self.JJCinfoDic objectForKey:@"JJCtotal"]];
+                [achieveCell.mvpLabel setText:[self.JJCinfoDic objectForKey:@"JJCmvp"]];
+                [achieveCell.pianjiangLabel setText:[self.JJCinfoDic objectForKey:@"JJCPianJiang"]];
+                [achieveCell.podiLabel setText:[self.JJCinfoDic objectForKey:@"JJCPoDi"]];
+                [achieveCell.pojunLabel setText:[self.JJCinfoDic objectForKey:@"JJCPoJun"]];
+                [achieveCell.yinghunLabel setText:[self.JJCinfoDic objectForKey:@"JJCYingHun"]];
+                [achieveCell.buwangLabel setText:[self.JJCinfoDic objectForKey:@"JJCBuWang"]];
+                [achieveCell.fuhaoLabel setText:[self.JJCinfoDic objectForKey:@"JJCFuHao"]];
+                [achieveCell.doubleKillLabel setText:[self.JJCinfoDic objectForKey:@"JJCDoubleKill"]];
+                [achieveCell.tripleKillLabel setText:[self.JJCinfoDic objectForKey:@"JJCTripleKill"]];
+                [achieveCell.winRatioLabel setText:[self.JJCinfoDic objectForKey:@"JJCWinRatio"]];
+                
+                
+                [achieveCell.heroFirstImg setImage:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroFirst"]]];
+                [achieveCell.heroSecondImg setImage:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroSecond"]]];
+                [achieveCell.heroThirdImg setImage:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroThird"]]];
+                }
+                
+
+
+            }else if(indexPath.row == 2)
+            {
+                UIView *noRecordView = [achieveCell viewWithTag:888];
+                if (noRecordView) {
+                    [noRecordView removeFromSuperview];
+                }
+                if ([[self.MJinfoDic objectForKey:@"MJscore"] isKindOfClass:[NSNull class]]) {
+                    UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
+                    noRecordView.tag = 888;
+                    
+                    UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
+                    [noRecordLabel setText:@"暂未战斗"];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+                    noRecordLabel.textAlignment = NSTextAlignmentCenter;
+                    [noRecordLabel setBackgroundColor:[UIColor clearColor]];
+                    
+                    UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
+                    [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+                    
+                    UIVisualEffect *blurEffect;
+                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+                    UIVisualEffectView *visualEffectView2;
+                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+                    visualEffectView2.frame = backIMG.bounds;
+                    [backIMG addSubview:visualEffectView2];
+                    
+                    [noRecordView addSubview:backIMG];
+                    [noRecordView addSubview:noRecordLabel];
+                    
+                    [achieveCell addSubview:noRecordView];
+                }else
+                {
+                    
+                    
+                    
+                    [achieveCell.scoreType setText:@"名将积分"];
+                    [achieveCell.scoreLabel setText:[self.MJinfoDic objectForKey:@"MJscore"]];
+                    [achieveCell.totalGameLabel setText:[self.MJinfoDic objectForKey:@"MJtotal"]];
+                    [achieveCell.mvpLabel setText:[self.MJinfoDic objectForKey:@"MJmvp"]];
+                    [achieveCell.pianjiangLabel setText:[self.MJinfoDic objectForKey:@"MJPianJiang"]];
+                    [achieveCell.podiLabel setText:[self.MJinfoDic objectForKey:@"MJPoDi"]];
+                    [achieveCell.pojunLabel setText:[self.MJinfoDic objectForKey:@"MJPoJun"]];
+                    [achieveCell.yinghunLabel setText:[self.MJinfoDic objectForKey:@"MJYingHun"]];
+                    [achieveCell.buwangLabel setText:[self.MJinfoDic objectForKey:@"MJBuWang"]];
+                    [achieveCell.fuhaoLabel setText:[self.MJinfoDic objectForKey:@"MJFuHao"]];
+                    [achieveCell.doubleKillLabel setText:[self.MJinfoDic objectForKey:@"MJDoubleKill"]];
+                    [achieveCell.tripleKillLabel setText:[self.MJinfoDic objectForKey:@"MJTripleKill"]];
+                    [achieveCell.winRatioLabel setText:[self.MJinfoDic objectForKey:@"MJWinRatio"]];
+                    
+                    
+                    [achieveCell.heroFirstImg setImage:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroFirst"]]];
+                    [achieveCell.heroSecondImg setImage:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroSecond"]]];
+                    [achieveCell.heroThirdImg setImage:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroThird"]]];
+                }
+            }
+
+          
+
+            
+            
             
             cell = achieveCell;
         }
@@ -528,7 +776,15 @@
     
 }
 
-
+-(UIImage *)loadheroImg:(NSString *)ImgName
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://i.5211game.com/img/dota/hero/%@.jpg",ImgName]];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img;
+    img = [[UIImage alloc] initWithData:data];
+    
+    return img;
+}
 
 -(void)visotorDetail:(UIButton *)sender
 
@@ -667,7 +923,7 @@
 
         [self.notePadTable reloadData];
 
-        UIView *noRecordView = [self.view viewWithTag:555];
+        UIView *noRecordView = [self.notePadTable viewWithTag:555];
         if (noRecordView) {
             [noRecordView removeFromSuperview];
         }

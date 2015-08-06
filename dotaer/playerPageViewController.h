@@ -58,5 +58,7 @@
 - (IBAction)favorTap:(UIButton *)sender;
 - (IBAction)segChange:(UIButton *)sender;
 
-
+@property (weak, nonatomic) IBOutlet UIButton *ttBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mjBtn;
+@property (weak, nonatomic) IBOutlet UIButton *jjcBtn;
 @end

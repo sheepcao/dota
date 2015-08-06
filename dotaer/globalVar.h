@@ -24,18 +24,18 @@
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
-#define registerService @"http://localhost/~ericcao/upload.php"
-#define playerInfoService @"http://localhost/~ericcao/playerInfo.php"
-#define signatureService @"http://localhost/~ericcao/signature.php"
-#define noteService @"http://localhost/~ericcao/note.php"
-#define confirmLevel @"http://localhost/~ericcao/confirmLevel.php"
+#define registerService @"http://cgx.nwpu.info/Sites/upload.php"
+#define playerInfoService @"http://cgx.nwpu.info/Sites/playerInfo.php"
+#define signatureService @"http://cgx.nwpu.info/Sites/signature.php"
+#define noteService @"http://cgx.nwpu.info/Sites/note.php"
+#define confirmLevel @"http://cgx.nwpu.info/Sites/confirmLevel.php"
 
-#define imagePath @"http://localhost/~ericcao/upload/"
+#define imagePath @"http://cgx.nwpu.info/Sites/upload/"
 
 #define client_secret @"2d43c235b66c114fece5f67ae504f70a"
 
 
-#define videoInfoService @"http://localhost/~ericcao/videoURL.php"
+#define videoInfoService @"http://cgx.nwpu.info/Sites/videoURL.php"
 
 #import "MBProgressHUD.h"
 #import <ShareSDK/ShareSDK.h>

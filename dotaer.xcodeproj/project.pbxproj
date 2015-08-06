@@ -65,7 +65,6 @@
 		A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */; };
 		A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FE3A1B54FA890065C0CA /* userInfo.m */; };
 		A4B8A7151B6B073900BFEDDC /* search1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B8A7131B6B073900BFEDDC /* search1.png */; };
-		A4B8A7171B6B07E600BFEDDC /* find8.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B8A7161B6B07E600BFEDDC /* find8.png */; };
 		A4B8A71C1B6B515100BFEDDC /* favorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B8A71A1B6B515100BFEDDC /* favorViewController.m */; };
 		A4B8A71D1B6B515100BFEDDC /* favorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B8A71B1B6B515100BFEDDC /* favorViewController.xib */; };
 		A4B8A7211B6B562400BFEDDC /* favorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B8A71F1B6B562400BFEDDC /* favorTableViewCell.m */; };
@@ -278,6 +277,8 @@
 		A4F51BB81B57760C00786FD1 /* nw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB51B57760C00786FD1 /* nw.jpg */; };
 		A4F51BB91B57760C00786FD1 /* pa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB61B57760C00786FD1 /* pa.jpg */; };
 		A4F51BBB1B57777200786FD1 /* Hvwd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BBA1B57777200786FD1 /* Hvwd.jpg */; };
+		A4F96E001B73321900BEADDD /* eye1.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F96DFF1B73321900BEADDD /* eye1.png */; };
+		A4F96E021B7332AE00BEADDD /* eye3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F96E011B7332AE00BEADDD /* eye3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,7 +384,6 @@
 		A4A1FE391B54FA890065C0CA /* userInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInfo.h; sourceTree = "<group>"; };
 		A4A1FE3A1B54FA890065C0CA /* userInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInfo.m; sourceTree = "<group>"; };
 		A4B8A7131B6B073900BFEDDC /* search1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search1.png; sourceTree = "<group>"; };
-		A4B8A7161B6B07E600BFEDDC /* find8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = find8.png; sourceTree = "<group>"; };
 		A4B8A7191B6B515100BFEDDC /* favorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = favorViewController.h; sourceTree = "<group>"; };
 		A4B8A71A1B6B515100BFEDDC /* favorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = favorViewController.m; sourceTree = "<group>"; };
 		A4B8A71B1B6B515100BFEDDC /* favorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = favorViewController.xib; sourceTree = "<group>"; };
@@ -620,6 +620,8 @@
 		A4F51BB51B57760C00786FD1 /* nw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nw.jpg; sourceTree = "<group>"; };
 		A4F51BB61B57760C00786FD1 /* pa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pa.jpg; sourceTree = "<group>"; };
 		A4F51BBA1B57777200786FD1 /* Hvwd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Hvwd.jpg; sourceTree = "<group>"; };
+		A4F96DFF1B73321900BEADDD /* eye1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye1.png; sourceTree = "<group>"; };
+		A4F96E011B7332AE00BEADDD /* eye3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -822,7 +824,8 @@
 		A447FE991B4A198B0053D982 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A4B8A7161B6B07E600BFEDDC /* find8.png */,
+				A4F96DFF1B73321900BEADDD /* eye1.png */,
+				A4F96E011B7332AE00BEADDD /* eye3.png */,
 				A4B8A7131B6B073900BFEDDC /* search1.png */,
 				A4E02BEB1B6A0F0E000997C0 /* bottomBack.png */,
 				A4E02BED1B6A1054000997C0 /* bottomBack2.png */,
@@ -1432,6 +1435,7 @@
 				A4EFE9111B60D60A00C11133 /* 双头龙.jpg in Resources */,
 				A4EFE8B11B60D60A00C11133 /* 大屁股.jpg in Resources */,
 				A4EFE8E41B60D60A00C11133 /* 血魔.jpg in Resources */,
+				A4F96E001B73321900BEADDD /* eye1.png in Resources */,
 				A4EFE8E71B60D60A00C11133 /* df.jpg in Resources */,
 				A42E82A01B662AD600A431E0 /* chat_bar.png in Resources */,
 				A4E02BEA1B69F736000997C0 /* levelyes.png in Resources */,
@@ -1502,6 +1506,7 @@
 				A4DA56271B4E73660010C95D /* female@2x.png in Resources */,
 				A4EFE8BF1B60D60A00C11133 /* 骷髅王.jpg in Resources */,
 				A4EFE8B81B60D60A00C11133 /* 沙王.jpg in Resources */,
+				A4F96E021B7332AE00BEADDD /* eye3.png in Resources */,
 				A4EFE8B91B60D60A00C11133 /* 混沌.jpg in Resources */,
 				A4EFE8F81B60D60A00C11133 /* aa.jpg in Resources */,
 				A4EFE9071B60D60A00C11133 /* 老鹿.jpg in Resources */,
@@ -1553,7 +1558,6 @@
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
 				A4EFE8CF1B60D60A00C11133 /* 撼地神牛.jpg in Resources */,
 				A4EFE8C31B60D60A00C11133 /* 伐木机.jpg in Resources */,
-				A4B8A7171B6B07E600BFEDDC /* find8.png in Resources */,
 				A4EFE8DE1B60D60A00C11133 /* 影魔.jpg in Resources */,
 				A4D13E1C1B4CEBE300C06A2B /* Default.png in Resources */,
 				A4EFE9171B60D60A00C11133 /* 拉比克.jpg in Resources */,

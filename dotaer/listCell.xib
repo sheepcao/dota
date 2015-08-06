@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名性别阿萨德撒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tht-W4-f6e">
-                        <rect key="frame" x="78.5" y="15" width="145" height="21"/>
+                        <rect key="frame" x="78" y="15" width="145" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="145" id="6ha-Zg-936"/>
                             <constraint firstAttribute="height" constant="21" id="qts-yZ-Izg"/>
@@ -42,14 +42,14 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="levelyes.png" translatesAutoresizingMaskIntoConstraints="NO" id="AGW-eh-m1F">
-                        <rect key="frame" x="76.5" y="44" width="17" height="17"/>
+                        <rect key="frame" x="76" y="44" width="17" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="Fha-F7-Ojr"/>
                             <constraint firstAttribute="width" constant="17" id="HEY-CX-xZS"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已认证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J44-ex-adw">
-                        <rect key="frame" x="95.5" y="44" width="46" height="21"/>
+                        <rect key="frame" x="95" y="44" width="46" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="46" id="8gp-fp-c6Z"/>
                             <constraint firstAttribute="height" constant="21" id="FFG-Eh-B48"/>
@@ -59,10 +59,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天梯:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdb-Er-dq9">
-                        <rect key="frame" x="141.5" y="44" width="69" height="21"/>
+                        <rect key="frame" x="141" y="47" width="69" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="69" id="Ga1-yC-TqY"/>
-                            <constraint firstAttribute="height" constant="21" id="ZqI-xv-TOW"/>
+                            <constraint firstAttribute="height" constant="15" id="ZqI-xv-TOW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                         <color key="textColor" red="1" green="0.56743421049999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

@@ -25,7 +25,7 @@
 #define annoRatio 0.37
 #define userCoverRatio 0.0025
 
-@interface dotaerViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate, BMKRadarManagerDelegate,GADBannerViewDelegate> {
+@interface dotaerViewController ()<BMKMapViewDelegate,BMKLocationServiceDelegate, BMKRadarManagerDelegate,GADBannerViewDelegate,setTTscoreDelegate> {
     BMKLocationService *_locServer;
     BMKRadarManager *_radarManager;
     CLLocationCoordinate2D _curLocation;
@@ -163,7 +163,7 @@
     
     [self.view addSubview:searchingBar];
     
-    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height*1.1, searchingBar.frame.size.height/6, searchingBar.frame.size.height*2/3, searchingBar.frame.size.height*2/3)];
+    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height*1.2, searchingBar.frame.size.height/8, searchingBar.frame.size.height*3/4, searchingBar.frame.size.height*3/4)];
     
     
     
@@ -224,9 +224,9 @@
     slider.value = 18;
     slider.maximumTrackTintColor = [UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f];
     slider.minimumTrackTintColor = [UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f];
+//    [slider setThumbTintColor:[UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f]];
 
-
-    UIImage* minTrack = [UIImage imageNamed:@"find8"];
+    UIImage* minTrack = [UIImage imageNamed:@"eye3.png"];
     [slider setThumbImage:minTrack forState:UIControlStateNormal];
 
     _searchRadius = [FabonacciNum calculateFabonacci:slider.value];
@@ -461,7 +461,7 @@
 
     levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
     
-   
+    levelInfo.TTscoreDelegate = self;
     [self.navigationController pushViewController:levelInfo animated:NO];
     
     [[DataCenter sharedDataCenter] setNeedConfirmLevelInfo:NO];
@@ -479,12 +479,13 @@
     myInfo.TTscore = [userDic objectForKey:@"TTscore"];
 
 //    myInfo.id_DB = [userDic objectForKey:@"id"];
-    myInfo.headImagePath = [imagePath stringByAppendingString:[userDic objectForKey:@"username"]];
+    myInfo.headImagePath = [NSString stringWithFormat:@"%@%@.png",imagePath,[userDic objectForKey:@"username"]];
     
     self.myUserInfo = myInfo;
     
     if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
-        NSURL *url = [NSURL URLWithString:myInfo.headImagePath];
+        
+        NSURL *url = [NSURL URLWithString:[myInfo.headImagePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *img = [[UIImage alloc] initWithData:data];
         SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
@@ -496,6 +497,8 @@
             [leftMenuVC.headImage setImage:[UIImage imageNamed:@"defaultHead.png"]];
 
         }
+        
+        [leftMenuVC.usernameLabel setText:myInfo.username];
         [leftMenuVC.sexImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",myInfo.sex]]];
         [leftMenuVC.ageLabel setText:[NSString stringWithFormat:@"%@岁",myInfo.age]];
         
@@ -541,7 +544,7 @@
 -(void)uploadLocation
 {
  
-    [_radarManager startAutoUpload:17];
+    [_radarManager startAutoUpload:10];
    
 
 }
@@ -1112,6 +1115,11 @@
     
 }
 
+#pragma mark TTscore delegate
+-(void)fillTTScore:(NSString *)score
+{
+    self.myUserInfo.TTscore = score;
+}
 - (void) dealloc {
     _radarManager = nil;
     [BMKRadarManager releaseRadarManagerInstance];

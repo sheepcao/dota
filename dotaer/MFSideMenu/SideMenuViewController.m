@@ -329,7 +329,7 @@
     
     [manager POST:signatureService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
-        NSLog(@"Json: %@", responseObject);
+        NSLog(@"Json  signature: %@", responseObject);
         
         NSLog(@"content:%@",[responseObject objectForKey:@"content"]);
         
@@ -339,7 +339,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR233: %@",  operation.responseString);
-        [self.signatureTextView setText:@""];
+        [self.signatureTextView setText:@"编辑个人签名..."];
 
         
     }];

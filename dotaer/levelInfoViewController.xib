@@ -18,16 +18,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-my-Vqz">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-my-Vqz">
                     <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请登录您的游戏账号，并点击上传战绩即可。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7c-gN-Ajh">
-                            <rect key="frame" x="29" y="8" width="177" height="44"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请登录您的游戏账号，一步认证您的战绩。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7c-gN-Ajh">
+                            <rect key="frame" x="24" y="8" width="327" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qm-xA-RNS">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qm-xA-RNS">
                             <rect key="frame" x="268" y="15" width="72" height="30"/>
                             <color key="backgroundColor" red="0.90136527259999999" green="0.76746958450000002" blue="0.074492368929999997" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="上传战绩">
@@ -41,8 +41,18 @@
                     </subviews>
                     <color key="backgroundColor" red="0.31301398029999999" green="0.72008634869999999" blue="0.84251644739999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="o7c-gN-Ajh" firstAttribute="top" secondItem="ucj-my-Vqz" secondAttribute="top" constant="8" id="5jc-SV-lzD"/>
                         <constraint firstAttribute="height" constant="60" id="L5N-WF-06q"/>
+                        <constraint firstItem="o7c-gN-Ajh" firstAttribute="leading" secondItem="ucj-my-Vqz" secondAttribute="leading" constant="24" id="mX9-MF-aOz"/>
+                        <constraint firstAttribute="centerY" secondItem="o7c-gN-Ajh" secondAttribute="centerY" id="ooq-1R-6n3"/>
+                        <constraint firstAttribute="trailing" secondItem="o7c-gN-Ajh" secondAttribute="trailing" constant="24" id="xqT-4v-ZYf"/>
+                        <constraint firstAttribute="centerX" secondItem="o7c-gN-Ajh" secondAttribute="centerX" id="zAq-0Q-9OZ"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="xqT-4v-ZYf"/>
+                        </mask>
+                    </variation>
                 </view>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hd6-zO-i8x">
                     <rect key="frame" x="0.0" y="64" width="375" height="543"/>

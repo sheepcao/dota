@@ -65,7 +65,7 @@ BMKMapManager* _mapManager;
     
     [self.window makeKeyAndVisible];
     
-    [MobClick startWithAppkey:@"5508d14dfd98c530ab00043f" reportPolicy:REALTIME   channelId:nil];
+    [MobClick startWithAppkey:@"55c2fdc7e0f55a9eef004677" reportPolicy:REALTIME   channelId:nil];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
     
@@ -74,22 +74,6 @@ BMKMapManager* _mapManager;
     return YES;
 }
 
-//- (IIViewDeckController*)generateControllerStack {
-////    myMenuViewController* rightController = [[myMenuViewController alloc] initWithNibName:@"myMenuViewController" bundle:nil];
-//    myMenuViewController* leftController = [[myMenuViewController alloc] initWithNibName:@"myMenuViewController" bundle:nil];
-//
-//    
-//    UIViewController *centerController = [[dotaerViewController alloc] initWithNibName:@"dotaerViewController" bundle:nil];
-//    centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
-//    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:centerController
-//                                                                                    leftViewController:leftController
-//                                                                                   rightViewController:nil];
-//    deckController.leftSize = 200;
-////    deckController.navigationControllerBehavior = IIViewDeckNavigationControllerIntegrated;
-//    
-//    [deckController disablePanOverViewsOfClass:NSClassFromString(@"_UITableViewHeaderFooterContentView")];
-//    return deckController;
-//}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -148,12 +132,12 @@ BMKMapManager* _mapManager;
                               redirectUri:@"https://api.weibo.com/oauth2/default.html"
                               weiboSDKCls:[WeiboSDK class]];
        //添加微信应用 注册网址 http://open.weixin.qq.com
-    [ShareSDK connectWeChatWithAppId:@"wx59625f48a74bdc1b"
+    [ShareSDK connectWeChatWithAppId:@"wxe9f0021070a60b40"
                            wechatCls:[WXApi class]];
     
     
-    [ShareSDK connectWeChatWithAppId:@"wx59625f48a74bdc1b"   //微信APPID
-                           appSecret:@"35026f787626340e50a248a223dfdb52"  //微信APPSecret
+    [ShareSDK connectWeChatWithAppId:@"wxe9f0021070a60b40"   //微信APPID
+                           appSecret:@"2b1b86bc877665e9dc8bb3b6af7e3bb4"  //微信APPSecret
                            wechatCls:[WXApi class]];
     
     

@@ -46,5 +46,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *pojun;
 
+@property (weak, nonatomic) IBOutlet UILabel *scoreType;
+@property (weak, nonatomic) IBOutlet UILabel *ratioTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalGameTitleLabel;
 
 @end

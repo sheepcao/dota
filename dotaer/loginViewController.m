@@ -273,6 +273,8 @@ bool emailOK;
         [manager2 setRequestSerializer:[AFHTTPRequestSerializer serializer]];
         [manager2.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
         manager2.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+        [manager2.requestSerializer setTimeoutInterval:25];  //Time out after 25 seconds
+
 
         
         AFHTTPRequestOperation *op = [manager2 POST:registerService parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -347,7 +349,7 @@ bool emailOK;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-//    [manager.requestSerializer setTimeoutInterval:25];  //Time out after 25 seconds
+    [manager.requestSerializer setTimeoutInterval:25];  //Time out after 25 seconds
 
     
     [manager POST:registerService parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -392,6 +394,9 @@ bool emailOK;
 
 -(void)successLogin:(NSDictionary *)userInfoDic
 {
+    
+    [[DataCenter sharedDataCenter] setIsGuest:NO];
+
     NSString *isReviewed = @"yes";
     NSString *TTscore = [userInfoDic objectForKey:@"TTscore"];
 

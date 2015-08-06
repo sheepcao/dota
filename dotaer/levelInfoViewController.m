@@ -33,6 +33,17 @@
     self.levelWebview.scalesPageToFit = YES;
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies])
+    {
+        [storage deleteCookie:cookie];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -129,23 +140,23 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     //eric:
-    NSLog(@"request URL = %@", [request URL]);
-    NSString *URLString = [NSString stringWithFormat:@"%@", [request URL]] ;
-    
-    NSArray *seperateByMID = [URLString componentsSeparatedByString:@"Login"];
-    if (seperateByMID.count>1) {
-       
-        [self.uploadBtn setTag:10];
-        
-        [self.tipText setText:@"请登录您的11平台游戏账号"];
-        
-    }else
-    {
-        [self.uploadBtn setTag:11];
-        [self.tipText setText:@"待您的战绩页面显示完整之后，请点击上传战绩。"];
-
-
-    }
+//    NSLog(@"request URL = %@", [request URL]);
+//    NSString *URLString = [NSString stringWithFormat:@"%@", [request URL]] ;
+//    
+//    NSArray *seperateByMID = [URLString componentsSeparatedByString:@"Login"];
+//    if (seperateByMID.count>1) {
+//       
+//        [self.uploadBtn setTag:10];
+//        
+//        [self.tipText setText:@"请登录您的11平台游戏账号"];
+//        
+//    }else
+//    {
+//        [self.uploadBtn setTag:11];
+//        [self.tipText setText:@"待您的战绩页面显示完整之后，请点击上传战绩。"];
+//
+//
+//    }
     
     
 
@@ -167,19 +178,19 @@
     
     
 }
-- (IBAction)uploadLevel:(UIButton *)sender {
-    
-    if (sender.tag == 10) {
-        UIAlertView *notAllowAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未登录，无法上传战绩." delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [notAllowAlert show];
-    }else if (sender.tag == 11)
-    {
-        NSLog(@"upload tap!!!");
-        UIImage *levelImage = [self getImageFromView:self.levelWebview];
-
-        [self doUpload:levelImage];
-    }
-}
+//- (IBAction)uploadLevel:(UIButton *)sender {
+//    
+//    if (sender.tag == 10) {
+//        UIAlertView *notAllowAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未登录，无法上传战绩." delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [notAllowAlert show];
+//    }else if (sender.tag == 11)
+//    {
+//        NSLog(@"upload tap!!!");
+//        UIImage *levelImage = [self getImageFromView:self.levelWebview];
+//
+//        [self doUpload:levelImage];
+//    }
+//}
 
 
 -(void)submitLevel:(NSDictionary *)dic
@@ -212,35 +223,35 @@
                                   @"JJCDoubleKill":[JJCdetail objectForKey:@"DoubleKill"],
                                   @"JJCTripleKill":[JJCdetail objectForKey:@"TripleKill"],
                                   @"JJCWinRatio":[JJCdetail objectForKey:@"R_Win"],
-                                  @"JJCheroFirst":[JJCdetail objectForKey:@"AdeptHeroName1"]
+                                  @"JJCheroFirst":[JJCdetail objectForKey:@"AdeptHero1"]
                                   };
         
         JJCinfoFull = [NSMutableDictionary dictionaryWithDictionary:JJCinfo];
-        if ([JJCdetail objectForKey:@"AdeptHeroName2"]) {
-            [JJCinfoFull setObject:[JJCdetail objectForKey:@"AdeptHeroName2"] forKey:@"JJCheroSecond"];
+        if ([JJCdetail objectForKey:@"AdeptHero2"]) {
+            [JJCinfoFull setObject:[JJCdetail objectForKey:@"AdeptHero2"] forKey:@"JJCheroSecond"];
         }else
         {
             [JJCinfoFull setObject:@"none" forKey:@"JJCheroSecond"];
 
         }
-        if ([JJCdetail objectForKey:@"AdeptHeroName3"]) {
-            [JJCinfoFull setObject:[JJCdetail objectForKey:@"AdeptHeroName3"] forKey:@"JJCheroThird"];
+        if ([JJCdetail objectForKey:@"AdeptHero3"]) {
+            [JJCinfoFull setObject:[JJCdetail objectForKey:@"AdeptHero3"] forKey:@"JJCheroThird"];
         }else
         {
             [JJCinfoFull setObject:@"none" forKey:@"JJCheroThird"];
             
         }
         
-        NSMutableArray *JJCheroIDs = [NSMutableArray arrayWithObject:[JJCdetail objectForKey:@"AdeptHero1"]];
-        
-        if ([JJCdetail objectForKey:@"AdeptHero2"]) {
-            [JJCheroIDs addObject:[JJCdetail objectForKey:@"AdeptHero2"]];
-        }
-        if ([JJCdetail objectForKey:@"AdeptHero3"]) {
-            [JJCheroIDs addObject:[JJCdetail objectForKey:@"AdeptHero3"]];
-        }
-        
-        NSLog(@"JJC info:%@  heroIDs:--%@",JJCinfoFull,JJCheroIDs);
+//        NSMutableArray *JJCheroIDs = [NSMutableArray arrayWithObject:[JJCdetail objectForKey:@"AdeptHero1"]];
+//        
+//        if ([JJCdetail objectForKey:@"AdeptHero2"]) {
+//            [JJCheroIDs addObject:[JJCdetail objectForKey:@"AdeptHero2"]];
+//        }
+//        if ([JJCdetail objectForKey:@"AdeptHero3"]) {
+//            [JJCheroIDs addObject:[JJCdetail objectForKey:@"AdeptHero3"]];
+//        }
+//        
+//        NSLog(@"JJC info:%@  heroIDs:--%@",JJCinfoFull,JJCheroIDs);
 
     }
     
@@ -265,36 +276,36 @@
                                  @"TTDoubleKill":[TTdetail objectForKey:@"DoubleKill"],
                                  @"TTTripleKill":[TTdetail objectForKey:@"TripleKill"],
                                  @"TTWinRatio":[TTdetail objectForKey:@"R_Win"],
-                                 @"TTheroFirst":[TTdetail objectForKey:@"AdeptHeroName1"]
+                                 @"TTheroFirst":[TTdetail objectForKey:@"AdeptHero1"]
                                  };
         
         TTinfoFull = [NSMutableDictionary dictionaryWithDictionary:TTinfo];
-        if ([TTdetail objectForKey:@"AdeptHeroName2"]) {
-            [TTinfoFull setObject:[TTdetail objectForKey:@"AdeptHeroName2"] forKey:@"TTheroSecond"];
+        if ([TTdetail objectForKey:@"AdeptHero2"]) {
+            [TTinfoFull setObject:[TTdetail objectForKey:@"AdeptHero2"] forKey:@"TTheroSecond"];
         }else
         {
             [TTinfoFull setObject:@"none" forKey:@"TTheroSecond"];
             
         }
         
-        if ([TTdetail objectForKey:@"AdeptHeroName3"]) {
-            [TTinfoFull setObject:[TTdetail objectForKey:@"AdeptHeroName3"] forKey:@"TTheroThird"];
+        if ([TTdetail objectForKey:@"AdeptHero3"]) {
+            [TTinfoFull setObject:[TTdetail objectForKey:@"AdeptHero3"] forKey:@"TTheroThird"];
         }else
         {
             [TTinfoFull setObject:@"none" forKey:@"TTheroThird"];
             
         }
         
-        NSMutableArray *TTheroIDs = [NSMutableArray arrayWithObject:[TTdetail objectForKey:@"AdeptHero1"]];
-        
-        if ([TTdetail objectForKey:@"AdeptHero2"]) {
-            [TTheroIDs addObject:[TTdetail objectForKey:@"AdeptHero2"]];
-        }
-        if ([TTdetail objectForKey:@"AdeptHero3"]) {
-            [TTheroIDs addObject:[TTdetail objectForKey:@"AdeptHero3"]];
-        }
-        
-        NSLog(@"TT info:%@  heroIDs:--%@",TTinfoFull,TTheroIDs);
+//        NSMutableArray *TTheroIDs = [NSMutableArray arrayWithObject:[TTdetail objectForKey:@"AdeptHero1"]];
+//        
+//        if ([TTdetail objectForKey:@"AdeptHero2"]) {
+//            [TTheroIDs addObject:[TTdetail objectForKey:@"AdeptHero2"]];
+//        }
+//        if ([TTdetail objectForKey:@"AdeptHero3"]) {
+//            [TTheroIDs addObject:[TTdetail objectForKey:@"AdeptHero3"]];
+//        }
+//        
+//        NSLog(@"TT info:%@  heroIDs:--%@",TTinfoFull,TTheroIDs);
         
         
 
@@ -319,36 +330,36 @@
                                  @"MJDoubleKill":[MJdetail objectForKey:@"DoubleKill"],
                                  @"MJTripleKill":[MJdetail objectForKey:@"TripleKill"],
                                  @"MJWinRatio":[MJdetail objectForKey:@"R_Win"],
-                                 @"MJheroFirst":[MJdetail objectForKey:@"AdeptHeroName1"]
+                                 @"MJheroFirst":[MJdetail objectForKey:@"AdeptHero1"]
                                  };
         
         MJinfoFull = [NSMutableDictionary dictionaryWithDictionary:MJinfo];
-        if ([MJdetail objectForKey:@"AdeptHeroName2"]) {
-            [MJinfoFull setObject:[MJdetail objectForKey:@"AdeptHeroName2"] forKey:@"MJheroSecond"];
+        if ([MJdetail objectForKey:@"AdeptHero2"]) {
+            [MJinfoFull setObject:[MJdetail objectForKey:@"AdeptHero2"] forKey:@"MJheroSecond"];
         }else
         {
             [MJinfoFull setObject:@"none" forKey:@"MJheroSecond"];
 
         }
         
-        if ([MJdetail objectForKey:@"AdeptHeroName3"]) {
-            [MJinfoFull setObject:[MJdetail objectForKey:@"AdeptHeroName3"] forKey:@"MJheroThird"];
+        if ([MJdetail objectForKey:@"AdeptHero3"]) {
+            [MJinfoFull setObject:[MJdetail objectForKey:@"AdeptHero3"] forKey:@"MJheroThird"];
         }else
         {
             [MJinfoFull setObject:@"none" forKey:@"MJheroThird"];
             
         }
         
-        NSMutableArray *MJheroIDs = [NSMutableArray arrayWithObject:[MJdetail objectForKey:@"AdeptHero1"]];
-        
-        if ([MJdetail objectForKey:@"AdeptHero2"]) {
-            [MJheroIDs addObject:[MJdetail objectForKey:@"AdeptHero2"]];
-        }
-        if ([MJdetail objectForKey:@"AdeptHero3"]) {
-            [MJheroIDs addObject:[MJdetail objectForKey:@"AdeptHero3"]];
-        }
-        
-        NSLog(@"JJC info:%@  heroIDs:--%@",MJinfoFull,MJheroIDs);
+//        NSMutableArray *MJheroIDs = [NSMutableArray arrayWithObject:[MJdetail objectForKey:@"AdeptHero1"]];
+//        
+//        if ([MJdetail objectForKey:@"AdeptHero2"]) {
+//            [MJheroIDs addObject:[MJdetail objectForKey:@"AdeptHero2"]];
+//        }
+//        if ([MJdetail objectForKey:@"AdeptHero3"]) {
+//            [MJheroIDs addObject:[MJdetail objectForKey:@"AdeptHero3"]];
+//        }
+//        
+//        NSLog(@"JJC info:%@  heroIDs:--%@",MJinfoFull,MJheroIDs);
         
         
     }
@@ -427,11 +438,15 @@
     [manager POST:confirmLevel parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
         hud.mode = MBProgressHUDModeCustomView;
-        hud.labelText = @"Completed";
-        [hud hide:YES afterDelay:1.0];
+        hud.labelText = @"战绩认证成功";
+        [hud hide:YES afterDelay:2.5];
         NSLog(@"JSON: %@", responseObject);
         
+        [self.TTscoreDelegate fillTTScore:[[responseObject objectForKey:@"TTinfo"] objectForKey:@"TTscore"]];
+        
         NSLog(@"JJCheroFirst: %@", [[responseObject objectForKey:@"JJCinfo"] objectForKey:@"JJCheroFirst"]);
+        
+        [self performSelector:@selector(backToSelfInfo) withObject:nil afterDelay:3];
         
         
         
@@ -440,83 +455,91 @@
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR: %@",  operation.responseString);
         
-        [hud hide:YES];
-        
-        
-    }];
-}
-
-
-
--(void)doUpload:(UIImage *)levelImage
-{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.labelText = @"Uploading";
-    hud.dimBackground = YES;
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-    NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
-
-    
-    NSDictionary *parameters = @{@"tag": @"uploadLevel",@"username":username};
-    
-    
-    //upload head image
-    UIImage *image = levelImage;
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager setRequestSerializer:[AFHTTPRequestSerializer serializer]];
-    [manager.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
-    
-    AFHTTPRequestOperation *op = [manager POST:registerService parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-
-        
-        NSString *fileName = [NSString stringWithFormat:@"%@_result.png",username];
-        
-        [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
-        
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
         hud.mode = MBProgressHUDModeCustomView;
-        hud.labelText = @"Completed";
+        hud.labelText = @"认证失败，请检查网络.";
         [hud hide:YES afterDelay:1.0];
         
-        [self performSelector:@selector(successUploadAlert) withObject:nil afterDelay:1.1];
         
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        hud.mode = MBProgressHUDModeCustomView;
-        hud.labelText = @"Error";
-        [hud hide:YES afterDelay:1.5];
-        
-        NSLog(@"Error: %@ ***** %@", operation.responseString, error.localizedDescription);
+    }];
+}
 
-            UIAlertView *registerFailedAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"上传失败，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [registerFailedAlert show];
-        
-        
-    }];
-    
-    
-    [op setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
-                                 long long totalBytesWritten,
-                                 long long totalBytesExpectedToWrite) {
-        
-        
-        hud.progress = totalBytesWritten/totalBytesExpectedToWrite;
-        
-        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
-    }];
-    
-    [op start];
+
+-(void)backToSelfInfo
+{
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
+
+//
+//-(void)doUpload:(UIImage *)levelImage
+//{
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.mode = MBProgressHUDModeAnnularDeterminate;
+//    hud.labelText = @"Uploading";
+//    hud.dimBackground = YES;
+//    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+//    NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
+//
+//    
+//    NSDictionary *parameters = @{@"tag": @"uploadLevel",@"username":username};
+//    
+//    
+//    //upload head image
+//    UIImage *image = levelImage;
+//    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager setRequestSerializer:[AFHTTPRequestSerializer serializer]];
+//    [manager.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+//    
+//    
+//    AFHTTPRequestOperation *op = [manager POST:registerService parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        
+//
+//        
+//        NSString *fileName = [NSString stringWithFormat:@"%@_result.png",username];
+//        
+//        [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+//        
+//        
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
+//        hud.mode = MBProgressHUDModeCustomView;
+//        hud.labelText = @"Completed";
+//        [hud hide:YES afterDelay:1.0];
+//        
+//        [self performSelector:@selector(successUploadAlert) withObject:nil afterDelay:1.1];
+//        
+//        
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        hud.mode = MBProgressHUDModeCustomView;
+//        hud.labelText = @"Error";
+//        [hud hide:YES afterDelay:1.5];
+//        
+//        NSLog(@"Error: %@ ***** %@", operation.responseString, error.localizedDescription);
+//
+//            UIAlertView *registerFailedAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"上传失败，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [registerFailedAlert show];
+//        
+//        
+//    }];
+//    
+//    
+//    [op setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
+//                                 long long totalBytesWritten,
+//                                 long long totalBytesExpectedToWrite) {
+//        
+//        
+//        hud.progress = totalBytesWritten/totalBytesExpectedToWrite;
+//        
+//        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
+//    }];
+//    
+//    [op start];
+//
+//}
 
 -(void)successUploadAlert
 {

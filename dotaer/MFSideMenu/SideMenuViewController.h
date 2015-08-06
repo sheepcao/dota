@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *itemsTable;
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 - (IBAction)logoutTap:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *unLoginLabel;
 @property (weak, nonatomic) IBOutlet UIButton *logoutBtn;

@@ -18,6 +18,7 @@
                 <outlet property="sideBackImage" destination="0IN-SZ-LxS" id="Ryc-aj-Fua"/>
                 <outlet property="signatureTextView" destination="RhR-LJ-UbC" id="9SP-Na-Nrz"/>
                 <outlet property="unLoginLabel" destination="JAE-bc-Jkt" id="qo0-xD-Pr1"/>
+                <outlet property="usernameLabel" destination="pSb-ov-00W" id="YAG-6n-kZF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="17T-Sm-Y9R"/>
             </connections>
         </placeholder>
@@ -109,6 +110,16 @@
                         <outlet property="delegate" destination="-1" id="RlA-Mn-t3J"/>
                     </connections>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSb-ov-00W">
+                    <rect key="frame" x="20" y="24" width="160" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Bfy-vT-Hu5"/>
+                        <constraint firstAttribute="width" constant="160" id="oPp-7X-x0b"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -120,6 +131,7 @@
                 <constraint firstItem="7xf-aQ-QOh" firstAttribute="centerX" secondItem="JAE-bc-Jkt" secondAttribute="centerX" id="CgF-lY-ao7"/>
                 <constraint firstAttribute="centerY" secondItem="JAE-bc-Jkt" secondAttribute="centerY" constant="40" id="DXE-uv-1fA"/>
                 <constraint firstItem="GRD-B5-Hwf" firstAttribute="top" secondItem="aZs-Pk-Brr" secondAttribute="bottom" constant="3" id="ELA-Oi-1Z5"/>
+                <constraint firstAttribute="centerX" secondItem="pSb-ov-00W" secondAttribute="centerX" id="Gae-Dw-IZA"/>
                 <constraint firstItem="WtN-gJ-SSg" firstAttribute="centerY" secondItem="NmF-Mv-r0N" secondAttribute="centerY" id="HQU-cN-RZ0"/>
                 <constraint firstItem="0IN-SZ-LxS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ob2-s7-eHx"/>
                 <constraint firstItem="WtN-gJ-SSg" firstAttribute="width" secondItem="7xf-aQ-QOh" secondAttribute="width" id="Pv1-xM-TQC"/>
@@ -135,6 +147,7 @@
                 <constraint firstItem="WtN-gJ-SSg" firstAttribute="centerY" secondItem="7xf-aQ-QOh" secondAttribute="centerY" id="k31-ni-FTu"/>
                 <constraint firstAttribute="trailing" secondItem="aZs-Pk-Brr" secondAttribute="trailing" id="kj9-dX-yeu"/>
                 <constraint firstAttribute="centerY" secondItem="aZs-Pk-Brr" secondAttribute="centerY" constant="-9.5" id="pXA-AR-CSJ"/>
+                <constraint firstItem="WtN-gJ-SSg" firstAttribute="top" secondItem="pSb-ov-00W" secondAttribute="bottom" constant="5" id="qUu-MJ-Ssg"/>
                 <constraint firstItem="7xf-aQ-QOh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="qyT-Z6-VQv"/>
                 <constraint firstItem="7xf-aQ-QOh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="uyO-qG-gIi"/>
                 <constraint firstItem="GRD-B5-Hwf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vBe-zn-gJO"/>
