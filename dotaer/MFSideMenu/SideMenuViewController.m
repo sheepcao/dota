@@ -257,7 +257,8 @@
     [manager setRequestSerializer:[AFHTTPRequestSerializer serializer]];
     [manager.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
+    [manager.requestSerializer setTimeoutInterval:30];
+
     
     AFHTTPRequestOperation *op = [manager POST:registerService parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
@@ -326,7 +327,8 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
+    [manager.requestSerializer setTimeoutInterval:30];
+
     [manager POST:signatureService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
         NSLog(@"Json  signature: %@", responseObject);
@@ -361,7 +363,8 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
+    [manager.requestSerializer setTimeoutInterval:30];
+
     [manager POST:signatureService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
         [hud hide:YES];

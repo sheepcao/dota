@@ -43,9 +43,13 @@
 {
     label.layer.cornerRadius = 5.2f;
     label.layer.masksToBounds = NO;
-    label.layer.shadowOffset = CGSizeMake(1.5, 1.8);
-    label.layer.shadowRadius = 0.3;
-    label.layer.shadowOpacity = 0.5;
+    label.layer.shadowOffset = CGSizeMake(2, -1.2);
+    label.layer.shadowRadius = 0.9;
+    label.layer.shadowOpacity = 0.7;
+    label.layer.shadowColor = [UIColor colorWithRed:100/255.0f green:100/255.0f blue:100/255.0f alpha:1.0f].CGColor;
+
+    
+    label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"title.png"]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

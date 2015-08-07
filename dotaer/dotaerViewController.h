@@ -14,6 +14,7 @@
 @interface dotaerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic, strong)  GADBannerView *bannerView;
+@property (weak, nonatomic) IBOutlet UIImageView *backBlur;
 
 -(void)showLoginPage;
 @end

@@ -68,6 +68,7 @@
     _radarManager = [BMKRadarManager getRadarManagerInstance];
     _locServer = [[BMKLocationService alloc] init];
     _locServer.delegate = self;
+
     [_locServer startUserLocationService];
 
     [[DataCenter sharedDataCenter] setIsGuest:NO];
@@ -100,7 +101,14 @@
 
 -(void)setupCenterView
 {
+    UIVisualEffect *blurEffect_b;
+    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
+    UIVisualEffectView *visualEffectView_b;
+    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
+    
+    visualEffectView_b.frame =CGRectMake(0, 0, self.backBlur.frame.size.width, self.backBlur.frame.size.height) ;
+    [self.backBlur addSubview:visualEffectView_b];
     
     
     NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
@@ -123,6 +131,8 @@
     [self.view addSubview:self.bannerView];
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64+50, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64-50))];
+
+    containerView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:containerView];
     
@@ -131,8 +141,10 @@
     self.listView.delegate = self;
     self.listView.dataSource = self;
     self.listView.rowHeight = 70;
-    self.listView.backgroundColor = [UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0];
-    //        self.listView.backgroundColor = [UIColor whiteColor];
+//    self.listView.backgroundColor = [UIColor colorWithRed:243/255.0f green:243/255.0f blue:243/255.0f alpha:1.0];
+    
+    self.listView.backgroundColor = [UIColor clearColor];
+    self.listView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _nearbyInfos = [NSMutableArray array];
     
     
@@ -207,6 +219,7 @@
     
     UILabel *pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-20, 5, 40, 30)];
     [pageLabel setText:nil];
+    [pageLabel setTextColor:[UIColor colorWithRed:234/255.0f green:234/255.0f  blue:234/255.0f  alpha:1.0f]];
     pageLabel.textAlignment = NSTextAlignmentCenter;
     
     [pageBar addSubview:pageLabel];
@@ -337,7 +350,7 @@
 //    return [[UIBarButtonItem alloc] initWithTitle:@"我的" style:UIBarButtonItemStylePlain target:self action:@selector(leftSideMenuButtonPressed:)];
     
     UIButton *btnNext1 =[[UIButton alloc] init];
-    [btnNext1 setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
+    [btnNext1 setImage:[UIImage imageNamed:@"menu1.png"] forState:UIControlStateNormal];
     
     btnNext1.frame = CGRectMake(15, 17, 35, 35);
     UIBarButtonItem *btnNext =[[UIBarButtonItem alloc] initWithCustomView:btnNext1];
@@ -491,19 +504,21 @@
 
         NSURL *url = [NSURL URLWithString:[myInfo.headImagePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
-        [leftMenuVC.headImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
+        UIImage *defaultHead;
+        if ([myInfo.sex isEqualToString:@"male"])
+        {
+            defaultHead = [UIImage imageNamed:@"boy.png"];
+            
+        }else if([myInfo.sex isEqualToString:@"female"])
+        {
+            defaultHead = [UIImage imageNamed:@"girl.png"];
+
+        }
+        
+        [leftMenuVC.headImage setImageWithURL:url placeholderImage:defaultHead];
 
         
-//        NSData *data = [NSData dataWithContentsOfURL:url];
-//        UIImage *img = [[UIImage alloc] initWithData:data];
-//
-//        if (img) {
-//            [leftMenuVC.headImage setImage:img];
-//        }else
-//        {
-//            [leftMenuVC.headImage setImage:[UIImage imageNamed:@"defaultHead.png"]];
-//
-//        }
+
         
         [leftMenuVC.usernameLabel setText:myInfo.username];
         [leftMenuVC.sexImg setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",myInfo.sex]]];
@@ -551,6 +566,11 @@
 -(void)uploadLocation
 {
  
+    if(![CLLocationManager locationServicesEnabled])
+    {
+        UIAlertView *alet = [[UIAlertView alloc] initWithTitle:@"错误" message:@"当前无法定位，请检查您的隐私设置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alet show];
+    }
     [_radarManager startAutoUpload:10];
    
 
@@ -580,8 +600,8 @@
                         }];
 
         //test
-//        [_mapView setCenterCoordinate:_myCoor];
-        [_mapView setCenterCoordinate: CLLocationCoordinate2DMake(34.226, 108.886)];
+        [_mapView setCenterCoordinate:_myCoor];
+//        [_mapView setCenterCoordinate: CLLocationCoordinate2DMake(34.226, 108.886)];
 
         [_mapView setZoomLevel:14.0];
 
@@ -606,6 +626,13 @@
 
 ///更新缓存附近信息数据并刷新地图显示
 - (void)setNearbyInfos:(NSMutableArray *)nearbyInfos {
+    
+    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+    if (hud) {
+        [hud hide:YES];
+
+    }
+
     [_nearbyInfos removeAllObjects];
     [_nearbyInfos addObjectsFromArray:nearbyInfos];
 
@@ -619,6 +646,7 @@
         annotation.coordinate = info.pt;
         annotation.title = info.userId;
         annotation.annoUserDistance = info.distance;
+        annotation.annoUserSex = [[info.extInfo componentsSeparatedByString:@"-"] objectAtIndex:0];
         
 //        NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,info.userId];
 //        
@@ -692,7 +720,14 @@
 -(void)searchDotaer
 {
     _curPageIndex = 0;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.tag = 345;
+    
+    hud.mode = MBProgressHUDModeIndeterminate;
+    
     [self nearbySearchWithPageIndex:_curPageIndex];
+    
+    
 
 }
 
@@ -720,8 +755,8 @@
     option.radius = _searchRadius;
     option.sortType = BMK_RADAR_SORT_TYPE_DISTANCE_FROM_NEAR_TO_FAR;
     //test
-//    option.centerPt = _myCoor;
-    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
+    option.centerPt = _myCoor;
+//    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
     option.pageIndex = pageIndex;
 
     
@@ -771,6 +806,7 @@
     if (nil == cell)
     {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"listCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     cell.backgroundColor = [UIColor clearColor];
 
@@ -782,7 +818,7 @@
 
     NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    [cell.userHead setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead"]];
+
     
     
 //    NSData *data = [NSData dataWithContentsOfURL:url];
@@ -800,6 +836,21 @@
     
     NSArray *userExtinfo = [info.extInfo componentsSeparatedByString:@"-"];
     if (userExtinfo.count>3) {
+        
+        UIImage *defaultHead;
+        if ([userExtinfo[0] isEqualToString:@"male"])
+        {
+            defaultHead = [UIImage imageNamed:@"boy.png"];
+            
+        }else if([userExtinfo[0] isEqualToString:@"female"])
+        {
+            defaultHead = [UIImage imageNamed:@"girl.png"];
+            
+        }
+        
+        [cell.userHead setImageWithURL:url placeholderImage:defaultHead];
+        
+        
         [cell.sexImage setImage:[UIImage imageNamed:userExtinfo[0]]];
         [cell.ageLabel setText:[NSString stringWithFormat:@"%@岁",userExtinfo[1]]];
         if ([userExtinfo[2] isEqualToString:@"no"]) {
@@ -850,10 +901,10 @@
         [lock lock];
         
         
-        info.pt =  CLLocationCoordinate2DMake(34.216, 108.896);//我的地理坐标
+//        info.pt =  CLLocationCoordinate2DMake(34.216, 108.896);//我的地理坐标
         
         //test
-        //    info.pt = _curLocation;
+        info.pt = _curLocation;
         [lock unlock];
         return info;
     }
@@ -977,26 +1028,23 @@
             [self.pageFront setEnabled:NO];
         }
         
-        [self.pageNumLabel setText:[NSString stringWithFormat:@"%d",_curPageIndex+1]];
+        [self.pageNumLabel setText:[NSString stringWithFormat:@"%ld",_curPageIndex+1]];
         
-//        if (_searchRadius<1000) {
-//            self.title = [NSString stringWithFormat:@"附近 < %d00米",(int)_searchRadius/100];
-//
-//        }else if(_searchRadius>10000000)
-//        {
-//            self.title = [NSString stringWithFormat:@"附近 > 500KM"];
-//
-//        }else
-//        {
-//            self.title = [NSString stringWithFormat:@"附近 < %dKM",((int)_searchRadius/1000) +1];
-//            
-//        }
-//        _curPageIndex = result.pageIndex;
+
+    }else if (error == BMK_RADAR_NETWOKR_ERROR || error == BMK_RADAR_NETWOKR_TIMEOUT || error == BMK_RADAR_PERMISSION_UNFINISHED)
+    {
+        UIAlertView *alet = [[UIAlertView alloc] initWithTitle:@"错误" message:@"当前网络不稳定，请重新搜索" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alet show];
+    }else if (error == BMK_RADAR_NO_RESULT)
+    {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
-//        NSLog(@"pageIndex---%ld  of %ld",_curPageIndex,result.pageNum);
-//        _curPageLabel.text = [NSString stringWithFormat:@"%d", (int)_curPageIndex + 1];
-//        _nextButton.enabled = (_curPageIndex + 1 != result.pageNum);
-//        _preButton.enabled = _curPageIndex != 0;
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"没有找到...";
+        
+        [hud hide:YES afterDelay:2.0];
+
+        self.nearbyInfos = nil;
     }
 }
 
@@ -1031,13 +1079,24 @@
     // 设置是否可以拖拽
     annotationView.draggable = NO;
     
-
+    double factor = annoRatio;
     
-    UIView *viewForImage=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 112*annoRatio, 144*annoRatio)];
-    UIImageView *backImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 112*annoRatio, 144*annoRatio)];
+    if (IS_IPHONE_5)
+    {
+        factor = annoRatio *1.2;
+    }else if (IS_IPHONE_6)
+    {
+        factor = annoRatio *1.3;
+    }else if (IS_IPHONE_6P)
+    {
+        factor = annoRatio *1.4;
+    }
+    
+    UIView *viewForImage=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 112*factor, 144*factor)];
+    UIImageView *backImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 112*factor, 144*factor)];
     [backImageView setImage:[UIImage imageNamed:@"MapAnnotationBG"]];
 
-    UIImageView *imageview=[[UIImageView alloc]initWithFrame:CGRectMake(3, 4, 112*annoRatio-6, 112*annoRatio-6)];
+     UIImageView *imageview=[[UIImageView alloc]initWithFrame:CGRectMake(8*factor, 8*factor, 96*factor, 96*factor)];
     [viewForImage addSubview:backImageView];
     [viewForImage addSubview:imageview];
 
@@ -1050,21 +1109,48 @@
         NSLog(@"anno.title---%@",anno.title);
         
         NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        [imageview setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
+        
+        UIImage *defaultHead;
+        if ([anno.annoUserSex isEqualToString:@"male"])
+        {
+            defaultHead = [UIImage imageNamed:@"boy.png"];
+            
+        }else if([anno.annoUserSex isEqualToString:@"female"])
+        {
+            defaultHead = [UIImage imageNamed:@"girl.png"];
+            
+        }
+        [imageview setImage:defaultHead];
 
+//        [imageview setImageWithURL:url placeholderImage:defaultHead ];
+//        [imageview setImageWithURL:url placeholderImage:defaultHead ];
+//        [imageview setImageWithURLRequest:[NSURLRequest requestWithURL:url]
+//                         placeholderImage:defaultHead
+//                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//                                      
+//                                      UIImageView *imageview2=[[UIImageView alloc]initWithFrame:CGRectMake(8*factor, 8*factor, 96*factor, 96*factor)];
+//                                      [viewForImage addSubview:imageview2];
+//                                      [imageview2 setImage:image];
+//
+//                                      annotationView.image = [self getImageFromView:viewForImage];
+//                                  }
+//                                  failure:nil];
+//
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *img = [[UIImage alloc] initWithData:data];
+        if (img) {
+            [imageview setImage:img];
 
-//        NSData *data = [NSData dataWithContentsOfURL:url];
-//        UIImage *img = [[UIImage alloc] initWithData:data];
-//        [imageview setImage:img];
+        }
 
         if (anno.containUsers.count>0) {
             
-            UIImageView *countBackImage = [[UIImageView alloc] initWithFrame:CGRectMake(112*annoRatio-6-15, 112*annoRatio-6-15, 15, 15)];
+            UIImageView *countBackImage = [[UIImageView alloc] initWithFrame:CGRectMake(112*factor-6-15, 112*factor-6-15, 15, 15)];
             [countBackImage setImage:[UIImage imageNamed:@"MapUserCountBG"]];
             
             [imageview addSubview:countBackImage];
             
-            UILabel *userCount = [[UILabel alloc] initWithFrame:CGRectMake(112*annoRatio-6-14, 112*annoRatio-6-13, 16, 16)];
+            UILabel *userCount = [[UILabel alloc] initWithFrame:CGRectMake(112*factor-6-14, 112*factor-6-13, 16, 16)];
             userCount.textAlignment = NSTextAlignmentCenter;
             [userCount setText:[NSString stringWithFormat:@"%u",anno.containUsers.count + 1 ]];
             userCount.font = [UIFont boldSystemFontOfSize:8.2f];

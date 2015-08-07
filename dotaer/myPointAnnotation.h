@@ -15,6 +15,7 @@
 @property (nonatomic ,strong) NSString *annoUserInfo;
 @property NSUInteger annoUserDistance;
 @property (nonatomic ,strong) NSString *annoUserGeo;
+@property (nonatomic ,strong) NSString *annoUserSex;
 
 
 @end

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="dotaerViewController">
             <connections>
+                <outlet property="backBlur" destination="ujF-3z-7ag" id="IpI-Cg-UZM"/>
                 <outlet property="view" destination="iN0-l3-epB" id="O7u-jf-oqE"/>
             </connections>
         </placeholder>
@@ -22,17 +23,25 @@
                         <constraint firstAttribute="height" constant="64" id="JoJ-rI-rDC"/>
                     </constraints>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dian2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ujF-3z-7ag">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="ujF-3z-7ag" secondAttribute="trailing" id="Aui-3b-lSw"/>
                 <constraint firstItem="9cM-ya-4hO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LGX-IH-VRj"/>
+                <constraint firstItem="ujF-3z-7ag" firstAttribute="top" secondItem="9cM-ya-4hO" secondAttribute="bottom" id="XPS-cA-oXP"/>
                 <constraint firstAttribute="trailing" secondItem="9cM-ya-4hO" secondAttribute="trailing" id="bqa-4H-C4q"/>
+                <constraint firstItem="ujF-3z-7ag" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="c11-mv-y86"/>
+                <constraint firstAttribute="bottom" secondItem="ujF-3z-7ag" secondAttribute="bottom" id="cgc-Mh-72L"/>
                 <constraint firstItem="9cM-ya-4hO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hjv-jZ-xqn"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>
     <resources>
+        <image name="dian2.png" width="185" height="511"/>
         <image name="封面1.png" width="1258" height="564"/>
     </resources>
 </document>

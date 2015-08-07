@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="favorViewController">
             <connections>
+                <outlet property="backIMG" destination="8pm-JU-Dbf" id="0Ir-IJ-hsQ"/>
                 <outlet property="favorTable" destination="xBd-bt-fCO" id="IEn-no-qbo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,9 +17,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xBd-bt-fCO">
-                    <rect key="frame" x="0.0" y="24" width="375" height="643"/>
-                    <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dian2.png" translatesAutoresizingMaskIntoConstraints="NO" id="8pm-JU-Dbf">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xBd-bt-fCO">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="7ed-M8-3Jn"/>
                         <outlet property="delegate" destination="-1" id="Unx-U7-IPT"/>
@@ -26,7 +30,21 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="8pm-JU-Dbf" secondAttribute="trailing" id="2u3-kr-69c"/>
+                <constraint firstAttribute="trailing" secondItem="xBd-bt-fCO" secondAttribute="trailing" id="DEC-fq-SGd"/>
+                <constraint firstItem="xBd-bt-fCO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cqx-NA-f9r"/>
+                <constraint firstItem="xBd-bt-fCO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ePf-ic-DuL"/>
+                <constraint firstItem="8pm-JU-Dbf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fa1-6J-yu3"/>
+                <constraint firstAttribute="bottom" secondItem="xBd-bt-fCO" secondAttribute="bottom" id="frR-IY-JMj"/>
+                <constraint firstItem="8pm-JU-Dbf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="h5Q-ID-b1e"/>
+                <constraint firstAttribute="bottom" secondItem="8pm-JU-Dbf" secondAttribute="bottom" id="qZ0-WG-7v5"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="43.5" y="180.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="dian2.png" width="185" height="511"/>
+    </resources>
 </document>

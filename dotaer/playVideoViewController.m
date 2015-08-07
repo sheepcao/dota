@@ -65,7 +65,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
 
-    
+    [manager.requestSerializer setTimeoutInterval:30];
+
     
     [manager POST:videoInfoService parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         

@@ -107,7 +107,7 @@
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-
+        [manager.requestSerializer setTimeoutInterval:30];
         
         NSTimeInterval stamp = [[NSDate date] timeIntervalSince1970];
 
@@ -433,7 +433,8 @@
    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
+    [manager.requestSerializer setTimeoutInterval:30];
+
     
     [manager POST:confirmLevel parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         

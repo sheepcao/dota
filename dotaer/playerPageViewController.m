@@ -17,7 +17,7 @@
 
 
 
-@interface playerPageViewController ()<UITextFieldDelegate,BMKGeoCodeSearchDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface playerPageViewController ()<UITextFieldDelegate,BMKGeoCodeSearchDelegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 @property (nonatomic,strong) UITextField *invisibleTextFiled;
 
 @property (nonatomic,strong) NSMutableDictionary *NoteInfoDic;
@@ -30,6 +30,7 @@
 @property (nonatomic,strong) NSMutableDictionary *MJinfoDic;
 @property (nonatomic,strong) NSMutableDictionary *playerLevelInfoDic;
 
+@property (nonatomic,strong) NSMutableDictionary *cellDic;
 
 
 @property (nonatomic,strong) BMKGeoCodeSearch *geocodesearch;
@@ -49,6 +50,8 @@
     
     [self.navigationController.navigationItem.backBarButtonItem setTitle:@"附近"];
     self.title = self.playerName;
+    
+    self.cellDic = [[NSMutableDictionary alloc] init];
     
     if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
     {
@@ -204,7 +207,7 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    //    [manager.requestSerializer setTimeoutInterval:25];  //Time out after 25 seconds
+    [manager.requestSerializer setTimeoutInterval:30];
     
     
     [manager POST:playerInfoService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
@@ -236,7 +239,7 @@
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
         UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-        [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+        [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
         
         UIVisualEffect *blurEffect;
         blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -281,7 +284,18 @@
 
     NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    [self.headImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
+    UIImage *defaultHead;
+    if ([[dic objectForKey:@"sex"] isEqualToString:@"male"])
+    {
+        defaultHead = [UIImage imageNamed:@"boy.png"];
+        
+    }else if([[dic objectForKey:@"sex"] isEqualToString:@"female"])
+    {
+        defaultHead = [UIImage imageNamed:@"girl.png"];
+        
+    }
+    
+    [self.headImage setImageWithURL:url placeholderImage:defaultHead];
 
 //    NSData *data = [NSData dataWithContentsOfURL:url];
 //    UIImage *img;
@@ -327,7 +341,7 @@
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
         UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-        [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+        [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
         
         UIVisualEffect *blurEffect;
         blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -344,7 +358,7 @@
         [self.ttBtn setEnabled:NO];
         [self.jjcBtn setEnabled:NO];
         [self.mjBtn setEnabled:NO];
-        [self.infoTableView setScrollEnabled:NO];
+//        [self.infoTableView setScrollEnabled:NO];
         
         [self.notConfirmLevel setHidden:NO];
         
@@ -359,7 +373,7 @@
         [self.ttBtn setEnabled:YES];
         [self.jjcBtn setEnabled:YES];
         [self.mjBtn setEnabled:YES];
-        [self.infoTableView setScrollEnabled:YES];
+//        [self.infoTableView setScrollEnabled:YES];
 
         
         if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
@@ -530,6 +544,8 @@
 
         NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
+        
+        
         [cell.userHeadImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
 
 //        NSData *data = [NSData dataWithContentsOfURL:url];
@@ -564,6 +580,9 @@
         
         if (indexPath.row == 3)
         {
+            
+
+            
             cell = [tableView dequeueReusableCellWithIdentifier:@"SysCell"];
             
             if( cell == nil){
@@ -605,7 +624,7 @@
                 if (noRecordView) {
                     [noRecordView removeFromSuperview];
                 }
-                if ([[self.TTinfoDic objectForKey:@"TTscore"] isKindOfClass:[NSNull class]]) {
+                if ([[self.TTinfoDic objectForKey:@"TTscore"] isKindOfClass:[NSNull class]] || ![self.TTinfoDic objectForKey:@"TTscore"]) {
                     
                     UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
                     noRecordView.tag = 888;
@@ -617,7 +636,7 @@
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
                     UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-                    [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+                    [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
                     
                     UIVisualEffect *blurEffect;
                     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -635,6 +654,7 @@
                 }else
                 {
                     
+                    
                     [achieveCell.scoreType setText:@"天梯积分"];
                     [achieveCell.scoreLabel setText:[self.TTinfoDic objectForKey:@"TTscore"]];
                     [achieveCell.totalGameLabel setText:[self.TTinfoDic objectForKey:@"TTtotal"]];
@@ -650,9 +670,11 @@
                     [achieveCell.winRatioLabel setText:[self.TTinfoDic objectForKey:@"TTWinRatio"]];
                     
                     
-                    [achieveCell.heroFirstImg setImage:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroFirst"]]];
-                    [achieveCell.heroSecondImg setImage:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroSecond"]]];
-                    [achieveCell.heroThirdImg setImage:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroThird"]]];
+                    [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroFirst"]]];
+                    [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroSecond"]]];
+                    [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroThird"]]];
+                    
+ 
                 }
 
             }else if(indexPath.row == 1)
@@ -662,7 +684,7 @@
                 if (noRecordView) {
                     [noRecordView removeFromSuperview];
                 }
-                if ([[self.JJCinfoDic objectForKey:@"JJCscore"] isKindOfClass:[NSNull class]]) {
+                if ([[self.JJCinfoDic objectForKey:@"JJCscore"] isKindOfClass:[NSNull class]] || ![self.JJCinfoDic objectForKey:@"JJCscore"]) {
                     
                     UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
                     noRecordView.tag = 888;
@@ -674,7 +696,7 @@
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
                     UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-                    [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+                    [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
                     
                     UIVisualEffect *blurEffect;
                     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -705,9 +727,10 @@
                 [achieveCell.winRatioLabel setText:[self.JJCinfoDic objectForKey:@"JJCWinRatio"]];
                 
                 
-                [achieveCell.heroFirstImg setImage:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroFirst"]]];
-                [achieveCell.heroSecondImg setImage:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroSecond"]]];
-                [achieveCell.heroThirdImg setImage:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroThird"]]];
+                [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroFirst"]]];
+                [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroSecond"]]];
+                [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroThird"]]];
+
                 }
                 
 
@@ -718,7 +741,7 @@
                 if (noRecordView) {
                     [noRecordView removeFromSuperview];
                 }
-                if ([[self.MJinfoDic objectForKey:@"MJscore"] isKindOfClass:[NSNull class]]) {
+                if ([[self.MJinfoDic objectForKey:@"MJscore"] isKindOfClass:[NSNull class]] || ![self.MJinfoDic objectForKey:@"MJscore"]) {
                     UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
                     noRecordView.tag = 888;
                     
@@ -729,7 +752,7 @@
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
                     UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-                    [backIMG setImage:[UIImage imageNamed:@"黑.png"]];
+                    [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
                     
                     UIVisualEffect *blurEffect;
                     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -762,9 +785,9 @@
                     [achieveCell.winRatioLabel setText:[self.MJinfoDic objectForKey:@"MJWinRatio"]];
                     
                     
-                    [achieveCell.heroFirstImg setImage:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroFirst"]]];
-                    [achieveCell.heroSecondImg setImage:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroSecond"]]];
-                    [achieveCell.heroThirdImg setImage:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroThird"]]];
+                    [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroFirst"]]];
+                    [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroSecond"]]];
+                    [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroThird"]]];
                 }
             }
 
@@ -785,16 +808,12 @@
     
 }
 
--(UIImage *)loadheroImg:(NSString *)ImgName
+-(NSURL *)loadheroImg:(NSString *)ImgName
 {
     NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://i.5211game.com/img/dota/hero/%@.jpg",ImgName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *img;
-    img = [[UIImage alloc] initWithData:data];
-    
-    return img;
+    return url;
 }
 
 -(void)visotorDetail:(UIButton *)sender
@@ -920,7 +939,8 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
+    [manager.requestSerializer setTimeoutInterval:30];
+
     [manager POST:noteService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
         [hud hide:YES];
@@ -965,7 +985,8 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
+    [manager.requestSerializer setTimeoutInterval:30];
+
     [manager POST:noteService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
         [hud hide:YES];
@@ -988,14 +1009,43 @@
         NSLog(@"JSON ERROR: %@",  operation.responseString);
         
         
-        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.notePadTable.frame.size.width, self.notePadTable.frame.size.height-35) ];
+        UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.notePadTable.frame.size.width, self.notePadTable.frame.size.height)];
+        noRecordView.tag = 555;
+        
+        UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, noRecordView.frame.size.width, 100)];
         [noRecordLabel setText:@"暂无留言"];
-        noRecordLabel.tag = 555;
+        [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
         noRecordLabel.textAlignment = NSTextAlignmentCenter;
-        [noRecordLabel setBackgroundColor:[UIColor whiteColor]];
+        [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
-        [self.notePadTable addSubview:noRecordLabel];
+        UIButton *noteBtn = [[UIButton alloc] initWithFrame:CGRectMake(noRecordView.frame.size.width/2-50, 150, 100,50)];
+        [noteBtn setTitle:@"抢沙发" forState:UIControlStateNormal];
+        [noteBtn addTarget:self action:@selector(leaveMesg) forControlEvents:UIControlEventTouchUpInside];
+        noteBtn.layer.cornerRadius = 10.0f;
+        noteBtn.layer.borderWidth = 0.7f;
+        noteBtn.layer.borderColor = [UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f].CGColor;
         
+        [noteBtn setTitleColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        
+        UIImageView *backIMG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, noRecordView.frame.size.width, noRecordView.frame.size.height)];
+        [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
+        
+        UIVisualEffect *blurEffect;
+        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *visualEffectView2;
+        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        visualEffectView2.frame = backIMG.bounds;
+        [backIMG addSubview:visualEffectView2];
+        
+        [noRecordView addSubview:backIMG];
+        [noRecordView addSubview:noRecordLabel];
+        [noRecordView addSubview:noteBtn];
+
+        
+        [self.notePadTable addSubview:noRecordView];
+        
+        
+       
         [hud hide:YES];
         
         
@@ -1099,7 +1149,6 @@
         [sender setTitle:@"已关注" forState:UIControlStateNormal];
         [self.favorBtn setBackgroundColor:[UIColor colorWithRed:49/255.0f green:185/255.0f blue:163/255.0f alpha:1.0f]];
 
-
     }
 }
 
@@ -1107,8 +1156,34 @@
     
     [self.view endEditing:YES];// this will do the trick
 
-        [self.infoTableView setContentOffset:CGPointMake(0, self.infoTableView.frame.size.height*(sender.tag-1))];
+    [self.infoTableView setContentOffset:CGPointMake(0, self.infoTableView.frame.size.height*(sender.tag-1))];
+    [self.ttBtn setSelected:NO];
+    [self.jjcBtn setSelected:NO];
+    [self.mjBtn setSelected:NO];
+    [self.noteBtn setSelected:NO];
+    [sender setSelected:YES];
+
 
     
 }
+
+//#pragma mark scroll delegate
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    
+//    if (scrollView == self.infoTableView)
+//    {
+//        int page = scrollView.contentOffset.y/scrollView.frame.size.height;
+//        
+//        UIButton *optionBtn = (UIButton *)[self.optinView viewWithTag:page+1];
+//        
+//        [self.ttBtn setSelected:NO];
+//        [self.jjcBtn setSelected:NO];
+//        [self.mjBtn setSelected:NO];
+//        [self.noteBtn setSelected:NO];
+//        
+//        [optionBtn setSelected:YES];
+//    }
+//  
+//}
 @end
