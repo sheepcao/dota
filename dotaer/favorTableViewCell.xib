@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名性别阿萨德撒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8or-Ll-eRT">
-                        <rect key="frame" x="72.5" y="27" width="188" height="21"/>
+                        <rect key="frame" x="72" y="27" width="188" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="188" id="10e-ak-EYi"/>
                             <constraint firstAttribute="height" constant="21" id="R19-FA-Odg"/>
@@ -25,6 +25,9 @@
                         <color key="textColor" red="0.8193359375" green="0.8193359375" blue="0.77328330592105265" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cycle2.png" translatesAutoresizingMaskIntoConstraints="NO" id="cTr-jf-M4Q">
+                        <rect key="frame" x="21" y="12" width="51.5" height="51.5"/>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z1x-gz-g2Y">
                         <rect key="frame" x="23" y="14" width="47.5" height="47.5"/>
                         <constraints>
@@ -43,13 +46,17 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="cTr-jf-M4Q" firstAttribute="height" secondItem="z1x-gz-g2Y" secondAttribute="height" constant="4" id="3Xv-0O-9rk"/>
                     <constraint firstItem="z1x-gz-g2Y" firstAttribute="top" secondItem="N4N-b0-OXS" secondAttribute="topMargin" constant="6" id="CUm-BP-nvi"/>
                     <constraint firstItem="8or-Ll-eRT" firstAttribute="centerY" secondItem="ppY-5G-L1h" secondAttribute="centerY" id="Cq8-Xa-LDW"/>
                     <constraint firstItem="ppY-5G-L1h" firstAttribute="trailing" secondItem="N4N-b0-OXS" secondAttribute="trailingMargin" constant="-8" id="GBP-Eh-aZe"/>
+                    <constraint firstItem="cTr-jf-M4Q" firstAttribute="width" secondItem="z1x-gz-g2Y" secondAttribute="width" constant="4" id="GeW-Ke-8Zc"/>
                     <constraint firstItem="8or-Ll-eRT" firstAttribute="top" secondItem="N4N-b0-OXS" secondAttribute="topMargin" constant="19" id="LD7-mH-Xd5"/>
                     <constraint firstItem="8or-Ll-eRT" firstAttribute="leading" secondItem="z1x-gz-g2Y" secondAttribute="trailing" constant="2" id="VRu-q6-5X2"/>
+                    <constraint firstItem="cTr-jf-M4Q" firstAttribute="centerX" secondItem="z1x-gz-g2Y" secondAttribute="centerX" id="bmh-4t-Vo6"/>
                     <constraint firstAttribute="centerY" secondItem="z1x-gz-g2Y" secondAttribute="centerY" constant="-3" id="dCS-fh-yej"/>
                     <constraint firstItem="z1x-gz-g2Y" firstAttribute="leading" secondItem="N4N-b0-OXS" secondAttribute="leadingMargin" constant="15" id="iPI-Kx-WrE"/>
+                    <constraint firstItem="cTr-jf-M4Q" firstAttribute="centerY" secondItem="z1x-gz-g2Y" secondAttribute="centerY" id="keW-Tx-lp0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -59,4 +66,7 @@
             <point key="canvasLocation" x="396" y="160"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="cycle2.png" width="200" height="200"/>
+    </resources>
 </document>

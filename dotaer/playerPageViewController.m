@@ -248,7 +248,7 @@
 
         UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
         [noRecordLabel setText:@"暂未战绩认证"];
-        [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+        [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
         noRecordLabel.textAlignment = NSTextAlignmentCenter;
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
@@ -351,7 +351,7 @@
         
         UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
         [noRecordLabel setText:@"暂未战绩认证"];
-        [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+        [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
         noRecordLabel.textAlignment = NSTextAlignmentCenter;
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
@@ -647,7 +647,7 @@
                     
                     UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
                     [noRecordLabel setText:@"暂未战斗"];
-                    [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
                     noRecordLabel.textAlignment = NSTextAlignmentCenter;
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
@@ -708,7 +708,7 @@
                     
                     UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
                     [noRecordLabel setText:@"暂未战斗"];
-                    [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
                     noRecordLabel.textAlignment = NSTextAlignmentCenter;
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
@@ -764,7 +764,7 @@
                     
                     UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
                     [noRecordLabel setText:@"暂未战斗"];
-                    [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
                     noRecordLabel.textAlignment = NSTextAlignmentCenter;
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
@@ -1032,7 +1032,7 @@
         
         UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, noRecordView.frame.size.width, 100)];
         [noRecordLabel setText:@"暂无留言"];
-        [noRecordLabel setTextColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:235/255.0f alpha:1.0f]];
+        [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
         noRecordLabel.textAlignment = NSTextAlignmentCenter;
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         

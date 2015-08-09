@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名性别阿萨德撒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tht-W4-f6e">
-                        <rect key="frame" x="80.5" y="20" width="145" height="21"/>
+                        <rect key="frame" x="80" y="20" width="145" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="145" id="6ha-Zg-936"/>
                             <constraint firstAttribute="height" constant="21" id="qts-yZ-Izg"/>
@@ -92,15 +92,22 @@
                             <constraint firstAttribute="height" constant="22" id="H4N-HJ-2vp"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" alpha="0.10000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cycle2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-vz-9YT">
+                        <rect key="frame" x="5" y="11.5" width="52.5" height="52.5"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tht-W4-f6e" firstAttribute="top" secondItem="vSU-t9-eAM" secondAttribute="topMargin" constant="12" id="1F5-1Z-HAy"/>
                     <constraint firstItem="vhv-Ed-EFu" firstAttribute="top" secondItem="vSU-t9-eAM" secondAttribute="topMargin" constant="6" id="7jV-va-FXI"/>
                     <constraint firstItem="AGW-eh-m1F" firstAttribute="centerY" secondItem="J44-ex-adw" secondAttribute="centerY" constant="-2" id="CLW-yb-jbW"/>
                     <constraint firstAttribute="centerY" secondItem="vhv-Ed-EFu" secondAttribute="centerY" constant="-3" id="FrR-TF-Nu8"/>
+                    <constraint firstItem="vhv-Ed-EFu" firstAttribute="height" secondItem="ad6-vz-9YT" secondAttribute="height" constant="-5" id="OqZ-B2-TQV"/>
+                    <constraint firstItem="vhv-Ed-EFu" firstAttribute="centerX" secondItem="ad6-vz-9YT" secondAttribute="centerX" id="PE7-1k-gpe"/>
                     <constraint firstItem="Lb6-Ai-7w2" firstAttribute="centerY" secondItem="43K-W5-qVK" secondAttribute="centerY" constant="-3" id="PIq-Bl-A7m"/>
                     <constraint firstItem="wdb-Er-dq9" firstAttribute="centerY" secondItem="J44-ex-adw" secondAttribute="centerY" id="QSP-a0-XrH"/>
+                    <constraint firstItem="vhv-Ed-EFu" firstAttribute="centerY" secondItem="ad6-vz-9YT" secondAttribute="centerY" id="RgD-Qm-VET"/>
                     <constraint firstItem="wdb-Er-dq9" firstAttribute="leading" secondItem="J44-ex-adw" secondAttribute="trailing" id="Sn5-SZ-Wnu"/>
+                    <constraint firstItem="vhv-Ed-EFu" firstAttribute="width" secondItem="ad6-vz-9YT" secondAttribute="width" constant="-5" id="SnB-fl-qD8"/>
                     <constraint firstItem="vhv-Ed-EFu" firstAttribute="leading" secondItem="vSU-t9-eAM" secondAttribute="leadingMargin" id="TrL-t3-ynE"/>
                     <constraint firstItem="AGW-eh-m1F" firstAttribute="top" secondItem="tht-W4-f6e" secondAttribute="bottom" constant="5" id="U4M-B0-khr"/>
                     <constraint firstItem="J44-ex-adw" firstAttribute="leading" secondItem="AGW-eh-m1F" secondAttribute="trailing" constant="2" id="UxV-bp-Ih6"/>
@@ -129,6 +136,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="cycle2.png" width="200" height="200"/>
         <image name="levelyes.png" width="64" height="64"/>
         <image name="male.png" width="19" height="22"/>
         <image name="position.png" width="50" height="50"/>

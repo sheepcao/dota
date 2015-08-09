@@ -38,6 +38,11 @@
     [self.sideBackImage addSubview:visualEffectView];
     
     
+    [self.usernameLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
+
+
+    
+    
     
 }
 
@@ -86,9 +91,11 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.textLabel.text = self.items[indexPath.row];
-    cell.textLabel.textColor = [UIColor colorWithRed:242/255.0f green:242/255.0f blue:242/255.0f alpha:1.0f];
+    cell.textLabel.textColor = [UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f];
+    
 
-    cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
+
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:15.5f];
     
     return cell;
 }

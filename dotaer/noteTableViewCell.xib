@@ -27,6 +27,9 @@
                         <rect key="frame" x="87" y="26" width="195" height="34"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cycyle1.png" translatesAutoresizingMaskIntoConstraints="NO" id="IVv-Ib-VLD" userLabel="cyc">
+                        <rect key="frame" x="27" y="6" width="48" height="48"/>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3O-Ot-khi">
                         <rect key="frame" x="29" y="8" width="44" height="44"/>
                     </imageView>
@@ -79,5 +82,6 @@
     </objects>
     <resources>
         <image name="chat_bubble_white.png" width="34" height="42"/>
+        <image name="cycyle1.png" width="200" height="200"/>
     </resources>
 </document>

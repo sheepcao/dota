@@ -261,6 +261,13 @@
 -(void)enableSearch:(UIButton *)btn
 {
     [btn setEnabled:YES];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.tag = 345;
+    
+    hud.mode = MBProgressHUDModeIndeterminate;
+    
+    [self nearbySearchWithPageIndex:_curPageIndex];
 }
 
 
@@ -627,11 +634,7 @@
 ///更新缓存附近信息数据并刷新地图显示
 - (void)setNearbyInfos:(NSMutableArray *)nearbyInfos {
     
-    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
-    if (hud) {
-        [hud hide:YES];
 
-    }
 
     [_nearbyInfos removeAllObjects];
     [_nearbyInfos addObjectsFromArray:nearbyInfos];
@@ -764,6 +767,11 @@
     if (res) {
         NSLog(@"get 成功");
     } else {
+        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+        if (hud) {
+            [hud hide:YES];
+            
+        }
         NSLog(@"get 失败");
     }
     
@@ -1004,6 +1012,12 @@
  *@param error 错误号，@see BMKRadarErrorCode
  */
 - (void)onGetRadarNearbySearchResult:(BMKRadarNearbyResult *)result error:(BMKRadarErrorCode)error {
+    
+    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+    if (hud) {
+        [hud hide:YES];
+        
+    }
     NSLog(@"onGetRadarNearbySearchResult  %d", error);
     if (error == BMK_RADAR_NO_ERROR) {
         NSLog(@"result.infoList.count:  %d", (int)result.infoList.count);

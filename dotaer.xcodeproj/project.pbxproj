@@ -67,6 +67,9 @@
 		A476A2551B75A1B2007D86C7 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A24C1B75A1B2007D86C7 /* title.png */; };
 		A476A2561B75A1B2007D86C7 /* tt0.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A24D1B75A1B2007D86C7 /* tt0.png */; };
 		A476A2571B75A1B2007D86C7 /* tt1.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A24E1B75A1B2007D86C7 /* tt1.png */; };
+		A476A2591B774086007D86C7 /* cycle.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A2581B774086007D86C7 /* cycle.png */; };
+		A476A25B1B77441B007D86C7 /* cycyle1.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A25A1B77441B007D86C7 /* cycyle1.png */; };
+		A476A25D1B774649007D86C7 /* cycle2.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A25C1B774649007D86C7 /* cycle2.png */; };
 		A478DAC91B70E5AB0005CB41 /* 黑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A478DAC81B70E5AB0005CB41 /* 黑.jpg */; };
 		A478DACF1B70E6EE0005CB41 /* 剑圣1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A478DACE1B70E6EE0005CB41 /* 剑圣1.jpg */; };
 		A4A166ED1B5CDEA8003A8F3D /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */; };
@@ -174,118 +177,6 @@
 		A4E02BEE1B6A1054000997C0 /* bottomBack2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E02BED1B6A1054000997C0 /* bottomBack2.png */; };
 		A4E02BF01B6A10CD000997C0 /* bottomBack3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E02BEF1B6A10CD000997C0 /* bottomBack3.png */; };
 		A4EFE8381B60910F00C11133 /* defaultHead.png in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8371B60910F00C11133 /* defaultHead.png */; };
-		A4EFE8B01B60D60A00C11133 /* 夜魔.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE83B1B60D60A00C11133 /* 夜魔.jpg */; };
-		A4EFE8B11B60D60A00C11133 /* 大屁股.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE83C1B60D60A00C11133 /* 大屁股.jpg */; };
-		A4EFE8B21B60D60A00C11133 /* 大鱼.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE83D1B60D60A00C11133 /* 大鱼.jpg */; };
-		A4EFE8B31B60D60A00C11133 /* 尸王.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE83E1B60D60A00C11133 /* 尸王.jpg */; };
-		A4EFE8B41B60D60A00C11133 /* 屠夫.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE83F1B60D60A00C11133 /* 屠夫.jpg */; };
-		A4EFE8B51B60D60A00C11133 /* 斧王.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8401B60D60A00C11133 /* 斧王.jpg */; };
-		A4EFE8B61B60D60A00C11133 /* 末日.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8411B60D60A00C11133 /* 末日.jpg */; };
-		A4EFE8B71B60D60A00C11133 /* 死骑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8421B60D60A00C11133 /* 死骑.jpg */; };
-		A4EFE8B81B60D60A00C11133 /* 沙王.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8431B60D60A00C11133 /* 沙王.jpg */; };
-		A4EFE8B91B60D60A00C11133 /* 混沌.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8441B60D60A00C11133 /* 混沌.jpg */; };
-		A4EFE8BA1B60D60A00C11133 /* 潮汐.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8451B60D60A00C11133 /* 潮汐.jpg */; };
-		A4EFE8BB1B60D60A00C11133 /* 狼人.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8461B60D60A00C11133 /* 狼人.jpg */; };
-		A4EFE8BC1B60D60A00C11133 /* 猛犸.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8471B60D60A00C11133 /* 猛犸.jpg */; };
-		A4EFE8BD1B60D60A00C11133 /* 白牛.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8481B60D60A00C11133 /* 白牛.jpg */; };
-		A4EFE8BE1B60D60A00C11133 /* 食尸鬼.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8491B60D60A00C11133 /* 食尸鬼.jpg */; };
-		A4EFE8BF1B60D60A00C11133 /* 骷髅王.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE84A1B60D60A00C11133 /* 骷髅王.jpg */; };
-		A4EFE8C01B60D60A00C11133 /* coco.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE84C1B60D60A00C11133 /* coco.jpg */; };
-		A4EFE8C11B60D60A00C11133 /* sven.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE84D1B60D60A00C11133 /* sven.jpg */; };
-		A4EFE8C21B60D60A00C11133 /* 人马.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE84E1B60D60A00C11133 /* 人马.jpg */; };
-		A4EFE8C31B60D60A00C11133 /* 伐木机.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE84F1B60D60A00C11133 /* 伐木机.jpg */; };
-		A4EFE8C41B60D60A00C11133 /* 全能.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8501B60D60A00C11133 /* 全能.jpg */; };
-		A4EFE8C51B60D60A00C11133 /* 兽王.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8511B60D60A00C11133 /* 兽王.jpg */; };
-		A4EFE8C61B60D60A00C11133 /* 军团.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8521B60D60A00C11133 /* 军团.jpg */; };
-		A4EFE8C71B60D60A00C11133 /* 凤凰.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8531B60D60A00C11133 /* 凤凰.jpg */; };
-		A4EFE8C81B60D60A00C11133 /* 发条.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8541B60D60A00C11133 /* 发条.jpg */; };
-		A4EFE8C91B60D60A00C11133 /* 大地之灵.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8551B60D60A00C11133 /* 大地之灵.jpg */; };
-		A4EFE8CA1B60D60A00C11133 /* 大树.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8561B60D60A00C11133 /* 大树.jpg */; };
-		A4EFE8CB1B60D60A00C11133 /* 大熊猫.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8571B60D60A00C11133 /* 大熊猫.jpg */; };
-		A4EFE8CC1B60D60A00C11133 /* 大牛.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8581B60D60A00C11133 /* 大牛.jpg */; };
-		A4EFE8CD1B60D60A00C11133 /* 小小.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8591B60D60A00C11133 /* 小小.jpg */; };
-		A4EFE8CE1B60D60A00C11133 /* 小精灵.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE85A1B60D60A00C11133 /* 小精灵.jpg */; };
-		A4EFE8CF1B60D60A00C11133 /* 撼地神牛.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE85B1B60D60A00C11133 /* 撼地神牛.jpg */; };
-		A4EFE8D01B60D60A00C11133 /* 海民.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE85C1B60D60A00C11133 /* 海民.jpg */; };
-		A4EFE8D11B60D60A00C11133 /* 炼金.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE85D1B60D60A00C11133 /* 炼金.jpg */; };
-		A4EFE8D21B60D60A00C11133 /* 神灵.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE85E1B60D60A00C11133 /* 神灵.jpg */; };
-		A4EFE8D31B60D60A00C11133 /* 钢背.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE85F1B60D60A00C11133 /* 钢背.jpg */; };
-		A4EFE8D41B60D60A00C11133 /* 龙骑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8601B60D60A00C11133 /* 龙骑.jpg */; };
-		A4EFE8D51B60D60A00C11133 /* pa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8621B60D60A00C11133 /* pa.jpg */; };
-		A4EFE8D61B60D60A00C11133 /* tb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8631B60D60A00C11133 /* tb.jpg */; };
-		A4EFE8D71B60D60A00C11133 /* ug.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8641B60D60A00C11133 /* ug.jpg */; };
-		A4EFE8D81B60D60A00C11133 /* vip.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8651B60D60A00C11133 /* vip.jpg */; };
-		A4EFE8D91B60D60A00C11133 /* 一姐.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8661B60D60A00C11133 /* 一姐.jpg */; };
-		A4EFE8DA1B60D60A00C11133 /* 剧毒.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8671B60D60A00C11133 /* 剧毒.jpg */; };
-		A4EFE8DB1B60D60A00C11133 /* 地卜.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8681B60D60A00C11133 /* 地卜.jpg */; };
-		A4EFE8DC1B60D60A00C11133 /* 小强.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8691B60D60A00C11133 /* 小强.jpg */; };
-		A4EFE8DD1B60D60A00C11133 /* 小鱼.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE86A1B60D60A00C11133 /* 小鱼.jpg */; };
-		A4EFE8DE1B60D60A00C11133 /* 影魔.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE86B1B60D60A00C11133 /* 影魔.jpg */; };
-		A4EFE8DF1B60D60A00C11133 /* 毒狗.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE86C1B60D60A00C11133 /* 毒狗.jpg */; };
-		A4EFE8E01B60D60A00C11133 /* 电棍.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE86D1B60D60A00C11133 /* 电棍.jpg */; };
-		A4EFE8E11B60D60A00C11133 /* 虚空.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE86E1B60D60A00C11133 /* 虚空.jpg */; };
-		A4EFE8E21B60D60A00C11133 /* 蚂蚁.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE86F1B60D60A00C11133 /* 蚂蚁.jpg */; };
-		A4EFE8E31B60D60A00C11133 /* 蜘蛛.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8701B60D60A00C11133 /* 蜘蛛.jpg */; };
-		A4EFE8E41B60D60A00C11133 /* 血魔.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8711B60D60A00C11133 /* 血魔.jpg */; };
-		A4EFE8E51B60D60A00C11133 /* 骨弓.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8721B60D60A00C11133 /* 骨弓.jpg */; };
-		A4EFE8E61B60D60A00C11133 /* bh.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8741B60D60A00C11133 /* bh.jpg */; };
-		A4EFE8E71B60D60A00C11133 /* df.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8751B60D60A00C11133 /* df.jpg */; };
-		A4EFE8E81B60D60A00C11133 /* jugg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8761B60D60A00C11133 /* jugg.jpg */; };
-		A4EFE8E91B60D60A00C11133 /* luna.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8771B60D60A00C11133 /* luna.jpg */; };
-		A4EFE8EA1B60D60A00C11133 /* pom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8781B60D60A00C11133 /* pom.jpg */; };
-		A4EFE8EB1B60D60A00C11133 /* sa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8791B60D60A00C11133 /* sa.jpg */; };
-		A4EFE8EC1B60D60A00C11133 /* ta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE87A1B60D60A00C11133 /* ta.jpg */; };
-		A4EFE8ED1B60D60A00C11133 /* 复仇.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE87B1B60D60A00C11133 /* 复仇.jpg */; };
-		A4EFE8EE1B60D60A00C11133 /* 小娜jia.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE87C1B60D60A00C11133 /* 小娜jia.jpg */; };
-		A4EFE8EF1B60D60A00C11133 /* 小德.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE87D1B60D60A00C11133 /* 小德.jpg */; };
-		A4EFE8F01B60D60A00C11133 /* 小黑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE87E1B60D60A00C11133 /* 小黑.jpg */; };
-		A4EFE8F11B60D60A00C11133 /* 巨魔.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE87F1B60D60A00C11133 /* 巨魔.jpg */; };
-		A4EFE8F21B60D60A00C11133 /* 拍拍.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8801B60D60A00C11133 /* 拍拍.jpg */; };
-		A4EFE8F31B60D60A00C11133 /* 水人.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8811B60D60A00C11133 /* 水人.jpg */; };
-		A4EFE8F41B60D60A00C11133 /* 火枪.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8821B60D60A00C11133 /* 火枪.jpg */; };
-		A4EFE8F51B60D60A00C11133 /* 灰烬之灵.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8831B60D60A00C11133 /* 灰烬之灵.jpg */; };
-		A4EFE8F61B60D60A00C11133 /* 猴子.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8841B60D60A00C11133 /* 猴子.jpg */; };
-		A4EFE8F71B60D60A00C11133 /* 飞机.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8851B60D60A00C11133 /* 飞机.jpg */; };
-		A4EFE8F81B60D60A00C11133 /* aa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8871B60D60A00C11133 /* aa.jpg */; };
-		A4EFE8F91B60D60A00C11133 /* lion.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8881B60D60A00C11133 /* lion.jpg */; };
-		A4EFE8FA1B60D60A00C11133 /* nec.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8891B60D60A00C11133 /* nec.jpg */; };
-		A4EFE8FB1B60D60A00C11133 /* qop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE88A1B60D60A00C11133 /* qop.jpg */; };
-		A4EFE8FC1B60D60A00C11133 /* 兔子.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE88B1B60D60A00C11133 /* 兔子.jpg */; };
-		A4EFE8FD1B60D60A00C11133 /* 冰龙.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE88C1B60D60A00C11133 /* 冰龙.jpg */; };
-		A4EFE8FE1B60D60A00C11133 /* 召唤.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE88D1B60D60A00C11133 /* 召唤.jpg */; };
-		A4EFE8FF1B60D60A00C11133 /* 巫医.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE88E1B60D60A00C11133 /* 巫医.jpg */; };
-		A4EFE9001B60D60A00C11133 /* 巫妖.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE88F1B60D60A00C11133 /* 巫妖.jpg */; };
-		A4EFE9011B60D60A00C11133 /* 暗影恶魔.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8901B60D60A00C11133 /* 暗影恶魔.jpg */; };
-		A4EFE9021B60D60A00C11133 /* 暗牧.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8911B60D60A00C11133 /* 暗牧.jpg */; };
-		A4EFE9031B60D60A00C11133 /* 术士.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8921B60D60A00C11133 /* 术士.jpg */; };
-		A4EFE9041B60D60A00C11133 /* 死亡先知.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8931B60D60A00C11133 /* 死亡先知.jpg */; };
-		A4EFE9051B60D60A00C11133 /* 死灵飞龙.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8941B60D60A00C11133 /* 死灵飞龙.jpg */; };
-		A4EFE9061B60D60A00C11133 /* 痛苦.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8951B60D60A00C11133 /* 痛苦.jpg */; };
-		A4EFE9071B60D60A00C11133 /* 老鹿.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8961B60D60A00C11133 /* 老鹿.jpg */; };
-		A4EFE9081B60D60A00C11133 /* 蝙蝠.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8971B60D60A00C11133 /* 蝙蝠.jpg */; };
-		A4EFE9091B60D60A00C11133 /* 谜团.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8981B60D60A00C11133 /* 谜团.jpg */; };
-		A4EFE90A1B60D60A00C11133 /* 骨法.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8991B60D60A00C11133 /* 骨法.jpg */; };
-		A4EFE90B1B60D60A00C11133 /* 黑鸟.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE89A1B60D60A00C11133 /* 黑鸟.jpg */; };
-		A4EFE90C1B60D60A00C11133 /* tk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE89C1B60D60A00C11133 /* tk.jpg */; };
-		A4EFE90D1B60D60A00C11133 /* 仙女龙.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE89D1B60D60A00C11133 /* 仙女龙.jpg */; };
-		A4EFE90E1B60D60A00C11133 /* 先知.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE89E1B60D60A00C11133 /* 先知.jpg */; };
-		A4EFE90F1B60D60A00C11133 /* 光法.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE89F1B60D60A00C11133 /* 光法.jpg */; };
-		A4EFE9101B60D60A00C11133 /* 冰女.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A01B60D60A00C11133 /* 冰女.jpg */; };
-		A4EFE9111B60D60A00C11133 /* 双头龙.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A11B60D60A00C11133 /* 双头龙.jpg */; };
-		A4EFE9121B60D60A00C11133 /* 圣骑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A21B60D60A00C11133 /* 圣骑.jpg */; };
-		A4EFE9131B60D60A00C11133 /* 天怒.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A31B60D60A00C11133 /* 天怒.jpg */; };
-		A4EFE9141B60D60A00C11133 /* 小y.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A41B60D60A00C11133 /* 小y.jpg */; };
-		A4EFE9151B60D60A00C11133 /* 小鹿.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A51B60D60A00C11133 /* 小鹿.jpg */; };
-		A4EFE9161B60D60A00C11133 /* 山丘.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A61B60D60A00C11133 /* 山丘.jpg */; };
-		A4EFE9171B60D60A00C11133 /* 拉比克.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A71B60D60A00C11133 /* 拉比克.jpg */; };
-		A4EFE9181B60D60A00C11133 /* 沉默.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A81B60D60A00C11133 /* 沉默.jpg */; };
-		A4EFE9191B60D60A00C11133 /* 火女.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8A91B60D60A00C11133 /* 火女.jpg */; };
-		A4EFE91A1B60D60A00C11133 /* 炸弹.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8AA1B60D60A00C11133 /* 炸弹.jpg */; };
-		A4EFE91B1B60D60A00C11133 /* 神谕.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8AB1B60D60A00C11133 /* 神谕.jpg */; };
-		A4EFE91C1B60D60A00C11133 /* 萨尔.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8AC1B60D60A00C11133 /* 萨尔.jpg */; };
-		A4EFE91D1B60D60A00C11133 /* 蓝猫.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8AD1B60D60A00C11133 /* 蓝猫.jpg */; };
-		A4EFE91E1B60D60A00C11133 /* 蓝胖.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8AE1B60D60A00C11133 /* 蓝胖.jpg */; };
-		A4EFE91F1B60D60A00C11133 /* 风行.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4EFE8AF1B60D60A00C11133 /* 风行.jpg */; };
 		A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */; };
 		A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */; };
 		A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB21B57599A00786FD1 /* 11logo2.png */; };
@@ -395,6 +286,9 @@
 		A476A24C1B75A1B2007D86C7 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		A476A24D1B75A1B2007D86C7 /* tt0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt0.png; sourceTree = "<group>"; };
 		A476A24E1B75A1B2007D86C7 /* tt1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tt1.png; sourceTree = "<group>"; };
+		A476A2581B774086007D86C7 /* cycle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cycle.png; sourceTree = "<group>"; };
+		A476A25A1B77441B007D86C7 /* cycyle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cycyle1.png; sourceTree = "<group>"; };
+		A476A25C1B774649007D86C7 /* cycle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cycle2.png; sourceTree = "<group>"; };
 		A478DAC81B70E5AB0005CB41 /* 黑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "黑.jpg"; sourceTree = "<group>"; };
 		A478DACE1B70E6EE0005CB41 /* 剑圣1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "剑圣1.jpg"; sourceTree = "<group>"; };
 		A4A166EB1B5CDEA8003A8F3D /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
@@ -527,118 +421,6 @@
 		A4E02BED1B6A1054000997C0 /* bottomBack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomBack2.png; sourceTree = "<group>"; };
 		A4E02BEF1B6A10CD000997C0 /* bottomBack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomBack3.png; sourceTree = "<group>"; };
 		A4EFE8371B60910F00C11133 /* defaultHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHead.png; sourceTree = "<group>"; };
-		A4EFE83B1B60D60A00C11133 /* 夜魔.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "夜魔.jpg"; sourceTree = "<group>"; };
-		A4EFE83C1B60D60A00C11133 /* 大屁股.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大屁股.jpg"; sourceTree = "<group>"; };
-		A4EFE83D1B60D60A00C11133 /* 大鱼.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大鱼.jpg"; sourceTree = "<group>"; };
-		A4EFE83E1B60D60A00C11133 /* 尸王.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "尸王.jpg"; sourceTree = "<group>"; };
-		A4EFE83F1B60D60A00C11133 /* 屠夫.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "屠夫.jpg"; sourceTree = "<group>"; };
-		A4EFE8401B60D60A00C11133 /* 斧王.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "斧王.jpg"; sourceTree = "<group>"; };
-		A4EFE8411B60D60A00C11133 /* 末日.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "末日.jpg"; sourceTree = "<group>"; };
-		A4EFE8421B60D60A00C11133 /* 死骑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "死骑.jpg"; sourceTree = "<group>"; };
-		A4EFE8431B60D60A00C11133 /* 沙王.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "沙王.jpg"; sourceTree = "<group>"; };
-		A4EFE8441B60D60A00C11133 /* 混沌.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "混沌.jpg"; sourceTree = "<group>"; };
-		A4EFE8451B60D60A00C11133 /* 潮汐.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "潮汐.jpg"; sourceTree = "<group>"; };
-		A4EFE8461B60D60A00C11133 /* 狼人.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "狼人.jpg"; sourceTree = "<group>"; };
-		A4EFE8471B60D60A00C11133 /* 猛犸.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "猛犸.jpg"; sourceTree = "<group>"; };
-		A4EFE8481B60D60A00C11133 /* 白牛.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "白牛.jpg"; sourceTree = "<group>"; };
-		A4EFE8491B60D60A00C11133 /* 食尸鬼.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "食尸鬼.jpg"; sourceTree = "<group>"; };
-		A4EFE84A1B60D60A00C11133 /* 骷髅王.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "骷髅王.jpg"; sourceTree = "<group>"; };
-		A4EFE84C1B60D60A00C11133 /* coco.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coco.jpg; sourceTree = "<group>"; };
-		A4EFE84D1B60D60A00C11133 /* sven.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sven.jpg; sourceTree = "<group>"; };
-		A4EFE84E1B60D60A00C11133 /* 人马.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "人马.jpg"; sourceTree = "<group>"; };
-		A4EFE84F1B60D60A00C11133 /* 伐木机.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "伐木机.jpg"; sourceTree = "<group>"; };
-		A4EFE8501B60D60A00C11133 /* 全能.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "全能.jpg"; sourceTree = "<group>"; };
-		A4EFE8511B60D60A00C11133 /* 兽王.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "兽王.jpg"; sourceTree = "<group>"; };
-		A4EFE8521B60D60A00C11133 /* 军团.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "军团.jpg"; sourceTree = "<group>"; };
-		A4EFE8531B60D60A00C11133 /* 凤凰.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "凤凰.jpg"; sourceTree = "<group>"; };
-		A4EFE8541B60D60A00C11133 /* 发条.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "发条.jpg"; sourceTree = "<group>"; };
-		A4EFE8551B60D60A00C11133 /* 大地之灵.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大地之灵.jpg"; sourceTree = "<group>"; };
-		A4EFE8561B60D60A00C11133 /* 大树.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大树.jpg"; sourceTree = "<group>"; };
-		A4EFE8571B60D60A00C11133 /* 大熊猫.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大熊猫.jpg"; sourceTree = "<group>"; };
-		A4EFE8581B60D60A00C11133 /* 大牛.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "大牛.jpg"; sourceTree = "<group>"; };
-		A4EFE8591B60D60A00C11133 /* 小小.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小小.jpg"; sourceTree = "<group>"; };
-		A4EFE85A1B60D60A00C11133 /* 小精灵.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小精灵.jpg"; sourceTree = "<group>"; };
-		A4EFE85B1B60D60A00C11133 /* 撼地神牛.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "撼地神牛.jpg"; sourceTree = "<group>"; };
-		A4EFE85C1B60D60A00C11133 /* 海民.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "海民.jpg"; sourceTree = "<group>"; };
-		A4EFE85D1B60D60A00C11133 /* 炼金.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "炼金.jpg"; sourceTree = "<group>"; };
-		A4EFE85E1B60D60A00C11133 /* 神灵.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "神灵.jpg"; sourceTree = "<group>"; };
-		A4EFE85F1B60D60A00C11133 /* 钢背.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "钢背.jpg"; sourceTree = "<group>"; };
-		A4EFE8601B60D60A00C11133 /* 龙骑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "龙骑.jpg"; sourceTree = "<group>"; };
-		A4EFE8621B60D60A00C11133 /* pa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pa.jpg; sourceTree = "<group>"; };
-		A4EFE8631B60D60A00C11133 /* tb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tb.jpg; sourceTree = "<group>"; };
-		A4EFE8641B60D60A00C11133 /* ug.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ug.jpg; sourceTree = "<group>"; };
-		A4EFE8651B60D60A00C11133 /* vip.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vip.jpg; sourceTree = "<group>"; };
-		A4EFE8661B60D60A00C11133 /* 一姐.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "一姐.jpg"; sourceTree = "<group>"; };
-		A4EFE8671B60D60A00C11133 /* 剧毒.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "剧毒.jpg"; sourceTree = "<group>"; };
-		A4EFE8681B60D60A00C11133 /* 地卜.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "地卜.jpg"; sourceTree = "<group>"; };
-		A4EFE8691B60D60A00C11133 /* 小强.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小强.jpg"; sourceTree = "<group>"; };
-		A4EFE86A1B60D60A00C11133 /* 小鱼.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小鱼.jpg"; sourceTree = "<group>"; };
-		A4EFE86B1B60D60A00C11133 /* 影魔.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "影魔.jpg"; sourceTree = "<group>"; };
-		A4EFE86C1B60D60A00C11133 /* 毒狗.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "毒狗.jpg"; sourceTree = "<group>"; };
-		A4EFE86D1B60D60A00C11133 /* 电棍.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "电棍.jpg"; sourceTree = "<group>"; };
-		A4EFE86E1B60D60A00C11133 /* 虚空.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "虚空.jpg"; sourceTree = "<group>"; };
-		A4EFE86F1B60D60A00C11133 /* 蚂蚁.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "蚂蚁.jpg"; sourceTree = "<group>"; };
-		A4EFE8701B60D60A00C11133 /* 蜘蛛.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "蜘蛛.jpg"; sourceTree = "<group>"; };
-		A4EFE8711B60D60A00C11133 /* 血魔.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "血魔.jpg"; sourceTree = "<group>"; };
-		A4EFE8721B60D60A00C11133 /* 骨弓.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "骨弓.jpg"; sourceTree = "<group>"; };
-		A4EFE8741B60D60A00C11133 /* bh.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bh.jpg; sourceTree = "<group>"; };
-		A4EFE8751B60D60A00C11133 /* df.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = df.jpg; sourceTree = "<group>"; };
-		A4EFE8761B60D60A00C11133 /* jugg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jugg.jpg; sourceTree = "<group>"; };
-		A4EFE8771B60D60A00C11133 /* luna.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = luna.jpg; sourceTree = "<group>"; };
-		A4EFE8781B60D60A00C11133 /* pom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pom.jpg; sourceTree = "<group>"; };
-		A4EFE8791B60D60A00C11133 /* sa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sa.jpg; sourceTree = "<group>"; };
-		A4EFE87A1B60D60A00C11133 /* ta.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ta.jpg; sourceTree = "<group>"; };
-		A4EFE87B1B60D60A00C11133 /* 复仇.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "复仇.jpg"; sourceTree = "<group>"; };
-		A4EFE87C1B60D60A00C11133 /* 小娜jia.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小娜jia.jpg"; sourceTree = "<group>"; };
-		A4EFE87D1B60D60A00C11133 /* 小德.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小德.jpg"; sourceTree = "<group>"; };
-		A4EFE87E1B60D60A00C11133 /* 小黑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小黑.jpg"; sourceTree = "<group>"; };
-		A4EFE87F1B60D60A00C11133 /* 巨魔.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "巨魔.jpg"; sourceTree = "<group>"; };
-		A4EFE8801B60D60A00C11133 /* 拍拍.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "拍拍.jpg"; sourceTree = "<group>"; };
-		A4EFE8811B60D60A00C11133 /* 水人.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "水人.jpg"; sourceTree = "<group>"; };
-		A4EFE8821B60D60A00C11133 /* 火枪.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "火枪.jpg"; sourceTree = "<group>"; };
-		A4EFE8831B60D60A00C11133 /* 灰烬之灵.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "灰烬之灵.jpg"; sourceTree = "<group>"; };
-		A4EFE8841B60D60A00C11133 /* 猴子.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "猴子.jpg"; sourceTree = "<group>"; };
-		A4EFE8851B60D60A00C11133 /* 飞机.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "飞机.jpg"; sourceTree = "<group>"; };
-		A4EFE8871B60D60A00C11133 /* aa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aa.jpg; sourceTree = "<group>"; };
-		A4EFE8881B60D60A00C11133 /* lion.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lion.jpg; sourceTree = "<group>"; };
-		A4EFE8891B60D60A00C11133 /* nec.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nec.jpg; sourceTree = "<group>"; };
-		A4EFE88A1B60D60A00C11133 /* qop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = qop.jpg; sourceTree = "<group>"; };
-		A4EFE88B1B60D60A00C11133 /* 兔子.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "兔子.jpg"; sourceTree = "<group>"; };
-		A4EFE88C1B60D60A00C11133 /* 冰龙.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "冰龙.jpg"; sourceTree = "<group>"; };
-		A4EFE88D1B60D60A00C11133 /* 召唤.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "召唤.jpg"; sourceTree = "<group>"; };
-		A4EFE88E1B60D60A00C11133 /* 巫医.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "巫医.jpg"; sourceTree = "<group>"; };
-		A4EFE88F1B60D60A00C11133 /* 巫妖.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "巫妖.jpg"; sourceTree = "<group>"; };
-		A4EFE8901B60D60A00C11133 /* 暗影恶魔.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "暗影恶魔.jpg"; sourceTree = "<group>"; };
-		A4EFE8911B60D60A00C11133 /* 暗牧.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "暗牧.jpg"; sourceTree = "<group>"; };
-		A4EFE8921B60D60A00C11133 /* 术士.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "术士.jpg"; sourceTree = "<group>"; };
-		A4EFE8931B60D60A00C11133 /* 死亡先知.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "死亡先知.jpg"; sourceTree = "<group>"; };
-		A4EFE8941B60D60A00C11133 /* 死灵飞龙.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "死灵飞龙.jpg"; sourceTree = "<group>"; };
-		A4EFE8951B60D60A00C11133 /* 痛苦.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "痛苦.jpg"; sourceTree = "<group>"; };
-		A4EFE8961B60D60A00C11133 /* 老鹿.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "老鹿.jpg"; sourceTree = "<group>"; };
-		A4EFE8971B60D60A00C11133 /* 蝙蝠.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "蝙蝠.jpg"; sourceTree = "<group>"; };
-		A4EFE8981B60D60A00C11133 /* 谜团.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "谜团.jpg"; sourceTree = "<group>"; };
-		A4EFE8991B60D60A00C11133 /* 骨法.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "骨法.jpg"; sourceTree = "<group>"; };
-		A4EFE89A1B60D60A00C11133 /* 黑鸟.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "黑鸟.jpg"; sourceTree = "<group>"; };
-		A4EFE89C1B60D60A00C11133 /* tk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tk.jpg; sourceTree = "<group>"; };
-		A4EFE89D1B60D60A00C11133 /* 仙女龙.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "仙女龙.jpg"; sourceTree = "<group>"; };
-		A4EFE89E1B60D60A00C11133 /* 先知.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "先知.jpg"; sourceTree = "<group>"; };
-		A4EFE89F1B60D60A00C11133 /* 光法.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "光法.jpg"; sourceTree = "<group>"; };
-		A4EFE8A01B60D60A00C11133 /* 冰女.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "冰女.jpg"; sourceTree = "<group>"; };
-		A4EFE8A11B60D60A00C11133 /* 双头龙.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "双头龙.jpg"; sourceTree = "<group>"; };
-		A4EFE8A21B60D60A00C11133 /* 圣骑.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "圣骑.jpg"; sourceTree = "<group>"; };
-		A4EFE8A31B60D60A00C11133 /* 天怒.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "天怒.jpg"; sourceTree = "<group>"; };
-		A4EFE8A41B60D60A00C11133 /* 小y.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小y.jpg"; sourceTree = "<group>"; };
-		A4EFE8A51B60D60A00C11133 /* 小鹿.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小鹿.jpg"; sourceTree = "<group>"; };
-		A4EFE8A61B60D60A00C11133 /* 山丘.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "山丘.jpg"; sourceTree = "<group>"; };
-		A4EFE8A71B60D60A00C11133 /* 拉比克.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "拉比克.jpg"; sourceTree = "<group>"; };
-		A4EFE8A81B60D60A00C11133 /* 沉默.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "沉默.jpg"; sourceTree = "<group>"; };
-		A4EFE8A91B60D60A00C11133 /* 火女.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "火女.jpg"; sourceTree = "<group>"; };
-		A4EFE8AA1B60D60A00C11133 /* 炸弹.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "炸弹.jpg"; sourceTree = "<group>"; };
-		A4EFE8AB1B60D60A00C11133 /* 神谕.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "神谕.jpg"; sourceTree = "<group>"; };
-		A4EFE8AC1B60D60A00C11133 /* 萨尔.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "萨尔.jpg"; sourceTree = "<group>"; };
-		A4EFE8AD1B60D60A00C11133 /* 蓝猫.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "蓝猫.jpg"; sourceTree = "<group>"; };
-		A4EFE8AE1B60D60A00C11133 /* 蓝胖.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "蓝胖.jpg"; sourceTree = "<group>"; };
-		A4EFE8AF1B60D60A00C11133 /* 风行.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "风行.jpg"; sourceTree = "<group>"; };
 		A4F51BAA1B57430B00786FD1 /* playerPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerPageViewController.h; sourceTree = "<group>"; };
 		A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerPageViewController.m; sourceTree = "<group>"; };
 		A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = playerPageViewController.xib; sourceTree = "<group>"; };
@@ -1148,178 +930,13 @@
 			name = login;
 			sourceTree = "<group>";
 		};
-		A4EFE8391B60D60A00C11133 /* Dota-英雄头像64x64 */ = {
-			isa = PBXGroup;
-			children = (
-				A4EFE83A1B60D60A00C11133 /* 力量天灾 */,
-				A4EFE84B1B60D60A00C11133 /* 力量近卫 */,
-				A4EFE8611B60D60A00C11133 /* 敏捷天灾 */,
-				A4EFE8731B60D60A00C11133 /* 敏捷近卫 */,
-				A4EFE8861B60D60A00C11133 /* 智力天灾 */,
-				A4EFE89B1B60D60A00C11133 /* 智力近卫 */,
-			);
-			path = "Dota-英雄头像64x64";
-			sourceTree = "<group>";
-		};
-		A4EFE83A1B60D60A00C11133 /* 力量天灾 */ = {
-			isa = PBXGroup;
-			children = (
-				A4EFE83B1B60D60A00C11133 /* 夜魔.jpg */,
-				A4EFE83C1B60D60A00C11133 /* 大屁股.jpg */,
-				A4EFE83D1B60D60A00C11133 /* 大鱼.jpg */,
-				A4EFE83E1B60D60A00C11133 /* 尸王.jpg */,
-				A4EFE83F1B60D60A00C11133 /* 屠夫.jpg */,
-				A4EFE8401B60D60A00C11133 /* 斧王.jpg */,
-				A4EFE8411B60D60A00C11133 /* 末日.jpg */,
-				A4EFE8421B60D60A00C11133 /* 死骑.jpg */,
-				A4EFE8431B60D60A00C11133 /* 沙王.jpg */,
-				A4EFE8441B60D60A00C11133 /* 混沌.jpg */,
-				A4EFE8451B60D60A00C11133 /* 潮汐.jpg */,
-				A4EFE8461B60D60A00C11133 /* 狼人.jpg */,
-				A4EFE8471B60D60A00C11133 /* 猛犸.jpg */,
-				A4EFE8481B60D60A00C11133 /* 白牛.jpg */,
-				A4EFE8491B60D60A00C11133 /* 食尸鬼.jpg */,
-				A4EFE84A1B60D60A00C11133 /* 骷髅王.jpg */,
-			);
-			path = "力量天灾";
-			sourceTree = "<group>";
-		};
-		A4EFE84B1B60D60A00C11133 /* 力量近卫 */ = {
-			isa = PBXGroup;
-			children = (
-				A4EFE84C1B60D60A00C11133 /* coco.jpg */,
-				A4EFE84D1B60D60A00C11133 /* sven.jpg */,
-				A4EFE84E1B60D60A00C11133 /* 人马.jpg */,
-				A4EFE84F1B60D60A00C11133 /* 伐木机.jpg */,
-				A4EFE8501B60D60A00C11133 /* 全能.jpg */,
-				A4EFE8511B60D60A00C11133 /* 兽王.jpg */,
-				A4EFE8521B60D60A00C11133 /* 军团.jpg */,
-				A4EFE8531B60D60A00C11133 /* 凤凰.jpg */,
-				A4EFE8541B60D60A00C11133 /* 发条.jpg */,
-				A4EFE8551B60D60A00C11133 /* 大地之灵.jpg */,
-				A4EFE8561B60D60A00C11133 /* 大树.jpg */,
-				A4EFE8571B60D60A00C11133 /* 大熊猫.jpg */,
-				A4EFE8581B60D60A00C11133 /* 大牛.jpg */,
-				A4EFE8591B60D60A00C11133 /* 小小.jpg */,
-				A4EFE85A1B60D60A00C11133 /* 小精灵.jpg */,
-				A4EFE85B1B60D60A00C11133 /* 撼地神牛.jpg */,
-				A4EFE85C1B60D60A00C11133 /* 海民.jpg */,
-				A4EFE85D1B60D60A00C11133 /* 炼金.jpg */,
-				A4EFE85E1B60D60A00C11133 /* 神灵.jpg */,
-				A4EFE85F1B60D60A00C11133 /* 钢背.jpg */,
-				A4EFE8601B60D60A00C11133 /* 龙骑.jpg */,
-			);
-			path = "力量近卫";
-			sourceTree = "<group>";
-		};
-		A4EFE8611B60D60A00C11133 /* 敏捷天灾 */ = {
-			isa = PBXGroup;
-			children = (
-				A4EFE8621B60D60A00C11133 /* pa.jpg */,
-				A4EFE8631B60D60A00C11133 /* tb.jpg */,
-				A4EFE8641B60D60A00C11133 /* ug.jpg */,
-				A4EFE8651B60D60A00C11133 /* vip.jpg */,
-				A4EFE8661B60D60A00C11133 /* 一姐.jpg */,
-				A4EFE8671B60D60A00C11133 /* 剧毒.jpg */,
-				A4EFE8681B60D60A00C11133 /* 地卜.jpg */,
-				A4EFE8691B60D60A00C11133 /* 小强.jpg */,
-				A4EFE86A1B60D60A00C11133 /* 小鱼.jpg */,
-				A4EFE86B1B60D60A00C11133 /* 影魔.jpg */,
-				A4EFE86C1B60D60A00C11133 /* 毒狗.jpg */,
-				A4EFE86D1B60D60A00C11133 /* 电棍.jpg */,
-				A4EFE86E1B60D60A00C11133 /* 虚空.jpg */,
-				A4EFE86F1B60D60A00C11133 /* 蚂蚁.jpg */,
-				A4EFE8701B60D60A00C11133 /* 蜘蛛.jpg */,
-				A4EFE8711B60D60A00C11133 /* 血魔.jpg */,
-				A4EFE8721B60D60A00C11133 /* 骨弓.jpg */,
-			);
-			path = "敏捷天灾";
-			sourceTree = "<group>";
-		};
-		A4EFE8731B60D60A00C11133 /* 敏捷近卫 */ = {
-			isa = PBXGroup;
-			children = (
-				A4EFE8741B60D60A00C11133 /* bh.jpg */,
-				A4EFE8751B60D60A00C11133 /* df.jpg */,
-				A4EFE8761B60D60A00C11133 /* jugg.jpg */,
-				A4EFE8771B60D60A00C11133 /* luna.jpg */,
-				A4EFE8781B60D60A00C11133 /* pom.jpg */,
-				A4EFE8791B60D60A00C11133 /* sa.jpg */,
-				A4EFE87A1B60D60A00C11133 /* ta.jpg */,
-				A4EFE87B1B60D60A00C11133 /* 复仇.jpg */,
-				A4EFE87C1B60D60A00C11133 /* 小娜jia.jpg */,
-				A4EFE87D1B60D60A00C11133 /* 小德.jpg */,
-				A4EFE87E1B60D60A00C11133 /* 小黑.jpg */,
-				A4EFE87F1B60D60A00C11133 /* 巨魔.jpg */,
-				A4EFE8801B60D60A00C11133 /* 拍拍.jpg */,
-				A4EFE8811B60D60A00C11133 /* 水人.jpg */,
-				A4EFE8821B60D60A00C11133 /* 火枪.jpg */,
-				A4EFE8831B60D60A00C11133 /* 灰烬之灵.jpg */,
-				A4EFE8841B60D60A00C11133 /* 猴子.jpg */,
-				A4EFE8851B60D60A00C11133 /* 飞机.jpg */,
-			);
-			path = "敏捷近卫";
-			sourceTree = "<group>";
-		};
-		A4EFE8861B60D60A00C11133 /* 智力天灾 */ = {
-			isa = PBXGroup;
-			children = (
-				A4EFE8871B60D60A00C11133 /* aa.jpg */,
-				A4EFE8881B60D60A00C11133 /* lion.jpg */,
-				A4EFE8891B60D60A00C11133 /* nec.jpg */,
-				A4EFE88A1B60D60A00C11133 /* qop.jpg */,
-				A4EFE88B1B60D60A00C11133 /* 兔子.jpg */,
-				A4EFE88C1B60D60A00C11133 /* 冰龙.jpg */,
-				A4EFE88D1B60D60A00C11133 /* 召唤.jpg */,
-				A4EFE88E1B60D60A00C11133 /* 巫医.jpg */,
-				A4EFE88F1B60D60A00C11133 /* 巫妖.jpg */,
-				A4EFE8901B60D60A00C11133 /* 暗影恶魔.jpg */,
-				A4EFE8911B60D60A00C11133 /* 暗牧.jpg */,
-				A4EFE8921B60D60A00C11133 /* 术士.jpg */,
-				A4EFE8931B60D60A00C11133 /* 死亡先知.jpg */,
-				A4EFE8941B60D60A00C11133 /* 死灵飞龙.jpg */,
-				A4EFE8951B60D60A00C11133 /* 痛苦.jpg */,
-				A4EFE8961B60D60A00C11133 /* 老鹿.jpg */,
-				A4EFE8971B60D60A00C11133 /* 蝙蝠.jpg */,
-				A4EFE8981B60D60A00C11133 /* 谜团.jpg */,
-				A4EFE8991B60D60A00C11133 /* 骨法.jpg */,
-				A4EFE89A1B60D60A00C11133 /* 黑鸟.jpg */,
-			);
-			path = "智力天灾";
-			sourceTree = "<group>";
-		};
-		A4EFE89B1B60D60A00C11133 /* 智力近卫 */ = {
-			isa = PBXGroup;
-			children = (
-				A4EFE89C1B60D60A00C11133 /* tk.jpg */,
-				A4EFE89D1B60D60A00C11133 /* 仙女龙.jpg */,
-				A4EFE89E1B60D60A00C11133 /* 先知.jpg */,
-				A4EFE89F1B60D60A00C11133 /* 光法.jpg */,
-				A4EFE8A01B60D60A00C11133 /* 冰女.jpg */,
-				A4EFE8A11B60D60A00C11133 /* 双头龙.jpg */,
-				A4EFE8A21B60D60A00C11133 /* 圣骑.jpg */,
-				A4EFE8A31B60D60A00C11133 /* 天怒.jpg */,
-				A4EFE8A41B60D60A00C11133 /* 小y.jpg */,
-				A4EFE8A51B60D60A00C11133 /* 小鹿.jpg */,
-				A4EFE8A61B60D60A00C11133 /* 山丘.jpg */,
-				A4EFE8A71B60D60A00C11133 /* 拉比克.jpg */,
-				A4EFE8A81B60D60A00C11133 /* 沉默.jpg */,
-				A4EFE8A91B60D60A00C11133 /* 火女.jpg */,
-				A4EFE8AA1B60D60A00C11133 /* 炸弹.jpg */,
-				A4EFE8AB1B60D60A00C11133 /* 神谕.jpg */,
-				A4EFE8AC1B60D60A00C11133 /* 萨尔.jpg */,
-				A4EFE8AD1B60D60A00C11133 /* 蓝猫.jpg */,
-				A4EFE8AE1B60D60A00C11133 /* 蓝胖.jpg */,
-				A4EFE8AF1B60D60A00C11133 /* 风行.jpg */,
-			);
-			path = "智力近卫";
-			sourceTree = "<group>";
-		};
 		A4F51BAF1B57593600786FD1 /* dotaImage */ = {
 			isa = PBXGroup;
 			children = (
-				A4EFE8391B60D60A00C11133 /* Dota-英雄头像64x64 */,
 				A4EFE8371B60910F00C11133 /* defaultHead.png */,
+				A476A2581B774086007D86C7 /* cycle.png */,
+				A476A25C1B774649007D86C7 /* cycle2.png */,
+				A476A25A1B77441B007D86C7 /* cycyle1.png */,
 				A4BDF16E1B749DBA000096C5 /* dian2.png */,
 				A4BDF16C1B748E68000096C5 /* dian.jpg */,
 				A478DAC81B70E5AB0005CB41 /* 黑.jpg */,
@@ -1413,202 +1030,93 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4EFE90E1B60D60A00C11133 /* 先知.jpg in Resources */,
-				A4EFE90D1B60D60A00C11133 /* 仙女龙.jpg in Resources */,
-				A4EFE8CD1B60D60A00C11133 /* 小小.jpg in Resources */,
-				A4EFE8D31B60D60A00C11133 /* 钢背.jpg in Resources */,
-				A4EFE8B41B60D60A00C11133 /* 屠夫.jpg in Resources */,
 				A42E829A1B66195E00A431E0 /* 封面1.png in Resources */,
 				A476A2531B75A1B2007D86C7 /* note0.png in Resources */,
 				A4DA561C1B4E4B860010C95D /* username.png in Resources */,
 				A4DA561B1B4E4B860010C95D /* password.png in Resources */,
-				A4EFE9001B60D60A00C11133 /* 巫妖.jpg in Resources */,
-				A4EFE9151B60D60A00C11133 /* 小鹿.jpg in Resources */,
-				A4EFE91D1B60D60A00C11133 /* 蓝猫.jpg in Resources */,
 				A4DDDA051B687C6100ACD655 /* mid_fujin@2x.png in Resources */,
-				A4EFE9161B60D60A00C11133 /* 山丘.jpg in Resources */,
 				A478DAC91B70E5AB0005CB41 /* 黑.jpg in Resources */,
-				A4EFE8C61B60D60A00C11133 /* 军团.jpg in Resources */,
 				A447FEFA1B4A84600053D982 /* listCell.xib in Resources */,
-				A4EFE8E81B60D60A00C11133 /* jugg.jpg in Resources */,
-				A4EFE8FC1B60D60A00C11133 /* 兔子.jpg in Resources */,
-				A4EFE9141B60D60A00C11133 /* 小y.jpg in Resources */,
-				A4EFE8FB1B60D60A00C11133 /* qop.jpg in Resources */,
-				A4EFE91E1B60D60A00C11133 /* 蓝胖.jpg in Resources */,
-				A4EFE8EF1B60D60A00C11133 /* 小德.jpg in Resources */,
-				A4EFE8FA1B60D60A00C11133 /* nec.jpg in Resources */,
-				A4EFE8B71B60D60A00C11133 /* 死骑.jpg in Resources */,
-				A4EFE9051B60D60A00C11133 /* 死灵飞龙.jpg in Resources */,
 				A4BDF1621B74464B000096C5 /* menu1.png in Resources */,
-				A4EFE8EC1B60D60A00C11133 /* ta.jpg in Resources */,
 				A4DA560F1B4E16F50010C95D /* dotaLogin.png in Resources */,
-				A4EFE8E21B60D60A00C11133 /* 蚂蚁.jpg in Resources */,
-				A4EFE8C51B60D60A00C11133 /* 兽王.jpg in Resources */,
 				A4BDF16F1B749DBA000096C5 /* dian2.png in Resources */,
-				A4EFE9091B60D60A00C11133 /* 谜团.jpg in Resources */,
-				A4EFE9011B60D60A00C11133 /* 暗影恶魔.jpg in Resources */,
 				A4DA56281B4E73660010C95D /* male@2x.png in Resources */,
-				A4EFE9131B60D60A00C11133 /* 天怒.jpg in Resources */,
-				A4EFE8BC1B60D60A00C11133 /* 猛犸.jpg in Resources */,
-				A4EFE8D81B60D60A00C11133 /* vip.jpg in Resources */,
-				A4EFE91F1B60D60A00C11133 /* 风行.jpg in Resources */,
-				A4EFE8D11B60D60A00C11133 /* 炼金.jpg in Resources */,
-				A4EFE8B61B60D60A00C11133 /* 末日.jpg in Resources */,
 				A4EFE8381B60910F00C11133 /* defaultHead.png in Resources */,
-				A4EFE8B51B60D60A00C11133 /* 斧王.jpg in Resources */,
-				A4EFE8D51B60D60A00C11133 /* pa.jpg in Resources */,
-				A4EFE8F71B60D60A00C11133 /* 飞机.jpg in Resources */,
-				A4EFE9121B60D60A00C11133 /* 圣骑.jpg in Resources */,
-				A4EFE8DF1B60D60A00C11133 /* 毒狗.jpg in Resources */,
 				A4BDF1691B748B31000096C5 /* 流浪.jpg in Resources */,
 				A4319D9F1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg in Resources */,
-				A4EFE8D91B60D60A00C11133 /* 一姐.jpg in Resources */,
-				A4EFE8F41B60D60A00C11133 /* 火枪.jpg in Resources */,
 				A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */,
-				A4EFE8E91B60D60A00C11133 /* luna.jpg in Resources */,
-				A4EFE8FE1B60D60A00C11133 /* 召唤.jpg in Resources */,
-				A4EFE9111B60D60A00C11133 /* 双头龙.jpg in Resources */,
-				A4EFE8B11B60D60A00C11133 /* 大屁股.jpg in Resources */,
-				A4EFE8E41B60D60A00C11133 /* 血魔.jpg in Resources */,
-				A4EFE8E71B60D60A00C11133 /* df.jpg in Resources */,
 				A42E82A01B662AD600A431E0 /* chat_bar.png in Resources */,
 				A4E02BEA1B69F736000997C0 /* levelyes.png in Resources */,
 				A4DA561F1B4E4C700010C95D /* password1.png in Resources */,
 				A4B8A7551B6B5C1C00BFEDDC /* ShareSDKFlatShareViewUI.bundle in Resources */,
-				A4EFE90F1B60D60A00C11133 /* 光法.jpg in Resources */,
 				A476A2551B75A1B2007D86C7 /* title.png in Resources */,
 				A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */,
 				A447FEC31B4A1BBB0053D982 /* loginViewController.xib in Resources */,
-				A4EFE8DA1B60D60A00C11133 /* 剧毒.jpg in Resources */,
 				A478DACF1B70E6EE0005CB41 /* 剑圣1.jpg in Resources */,
 				A476A2521B75A1B2007D86C7 /* MJ1.png in Resources */,
 				A4DF4EDE1B58DB6E004E9F59 /* noteTableViewCell.xib in Resources */,
 				A476A2501B75A1B2007D86C7 /* JJC1.png in Resources */,
 				A42E829E1B6621E000A431E0 /* thumb.png in Resources */,
-				A4EFE8C11B60D60A00C11133 /* sven.jpg in Resources */,
 				A4E02BEC1B6A0F0E000997C0 /* bottomBack.png in Resources */,
-				A4EFE9021B60D60A00C11133 /* 暗牧.jpg in Resources */,
-				A4EFE8EB1B60D60A00C11133 /* sa.jpg in Resources */,
 				A4BDF1611B74464B000096C5 /* girl.png in Resources */,
 				A4E02BDE1B69C752000997C0 /* position.png in Resources */,
 				A476A2561B75A1B2007D86C7 /* tt0.png in Resources */,
-				A4EFE8B01B60D60A00C11133 /* 夜魔.jpg in Resources */,
 				A4E02BF01B6A10CD000997C0 /* bottomBack3.png in Resources */,
-				A4EFE8F21B60D60A00C11133 /* 拍拍.jpg in Resources */,
-				A4EFE8DC1B60D60A00C11133 /* 小强.jpg in Resources */,
-				A4EFE8DD1B60D60A00C11133 /* 小鱼.jpg in Resources */,
 				A4B8A74C1B6B5C1C00BFEDDC /* ShareSDKLocalizable.strings in Resources */,
-				A4EFE8CE1B60D60A00C11133 /* 小精灵.jpg in Resources */,
-				A4EFE8C21B60D60A00C11133 /* 人马.jpg in Resources */,
 				A4CC4AAC1B672ABA00950537 /* videoViewController.xib in Resources */,
 				A476A24F1B75A1B2007D86C7 /* jjc0.png in Resources */,
-				A4EFE8D61B60D60A00C11133 /* tb.jpg in Resources */,
 				A4E02BE91B69F736000997C0 /* levelno.png in Resources */,
-				A4EFE8CB1B60D60A00C11133 /* 大熊猫.jpg in Resources */,
-				A4EFE8F01B60D60A00C11133 /* 小黑.jpg in Resources */,
 				A4DA56241B4E73280010C95D /* select.png in Resources */,
-				A4EFE9031B60D60A00C11133 /* 术士.jpg in Resources */,
 				A476A2571B75A1B2007D86C7 /* tt1.png in Resources */,
+				A476A25D1B774649007D86C7 /* cycle2.png in Resources */,
 				A4DA56201B4E4C700010C95D /* username1.png in Resources */,
-				A4EFE8D21B60D60A00C11133 /* 神灵.jpg in Resources */,
 				A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */,
-				A4EFE8EA1B60D60A00C11133 /* pom.jpg in Resources */,
 				A4DDDA0D1B68A64900ACD655 /* sideBack.png in Resources */,
-				A4EFE90A1B60D60A00C11133 /* 骨法.jpg in Resources */,
-				A4EFE8B21B60D60A00C11133 /* 大鱼.jpg in Resources */,
 				A4B8A7671B6B600100BFEDDC /* ICON 512.png in Resources */,
 				A476A2511B75A1B2007D86C7 /* MJ0.png in Resources */,
-				A4EFE8DB1B60D60A00C11133 /* 地卜.jpg in Resources */,
-				A4EFE8E61B60D60A00C11133 /* bh.jpg in Resources */,
-				A4EFE8BA1B60D60A00C11133 /* 潮汐.jpg in Resources */,
 				A4D13E1B1B4CEBE300C06A2B /* Default-568h@2x.png in Resources */,
 				A447FEE41B4A48600053D982 /* myMenuViewController.xib in Resources */,
-				A4EFE8BE1B60D60A00C11133 /* 食尸鬼.jpg in Resources */,
-				A4EFE9081B60D60A00C11133 /* 蝙蝠.jpg in Resources */,
 				A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */,
 				A42E82A21B662B5400A431E0 /* chat_bg_left@2x.png in Resources */,
-				A4EFE9191B60D60A00C11133 /* 火女.jpg in Resources */,
-				A4EFE8D41B60D60A00C11133 /* 龙骑.jpg in Resources */,
 				A4BA89B51B70A7A000B94279 /* achieveTableViewCell.xib in Resources */,
-				A4EFE8BB1B60D60A00C11133 /* 狼人.jpg in Resources */,
 				A4BDF1641B74464B000096C5 /* tt2.png in Resources */,
-				A4EFE8EE1B60D60A00C11133 /* 小娜jia.jpg in Resources */,
-				A4EFE8D01B60D60A00C11133 /* 海民.jpg in Resources */,
-				A4EFE8C71B60D60A00C11133 /* 凤凰.jpg in Resources */,
 				A4B8A7521B6B5C1C00BFEDDC /* WeiboSDK.bundle in Resources */,
 				A4BDF16D1B748E68000096C5 /* dian.jpg in Resources */,
-				A4EFE9061B60D60A00C11133 /* 痛苦.jpg in Resources */,
-				A4EFE8C81B60D60A00C11133 /* 发条.jpg in Resources */,
-				A4EFE9101B60D60A00C11133 /* 冰女.jpg in Resources */,
-				A4EFE8C41B60D60A00C11133 /* 全能.jpg in Resources */,
-				A4EFE90C1B60D60A00C11133 /* tk.jpg in Resources */,
-				A4EFE8FF1B60D60A00C11133 /* 巫医.jpg in Resources */,
-				A4EFE91C1B60D60A00C11133 /* 萨尔.jpg in Resources */,
+				A476A2591B774086007D86C7 /* cycle.png in Resources */,
 				A4B8A7221B6B562400BFEDDC /* favorTableViewCell.xib in Resources */,
 				A4DA56271B4E73660010C95D /* female@2x.png in Resources */,
-				A4EFE8BF1B60D60A00C11133 /* 骷髅王.jpg in Resources */,
-				A4EFE8B81B60D60A00C11133 /* 沙王.jpg in Resources */,
 				A4F96E021B7332AE00BEADDD /* eye3.png in Resources */,
-				A4EFE8B91B60D60A00C11133 /* 混沌.jpg in Resources */,
-				A4EFE8F81B60D60A00C11133 /* aa.jpg in Resources */,
-				A4EFE9071B60D60A00C11133 /* 老鹿.jpg in Resources */,
-				A4EFE90B1B60D60A00C11133 /* 黑鸟.jpg in Resources */,
-				A4EFE8CA1B60D60A00C11133 /* 大树.jpg in Resources */,
 				A4D13E1D1B4CEBE300C06A2B /* Default@2x.png in Resources */,
 				A476A2541B75A1B2007D86C7 /* note1.png in Resources */,
-				A4EFE8BD1B60D60A00C11133 /* 白牛.jpg in Resources */,
 				A4CC54181B674EAD00950537 /* youku_play.html in Resources */,
-				A4EFE8B31B60D60A00C11133 /* 尸王.jpg in Resources */,
-				A4EFE8C91B60D60A00C11133 /* 大地之灵.jpg in Resources */,
 				A4BDF16B1B748D9D000096C5 /* 守卫.png in Resources */,
 				A4BDF1651B74464B000096C5 /* tt3.png in Resources */,
 				A447FEAA1B4A198B0053D982 /* LaunchScreen.xib in Resources */,
-				A4EFE8F91B60D60A00C11133 /* lion.jpg in Resources */,
 				A42E82A41B662EA800A431E0 /* chat_bubble_white@2x.png in Resources */,
-				A4EFE9181B60D60A00C11133 /* 沉默.jpg in Resources */,
 				A4CC4AB61B674A3800950537 /* playVideoViewController.xib in Resources */,
 				A4B8A74D1B6B5C1C00BFEDDC /* Resource.bundle in Resources */,
 				A4B8A71D1B6B515100BFEDDC /* favorViewController.xib in Resources */,
 				A447FEF71B4A80C00053D982 /* mapapi.bundle in Resources */,
 				A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */,
-				A4EFE8F61B60D60A00C11133 /* 猴子.jpg in Resources */,
-				A4EFE8F31B60D60A00C11133 /* 水人.jpg in Resources */,
 				A4CC541D1B67609C00950537 /* start.html in Resources */,
+				A476A25B1B77441B007D86C7 /* cycyle1.png in Resources */,
 				A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */,
 				A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */,
 				A4DA56231B4E73280010C95D /* select_selected.png in Resources */,
 				A4CC4AB11B672B3300950537 /* videoTableViewCell.xib in Resources */,
-				A4EFE91A1B60D60A00C11133 /* 炸弹.jpg in Resources */,
 				A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */,
-				A4EFE8CC1B60D60A00C11133 /* 大牛.jpg in Resources */,
-				A4EFE8E51B60D60A00C11133 /* 骨弓.jpg in Resources */,
-				A4EFE8D71B60D60A00C11133 /* ug.jpg in Resources */,
-				A4EFE8E31B60D60A00C11133 /* 蜘蛛.jpg in Resources */,
 				A4D13E811B4D1A2300C06A2B /* SideMenuViewController.xib in Resources */,
 				A4BDF1631B74464B000096C5 /* list.png in Resources */,
-				A4EFE9041B60D60A00C11133 /* 死亡先知.jpg in Resources */,
 				A447FEE81B4A4AF80053D982 /* dotaerViewController.xib in Resources */,
-				A4EFE8E11B60D60A00C11133 /* 虚空.jpg in Resources */,
-				A4EFE8ED1B60D60A00C11133 /* 复仇.jpg in Resources */,
-				A4EFE8E01B60D60A00C11133 /* 电棍.jpg in Resources */,
-				A4EFE91B1B60D60A00C11133 /* 神谕.jpg in Resources */,
 				A4B8A7151B6B073900BFEDDC /* search1.png in Resources */,
-				A4EFE8F11B60D60A00C11133 /* 巨魔.jpg in Resources */,
-				A4EFE8FD1B60D60A00C11133 /* 冰龙.jpg in Resources */,
 				A4E02BEE1B6A1054000997C0 /* bottomBack2.png in Resources */,
 				A4DDDA041B687C6100ACD655 /* mid_ditu.png in Resources */,
 				A42E829C1B661B1C00A431E0 /* moon.png in Resources */,
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
-				A4EFE8CF1B60D60A00C11133 /* 撼地神牛.jpg in Resources */,
-				A4EFE8C31B60D60A00C11133 /* 伐木机.jpg in Resources */,
-				A4EFE8DE1B60D60A00C11133 /* 影魔.jpg in Resources */,
 				A4D13E1C1B4CEBE300C06A2B /* Default.png in Resources */,
-				A4EFE9171B60D60A00C11133 /* 拉比克.jpg in Resources */,
 				A4B8A7501B6B5C1C00BFEDDC /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4BDF1601B74464B000096C5 /* boy.png in Resources */,
 				A412D0071B4F5A74006180A0 /* cake.png in Resources */,
-				A4EFE8F51B60D60A00C11133 /* 灰烬之灵.jpg in Resources */,
-				A4EFE8C01B60D60A00C11133 /* coco.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
