@@ -389,6 +389,8 @@
         [self.ttBtn setEnabled:YES];
         [self.jjcBtn setEnabled:YES];
         [self.mjBtn setEnabled:YES];
+        [self.ttBtn setSelected:YES];
+
 //        [self.infoTableView setScrollEnabled:YES];
 
         

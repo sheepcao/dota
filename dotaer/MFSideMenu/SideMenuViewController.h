@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *sideBackImage;
 -(NSString *)requestSignature;
 - (IBAction)changeHeadImg:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *cycleIMG;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginOut_upConstrains;
 @end

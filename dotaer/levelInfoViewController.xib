@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -18,6 +17,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="juggBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="4B4-Bk-Mt5">
+                    <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-my-Vqz">
                     <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                     <subviews>
@@ -61,11 +63,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="4B4-Bk-Mt5" firstAttribute="centerX" secondItem="Hd6-zO-i8x" secondAttribute="centerX" id="CZq-nZ-nK2"/>
                 <constraint firstAttribute="trailing" secondItem="ucj-my-Vqz" secondAttribute="trailing" id="PNr-RA-MuK"/>
+                <constraint firstItem="4B4-Bk-Mt5" firstAttribute="centerY" secondItem="Hd6-zO-i8x" secondAttribute="centerY" id="Q66-RH-khs"/>
                 <constraint firstItem="ucj-my-Vqz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="X1E-Us-W22"/>
                 <constraint firstItem="Hd6-zO-i8x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YTc-zx-CVU"/>
                 <constraint firstItem="Hd6-zO-i8x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Yrs-aS-Mh7"/>
+                <constraint firstItem="4B4-Bk-Mt5" firstAttribute="height" secondItem="Hd6-zO-i8x" secondAttribute="height" id="a6e-gw-YnX"/>
                 <constraint firstAttribute="bottom" secondItem="ucj-my-Vqz" secondAttribute="bottom" id="cjK-h1-igF"/>
+                <constraint firstItem="4B4-Bk-Mt5" firstAttribute="width" secondItem="Hd6-zO-i8x" secondAttribute="width" id="crj-1a-jf8"/>
                 <constraint firstAttribute="trailing" secondItem="Hd6-zO-i8x" secondAttribute="trailing" id="n2z-PH-S5m"/>
                 <constraint firstItem="ucj-my-Vqz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uAr-An-0mn"/>
                 <constraint firstItem="ucj-my-Vqz" firstAttribute="top" secondItem="Hd6-zO-i8x" secondAttribute="bottom" id="zSz-th-dHS"/>
@@ -78,4 +84,7 @@
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="juggBack.png" width="506" height="733"/>
+    </resources>
 </document>

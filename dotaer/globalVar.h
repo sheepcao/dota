@@ -47,7 +47,7 @@
 #import "UIImageView+AFNetworking.h"
 
 
-#define REVIEW_URL @"https://itunes.apple.com/us/app/anime-face/id983454917?ls=1&mt=8"
+#define REVIEW_URL @"https://itunes.apple.com/cn/app/dota-quan-zi/id1028906602?ls=1&mt=8"
 #define VERSIONNUMBER   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define ADMOB_ID @"ca-app-pub-3074684817942615/4321450681"
 

@@ -412,12 +412,12 @@
     
     UIImage *icon = [UIImage imageNamed:@"ICON 512"];
     
-    id<ISSContent> publishContent = [ShareSDK content:@"dota圈子"
-                                       defaultContent:NSLocalizedString(@"",nil)
+    id<ISSContent> publishContent = [ShareSDK content:@"dota圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。"
+                                       defaultContent:NSLocalizedString(@"dota圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。。",nil)
                                                 image:[ShareSDK pngImageWithImage:icon]
                                                 title:@"dota圈子"
                                                   url:REVIEW_URL
-                                          description:NSLocalizedString(@"轻松组队，开黑必备！\n一个真实的dota社交圈子。",nil)
+                                          description:NSLocalizedString(@"dota圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。",nil)
                                             mediaType:SSPublishContentMediaTypeNews];
     //创建弹出菜单容器
     id<ISSContainer> container = [ShareSDK container];

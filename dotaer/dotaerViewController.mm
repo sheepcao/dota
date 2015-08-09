@@ -262,12 +262,30 @@
 {
     [btn setEnabled:YES];
     
+    [self performSelector:@selector(firstSearch) withObject:nil afterDelay:0.8];
+
+    
+
+}
+-(void)firstSearch
+{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.tag = 345;
     
     hud.mode = MBProgressHUDModeIndeterminate;
+    [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:8.0f];;
+
     
     [self nearbySearchWithPageIndex:_curPageIndex];
+}
+
+-(void)dismissHUD
+{
+    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+    if (hud) {
+        [hud hide:YES];
+        
+    }
 }
 
 
@@ -321,6 +339,8 @@
                 [leftMenuVC.headBtn setHidden:YES];
                 [leftMenuVC.signatureTextView setHidden:YES];
                 [leftMenuVC.sexImg setHidden:YES];
+                [leftMenuVC.usernameLabel setHidden:YES];
+                [leftMenuVC.cycleIMG setHidden:YES];
 
                 
                 
@@ -338,7 +358,9 @@
                 [leftMenuVC.headBtn setHidden:NO];
                 [leftMenuVC.signatureTextView setHidden:NO];
                 [leftMenuVC.sexImg setHidden:NO];
-                
+                [leftMenuVC.usernameLabel setHidden:NO];
+                [leftMenuVC.cycleIMG setHidden:NO];
+
                 NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
                 NSString *favorString = @"关注";
                 if (favorArray && favorArray.count>0)
@@ -761,18 +783,38 @@
     option.centerPt = _myCoor;
 //    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
     option.pageIndex = pageIndex;
+    
+    if (_myCoor.latitude <0.01) {
+        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"定位失败";
+        if (hud) {
+            [hud hide:YES afterDelay:1.0];
+            
+        }
 
+    }
+
+//    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString *doc = [NSString stringWithFormat:@"%@/22.txt",documentDir];
+//    NSLog(@"path:%@",doc);
+//    NSString *log = [NSString stringWithFormat:@"error:%f",_myCoor.latitude];
+//    NSError *error;
+//    
+//    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
     
     BOOL res = [_radarManager getRadarNearbySearchRequest:option];
     if (res) {
         NSLog(@"get 成功");
     } else {
-        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
-        if (hud) {
-            [hud hide:YES];
-            
-        }
-        NSLog(@"get 失败");
+//        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+//        hud.mode = MBProgressHUDModeCustomView;
+//        hud.labelText = @"失败";
+//        if (hud) {
+//            [hud hide:YES afterDelay:1.0];
+//            
+//        }
+//        NSLog(@"get 失败");
     }
     
 }
@@ -979,6 +1021,7 @@
  */
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
+    
     [self updateMyLocation:userLocation];
     [lock lock];
     _curLocation.latitude = userLocation.location.coordinate.latitude;
@@ -1003,6 +1046,21 @@
 - (void)didFailToLocateUserWithError:(NSError *)error
 {
     NSLog(@"location error,%@",error);
+    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+    hud.mode = MBProgressHUDModeCustomView;
+    hud.labelText = @"定位失败";
+    if (hud) {
+        [hud hide:YES afterDelay:1.0];
+        
+    }
+    
+    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *doc = [NSString stringWithFormat:@"%@/22.txt",documentDir];
+    NSLog(@"path:%@",doc);
+    NSString *log = [NSString stringWithFormat:@"error:%@",error];
+    NSError *error2;
+    
+    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error2];
 }
 
 #pragma mark - BMKRadarManagerDelegate

@@ -39,7 +39,7 @@ BMKMapManager* _mapManager;
     // 要使用百度地图，请先启动BaiduMapManager
     
     _mapManager = [[BMKMapManager alloc]init];
-    BOOL ret = [_mapManager start:@"TGu2K4h1LofQiXS8yefMlAhX" generalDelegate:self];
+    BOOL ret = [_mapManager start:@"RT6Hg1uzL8vGkOKkKv0D1iVY" generalDelegate:self];
     
     if (!ret) {
         NSLog(@"manager start failed!");
@@ -160,7 +160,19 @@ BMKMapManager* _mapManager;
 {
     if (0 == iError) {
         NSLog(@"授权成功");
+    }else
+    {
+
+        NSLog(@"授权失败:%d",iError);
     }
+    
+    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *doc = [NSString stringWithFormat:@"%@/11.txt",documentDir];
+    NSLog(@"path:%@",doc);
+    NSString *log = [NSString stringWithFormat:@"error:%d",iError];
+    NSError *error;
+    
+    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
 
 }
 @end

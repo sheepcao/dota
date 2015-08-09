@@ -52,6 +52,21 @@
 - (void) webViewDidStartLoad:(UIWebView *)webView
 {
     NSLog(@"webViewDidStartLoad");
+//    NSString *URLString = [NSString stringWithFormat:@"%@", [webView.request URL]] ;
+//    
+//    NSArray *seperateByMID = [URLString componentsSeparatedByString:@"Login"];
+//    if (seperateByMID.count>1) {
+//        
+//        
+//        
+//    }else
+//    {
+//        UIImageView *juggIMG = [[UIImageView alloc] initWithFrame:self.levelWebview.frame];
+//        [juggIMG setImage:[UIImage imageNamed:@"juggBACK.png"]];
+//        [self.view addSubview:juggIMG];
+//        
+//    }
+
 }
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
@@ -104,6 +119,9 @@
     }else
     {
         
+      
+        
+//        [self.levelWebview setHidden:YES];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
@@ -140,24 +158,23 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     //eric:
-//    NSLog(@"request URL = %@", [request URL]);
-//    NSString *URLString = [NSString stringWithFormat:@"%@", [request URL]] ;
-//    
-//    NSArray *seperateByMID = [URLString componentsSeparatedByString:@"Login"];
-//    if (seperateByMID.count>1) {
-//       
-//        [self.uploadBtn setTag:10];
-//        
-//        [self.tipText setText:@"请登录您的11平台游戏账号"];
-//        
-//    }else
-//    {
-//        [self.uploadBtn setTag:11];
-//        [self.tipText setText:@"待您的战绩页面显示完整之后，请点击上传战绩。"];
-//
-//
-//    }
+    NSLog(@"request URL = %@", [request URL]);
+    NSString *URLString = [NSString stringWithFormat:@"%@", [request URL]] ;
     
+    NSArray *seperateByMID = [URLString componentsSeparatedByString:@"Login"];
+    if (seperateByMID.count>1) {
+       
+   
+        
+    }else
+    {
+        UIImageView *juggIMG = [[UIImageView alloc] initWithFrame:self.levelWebview.frame];
+        [juggIMG setImage:[UIImage imageNamed:@"juggBACK.png"]];
+        [self.view addSubview:juggIMG];
+        [self.levelWebview setHidden:YES];
+
+    }
+//
     
 
     return YES;
