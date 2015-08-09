@@ -108,6 +108,16 @@
     visualEffectView2.frame = self.infoBackImage.bounds;
     [self.infoBackImage addSubview:visualEffectView2];
     
+    NSLog(@"5555555");
+    UIVisualEffect *blurEffect2;
+    blurEffect2 = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    
+    UIVisualEffectView *visualEffectView;
+    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect2];
+    
+    visualEffectView.frame = self.downPartBack.bounds;
+    [self.downPartBack addSubview:visualEffectView];
+    
     
     self.blurView.blurRadius = 7.0f;
     self.headImage.layer.cornerRadius = 49.0f;
@@ -137,8 +147,12 @@
     
     
     
+    
+    
+    
 
 }
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -224,7 +238,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        NSLog(@"JSON ERROR2222: %@",  operation.responseString);
         
         [hud hide:YES];
         
@@ -247,7 +261,8 @@
         visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         visualEffectView2.frame = backIMG.bounds;
         [backIMG addSubview:visualEffectView2];
-        
+        NSLog(@"6666666");
+
         [noRecordView addSubview:backIMG];
         [noRecordView addSubview:noRecordLabel];
         
@@ -349,7 +364,8 @@
         visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         visualEffectView2.frame = backIMG.bounds;
         [backIMG addSubview:visualEffectView2];
-        
+        NSLog(@"77777777");
+
         [noRecordView addSubview:backIMG];
         [noRecordView addSubview:noRecordLabel];
         
@@ -642,9 +658,10 @@
                     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
                     UIVisualEffectView *visualEffectView2;
                     visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-                    visualEffectView2.frame = backIMG.bounds;
+                    visualEffectView2.frame = backIMG.frame;
                     [backIMG addSubview:visualEffectView2];
                     
+                    NSLog(@"111111");
                     [noRecordView addSubview:backIMG];
                     [noRecordView addSubview:noRecordLabel];
                     
@@ -702,9 +719,9 @@
                     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
                     UIVisualEffectView *visualEffectView2;
                     visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-                    visualEffectView2.frame = backIMG.bounds;
+                    visualEffectView2.frame = backIMG.frame;
                     [backIMG addSubview:visualEffectView2];
-                    
+                     NSLog(@"2222222");
                     [noRecordView addSubview:backIMG];
                     [noRecordView addSubview:noRecordLabel];
                     
@@ -758,9 +775,10 @@
                     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
                     UIVisualEffectView *visualEffectView2;
                     visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-                    visualEffectView2.frame = backIMG.bounds;
+                    visualEffectView2.frame = backIMG.frame;
                     [backIMG addSubview:visualEffectView2];
-                    
+                    NSLog(@"333333333");
+
                     [noRecordView addSubview:backIMG];
                     [noRecordView addSubview:noRecordLabel];
                     
@@ -1036,7 +1054,8 @@
         visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         visualEffectView2.frame = backIMG.bounds;
         [backIMG addSubview:visualEffectView2];
-        
+        NSLog(@"4444444444");
+
         [noRecordView addSubview:backIMG];
         [noRecordView addSubview:noRecordLabel];
         [noRecordView addSubview:noteBtn];

@@ -13,14 +13,14 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    
-    UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    
-    visualEffectView.frame = self.cellBackImg.bounds;
-    [self.cellBackImg addSubview:visualEffectView];
+//    UIVisualEffect *blurEffect;
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+//    
+//    UIVisualEffectView *visualEffectView;
+//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    
+//    visualEffectView.frame = self.cellBackImg.bounds;
+//    [self.cellBackImg addSubview:visualEffectView];
     
     
     
@@ -31,6 +31,8 @@
 //        }
 //    }
 
+    
+    self.backgroundColor  = [UIColor clearColor];
     
     [self effectLabel:self.scoreType];
     [self effectLabel:self.totalGameTitleLabel];

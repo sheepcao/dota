@@ -35,7 +35,7 @@
                         <color key="textColor" red="0.73984888980263153" green="0.73326994243421051" blue="0.75300678453947367" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vhv-Ed-EFu">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vhv-Ed-EFu">
                         <rect key="frame" x="8" y="14" width="47.5" height="47.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="vhv-Ed-EFu" secondAttribute="height" multiplier="1:1" id="sBE-N6-Gpn"/>

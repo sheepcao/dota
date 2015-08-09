@@ -30,7 +30,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sideBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="0IN-SZ-LxS">
                     <rect key="frame" x="0.0" y="0.0" width="200" height="667"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7xf-aQ-QOh">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7xf-aQ-QOh">
                     <rect key="frame" x="45" y="50" width="110" height="110"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="110" id="F4Y-kT-5pa"/>
@@ -110,13 +110,13 @@
                         <outlet property="delegate" destination="-1" id="RlA-Mn-t3J"/>
                     </connections>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSb-ov-00W">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSb-ov-00W">
                     <rect key="frame" x="20" y="24" width="160" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Bfy-vT-Hu5"/>
                         <constraint firstAttribute="width" constant="160" id="oPp-7X-x0b"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>

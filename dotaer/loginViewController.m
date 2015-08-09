@@ -133,6 +133,9 @@ bool emailOK;
     //Or you can get the image url from AssetsLibrary
     
 
+//    UIImageView *imageTemp = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+//    [imageTemp setImage:image];
+    
     [self.haedBtn setTitle:@"" forState:UIControlStateNormal];
     [self.headImg setImage:image];
     [self.headUploadTip setHidden:YES];
@@ -142,6 +145,20 @@ bool emailOK;
 
 
     }];
+}
+
+-(UIImage *)cutImgaeCenter:(UIImageView *)imageview
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(imageview.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(imageview.bounds.size);
+    //获取图像
+    
+    [imageview.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 - (IBAction)selectSex:(UIButton *)sender {
