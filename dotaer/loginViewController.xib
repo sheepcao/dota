@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Thin</string>
+            <string>HelveticaNeue-Thin</string>
             <string>HelveticaNeue-Thin</string>
             <string>HelveticaNeue-Thin</string>
         </mutableArray>
@@ -60,15 +61,29 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsG-os-72Z" userLabel="operationBar">
                     <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                     <subviews>
-                        <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCV-UI-Ksv">
+                        <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCV-UI-Ksv">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMj-lN-Wg5">
+                                    <rect key="frame" x="187" y="0.0" width="1" height="60"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="Idb-O4-ToA"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.32786800986842107" green="0.53839432565789469" blue="0.32786800986842107" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="centerX" secondItem="gMj-lN-Wg5" secondAttribute="centerX" id="CRX-0g-9fD"/>
+                                <constraint firstAttribute="height" secondItem="gMj-lN-Wg5" secondAttribute="height" id="ILv-rD-SRX"/>
+                                <constraint firstAttribute="centerY" secondItem="gMj-lN-Wg5" secondAttribute="centerY" id="Wft-C5-4ry"/>
+                            </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9L-mD-pZm">
-                            <rect key="frame" x="188" y="2" width="187" height="56"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
+                            <rect key="frame" x="187.5" y="2" width="187.5" height="56"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
                             <state key="normal" title="随便看看">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.88309518909999996" green="0.88967413650000005" blue="0.88967413650000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -76,10 +91,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLb-W0-Dkj">
-                            <rect key="frame" x="0.0" y="2" width="188" height="56"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
+                            <rect key="frame" x="0.0" y="2" width="187.5" height="56"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
                             <state key="normal" title="前往注册">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.88309518909999996" green="0.88967413650000005" blue="0.88967413650000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -328,7 +343,10 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbI-Fk-A9z">
                     <rect key="frame" x="187" y="394" width="119" height="21"/>
                     <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
-                    <state key="normal" title="《Dota圈子用户协议》"/>
+                    <state key="normal" title="《dota圈子用户协议》"/>
+                    <connections>
+                        <action selector="userAgreement:" destination="-1" eventType="touchUpInside" id="8Xg-WZ-Tqp"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjI-AT-Qdq" userLabel="headIMG">
                     <rect key="frame" x="10" y="30" width="130" height="130"/>
@@ -356,7 +374,7 @@
                 </button>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-333" y="107.5"/>
+            <point key="canvasLocation" x="-465" y="84.5"/>
         </view>
         <view contentMode="scaleToFill" id="WnG-ZA-anx" userLabel="midView">
             <rect key="frame" x="0.0" y="0.0" width="310" height="415"/>

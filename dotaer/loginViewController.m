@@ -13,6 +13,7 @@
 #import "globalVar.h"
 #import "DataCenter.h"
 #import "levelInfoViewController.h"
+#import "userAgreementViewController.h"
 
 @interface loginViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
@@ -130,6 +131,16 @@ bool emailOK;
     
     [self judgeWordCount:textField];
     [self isInfoComplete];
+    
+    
+    if (textField == self.passwordField || textField == self.confirmPasswordField) {
+        [UIView animateWithDuration:0.45 animations:^{
+            
+            [self.registerView setCenter:CGPointMake(self.midView.frame.size.width/2, self.midView.frame.size.height/2)];
+        }];
+    }
+    
+    
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
@@ -398,6 +409,14 @@ bool emailOK;
         
     }
 
+}
+
+- (IBAction)userAgreement:(id)sender {
+    
+    userAgreementViewController *userAgree = [[userAgreementViewController alloc] initWithNibName:@"userAgreementViewController" bundle:nil];
+    [self presentViewController:userAgree animated:YES completion:nil];
+    
+    
 }
 - (IBAction)userLogin:(UIButton *)sender {
     

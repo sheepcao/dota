@@ -46,5 +46,6 @@
 - (IBAction)changePage:(id)sender;
 - (IBAction)submitRegister:(id)sender;
 
+- (IBAction)userAgreement:(id)sender;
 
 @end
