@@ -61,14 +61,14 @@
                         <action selector="logoutTap:" destination="-1" eventType="touchUpInside" id="gbD-Kd-eOm"/>
                     </connections>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录一下         dota有你更精彩！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAE-bc-Jkt">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录一下            dota有你更精彩！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAE-bc-Jkt">
                     <rect key="frame" x="40" y="210" width="120" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="IBy-NJ-wwz"/>
                         <constraint firstAttribute="width" constant="120" id="qMx-5C-fGZ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                    <color key="textColor" red="0.54117647059999996" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="编辑个人签名..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RhR-LJ-UbC">
@@ -100,7 +100,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110岁" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-T5-OKb">
-                    <rect key="frame" x="157" y="92" width="40" height="27"/>
+                    <rect key="frame" x="157" y="91" width="40" height="27"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="B79-dR-ccX"/>
                         <constraint firstAttribute="height" constant="27" id="JnA-3h-awg"/>
@@ -135,7 +135,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="7xf-aQ-QOh" secondAttribute="trailing" constant="45" id="0RO-H6-QPy"/>
                 <constraint firstItem="SEq-T5-OKb" firstAttribute="leading" secondItem="7xf-aQ-QOh" secondAttribute="trailing" constant="2" id="4de-PD-ESL"/>
-                <constraint firstItem="SEq-T5-OKb" firstAttribute="centerY" secondItem="7xf-aQ-QOh" secondAttribute="centerY" constant="0.5" id="5gK-rx-W5O"/>
+                <constraint firstItem="SEq-T5-OKb" firstAttribute="centerY" secondItem="7xf-aQ-QOh" secondAttribute="centerY" id="5gK-rx-W5O"/>
                 <constraint firstItem="WtN-gJ-SSg" firstAttribute="centerX" secondItem="7xf-aQ-QOh" secondAttribute="centerX" id="7m3-m4-9Q0"/>
                 <constraint firstItem="JAE-bc-Jkt" firstAttribute="top" secondItem="7xf-aQ-QOh" secondAttribute="bottom" constant="50" id="8mc-SJ-DxP"/>
                 <constraint firstItem="7xf-aQ-QOh" firstAttribute="width" secondItem="vXQ-fB-wS8" secondAttribute="width" constant="-5" id="9dk-mr-Fuw"/>

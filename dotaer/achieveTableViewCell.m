@@ -12,24 +12,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
-//    UIVisualEffect *blurEffect;
-//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-//    
-//    UIVisualEffectView *visualEffectView;
-//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//    
-//    visualEffectView.frame = self.cellBackImg.bounds;
-//    [self.cellBackImg addSubview:visualEffectView];
-    
-    
-    
-//    for (UILabel *btn in [self.detailInfoView subviews]) {
-//        if ([btn isKindOfClass:[UILabel class]]) {
-//            btn.layer.borderWidth = 0.5f;
-//            btn.layer.borderColor = [UIColor colorWithRed:39/255.0f green:165/255.0f blue:215/255.0f alpha:1.0].CGColor;
-//        }
-//    }
 
     
     self.backgroundColor  = [UIColor clearColor];

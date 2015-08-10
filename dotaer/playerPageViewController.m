@@ -790,7 +790,7 @@
                     
                     
                     
-                    [achieveCell.scoreType setText:@"名将积分"];
+                    [achieveCell.scoreType setText:@"名将等级"];
                     [achieveCell.scoreLabel setText:[self.MJinfoDic objectForKey:@"MJscore"]];
                     [achieveCell.totalGameLabel setText:[self.MJinfoDic objectForKey:@"MJtotal"]];
                     [achieveCell.mvpLabel setText:[self.MJinfoDic objectForKey:@"MJmvp"]];

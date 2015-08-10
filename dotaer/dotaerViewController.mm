@@ -42,7 +42,7 @@
 @property (strong,nonatomic) UILabel *pageNumLabel;
 @property (strong,nonatomic) UISlider *radiusSlider;
 
-
+@property (strong,nonatomic) UIView *containerView;
 @property (strong,nonatomic) UILabel *distanceLabel;
 
 @property (strong,nonatomic) UITableView *listView;
@@ -68,6 +68,8 @@
     _radarManager = [BMKRadarManager getRadarManagerInstance];
     _locServer = [[BMKLocationService alloc] init];
     _locServer.delegate = self;
+    
+    [self judgeIsLocaltionabele];
 
     [_locServer startUserLocationService];
 
@@ -84,6 +86,22 @@
     [self setupCenterView];
     
     
+}
+
+-(void)judgeIsLocaltionabele
+{
+    if ([CLLocationManager locationServicesEnabled] && (
+        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways
+         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
+        ||[CLLocationManager authorizationStatus] ==kCLAuthorizationStatusAuthorizedWhenInUse)) {
+            //定位功能可用，开始定位
+
+        }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
+     
+        UIAlertView *alert  = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请开启隐私设置中的定位服务，否则无法检索附近玩家。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 
@@ -156,6 +174,9 @@
     [containerView addSubview:self.listView];
     
     
+    self.containerView = containerView;
+    
+    
     UIView *searchingBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT - containerView.frame.size.height - containerView.frame.origin.y)];
     
     searchingBar.backgroundColor = [UIColor lightGrayColor];
@@ -183,15 +204,14 @@
 //    [searchBtn setTitle:@"查" forState:UIControlStateNormal];
 
     [searchBtn setImage:[UIImage imageNamed:@"search1.png"] forState:UIControlStateNormal];
-//    searchBtn.layer.cornerRadius = searchBtn.frame.size.width/2;
-//    searchBtn.imageView.layer.cornerRadius = searchBtn.frame.size.width/2;
-//    searchBtn.imageView.layer.masksToBounds =YES;
-//    searchBtn.layer.shadowOffset = CGSizeMake(0, 5);
-//    searchBtn.layer.shadowRadius = searchBtn.frame.size.width/2;
-//    searchBtn.layer.shadowColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f].CGColor;
-//    searchBtn.layer.shadowOpacity = 0.9f;
-//    searchBtn.layer.borderWidth = 0;
-//    searchBtn.layer.borderColor = [UIColor colorWithRed:0/255.0f green:55/255.0f blue:75/255.0f alpha:1.0].CGColor;
+    searchBtn.layer.cornerRadius = searchBtn.frame.size.width/2;
+    [searchBtn setImageEdgeInsets:UIEdgeInsetsMake(1.4, 1.4, 1.4, 1.4)];
+    searchBtn.layer.masksToBounds = NO;
+    searchBtn.layer.shadowOffset = CGSizeMake(2, 2);
+    searchBtn.layer.shadowRadius = searchBtn.frame.size.width/2;
+    searchBtn.layer.shadowColor = [UIColor colorWithRed:255/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f].CGColor;
+    searchBtn.layer.shadowOpacity = 0.9f;
+    searchBtn.layer.borderWidth = 0;
 
     [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
     [searchingBar addSubview:searchBtn];
@@ -232,7 +252,7 @@
     [self.view addSubview:pageBar];
     
     
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-80, searchingBar.frame.size.height/2-10, 160, 20)];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-80, searchingBar.frame.size.height/2-17, 160, 34)];
     slider.minimumValue = 13;
     slider.maximumValue = 31;
     slider.value = 18;
@@ -240,7 +260,7 @@
     slider.minimumTrackTintColor = [UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f];
 //    [slider setThumbTintColor:[UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f]];
 
-    UIImage* minTrack = [UIImage imageNamed:@"eye3.png"];
+    UIImage* minTrack = [UIImage imageNamed:@"eye29.png"];
     [slider setThumbImage:minTrack forState:UIControlStateNormal];
 
     _searchRadius = [FabonacciNum calculateFabonacci:slider.value];
@@ -269,23 +289,31 @@
 }
 -(void)firstSearch
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.self.containerView animated:YES];
     hud.tag = 345;
     
     hud.mode = MBProgressHUDModeIndeterminate;
-    [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:8.0f];;
+    [hud hide:YES afterDelay:5.0];
+//    [self performSelector:@selector(dismissHUD:) withObject:hud afterDelay:5.0f];
 
+    _curPageIndex = 0;
     
     [self nearbySearchWithPageIndex:_curPageIndex];
 }
 
--(void)dismissHUD
+-(void)dismissHUD:(MBProgressHUD *)hud
 {
-    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
-    if (hud) {
-        [hud hide:YES];
-        
+
+    for (UIView *hud in [self.containerView subviews]) {
+        if ([hud isKindOfClass:[MBProgressHUD class]]) {
+            
+            MBProgressHUD * hudView = (MBProgressHUD *)hud;
+            [hudView hide:YES];
+            
+        }
     }
+    
+
 }
 
 
@@ -632,7 +660,7 @@
         [_mapView setCenterCoordinate:_myCoor];
 //        [_mapView setCenterCoordinate: CLLocationCoordinate2DMake(34.226, 108.886)];
 
-        [_mapView setZoomLevel:14.0];
+        [_mapView setZoomLevel:13.5];
 
     }else
     {
@@ -705,7 +733,7 @@
     }
     [_mapView addAnnotations:annotations];
     [_mapView showAnnotations:annotations animated:YES];
-    [_mapView setZoomLevel:9.5+((32 - self.radiusSlider.value)/2) ];
+    [_mapView setZoomLevel:9+((32 - self.radiusSlider.value)/2) ];
 }
 
 -(void)updateValue:(UISlider *)sender{
@@ -714,7 +742,6 @@
     
     if (sender.value<31) {
         _searchRadius = [FabonacciNum calculateFabonacci:sender.value];
-        [self.distanceLabel setText:@"> 500KM"];
 
         
         if (_searchRadius<1000) {
@@ -744,11 +771,22 @@
 
 -(void)searchDotaer
 {
-    _curPageIndex = 0;
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.tag = 345;
+    MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
+
+    if (hud) {
+        [hud hide:YES];
+        
+    }
     
-    hud.mode = MBProgressHUDModeIndeterminate;
+    _curPageIndex = 0;
+    MBProgressHUD *hud2 = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
+    hud2.tag = 345;
+    
+    hud2.mode = MBProgressHUDModeIndeterminate;
+    
+    [hud2 hide:YES afterDelay:20];
+//    [self performSelector:@selector(dismissHUD:) withObject:hud2 afterDelay:20.0f];
+
     
     [self nearbySearchWithPageIndex:_curPageIndex];
     
@@ -785,13 +823,14 @@
     option.pageIndex = pageIndex;
     
     if (_myCoor.latitude <0.01) {
-        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+        MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"定位失败";
         if (hud) {
             [hud hide:YES afterDelay:1.0];
             
         }
+        NSLog(@"定位失败");
 
     }
 
@@ -1046,21 +1085,22 @@
 - (void)didFailToLocateUserWithError:(NSError *)error
 {
     NSLog(@"location error,%@",error);
-    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+    MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
     hud.mode = MBProgressHUDModeCustomView;
     hud.labelText = @"定位失败";
     if (hud) {
         [hud hide:YES afterDelay:1.0];
         
     }
-    
-    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *doc = [NSString stringWithFormat:@"%@/22.txt",documentDir];
-    NSLog(@"path:%@",doc);
-    NSString *log = [NSString stringWithFormat:@"error:%@",error];
-    NSError *error2;
-    
-    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error2];
+    NSLog(@"hud定位失败");
+//    
+//    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString *doc = [NSString stringWithFormat:@"%@/22.txt",documentDir];
+//    NSLog(@"path:%@",doc);
+//    NSString *log = [NSString stringWithFormat:@"error:%@",error];
+//    NSError *error2;
+//    
+//    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error2];
 }
 
 #pragma mark - BMKRadarManagerDelegate
@@ -1071,7 +1111,7 @@
  */
 - (void)onGetRadarNearbySearchResult:(BMKRadarNearbyResult *)result error:(BMKRadarErrorCode)error {
     
-    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+    MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
     if (hud) {
         [hud hide:YES];
         

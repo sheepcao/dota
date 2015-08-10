@@ -172,6 +172,13 @@
         [juggIMG setImage:[UIImage imageNamed:@"juggBACK.png"]];
         [self.view addSubview:juggIMG];
         [self.levelWebview setHidden:YES];
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.tag = 123;
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"战绩读取中...";
+        hud.dimBackground = YES;
+        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
 
     }
 //
@@ -213,11 +220,7 @@
 -(void)submitLevel:(NSDictionary *)dic
 {
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.labelText = @"Uploading";
-    hud.dimBackground = YES;
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+
     
     NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
     
@@ -446,6 +449,11 @@
         [paraTemp setObject:[MJinfoFull objectForKey:@"MJheroThird"] forKey:@"MJheroThird"];
         
     }
+    
+    
+    MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:123];
+    [hud hide:YES];
+
     NSDictionary *parameters = [NSDictionary dictionaryWithDictionary:paraTemp];
    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -455,9 +463,14 @@
     
     [manager POST:confirmLevel parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"战绩认证成功";
-        [hud hide:YES afterDelay:2.5];
+        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+
+        [hud hide:YES afterDelay:1.5];
+    
+
         NSLog(@"JSON: %@", responseObject);
         
         [self.TTscoreDelegate fillTTScore:[[responseObject objectForKey:@"TTinfo"] objectForKey:@"TTscore"]];
@@ -473,9 +486,16 @@
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR: %@",  operation.responseString);
         
+        
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"认证失败，请检查网络.";
-        [hud hide:YES afterDelay:1.0];
+        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+        
+        [hud hide:YES afterDelay:1.5];
+
+
         
         
     }];

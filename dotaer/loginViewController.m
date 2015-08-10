@@ -84,8 +84,11 @@ bool emailOK;
         }else
         {
             emailOK = NO;
-            UIAlertView *emailAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的email格式" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [emailAlert show];
+            if (![textField.text isEqualToString:@""]) {
+                UIAlertView *emailAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"请输入正确的email格式" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [emailAlert show];
+            }
+ 
         }
     }
         
@@ -97,6 +100,28 @@ bool emailOK;
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     
     return [emailTest evaluateWithObject:candidate];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+ 
+    if (textField == self.passwordField || textField == self.confirmPasswordField) {
+        [UIView animateWithDuration:0.45 animations:^{
+            
+            [self.registerView setCenter:CGPointMake(self.midView.frame.size.width/2, self.midView.frame.size.height/2 - 45)];
+        }];
+    }else
+    {
+        [UIView animateWithDuration:0.45 animations:^{
+            
+            [self.registerView setCenter:CGPointMake(self.midView.frame.size.width/2, self.midView.frame.size.height/2)];
+        }];
+    }
+    
+    
+
+    
+    return TRUE;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -235,6 +260,20 @@ bool emailOK;
     
 }
 
+-(void)enableLoginBtn
+{
+    [self.loginBtn setEnabled:YES];
+    [self.loginBtn setBackgroundColor:[UIColor colorWithRed:230/255.0f green:196/255.0f blue:19/255.0f alpha:1.0]];
+    
+}
+-(void)disableLoginBtn
+{
+    [self.loginBtn setEnabled:NO];
+    [self.loginBtn setBackgroundColor:[UIColor colorWithRed:239/255.0f green:227/255.0f blue:198/255.0f alpha:1.0]];
+    
+}
+
+
 -(void)isInfoComplete
 {
     if (![self.usernameField.text isEqualToString:@""] && ![self.ageField.text isEqualToString:@""] && ![self.emailField.text isEqualToString:@""] && ![self.passwordField.text  isEqualToString:@""] && ![self.confirmPasswordField.text  isEqualToString:@""]&& (self.maleBtn.selected || self.femaleBtn.selected)) {
@@ -243,6 +282,14 @@ bool emailOK;
     }else
     {
         [self disableSubmitBtn];
+    }
+    
+    if (![self.userLoginField.text isEqualToString:@""] && ![self.passwordLoginField.text isEqualToString:@""]) {
+        
+        [self enableLoginBtn];
+    }else
+    {
+        [self disableLoginBtn];
     }
     
 }

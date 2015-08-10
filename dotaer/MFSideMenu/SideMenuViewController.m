@@ -241,7 +241,9 @@
     
     [self.headImage setImage:image];
     [self uploadNewHead:image forImagePicker:picker];
-    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
     
 }
 
@@ -249,7 +251,7 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
-    hud.labelText = @"Uploading";
+    hud.labelText = @"正在上传";
     hud.dimBackground = YES;
     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     
@@ -286,6 +288,8 @@
         [hud hide:YES afterDelay:1.0];
         
         [self performSelector:@selector(successUpload:) withObject:picker afterDelay:1.1];
+        
+        [self.headImage setImage:headIMG];
         
         
         
