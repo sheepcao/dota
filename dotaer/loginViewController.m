@@ -41,6 +41,7 @@ bool emailOK;
     self.loginBtn.layer.cornerRadius = 15.0f;
     self.submitBtn.layer.cornerRadius = 15.0f;
     [self disableSubmitBtn];
+    [self disableLoginBtn];
 
     
     self.headImg.layer.cornerRadius = 65.0f;

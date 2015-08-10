@@ -85,6 +85,8 @@
 
     [self setupCenterView];
     
+    [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:6.6f];
+
     
 }
 
@@ -289,11 +291,12 @@
 }
 -(void)firstSearch
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.self.containerView animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
     hud.tag = 345;
     
-    hud.mode = MBProgressHUDModeIndeterminate;
-    [hud hide:YES afterDelay:5.0];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"正在搜索玩家...";
+    [hud hide:YES afterDelay:6.0f];
 //    [self performSelector:@selector(dismissHUD:) withObject:hud afterDelay:5.0f];
 
     _curPageIndex = 0;
@@ -301,7 +304,7 @@
     [self nearbySearchWithPageIndex:_curPageIndex];
 }
 
--(void)dismissHUD:(MBProgressHUD *)hud
+-(void)dismissHUD
 {
 
     for (UIView *hud in [self.containerView subviews]) {
@@ -771,20 +774,21 @@
 
 -(void)searchDotaer
 {
-    MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
-
-    if (hud) {
-        [hud hide:YES];
-        
-    }
+//    MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
+//
+//    if (hud) {
+//        [hud hide:YES];
+//        
+//    }
     
     _curPageIndex = 0;
     MBProgressHUD *hud2 = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
-    hud2.tag = 345;
+    hud2.tag = 456;
     
-    hud2.mode = MBProgressHUDModeIndeterminate;
-    
-    [hud2 hide:YES afterDelay:20];
+    hud2.mode = MBProgressHUDModeText;
+    hud2.labelText = @"正在搜索...";
+
+    [hud2 hide:YES afterDelay:18];
 //    [self performSelector:@selector(dismissHUD:) withObject:hud2 afterDelay:20.0f];
 
     
@@ -1111,16 +1115,20 @@
  */
 - (void)onGetRadarNearbySearchResult:(BMKRadarNearbyResult *)result error:(BMKRadarErrorCode)error {
     
-    MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
-    if (hud) {
-        [hud hide:YES];
-        
+//    MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
+    for (UIView *hud  in [self.containerView subviews]) {
+        if ([hud isKindOfClass:[MBProgressHUD class]]) {
+            MBProgressHUD *hudView = (MBProgressHUD *)hud;
+            [hudView hide:YES];
+        }
     }
+
     NSLog(@"onGetRadarNearbySearchResult  %d", error);
     if (error == BMK_RADAR_NO_ERROR) {
         NSLog(@"result.infoList.count:  %d", (int)result.infoList.count);
         self.nearbyInfos = (NSMutableArray *)result.infoList;
         
+
         _curPageIndex = result.pageIndex;
 
         _totalPageNum = result.pageNum;

@@ -55,7 +55,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                     <state key="normal" title=" ">
-                        <color key="titleColor" red="0.86484888980263153" green="0.36330694901315752" blue="0.18307976973684212" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.19207442429999999" green="0.72643400489999999" blue="0.88484272200000003" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="logoutTap:" destination="-1" eventType="touchUpInside" id="gbD-Kd-eOm"/>
@@ -67,7 +67,7 @@
                         <constraint firstAttribute="height" constant="50" id="IBy-NJ-wwz"/>
                         <constraint firstAttribute="width" constant="120" id="qMx-5C-fGZ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="0.54117647059999996" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -99,7 +99,7 @@
                         <constraint firstAttribute="width" constant="19" id="Y3t-Uw-uKr"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110岁" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-T5-OKb">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-T5-OKb">
                     <rect key="frame" x="157" y="91" width="40" height="27"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="B79-dR-ccX"/>
@@ -120,7 +120,7 @@
                         <outlet property="delegate" destination="-1" id="RlA-Mn-t3J"/>
                     </connections>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="崩溃" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSb-ov-00W">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSb-ov-00W">
                     <rect key="frame" x="20" y="24" width="160" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Bfy-vT-Hu5"/>
