@@ -11,13 +11,13 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zb-zK-DZB">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">重要须知
+                    <string key="text">重要须知
 
 sheepcao工作室敬请用户认真阅读、充分理解本《服务协议》（下称《协议》）--- 用户应认真阅读、充分理解本《协议》中各条款，包括免除或者限制sheepcao工作室责任的免责条款及对用户的权利限制条款。请您审慎阅读并选择接受或不接受本《协议》（未成年人应在法定监护人陪同下阅读）。除非您接受本《协议》所有条款，否则您无权登录。您的注册、登录行为将视为对本《协议》的接受，并同意接受本《协议》各项条款的约束。
 
@@ -133,12 +133,12 @@ dota圈子是和现实相关的社交产品，希望用户相互尊重，遵循�
 
 1、sheepcao工作室郑重提醒用户注意本《协议》中免除sheepcao工作室责任和加重用户义务的条款，请用户仔细阅读，自主考虑风险。未成年人应在法定监护人的陪同下阅读本《协议》。以上各项条款内容的最终解释权及修改权归sheepcao工作室所有。
 2、本《协议》所定的任何条款的部分或全部无效者，不影响其它条款的效力。
-3、本《协议》的版权由sheepcao工作室所有，sheepcao工作室保留一切解释和修改权利。</mutableString>
+3、本《协议》的版权由sheepcao工作室所有，sheepcao工作室保留一切解释和修改权利。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="《dota圈子用户协议》" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6x-QP-dVW">
-                    <rect key="frame" x="50" y="17" width="285" height="39"/>
+                    <rect key="frame" x="50" y="17" width="324" height="39"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="39" id="UHF-9B-Fd8"/>
                     </constraints>
@@ -173,7 +173,7 @@ dota圈子是和现实相关的社交产品，希望用户相互尊重，遵循�
                 <constraint firstItem="3zb-zK-DZB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uJo-hA-F7B"/>
                 <constraint firstItem="AwR-hc-SnQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="xCQ-XZ-fyp"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <point key="canvasLocation" x="305.5" y="249.5"/>
         </view>
     </objects>

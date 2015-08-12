@@ -86,6 +86,8 @@
     cell.usernameLabel.text = self.favorArray[indexPath.row];
     
     NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,self.favorArray[indexPath.row]];
+    
+
 
     NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     

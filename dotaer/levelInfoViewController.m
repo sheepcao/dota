@@ -175,10 +175,9 @@
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.tag = 123;
-        hud.mode = MBProgressHUDModeCustomView;
+        hud.mode = MBProgressHUDModeText;
         hud.labelText = @"战绩读取中...";
         hud.dimBackground = YES;
-        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
 
     }
 //

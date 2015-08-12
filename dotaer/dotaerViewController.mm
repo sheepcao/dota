@@ -301,7 +301,21 @@
 
     _curPageIndex = 0;
     
-    [self nearbySearchWithPageIndex:_curPageIndex];
+//    [self performSelectorInBackground:@selector(nearbySearchWithPageIndex:) withObject:[NSNumber numberWithInteger:_curPageIndex]];
+    
+//    [NSThread detachNewThreadSelector:@selector(showHUD:) toTarget:self withObject:[NSNumber numberWithDouble:6.0]];
+
+    [self nearbySearchWithPageIndex:[NSNumber numberWithInteger:_curPageIndex]];
+}
+
+-(void)showHUD:(NSNumber *)time
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
+    hud.tag = 345;
+    
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"正在搜索玩家...";
+    [hud hide:YES afterDelay:[time doubleValue]];
 }
 
 -(void)dismissHUD
@@ -791,8 +805,13 @@
     [hud2 hide:YES afterDelay:18];
 //    [self performSelector:@selector(dismissHUD:) withObject:hud2 afterDelay:20.0f];
 
+//    [self performSelectorInBackground:@selector(nearbySearchWithPageIndex:) withObject:[NSNumber numberWithInteger:_curPageIndex]];
+
+//    [NSThread detachNewThreadSelector:@selector(nearbySearchWithPageIndex:) toTarget:self withObject:[NSNumber numberWithInteger:_curPageIndex]];
     
-    [self nearbySearchWithPageIndex:_curPageIndex];
+//    [NSThread detachNewThreadSelector:@selector(showHUD:) toTarget:self withObject:[NSNumber numberWithDouble:18.0]];
+
+    [self nearbySearchWithPageIndex:[NSNumber numberWithInteger:_curPageIndex]];
     
     
 
@@ -802,7 +821,8 @@
 {
     if (_curPageIndex>0) {
         _curPageIndex --;
-        [self nearbySearchWithPageIndex:_curPageIndex];
+//        [NSThread detachNewThreadSelector:@selector(nearbySearchWithPageIndex:) toTarget:self withObject:[NSNumber numberWithInteger:_curPageIndex]];
+        [self nearbySearchWithPageIndex:[NSNumber numberWithInteger:_curPageIndex]];
     }
 
 }
@@ -810,13 +830,14 @@
 {
     if (_curPageIndex<_totalPageNum) {
         _curPageIndex ++;
-        [self nearbySearchWithPageIndex:_curPageIndex];
+//        [NSThread detachNewThreadSelector:@selector(nearbySearchWithPageIndex:) toTarget:self withObject:[NSNumber numberWithInteger:_curPageIndex]];
+        [self nearbySearchWithPageIndex:[NSNumber numberWithInteger:_curPageIndex]];
     }
     
     
 }
 
-- (void)nearbySearchWithPageIndex:(NSInteger) pageIndex {
+- (void)nearbySearchWithPageIndex:(NSNumber *) pageIndex {
     BMKRadarNearbySearchOption *option = [[BMKRadarNearbySearchOption alloc] init]
     ;
     option.radius = _searchRadius;
@@ -824,7 +845,7 @@
     //test
     option.centerPt = _myCoor;
 //    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
-    option.pageIndex = pageIndex;
+    option.pageIndex = [pageIndex integerValue];
     
     if (_myCoor.latitude <0.01) {
         MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
@@ -858,6 +879,54 @@
 //            
 //        }
 //        NSLog(@"get 失败");
+    }
+    
+}
+
+
+
+- (void)nearbySearchWithPageIndex{
+    BMKRadarNearbySearchOption *option = [[BMKRadarNearbySearchOption alloc] init]
+    ;
+    option.radius = _searchRadius;
+    option.sortType = BMK_RADAR_SORT_TYPE_DISTANCE_FROM_NEAR_TO_FAR;
+    //test
+    option.centerPt = _myCoor;
+    //    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
+    option.pageIndex = 0;
+    
+    if (_myCoor.latitude <0.01) {
+        MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"定位失败";
+        if (hud) {
+            [hud hide:YES afterDelay:1.0];
+            
+        }
+        NSLog(@"定位失败");
+        
+    }
+    
+    //    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    //    NSString *doc = [NSString stringWithFormat:@"%@/22.txt",documentDir];
+    //    NSLog(@"path:%@",doc);
+    //    NSString *log = [NSString stringWithFormat:@"error:%f",_myCoor.latitude];
+    //    NSError *error;
+    //
+    //    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    BOOL res = [_radarManager getRadarNearbySearchRequest:option];
+    if (res) {
+        NSLog(@"get 成功");
+    } else {
+        //        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+        //        hud.mode = MBProgressHUDModeCustomView;
+        //        hud.labelText = @"失败";
+        //        if (hud) {
+        //            [hud hide:YES afterDelay:1.0];
+        //            
+        //        }
+        //        NSLog(@"get 失败");
     }
     
 }
@@ -1070,6 +1139,7 @@
     _curLocation.latitude = userLocation.location.coordinate.latitude;
     _curLocation.longitude = userLocation.location.coordinate.longitude;
     [lock unlock];
+//    NSLog(@"my Position:%f",_curLocation.latitude);
 }
 
 /**
@@ -1148,7 +1218,7 @@
             [self.pageFront setEnabled:NO];
         }
         
-        [self.pageNumLabel setText:[NSString stringWithFormat:@"%ld",_curPageIndex+1]];
+        [self.pageNumLabel setText:[NSString stringWithFormat:@"%d",_curPageIndex+1]];
         
 
     }else if (error == BMK_RADAR_NETWOKR_ERROR || error == BMK_RADAR_NETWOKR_TIMEOUT || error == BMK_RADAR_PERMISSION_UNFINISHED)
@@ -1157,7 +1227,7 @@
         [alet show];
     }else if (error == BMK_RADAR_NO_RESULT)
     {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
         
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"没有找到...";
@@ -1190,6 +1260,7 @@
         ((BMKPinAnnotationView*)annotationView).pinColor = BMKPinAnnotationColorRed;
         // 设置重天上掉下的效果(annotation)
         ((BMKPinAnnotationView*)annotationView).animatesDrop = YES;
+        
     }
     
     
@@ -1216,9 +1287,14 @@
     UIImageView *backImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 112*factor, 144*factor)];
     [backImageView setImage:[UIImage imageNamed:@"MapAnnotationBG"]];
 
-     UIImageView *imageview=[[UIImageView alloc]initWithFrame:CGRectMake(8*factor, 8*factor, 96*factor, 96*factor)];
+     UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(8*factor, 8*factor, 96*factor, 96*factor)];
+
     [viewForImage addSubview:backImageView];
     [viewForImage addSubview:imageview];
+    viewForImage.tag = 111;
+    
+   
+    
 
     if ([annotation isKindOfClass:[myPointAnnotation class]]) {
         
@@ -1240,9 +1316,8 @@
             defaultHead = [UIImage imageNamed:@"girl.png"];
             
         }
-        [imageview setImage:defaultHead];
 
-//        [imageview setImageWithURL:url placeholderImage:defaultHead ];
+        [imageview setImageWithURL:url placeholderImage:defaultHead ];
 //        [imageview setImageWithURL:url placeholderImage:defaultHead ];
 //        [imageview setImageWithURLRequest:[NSURLRequest requestWithURL:url]
 //                         placeholderImage:defaultHead
@@ -1256,12 +1331,18 @@
 //                                  }
 //                                  failure:nil];
 //
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *img = [[UIImage alloc] initWithData:data];
-        if (img) {
-            [imageview setImage:img];
-
-        }
+        
+        
+   
+        
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        NSData *data = [NSData data];
+//
+//        UIImage *img = [[UIImage alloc] initWithData:data];
+//        if (img) {
+//            [imageview setImage:img];
+//
+//        }
 
         if (anno.containUsers.count>0) {
             
@@ -1279,12 +1360,89 @@
     }
     
     
-    annotationView.image=[self getImageFromView:viewForImage];
+//    BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc]initWithCustomView:viewForImage];
+//    pView.frame = CGRectMake(0, 0, 112*factor, 144*factor);
+//    ((BMKPinAnnotationView*)annotationView).paopaoView = nil;
+//    ((BMKPinAnnotationView*)annotationView).paopaoView = pView;
     
+//    annotationView.image=[self getImageFromView:viewForImage];
+//    annotationView.image= [self imageByScaling:imageview.image ProportionallyToSize:imageview.frame.size];
+//    annotationView.contentMode = UIViewContentModeScaleToFill;
+//    [annotationView sizeToFit];
+    annotationView.image = nil;
+    [annotationView setFrame:viewForImage.frame];
 
+    if ([annotationView viewWithTag:111]) {
+        
+    }else
+    {
+        [annotationView addSubview: viewForImage];
+    }
+    
     
     return annotationView;
 }
+
+- (UIImage *)imageByScaling:(UIImage *)sourceImage ProportionallyToSize:(CGSize)targetSize {
+    
+    UIImage *newImage = nil;
+    
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
+        
+        CGFloat widthFactor = targetWidth / width;
+        CGFloat heightFactor = targetHeight / height;
+        
+        if (widthFactor < heightFactor)
+            scaleFactor = widthFactor;
+        else
+            scaleFactor = heightFactor;
+        
+        scaledWidth  = width * scaleFactor;
+        scaledHeight = height * scaleFactor;
+        
+        // center the image
+        
+        if (widthFactor < heightFactor) {
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+        } else if (widthFactor > heightFactor) {
+            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+        }
+    }
+    
+    
+    // this is actually the interesting part:
+    
+    UIGraphicsBeginImageContext(targetSize);
+    
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width  = scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    
+    [sourceImage drawInRect:thumbnailRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if(newImage == nil) NSLog(@"could not scale image");
+    
+    
+    return newImage ;
+}
+
 
 
 -(UIImage *)getImageFromView:(UIView *)view{

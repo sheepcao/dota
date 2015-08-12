@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A41256431B7B1491005827F9 /* defaultHead.png in Resources */ = {isa = PBXBuildFile; fileRef = A41256421B7B1491005827F9 /* defaultHead.png */; };
 		A412D0071B4F5A74006180A0 /* cake.png in Resources */ = {isa = PBXBuildFile; fileRef = A412D0061B4F5A74006180A0 /* cake.png */; };
 		A412D0301B4FAB87006180A0 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A412D0091B4FAB86006180A0 /* AFAppDotNetAPIClient.m */; };
 		A412D0311B4FAB87006180A0 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A412D00C1B4FAB86006180A0 /* AFHTTPRequestOperation.m */; };
@@ -194,6 +195,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A41256421B7B1491005827F9 /* defaultHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHead.png; sourceTree = "<group>"; };
 		A412D0061B4F5A74006180A0 /* cake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cake.png; sourceTree = "<group>"; };
 		A412D0081B4FAB86006180A0 /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFAppDotNetAPIClient.h; path = ../AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
 		A412D0091B4FAB86006180A0 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFAppDotNetAPIClient.m; path = ../AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 				A42E82A31B662EA800A431E0 /* chat_bubble_white@2x.png */,
 				A42E82A11B662B5400A431E0 /* chat_bg_left@2x.png */,
 				A42E829F1B662AD600A431E0 /* chat_bar.png */,
+				A41256421B7B1491005827F9 /* defaultHead.png */,
 				A42E829D1B6621E000A431E0 /* thumb.png */,
 				A42E82991B66195E00A431E0 /* 封面1.png */,
 				A42E829B1B661B1C00A431E0 /* moon.png */,
@@ -1100,6 +1103,7 @@
 				A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */,
 				A4CC541D1B67609C00950537 /* start.html in Resources */,
 				A476A25B1B77441B007D86C7 /* cycyle1.png in Resources */,
+				A41256431B7B1491005827F9 /* defaultHead.png in Resources */,
 				A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */,
 				A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */,
 				A4DA56231B4E73280010C95D /* select_selected.png in Resources */,
