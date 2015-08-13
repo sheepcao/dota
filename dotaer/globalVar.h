@@ -51,6 +51,8 @@
 #define VERSIONNUMBER   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define ADMOB_ID @"ca-app-pub-3074684817942615/4321450681"
 
+
+
 #endif
 
 

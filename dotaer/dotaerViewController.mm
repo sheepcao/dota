@@ -19,7 +19,8 @@
 #import "userInfo.h"
 #import "SideMenuViewController.h"
 #import "DataCenter.h"
-#import "levelInfoViewController.h"
+//#import "levelInfoViewController.h"
+#import "submitScoreViewController.h"
 #import "favorViewController.h"
 
 
@@ -86,6 +87,8 @@
     [self setupCenterView];
     
     [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:6.6f];
+
+    NSLog(@"dotaerViewController did load");
 
     
 }
@@ -306,6 +309,8 @@
 //    [NSThread detachNewThreadSelector:@selector(showHUD:) toTarget:self withObject:[NSNumber numberWithDouble:6.0]];
 
     [self nearbySearchWithPageIndex:[NSNumber numberWithInteger:_curPageIndex]];
+    
+    NSLog(@"firstSearch");
 }
 
 -(void)showHUD:(NSNumber *)time
@@ -482,10 +487,10 @@
 
 
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
     NSLog(@"appear !!!!!");
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     self.title = @"附近";
 
@@ -519,6 +524,7 @@
          
             [self configUserInfo:userDic];
             
+            
             if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
 
                 SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
@@ -541,16 +547,39 @@
 
     }
     
+    NSLog(@"dotaerViewController did appear");
+
+    
+}
+
+-(void)updateUserScores:(NSString *)username
+{
+    NSDictionary *userGameAccount = [NSDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:username]];
+    
+    if (userGameAccount) {
+        
+        NSString *gameName = [userGameAccount objectForKey:@"gameName"];
+        NSString *gamePassword = [userGameAccount objectForKey:@"gamePassword"];
+        if(gameName && gamePassword && ![gameName isEqualToString:@""] &&![gamePassword isEqualToString:@""])
+        {
+            submitScoreViewController *levelInfo = [[submitScoreViewController alloc] init];
+            [levelInfo requestExtroInfoWithUser:gameName andPassword:gamePassword];
+            
+        }
+        
+
+    }
+    
+   
 }
 
 -(void)showConfirmLevel
 {
-    self.title = @"Skip";
 
-    levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
+    submitScoreViewController *levelInfo = [[submitScoreViewController alloc] initWithNibName:@"submitScoreViewController" bundle:nil];
     
     levelInfo.TTscoreDelegate = self;
-    [self.navigationController pushViewController:levelInfo animated:NO];
+    [self presentViewController:levelInfo animated:YES completion:nil];
     
     [[DataCenter sharedDataCenter] setNeedConfirmLevelInfo:NO];
 }
@@ -607,27 +636,32 @@
         
 
         if ([self.myUserInfo.isReviewed isEqualToString:@"no"]) {
-            leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
-            [leftMenuVC.itemsTable  reloadData];
+
+
         }else
         {
-            leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
-            [leftMenuVC.itemsTable  reloadData];
+            [self performSelectorInBackground:@selector(updateUserScores:) withObject:self.myUserInfo.username];
+
+//            leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
+//            [leftMenuVC.itemsTable  reloadData];
         }
         
         
+        
     }
+    
+    NSLog(@"config user info");
 }
-
--(void)uploadRadarInfo
-{
-    BOOL res = [_radarManager uploadInfoRequest:[self getCurrInfo]];
-    if (res) {
-        NSLog(@"upload 成功");
-    } else {
-        NSLog(@"upload 失败");
-    }
-}
+//
+//-(void)uploadRadarInfo
+//{
+//    BOOL res = [_radarManager uploadInfoRequest:[self getCurrInfo]];
+//    if (res) {
+//        NSLog(@"upload 成功");
+//    } else {
+//        NSLog(@"upload 失败");
+//    }
+//}
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -647,6 +681,7 @@
     }
     [_radarManager startAutoUpload:10];
    
+    NSLog(@"uploadLocation");
 
 }
 -(void)cancelUploadLocation
@@ -749,8 +784,10 @@
         }
     }
     [_mapView addAnnotations:annotations];
+    
     [_mapView showAnnotations:annotations animated:YES];
     [_mapView setZoomLevel:9+((32 - self.radiusSlider.value)/2) ];
+    NSLog(@"addAnnotations");
 }
 
 -(void)updateValue:(UISlider *)sender{
@@ -1068,10 +1105,16 @@
         //test
         info.pt = _curLocation;
         [lock unlock];
+        
+        NSLog(@"getCurrInfo");
+
         return info;
     }
     else
     {
+        
+        NSLog(@"getCurrInfo");
+
         return nil;
     }
 
@@ -1218,7 +1261,7 @@
             [self.pageFront setEnabled:NO];
         }
         
-        [self.pageNumLabel setText:[NSString stringWithFormat:@"%d",_curPageIndex+1]];
+        [self.pageNumLabel setText:[NSString stringWithFormat:@"%ld",_curPageIndex+1]];
         
 
     }else if (error == BMK_RADAR_NETWOKR_ERROR || error == BMK_RADAR_NETWOKR_TIMEOUT || error == BMK_RADAR_PERMISSION_UNFINISHED)
@@ -1353,7 +1396,7 @@
             
             UILabel *userCount = [[UILabel alloc] initWithFrame:CGRectMake(112*factor-6-14, 112*factor-6-13, 16, 16)];
             userCount.textAlignment = NSTextAlignmentCenter;
-            [userCount setText:[NSString stringWithFormat:@"%u",anno.containUsers.count + 1 ]];
+            [userCount setText:[NSString stringWithFormat:@"%lu",anno.containUsers.count + 1 ]];
             userCount.font = [UIFont boldSystemFontOfSize:8.2f];
             [imageview addSubview:userCount];
         }
@@ -1379,8 +1422,10 @@
         [annotationView addSubview: viewForImage];
     }
     
-    
+    NSLog(@"viewForAnnotation");
+
     return annotationView;
+    
 }
 
 - (UIImage *)imageByScaling:(UIImage *)sourceImage ProportionallyToSize:(CGSize)targetSize {

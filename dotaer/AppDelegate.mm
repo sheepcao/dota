@@ -166,13 +166,13 @@ BMKMapManager* _mapManager;
         NSLog(@"授权失败:%d",iError);
     }
     
-    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *doc = [NSString stringWithFormat:@"%@/11.txt",documentDir];
-    NSLog(@"path:%@",doc);
-    NSString *log = [NSString stringWithFormat:@"error:%d",iError];
-    NSError *error;
-    
-    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
+//    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString *doc = [NSString stringWithFormat:@"%@/11.txt",documentDir];
+//    NSLog(@"path11:%@",doc);
+//    NSString *log = [NSString stringWithFormat:@"error:%d",iError];
+//    NSError *error;
+//    
+//    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
 
 }
 @end

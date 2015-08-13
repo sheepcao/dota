@@ -12,7 +12,7 @@
 #import "AFURLSessionManager.h"
 #import "globalVar.h"
 #import "DataCenter.h"
-#import "levelInfoViewController.h"
+//#import "levelInfoViewController.h"
 #import "userAgreementViewController.h"
 
 @interface loginViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>

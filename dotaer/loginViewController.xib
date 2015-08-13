@@ -43,14 +43,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotaLogin.png" translatesAutoresizingMaskIntoConstraints="NO" id="1X8-BL-qu9">
-                    <rect key="frame" x="0.0" y="-51" width="375" height="769"/>
+                    <rect key="frame" x="0.0" y="-51" width="414" height="838"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nc0-bQ-ZaI" customClass="FXBlurView">
-                    <rect key="frame" x="0.0" y="0.0" width="374" height="607"/>
+                    <rect key="frame" x="0.0" y="0.0" width="413" height="676"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
@@ -59,13 +59,13 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsG-os-72Z" userLabel="operationBar">
-                    <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                     <subviews>
                         <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCV-UI-Ksv">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMj-lN-Wg5">
-                                    <rect key="frame" x="187" y="0.0" width="1" height="60"/>
+                                    <rect key="frame" x="206" y="0.0" width="1" height="60"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="Idb-O4-ToA"/>
@@ -80,7 +80,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9L-mD-pZm">
-                            <rect key="frame" x="187.5" y="2" width="187.5" height="56"/>
+                            <rect key="frame" x="207" y="2" width="207" height="56"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
                             <state key="normal" title="随便看看">
                                 <color key="titleColor" red="0.88309518909999996" green="0.88967413650000005" blue="0.88967413650000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,7 +91,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLb-W0-Dkj">
-                            <rect key="frame" x="0.0" y="2" width="187.5" height="56"/>
+                            <rect key="frame" x="0.0" y="2" width="207" height="56"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
                             <state key="normal" title="前往注册">
                                 <color key="titleColor" red="0.88309518909999996" green="0.88967413650000005" blue="0.88967413650000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -141,7 +141,7 @@
                 <constraint firstItem="SsG-os-72Z" firstAttribute="top" secondItem="Nc0-bQ-ZaI" secondAttribute="bottom" id="zPC-FN-rgR"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="owF-EA-MNo"/>
@@ -211,13 +211,13 @@
                         <outlet property="delegate" destination="-1" id="PSG-OF-XlU"/>
                     </connections>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="register-male.png" translatesAutoresizingMaskIntoConstraints="NO" id="kAV-q3-2Vc">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="male.png" translatesAutoresizingMaskIntoConstraints="NO" id="kAV-q3-2Vc">
                     <rect key="frame" x="158" y="112" width="20" height="24"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cake.png" translatesAutoresizingMaskIntoConstraints="NO" id="gd5-NJ-tvp">
                     <rect key="frame" x="187" y="76" width="25" height="25"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="register-female.png" translatesAutoresizingMaskIntoConstraints="NO" id="5d4-N1-vas">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="female.png" translatesAutoresizingMaskIntoConstraints="NO" id="5d4-N1-vas">
                     <rect key="frame" x="241" y="112" width="20" height="24"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="男" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPY-iR-OTH">
@@ -388,9 +388,9 @@
     <resources>
         <image name="cake.png" width="50" height="50"/>
         <image name="dotaLogin.png" width="432" height="768"/>
+        <image name="female.png" width="19" height="22"/>
+        <image name="male.png" width="19" height="22"/>
         <image name="password1.png" width="50" height="50"/>
-        <image name="register-female.png" width="19" height="22"/>
-        <image name="register-male.png" width="19" height="22"/>
         <image name="select.png" width="44" height="44"/>
         <image name="select_selected.png" width="44" height="44"/>
         <image name="username1.png" width="50" height="50"/>

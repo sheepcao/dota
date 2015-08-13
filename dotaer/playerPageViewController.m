@@ -11,9 +11,11 @@
 #import "noteTableViewCell.h"
 #import "achieveTableViewCell.h"
 #import "AFHTTPRequestOperationManager.h"
-#import "levelInfoViewController.h"
+//#import "levelInfoViewController.h"
 #import "AFURLSessionManager.h"
 #import "DataCenter.h"
+
+#import "submitScoreViewController.h"
 
 
 
@@ -59,7 +61,7 @@
 //        [self.sexImage setFrame:CGRectMake(35, 57, 19, 22)];
         
         self.title = @"个人主页";
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更新战绩" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"绑定变更" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
         [self.favorBtn setHidden:YES];
         [self.distanceImage setHidden:YES];
         [self.distanceLabel setHidden:YES];
@@ -204,9 +206,12 @@
     [self.view endEditing:YES];// this will do the trick
 
     
-    levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
+//    levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
+//
+    submitScoreViewController *levelInfo = [[submitScoreViewController alloc] initWithNibName:@"submitScoreViewController" bundle:nil];
+//
     
-    [self.navigationController pushViewController:levelInfo animated:YES];
+    [self presentViewController:levelInfo animated:YES completion:nil];
 }
 
 
@@ -397,7 +402,7 @@
         if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
         {
             
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更新战绩" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"绑定变更" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
         }
         
         [self.notConfirmLevel setHidden:YES];
@@ -425,14 +430,14 @@
     
     if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
     {
-        [self.ageLabel setFrame:CGRectMake(235, 51, 42, 31)];
-        [self.sexImage setFrame:CGRectMake(50, 55, 19, 22)];
+        [self.ageLabel setFrame:CGRectMake(self.headImage.frame.origin.x+self.headImage.frame.size.width + 30, 51, 42, 31)];
+        [self.sexImage setFrame:CGRectMake(self.headImage.frame.origin.x - 30 -19, 55, 19, 22)];
     }else
     {
         if(self.distance == -1)
         {
-            [self.ageLabel setFrame:CGRectMake(235, 45, 42, 31)];
-            [self.sexImage setFrame:CGRectMake(50, 37, 19, 22)];
+            [self.ageLabel setFrame:CGRectMake(self.headImage.frame.origin.x+self.headImage.frame.size.width + 30, 45, 42, 31)];
+            [self.sexImage setFrame:CGRectMake(self.headImage.frame.origin.x - 30-19, 37, 19, 22)];
             [self.distanceImage setHidden:YES];
             [self.distanceLabel setHidden:YES];
             [self.addressLabel setHidden:YES];

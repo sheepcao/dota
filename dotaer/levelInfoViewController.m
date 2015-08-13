@@ -31,6 +31,8 @@
     [self.levelWebview loadRequest:request];
     self.levelWebview.delegate = self;
     self.levelWebview.scalesPageToFit = YES;
+//    [self.levelWebview stringByEvaluatingJavaScriptFromString:@"document. body.style.zoom = 10;"];
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -462,12 +464,19 @@
     
     [manager POST:confirmLevel parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
+        MBProgressHUD *hud1 = (MBProgressHUD *)[self.view viewWithTag:123];
+        if (hud1) {
+            [hud1 hide:YES];
+        }
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"战绩认证成功";
         hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-
+        
         [hud hide:YES afterDelay:1.5];
+        
+     
     
 
         NSLog(@"JSON: %@", responseObject);
@@ -476,7 +485,7 @@
         
         NSLog(@"JJCheroFirst: %@", [[responseObject objectForKey:@"JJCinfo"] objectForKey:@"JJCheroFirst"]);
         
-        [self performSelector:@selector(backToSelfInfo) withObject:nil afterDelay:3];
+        [self performSelector:@selector(backToSelfInfo) withObject:nil afterDelay:2];
         
         
         
@@ -485,7 +494,10 @@
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR: %@",  operation.responseString);
         
-        
+        MBProgressHUD *hud1 = (MBProgressHUD *)[self.view viewWithTag:123];
+        if (hud1) {
+            [hud1 hide:YES];
+        }
         
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeCustomView;
@@ -494,6 +506,7 @@
         
         [hud hide:YES afterDelay:1.5];
 
+        [self performSelector:@selector(backToSelfInfo) withObject:nil afterDelay:2];
 
         
         

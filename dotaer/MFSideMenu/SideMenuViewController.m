@@ -12,7 +12,8 @@
 #import "globalVar.h"
 #import "DataCenter.h"
 #import "AFHTTPRequestOperationManager.h"
-#import "levelInfoViewController.h"
+//#import "levelInfoViewController.h"
+#import "submitScoreViewController.h"
 
 #import "playerPageViewController.h"
 #import "favorViewController.h"
@@ -42,6 +43,7 @@
 
 
     
+    NSLog(@"SideMenuViewController did load");
     
     
 }
@@ -132,7 +134,7 @@
             navigationController.viewControllers = temp;
         }else
         {
-            levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
+            submitScoreViewController *levelInfo = [[submitScoreViewController alloc] initWithNibName:@"submitScoreViewController" bundle:nil];
             
             UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
             NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];

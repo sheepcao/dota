@@ -238,8 +238,12 @@
                                         <action selector="favorTap:" destination="-1" eventType="touchUpInside" id="IqO-Og-u4e"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nN5-k5-GFM">
-                                    <rect key="frame" x="270" y="60" width="138" height="0.0"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nN5-k5-GFM">
+                                    <rect key="frame" x="270" y="60" width="120" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="120" id="QOC-Dl-UN0"/>
+                                        <constraint firstAttribute="height" constant="30" id="ySJ-5g-06v"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                                     <color key="textColor" red="0.76567639802631571" green="0.91090152138157898" blue="0.87168482730263153" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -286,7 +290,6 @@
                                 <constraint firstItem="r6g-EI-m67" firstAttribute="centerX" secondItem="d1p-7P-8h5" secondAttribute="centerX" id="c14-ix-Q2X"/>
                                 <constraint firstItem="p4a-lZ-R3C" firstAttribute="height" secondItem="iy4-UO-CPf" secondAttribute="height" constant="-5" id="cXg-Pa-J30"/>
                                 <constraint firstAttribute="trailing" secondItem="d1p-7P-8h5" secondAttribute="trailing" id="djH-Nu-wpE"/>
-                                <constraint firstAttribute="trailing" secondItem="nN5-k5-GFM" secondAttribute="trailing" constant="6" id="eMh-Ll-heb"/>
                                 <constraint firstItem="r6g-EI-m67" firstAttribute="height" secondItem="d1p-7P-8h5" secondAttribute="height" id="jWm-oq-6C9"/>
                                 <constraint firstItem="HSp-Vo-8oe" firstAttribute="leading" secondItem="p4a-lZ-R3C" secondAttribute="trailing" constant="18" id="kPI-67-unY"/>
                                 <constraint firstItem="p4a-lZ-R3C" firstAttribute="leading" secondItem="8Ig-n9-2on" secondAttribute="trailing" constant="21" id="lOb-rj-mOa"/>
@@ -432,7 +435,7 @@
                 <constraint firstItem="71r-sO-dAI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uBv-Bt-0hW"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-            <point key="canvasLocation" x="767.5" y="258.5"/>
+            <point key="canvasLocation" x="767" y="258"/>
         </view>
         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7iX-oZ-e46">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
