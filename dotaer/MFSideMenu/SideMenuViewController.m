@@ -17,6 +17,7 @@
 
 #import "playerPageViewController.h"
 #import "favorViewController.h"
+#import "publisherViewController.h"
 
 
 @implementation SideMenuViewController
@@ -546,6 +547,21 @@
     
     [self  dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+
+- (IBAction)testVideo:(UIButton *)sender {
+    
+    publisherViewController *VideoVC = [[publisherViewController alloc] initWithNibName:@"publisherViewController" bundle:nil];
+    
+    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+    [temp addObject:VideoVC];
+    navigationController.viewControllers = temp;
+    
+    [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+
+
 }
 
 

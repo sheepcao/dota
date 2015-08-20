@@ -497,6 +497,7 @@ bool emailOK;
                              [userInfoDic objectForKey:@"username"],@"username",
                              [userInfoDic objectForKey:@"age"],@"age",
                              [userInfoDic objectForKey:@"email"],@"email",
+                             [userInfoDic objectForKey:@"password"],@"password",
                              [userInfoDic objectForKey:@"sex"],@"sex",
                              isReviewed,@"isReviewed",
                              TTscore,@"TTscore",

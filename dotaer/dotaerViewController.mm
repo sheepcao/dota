@@ -22,6 +22,7 @@
 //#import "levelInfoViewController.h"
 #import "submitScoreViewController.h"
 #import "favorViewController.h"
+#import "AFHTTPRequestOperationManager.h"
 
 
 #define annoRatio 0.37
@@ -484,6 +485,63 @@
     }];
 }
 
+
+- (void)userLogin:(NSString *)username Pswd:(NSString *)password {
+    
+    [self.view endEditing:YES];// this will do the trick
+    
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeAnnularDeterminate;
+    hud.labelText = @"登录中...";
+    hud.dimBackground = YES;
+    
+    NSDictionary *parameters = @{@"tag": @"login",@"name":username,@"password":password};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:30];  //Time out after 25 seconds
+    
+    
+    [manager POST:registerService parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"登录成功";
+        
+        
+        [hud hide:YES afterDelay:0.6];
+        [self performSelector:@selector(successLogin:) withObject:responseObject afterDelay:1.01];
+        
+        
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"Error";
+        [hud hide:YES afterDelay:1.5];
+        
+        
+        if ([operation.responseString containsString:@"Incorrect username or password!"]) {
+            UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您输入的用户名或密码有误，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [userNameAlert show];
+        }else
+        {
+            UIAlertView *registerFailedAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"登录失败，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [registerFailedAlert show];
+        }
+        
+        
+        
+    }];
+    
+    
+    
+    
+    
+    
+}
 
 
 
@@ -1326,15 +1384,35 @@
         factor = annoRatio *1.4;
     }
     
-    UIView *viewForImage=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 112*factor, 144*factor)];
-    UIImageView *backImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 112*factor, 144*factor)];
-    [backImageView setImage:[UIImage imageNamed:@"MapAnnotationBG"]];
+    UIView *viewForImage;
+    UIImageView *imageview;
+    
+    if ([annotationView viewWithTag:111]) {
+        viewForImage = [annotationView viewWithTag:111];
+        imageview = (UIImageView *)[viewForImage viewWithTag:101];
+        if ([imageview viewWithTag:102]) {
+            [[imageview viewWithTag:102] removeFromSuperview];
+        }
+        if ([imageview viewWithTag:103]) {
+            [[imageview viewWithTag:103] removeFromSuperview];
+        }
+    }else
+    {
+        viewForImage =[[UIView alloc]initWithFrame:CGRectMake(0, 0, 112*factor, 144*factor)];
+        UIImageView *backImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0,0, 112*factor, 144*factor)];
+        [backImageView setImage:[UIImage imageNamed:@"MapAnnotationBG"]];
+        
+        imageview = [[UIImageView alloc]initWithFrame:CGRectMake(8*factor, 8*factor, 96*factor, 96*factor)];
+        
+        imageview.tag =101;
+        
+        [viewForImage addSubview:backImageView];
+        [viewForImage addSubview:imageview];
+        
+        viewForImage.tag = 111;
+    }
+    
 
-     UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(8*factor, 8*factor, 96*factor, 96*factor)];
-
-    [viewForImage addSubview:backImageView];
-    [viewForImage addSubview:imageview];
-    viewForImage.tag = 111;
     
    
     
@@ -1389,8 +1467,11 @@
 
         if (anno.containUsers.count>0) {
             
+            
+            
             UIImageView *countBackImage = [[UIImageView alloc] initWithFrame:CGRectMake(112*factor-6-15, 112*factor-6-15, 15, 15)];
             [countBackImage setImage:[UIImage imageNamed:@"MapUserCountBG"]];
+            countBackImage.tag = 102;
             
             [imageview addSubview:countBackImage];
             
@@ -1398,6 +1479,8 @@
             userCount.textAlignment = NSTextAlignmentCenter;
             [userCount setText:[NSString stringWithFormat:@"%lu",anno.containUsers.count + 1 ]];
             userCount.font = [UIFont boldSystemFontOfSize:8.2f];
+            userCount.tag = 103;
+            
             [imageview addSubview:userCount];
         }
     }

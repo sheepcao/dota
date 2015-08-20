@@ -49,7 +49,7 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"videoTableViewCell" owner:self options:nil] objectAtIndex:0];//加载nib文件
     }
     
-    [cell.videoBtn addTarget:self action:@selector(videoTap:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.videoBtn addTarget:self action:@selector(videoTap:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 

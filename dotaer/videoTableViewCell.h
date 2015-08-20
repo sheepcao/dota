@@ -10,7 +10,10 @@
 #import "videoButton.h"
 
 @interface videoTableViewCell : UITableViewCell
-//- (IBAction)vedioBtnTap:(id)sender;
-@property (weak, nonatomic) IBOutlet videoButton *videoBtn;
 
+@property (weak, nonatomic) IBOutlet UIImageView *headImg;
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *describeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *updateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *updateTime;
 @end

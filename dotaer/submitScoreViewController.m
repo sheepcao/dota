@@ -221,11 +221,11 @@
         
 
         
-        NSArray *resultArray = [result componentsSeparatedByString:@"<dt><a href=\"/"];
+        NSArray *resultArray = [result componentsSeparatedByString:@"YY.d.u = "];
         
         NSLog(@"resultArray.count = %ld",resultArray.count);
         if (resultArray.count>1) {
-            NSString *resultString = [resultArray[1]componentsSeparatedByString:@"\""][0];
+            NSString *resultString = [resultArray[1]componentsSeparatedByString:@",YY.d.n"][0];
             NSLog(@"userID:%@",resultString);
             
             [self requestScores:resultString andUserName:username andPassword:password];

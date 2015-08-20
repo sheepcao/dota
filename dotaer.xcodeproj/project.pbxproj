@@ -37,6 +37,31 @@
 		A42E82A01B662AD600A431E0 /* chat_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A42E829F1B662AD600A431E0 /* chat_bar.png */; };
 		A42E82A21B662B5400A431E0 /* chat_bg_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42E82A11B662B5400A431E0 /* chat_bg_left@2x.png */; };
 		A42E82A41B662EA800A431E0 /* chat_bubble_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42E82A31B662EA800A431E0 /* chat_bubble_white@2x.png */; };
+		A42F393E1B841BB9005877B9 /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42F393C1B841BB9005877B9 /* VideoListViewController.m */; };
+		A42F393F1B841BB9005877B9 /* VideoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42F393D1B841BB9005877B9 /* VideoListViewController.xib */; };
+		A42F39431B842BB8005877B9 /* publisherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42F39411B842BB8005877B9 /* publisherViewController.m */; };
+		A42F39441B842BB8005877B9 /* publisherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42F39421B842BB8005877B9 /* publisherViewController.xib */; };
+		A42F39471B84689A005877B9 /* playerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = A42F39461B84689A005877B9 /* playerBtn.m */; };
+		A42F395D1B84888A005877B9 /* 伍声2009.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39491B84888A005877B9 /* 伍声2009.jpeg */; };
+		A42F395E1B84888A005877B9 /* DOta情书.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F394A1B84888A005877B9 /* DOta情书.jpeg */; };
+		A42F395F1B84888A005877B9 /* dota第一视角直播录制.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F394B1B84888A005877B9 /* dota第一视角直播录制.jpeg */; };
+		A42F39601B84888A005877B9 /* Esports海涛.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F394C1B84888A005877B9 /* Esports海涛.jpeg */; };
+		A42F39611B84888A005877B9 /* GuAi小乖.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F394D1B84888A005877B9 /* GuAi小乖.jpeg */; };
+		A42F39621B84888A005877B9 /* Kevinnnnnnnnnnn.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F394E1B84888A005877B9 /* Kevinnnnnnnnnnn.jpeg */; };
+		A42F39631B84888A005877B9 /* Music咖啡。.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F394F1B84888A005877B9 /* Music咖啡。.jpeg */; };
+		A42F39641B84888A005877B9 /* Pc冷冷.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39501B84888A005877B9 /* Pc冷冷.jpeg */; };
+		A42F39651B84888A005877B9 /* superhebefans.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39511B84888A005877B9 /* superhebefans.jpeg */; };
+		A42F39661B84888A005877B9 /* 卜严骏Pis.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39521B84888A005877B9 /* 卜严骏Pis.jpeg */; };
+		A42F39671B84888A005877B9 /* 天枫燚.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39531B84888A005877B9 /* 天枫燚.jpeg */; };
+		A42F39681B84888A005877B9 /* 小爷不狂.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39541B84888A005877B9 /* 小爷不狂.jpeg */; };
+		A42F39691B84888A005877B9 /* 张登溶_nada.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39551B84888A005877B9 /* 张登溶_nada.jpeg */; };
+		A42F396A1B84888A005877B9 /* 朴一生dota.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39561B84888A005877B9 /* 朴一生dota.jpeg */; };
+		A42F396B1B84888A005877B9 /* 梅西❤Huang.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39571B84888A005877B9 /* 梅西❤Huang.jpeg */; };
+		A42F396C1B84888A005877B9 /* 水一亦寒.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39581B84888A005877B9 /* 水一亦寒.jpeg */; };
+		A42F396D1B84888A005877B9 /* 满楼水平.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39591B84888A005877B9 /* 满楼水平.jpeg */; };
+		A42F396E1B84888A005877B9 /* 满楼都素我的人.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F395A1B84888A005877B9 /* 满楼都素我的人.jpeg */; };
+		A42F396F1B84888A005877B9 /* 狗头神教牛蛙.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F395B1B84888A005877B9 /* 狗头神教牛蛙.jpeg */; };
+		A42F39701B84888A005877B9 /* 舞ル灬.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F395C1B84888A005877B9 /* 舞ル灬.jpeg */; };
 		A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4319D971B5601F900DB8775 /* MapAnnotationBG@2x.png */; };
 		A4319D9B1B56072500DB8775 /* myPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4319D9A1B56072500DB8775 /* myPointAnnotation.m */; };
 		A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4319D9C1B56248900DB8775 /* MapUserCountBG@2x.png */; };
@@ -248,6 +273,34 @@
 		A42E829F1B662AD600A431E0 /* chat_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_bar.png; sourceTree = "<group>"; };
 		A42E82A11B662B5400A431E0 /* chat_bg_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_bg_left@2x.png"; sourceTree = "<group>"; };
 		A42E82A31B662EA800A431E0 /* chat_bubble_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_bubble_white@2x.png"; sourceTree = "<group>"; };
+		A42F393B1B841BB9005877B9 /* VideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListViewController.h; sourceTree = "<group>"; };
+		A42F393C1B841BB9005877B9 /* VideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListViewController.m; sourceTree = "<group>"; };
+		A42F393D1B841BB9005877B9 /* VideoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoListViewController.xib; sourceTree = "<group>"; };
+		A42F39401B842BB8005877B9 /* publisherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = publisherViewController.h; sourceTree = "<group>"; };
+		A42F39411B842BB8005877B9 /* publisherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = publisherViewController.m; sourceTree = "<group>"; };
+		A42F39421B842BB8005877B9 /* publisherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = publisherViewController.xib; sourceTree = "<group>"; };
+		A42F39451B84689A005877B9 /* playerBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerBtn.h; sourceTree = "<group>"; };
+		A42F39461B84689A005877B9 /* playerBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerBtn.m; sourceTree = "<group>"; };
+		A42F39491B84888A005877B9 /* 伍声2009.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "伍声2009.jpeg"; sourceTree = "<group>"; };
+		A42F394A1B84888A005877B9 /* DOta情书.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "DOta情书.jpeg"; sourceTree = "<group>"; };
+		A42F394B1B84888A005877B9 /* dota第一视角直播录制.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dota第一视角直播录制.jpeg"; sourceTree = "<group>"; };
+		A42F394C1B84888A005877B9 /* Esports海涛.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Esports海涛.jpeg"; sourceTree = "<group>"; };
+		A42F394D1B84888A005877B9 /* GuAi小乖.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GuAi小乖.jpeg"; sourceTree = "<group>"; };
+		A42F394E1B84888A005877B9 /* Kevinnnnnnnnnnn.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Kevinnnnnnnnnnn.jpeg; sourceTree = "<group>"; };
+		A42F394F1B84888A005877B9 /* Music咖啡。.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Music咖啡。.jpeg"; sourceTree = "<group>"; };
+		A42F39501B84888A005877B9 /* Pc冷冷.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pc冷冷.jpeg"; sourceTree = "<group>"; };
+		A42F39511B84888A005877B9 /* superhebefans.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = superhebefans.jpeg; sourceTree = "<group>"; };
+		A42F39521B84888A005877B9 /* 卜严骏Pis.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "卜严骏Pis.jpeg"; sourceTree = "<group>"; };
+		A42F39531B84888A005877B9 /* 天枫燚.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "天枫燚.jpeg"; sourceTree = "<group>"; };
+		A42F39541B84888A005877B9 /* 小爷不狂.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "小爷不狂.jpeg"; sourceTree = "<group>"; };
+		A42F39551B84888A005877B9 /* 张登溶_nada.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "张登溶_nada.jpeg"; sourceTree = "<group>"; };
+		A42F39561B84888A005877B9 /* 朴一生dota.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "朴一生dota.jpeg"; sourceTree = "<group>"; };
+		A42F39571B84888A005877B9 /* 梅西❤Huang.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "梅西❤Huang.jpeg"; sourceTree = "<group>"; };
+		A42F39581B84888A005877B9 /* 水一亦寒.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "水一亦寒.jpeg"; sourceTree = "<group>"; };
+		A42F39591B84888A005877B9 /* 满楼水平.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "满楼水平.jpeg"; sourceTree = "<group>"; };
+		A42F395A1B84888A005877B9 /* 满楼都素我的人.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "满楼都素我的人.jpeg"; sourceTree = "<group>"; };
+		A42F395B1B84888A005877B9 /* 狗头神教牛蛙.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "狗头神教牛蛙.jpeg"; sourceTree = "<group>"; };
+		A42F395C1B84888A005877B9 /* 舞ル灬.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "舞ル灬.jpeg"; sourceTree = "<group>"; };
 		A4319D971B5601F900DB8775 /* MapAnnotationBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapAnnotationBG@2x.png"; sourceTree = "<group>"; };
 		A4319D991B56072500DB8775 /* myPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPointAnnotation.h; sourceTree = "<group>"; };
 		A4319D9A1B56072500DB8775 /* myPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myPointAnnotation.m; sourceTree = "<group>"; };
@@ -572,6 +625,33 @@
 			path = "../UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		A42F39481B84887A005877B9 /* publisherHead */ = {
+			isa = PBXGroup;
+			children = (
+				A42F39491B84888A005877B9 /* 伍声2009.jpeg */,
+				A42F394A1B84888A005877B9 /* DOta情书.jpeg */,
+				A42F394B1B84888A005877B9 /* dota第一视角直播录制.jpeg */,
+				A42F394C1B84888A005877B9 /* Esports海涛.jpeg */,
+				A42F394D1B84888A005877B9 /* GuAi小乖.jpeg */,
+				A42F394E1B84888A005877B9 /* Kevinnnnnnnnnnn.jpeg */,
+				A42F394F1B84888A005877B9 /* Music咖啡。.jpeg */,
+				A42F39501B84888A005877B9 /* Pc冷冷.jpeg */,
+				A42F39511B84888A005877B9 /* superhebefans.jpeg */,
+				A42F39521B84888A005877B9 /* 卜严骏Pis.jpeg */,
+				A42F39531B84888A005877B9 /* 天枫燚.jpeg */,
+				A42F39541B84888A005877B9 /* 小爷不狂.jpeg */,
+				A42F39551B84888A005877B9 /* 张登溶_nada.jpeg */,
+				A42F39561B84888A005877B9 /* 朴一生dota.jpeg */,
+				A42F39571B84888A005877B9 /* 梅西❤Huang.jpeg */,
+				A42F39581B84888A005877B9 /* 水一亦寒.jpeg */,
+				A42F39591B84888A005877B9 /* 满楼水平.jpeg */,
+				A42F395A1B84888A005877B9 /* 满楼都素我的人.jpeg */,
+				A42F395B1B84888A005877B9 /* 狗头神教牛蛙.jpeg */,
+				A42F395C1B84888A005877B9 /* 舞ル灬.jpeg */,
+			);
+			name = publisherHead;
+			sourceTree = "<group>";
+		};
 		A447FE8D1B4A198B0053D982 = {
 			isa = PBXGroup;
 			children = (
@@ -637,6 +717,7 @@
 		A447FE991B4A198B0053D982 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A42F39481B84887A005877B9 /* publisherHead */,
 				A476A2461B75A1B2007D86C7 /* jjc0.png */,
 				A476A2471B75A1B2007D86C7 /* JJC1.png */,
 				A476A2481B75A1B2007D86C7 /* MJ0.png */,
@@ -790,9 +871,17 @@
 				A4CC4AA81B672ABA00950537 /* videoViewController.h */,
 				A4CC4AA91B672ABA00950537 /* videoViewController.m */,
 				A4CC4AAA1B672ABA00950537 /* videoViewController.xib */,
+				A42F39451B84689A005877B9 /* playerBtn.h */,
+				A42F39461B84689A005877B9 /* playerBtn.m */,
 				A4CC4AAD1B672B3200950537 /* videoTableViewCell.h */,
 				A4CC4AAE1B672B3300950537 /* videoTableViewCell.m */,
 				A4CC4AAF1B672B3300950537 /* videoTableViewCell.xib */,
+				A42F39401B842BB8005877B9 /* publisherViewController.h */,
+				A42F39411B842BB8005877B9 /* publisherViewController.m */,
+				A42F39421B842BB8005877B9 /* publisherViewController.xib */,
+				A42F393B1B841BB9005877B9 /* VideoListViewController.h */,
+				A42F393C1B841BB9005877B9 /* VideoListViewController.m */,
+				A42F393D1B841BB9005877B9 /* VideoListViewController.xib */,
 			);
 			name = video;
 			sourceTree = "<group>";
@@ -1053,30 +1142,42 @@
 				A4DA561C1B4E4B860010C95D /* username.png in Resources */,
 				A46E8A931B78D53100B7EEB0 /* ICON 512.png in Resources */,
 				A4DA561B1B4E4B860010C95D /* password.png in Resources */,
+				A42F396D1B84888A005877B9 /* 满楼水平.jpeg in Resources */,
 				A4DDDA051B687C6100ACD655 /* mid_fujin@2x.png in Resources */,
 				A478DAC91B70E5AB0005CB41 /* 黑.jpg in Resources */,
 				A447FEFA1B4A84600053D982 /* listCell.xib in Resources */,
 				A4BDF1621B74464B000096C5 /* menu1.png in Resources */,
 				A4DA560F1B4E16F50010C95D /* dotaLogin.png in Resources */,
 				A4BDF16F1B749DBA000096C5 /* dian2.png in Resources */,
+				A42F39671B84888A005877B9 /* 天枫燚.jpeg in Resources */,
+				A42F396F1B84888A005877B9 /* 狗头神教牛蛙.jpeg in Resources */,
 				A4DA56281B4E73660010C95D /* male@2x.png in Resources */,
 				A4BDF1691B748B31000096C5 /* 流浪.jpg in Resources */,
+				A42F39611B84888A005877B9 /* GuAi小乖.jpeg in Resources */,
+				A42F396C1B84888A005877B9 /* 水一亦寒.jpeg in Resources */,
 				A4319D9F1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg in Resources */,
 				A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */,
+				A42F39641B84888A005877B9 /* Pc冷冷.jpeg in Resources */,
 				A41256471B7B2A0D005827F9 /* mapapi.bundle in Resources */,
+				A42F39631B84888A005877B9 /* Music咖啡。.jpeg in Resources */,
+				A42F39621B84888A005877B9 /* Kevinnnnnnnnnnn.jpeg in Resources */,
 				A42E82A01B662AD600A431E0 /* chat_bar.png in Resources */,
 				A4E02BEA1B69F736000997C0 /* levelyes.png in Resources */,
 				A4DA561F1B4E4C700010C95D /* password1.png in Resources */,
 				A4B8A7551B6B5C1C00BFEDDC /* ShareSDKFlatShareViewUI.bundle in Resources */,
 				A476A2551B75A1B2007D86C7 /* title.png in Resources */,
+				A42F395F1B84888A005877B9 /* dota第一视角直播录制.jpeg in Resources */,
+				A42F39651B84888A005877B9 /* superhebefans.jpeg in Resources */,
 				A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */,
 				A447FEC31B4A1BBB0053D982 /* loginViewController.xib in Resources */,
 				A478DACF1B70E6EE0005CB41 /* 剑圣1.jpg in Resources */,
 				A476A2521B75A1B2007D86C7 /* MJ1.png in Resources */,
 				A4DF4EDE1B58DB6E004E9F59 /* noteTableViewCell.xib in Resources */,
 				A476A2501B75A1B2007D86C7 /* JJC1.png in Resources */,
+				A42F39691B84888A005877B9 /* 张登溶_nada.jpeg in Resources */,
 				A42E829E1B6621E000A431E0 /* thumb.png in Resources */,
 				A4BDF1611B74464B000096C5 /* girl.png in Resources */,
+				A42F393F1B841BB9005877B9 /* VideoListViewController.xib in Resources */,
 				A4E4695E1B7B7034004275D8 /* submitScoreViewController.xib in Resources */,
 				A4E02BDE1B69C752000997C0 /* position.png in Resources */,
 				A476A2561B75A1B2007D86C7 /* tt0.png in Resources */,
@@ -1084,13 +1185,17 @@
 				A4B8A74C1B6B5C1C00BFEDDC /* ShareSDKLocalizable.strings in Resources */,
 				A452ABD61B7883B90067F004 /* eye29.png in Resources */,
 				A4CC4AAC1B672ABA00950537 /* videoViewController.xib in Resources */,
+				A42F396B1B84888A005877B9 /* 梅西❤Huang.jpeg in Resources */,
 				A476A24F1B75A1B2007D86C7 /* jjc0.png in Resources */,
 				A4E02BE91B69F736000997C0 /* levelno.png in Resources */,
 				A4DA56241B4E73280010C95D /* select.png in Resources */,
 				A476A2571B75A1B2007D86C7 /* tt1.png in Resources */,
+				A42F39701B84888A005877B9 /* 舞ル灬.jpeg in Resources */,
+				A42F39661B84888A005877B9 /* 卜严骏Pis.jpeg in Resources */,
 				A476A25D1B774649007D86C7 /* cycle2.png in Resources */,
 				A4DA56201B4E4C700010C95D /* username1.png in Resources */,
 				A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */,
+				A42F39681B84888A005877B9 /* 小爷不狂.jpeg in Resources */,
 				A4DDDA0D1B68A64900ACD655 /* sideBack.png in Resources */,
 				A45F545E1B78E8E400761872 /* Images-2.xcassets in Resources */,
 				A476A2511B75A1B2007D86C7 /* MJ0.png in Resources */,
@@ -1099,12 +1204,15 @@
 				A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */,
 				A42E82A21B662B5400A431E0 /* chat_bg_left@2x.png in Resources */,
 				A4BA89B51B70A7A000B94279 /* achieveTableViewCell.xib in Resources */,
+				A42F396E1B84888A005877B9 /* 满楼都素我的人.jpeg in Resources */,
 				A4BDF1641B74464B000096C5 /* tt2.png in Resources */,
 				A4B8A7521B6B5C1C00BFEDDC /* WeiboSDK.bundle in Resources */,
 				A4BDF16D1B748E68000096C5 /* dian.jpg in Resources */,
 				A4B8A7221B6B562400BFEDDC /* favorTableViewCell.xib in Resources */,
 				A4DA56271B4E73660010C95D /* female@2x.png in Resources */,
+				A42F396A1B84888A005877B9 /* 朴一生dota.jpeg in Resources */,
 				A4D13E1D1B4CEBE300C06A2B /* Default@2x.png in Resources */,
+				A42F395E1B84888A005877B9 /* DOta情书.jpeg in Resources */,
 				A476A2541B75A1B2007D86C7 /* note1.png in Resources */,
 				A4CC54181B674EAD00950537 /* youku_play.html in Resources */,
 				A4BDF16B1B748D9D000096C5 /* 守卫.png in Resources */,
@@ -1125,7 +1233,9 @@
 				A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */,
 				A4D13E811B4D1A2300C06A2B /* SideMenuViewController.xib in Resources */,
 				A4BDF1631B74464B000096C5 /* list.png in Resources */,
+				A42F395D1B84888A005877B9 /* 伍声2009.jpeg in Resources */,
 				A476A25F1B776E16007D86C7 /* juggBack.png in Resources */,
+				A42F39441B842BB8005877B9 /* publisherViewController.xib in Resources */,
 				A447FEE81B4A4AF80053D982 /* dotaerViewController.xib in Resources */,
 				A4B8A7151B6B073900BFEDDC /* search1.png in Resources */,
 				A4DDDA041B687C6100ACD655 /* mid_ditu.png in Resources */,
@@ -1133,6 +1243,7 @@
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
 				A452ABDB1B7894640067F004 /* userAgreementViewController.xib in Resources */,
 				A4D13E1C1B4CEBE300C06A2B /* Default.png in Resources */,
+				A42F39601B84888A005877B9 /* Esports海涛.jpeg in Resources */,
 				A4B8A7501B6B5C1C00BFEDDC /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4BDF1601B74464B000096C5 /* boy.png in Resources */,
 				A412D0071B4F5A74006180A0 /* cake.png in Resources */,
@@ -1156,8 +1267,10 @@
 				A412D03F1B4FAB87006180A0 /* UIProgressView+AFNetworking.m in Sources */,
 				A412D0401B4FAB87006180A0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				A412D0411B4FAB87006180A0 /* UIWebView+AFNetworking.m in Sources */,
+				A42F39471B84689A005877B9 /* playerBtn.m in Sources */,
 				A4CC54251B676FD400950537 /* UIWebView+YouKu.m in Sources */,
 				A4D13E0F1B4CBC5700C06A2B /* SideMenuViewController.m in Sources */,
+				A42F39431B842BB8005877B9 /* publisherViewController.m in Sources */,
 				A4E4695D1B7B7034004275D8 /* submitScoreViewController.m in Sources */,
 				A447FEC21B4A1BBB0053D982 /* loginViewController.m in Sources */,
 				A412D0321B4FAB87006180A0 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -1170,6 +1283,7 @@
 				A452ABDA1B7894640067F004 /* userAgreementViewController.m in Sources */,
 				A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */,
 				A4DF4EDD1B58DB6E004E9F59 /* noteTableViewCell.m in Sources */,
+				A42F393E1B841BB9005877B9 /* VideoListViewController.m in Sources */,
 				A412D0371B4FAB87006180A0 /* AFURLRequestSerialization.m in Sources */,
 				A4DA56131B4E1AFA0010C95D /* FXBlurView.m in Sources */,
 				A4CC4AB91B674B8300950537 /* YoukuWebView.m in Sources */,
