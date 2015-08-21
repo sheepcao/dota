@@ -12,6 +12,8 @@
 
 @property BOOL isGuest;
 @property BOOL needConfirmLevelInfo;
+@property BOOL needLoginDefault;
+
 @property (strong,nonatomic) NSMutableDictionary *userImgDic;
 //@property (nonatomic,strong) NSMutableArray *favorArray;
 

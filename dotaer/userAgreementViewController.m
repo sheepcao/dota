@@ -38,4 +38,11 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end

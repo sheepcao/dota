@@ -23,12 +23,13 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dian2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ujF-3z-7ag">
-                    <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.95065789473684215" green="0.94798519736842091" blue="0.94852487664473684" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ujF-3z-7ag" secondAttribute="trailing" id="Aui-3b-lSw"/>
+                <constraint firstItem="ujF-3z-7ag" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FwX-X2-D7J"/>
                 <constraint firstItem="9cM-ya-4hO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LGX-IH-VRj"/>
                 <constraint firstItem="ujF-3z-7ag" firstAttribute="top" secondItem="9cM-ya-4hO" secondAttribute="bottom" id="XPS-cA-oXP"/>
                 <constraint firstAttribute="trailing" secondItem="9cM-ya-4hO" secondAttribute="trailing" id="bqa-4H-C4q"/>
@@ -37,6 +38,11 @@
                 <constraint firstItem="9cM-ya-4hO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hjv-jZ-xqn"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="XPS-cA-oXP"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>

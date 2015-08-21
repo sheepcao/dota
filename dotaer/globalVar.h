@@ -48,6 +48,9 @@
 
 
 #define REVIEW_URL @"https://itunes.apple.com/cn/app/dota-quan-zi/id1028906602?ls=1&mt=8"
+
+#define ALLAPP_URL @"itms://itunes.apple.com/us/artist/cao-guangxu/id844914783"
+
 #define VERSIONNUMBER   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define ADMOB_ID @"ca-app-pub-3074684817942615/4321450681"
 

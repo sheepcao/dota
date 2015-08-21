@@ -18,7 +18,7 @@
 #import "playerPageViewController.h"
 #import "favorViewController.h"
 #import "publisherViewController.h"
-
+#import "settingViewController.h"
 
 @implementation SideMenuViewController
 
@@ -54,8 +54,11 @@
 {
     if(!IS_IPHONE_4_OR_LESS)
     {
-        [self.loginOut_upConstrains setConstant:50];
+        [self.loginOut_upConstrains setConstant:40];
         [self.logoutBtn setNeedsUpdateConstraints];
+        
+        [self.tableHeightConstrains setConstant:210];
+        [self.itemsTable setNeedsUpdateConstraints];
 
         [self.view setNeedsUpdateConstraints];
         [self.view layoutIfNeeded];
@@ -99,26 +102,49 @@
 
 
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15.5f];
+    if([[DataCenter sharedDataCenter] isGuest] && indexPath.row == 1)
+    {
+        [cell setUserInteractionEnabled:NO];
+        cell.textLabel.textColor = [UIColor colorWithRed:160/255.0f green:150/255.0f blue:160/255.0f alpha:1.0f];
+
+    }else
+    {
+        [cell setUserInteractionEnabled:YES];
+
+    }
     
     return cell;
 }
 
 #pragma mark -
 #pragma mark - UITableViewDelegate
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(!IS_IPHONE_4_OR_LESS){
+        return 42;
+    }else
+    {
+        return 35;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+        return 0;
+    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if (indexPath.row == 0) {
-//        videoViewController *videoInfo = [[videoViewController alloc] initWithNibName:@"videoViewController" bundle:nil];
-//        
-//        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-//        NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
-//        [temp addObject:videoInfo];
-//        navigationController.viewControllers = temp;
-//        
-//        
-//    }else
     if (indexPath.row == 0) {
+        publisherViewController *VideoVC = [[publisherViewController alloc] initWithNibName:@"publisherViewController" bundle:nil];
+        
+        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+        [temp addObject:VideoVC];
+        navigationController.viewControllers = temp;
+        
+        
+    }else if (indexPath.row == 1) {
         
         if([[tableView cellForRowAtIndexPath:indexPath].textLabel.text isEqualToString:@"我的主页"])
         {
@@ -143,7 +169,7 @@
             navigationController.viewControllers = temp;
         }
 
-    } else if (indexPath.row == 1)
+    } else if (indexPath.row == 2)
     {
         NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
         if (favorArray && favorArray.count>0)
@@ -160,12 +186,17 @@
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
             return;
         }
-    }else if(indexPath.row == 2)
+    }else if(indexPath.row == 3)
     {
         [self shareAppTapped];
-    }else if (indexPath.row == 3)
+    }else if (indexPath.row == 4)
     {
-        [self contactTapped];
+        settingViewController *settingVC = [[settingViewController alloc] initWithNibName:@"settingViewController" bundle:nil];
+        
+        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+        [temp addObject:settingVC];
+        navigationController.viewControllers = temp;
     }
 
    
@@ -419,12 +450,12 @@
     
     UIImage *icon = [UIImage imageNamed:@"ICON 512"];
     
-    id<ISSContent> publishContent = [ShareSDK content:@"dota圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。"
-                                       defaultContent:NSLocalizedString(@"dota圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。。",nil)
+    id<ISSContent> publishContent = [ShareSDK content:@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。"
+                                       defaultContent:NSLocalizedString(@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。。",nil)
                                                 image:[ShareSDK pngImageWithImage:icon]
-                                                title:@"dota圈子"
+                                                title:@"捣塔圈"
                                                   url:REVIEW_URL
-                                          description:NSLocalizedString(@"dota圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。",nil)
+                                          description:NSLocalizedString(@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。",nil)
                                             mediaType:SSPublishContentMediaTypeNews];
     //创建弹出菜单容器
     id<ISSContainer> container = [ShareSDK container];
@@ -453,116 +484,10 @@
     
 }
 
--(void)contactTapped
-{
-    
-    [MobClick event:@"email"];
-    
-    
-    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-    [picker.view setFrame:CGRectMake(0,20 , 320, self.view.frame.size.height-20)];
-    picker.mailComposeDelegate = self;
-    
-    
-    
-    // Set up recipients
-    NSArray *toRecipients = [NSArray arrayWithObject:@"sheepcao1986@163.com"];
-    
-    
-    [picker setToRecipients:toRecipients];
-    
-    NSString *emailBody= @"";
-    [picker setSubject:@"意见反馈-dota圈子"];
-    emailBody = @"感谢您使用dota圈子，请留下您的宝贵意见，我们将持续更新！";
-    
-    
-    [picker setMessageBody:emailBody isHTML:NO];
-    [self presentViewController:picker animated:YES completion:nil];
+- (BOOL)shouldAutorotate {
+    return NO;
 }
-- (void)alertWithTitle: (NSString *)_title_ msg: (NSString *)msg
-
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_title_
-                          
-                                                    message:msg
-                          
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                          
-                                          otherButtonTitles:nil];
-    
-    [alert show];
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
-
-{
-    
-    NSString *title = @"发送状态";
-    
-    NSString *msg;
-    
-    switch (result)
-    
-    {
-            
-        case MFMailComposeResultCancelled:
-            
-            msg = @"Mail canceled";//@"邮件发送取消";
-            
-            break;
-            
-        case MFMailComposeResultSaved:
-            
-            msg = @"邮件保存成功";//@"邮件保存成功";
-            
-            [self alertWithTitle:title msg:msg];
-            
-            break;
-            
-        case MFMailComposeResultSent:
-            
-            msg = @"邮件发送成功";//@"邮件发送成功";
-            
-            [self alertWithTitle:title msg:msg];
-            
-            break;
-            
-        case MFMailComposeResultFailed:
-            
-            msg = @"邮件发送失败";//@"邮件发送失败";
-            
-            [self alertWithTitle:title msg:msg];
-            
-            break;
-            
-        default:
-            
-            msg = @"邮件尚未发送";
-            
-            [self alertWithTitle:title msg:msg];
-            
-            break;
-            
-    }
-    
-    [self  dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-
-- (IBAction)testVideo:(UIButton *)sender {
-    
-    publisherViewController *VideoVC = [[publisherViewController alloc] initWithNibName:@"publisherViewController" bundle:nil];
-    
-    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
-    [temp addObject:VideoVC];
-    navigationController.viewControllers = temp;
-    
-    [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
-
-
-}
-
-
 @end

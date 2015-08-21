@@ -650,4 +650,10 @@
     [self.view endEditing:YES];// this will do the trick
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end

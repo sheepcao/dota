@@ -56,7 +56,7 @@ BMKMapManager* _mapManager;
     }
     
     SideMenuViewController *leftMenuViewController = [[SideMenuViewController alloc] init];
-    leftMenuViewController.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
+    leftMenuViewController.items = [NSArray arrayWithObjects:@"视频解说",@"我的主页",favorString,@"分享好友",@"圈子设置", nil];
     MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController
                                                     containerWithCenterViewController:[self navigationController]
                                                     leftMenuViewController:leftMenuViewController
@@ -175,4 +175,6 @@ BMKMapManager* _mapManager;
 //    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
 
 }
+
+
 @end

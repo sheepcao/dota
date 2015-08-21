@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsg-ht-Kah">
-                    <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                    <rect key="frame" x="0.0" y="114" width="414" height="622"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -31,7 +31,7 @@
                 <constraint firstAttribute="trailing" secondItem="rjN-9B-Mgl" secondAttribute="trailing" id="b9R-ZN-oSh"/>
                 <constraint firstAttribute="trailing" secondItem="Jsg-ht-Kah" secondAttribute="trailing" id="gH2-cg-FD1"/>
                 <constraint firstItem="Jsg-ht-Kah" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qpN-4k-xso"/>
-                <constraint firstItem="Jsg-ht-Kah" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="spO-dJ-Ch5"/>
+                <constraint firstItem="Jsg-ht-Kah" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="114" id="spO-dJ-Ch5"/>
                 <constraint firstAttribute="bottom" secondItem="rjN-9B-Mgl" secondAttribute="bottom" id="tqH-kr-iiK"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

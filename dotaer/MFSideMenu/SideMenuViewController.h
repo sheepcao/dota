@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 #import <MessageUI/MessageUI.h>
 
-@interface SideMenuViewController : UIViewController<UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,MFMailComposeViewControllerDelegate>
+@interface SideMenuViewController : UIViewController<UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (strong,nonatomic) NSArray *items;
 @property (weak, nonatomic) IBOutlet UITableView *itemsTable;
@@ -29,4 +29,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *cycleIMG;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginOut_upConstrains;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeightConstrains;
 @end

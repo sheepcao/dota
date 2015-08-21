@@ -482,6 +482,8 @@ bool emailOK;
 {
     
     [[DataCenter sharedDataCenter] setIsGuest:NO];
+    [[DataCenter sharedDataCenter] setNeedLoginDefault:NO];
+
 
     NSString *isReviewed = @"yes";
     NSString *TTscore = [userInfoDic objectForKey:@"TTscore"];
@@ -512,5 +514,10 @@ bool emailOK;
 
 }
 
-
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end

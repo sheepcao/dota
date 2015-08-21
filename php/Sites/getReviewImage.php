@@ -89,7 +89,7 @@
         $response = array("tag" => $tag, "success" => 0, "error" => 0);
 
         if ($tag == 'reviewItems') {
-            $reviewStatus = "no";
+            $reviewStatus = "yes";
             $user = $db->fetchAllReviews($reviewStatus);
             if ($user != false) {
                 $response["success"] = 1;
@@ -123,7 +123,7 @@
 
                 $response["error"] = 1;
                 $response["error_msg"] = "no need reviewing";
-                sendResponse(4030,json_encode($response));
+                sendResponse(417,json_encode($response));
             }
         }
         

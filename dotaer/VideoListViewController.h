@@ -12,4 +12,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backIMG;
 @property (weak, nonatomic) IBOutlet UITableView *publisherListTable;
 
+@property (strong,nonatomic) NSDictionary *videoDic;
 @end

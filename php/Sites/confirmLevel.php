@@ -92,6 +92,7 @@
             $username = $_POST['username'];
             $gameID = $_POST['gameID'];
             $gameName = $_POST['gameName'];
+            $password = $_POST['password'];
 //            sendResponse(200,json_encode($gameName));
 
             $JJCinfo["haveScore"] = $_POST['JJChaveScore'];
@@ -159,7 +160,7 @@
 //            sendResponse(200,json_encode($_POST));
         
         
-            $user = $db->updateUserLevel($username,$isReviewed,$gameID,$gameName,$JJCinfo,$TTinfo,$MJinfo);
+            $user = $db->updateUserLevel($username,$isReviewed,$gameID,$gameName,$password,$JJCinfo,$TTinfo,$MJinfo);
             
 
             
@@ -237,7 +238,7 @@
 
                 $response["error"] = 1;
                 $response["error_msg"] = "confirm failed";
-                sendResponse(4030,json_encode($response));
+                sendResponse(417,json_encode($response));
             }
 
         }

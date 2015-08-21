@@ -41,5 +41,11 @@
 
     // Configure the view for the selected state
 }
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+- (BOOL)shouldAutorotate {
+    return NO;
+}
 
 @end

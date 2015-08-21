@@ -126,7 +126,7 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
             $responseError =array("error_msg" => "User already existed");
 //			$response["error"] = 2;
 //			$response["error_msg"] = "User already existed";
-            sendResponse(4042,json_encode($responseError));
+            sendResponse(417,json_encode($responseError));
 		} else {
 			// store user
 			$user = $db->storeUser($name, $email, $password, $age, $sex);

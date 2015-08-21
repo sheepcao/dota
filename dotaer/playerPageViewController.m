@@ -1193,23 +1193,10 @@
     
 }
 
-//#pragma mark scroll delegate
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    
-//    if (scrollView == self.infoTableView)
-//    {
-//        int page = scrollView.contentOffset.y/scrollView.frame.size.height;
-//        
-//        UIButton *optionBtn = (UIButton *)[self.optinView viewWithTag:page+1];
-//        
-//        [self.ttBtn setSelected:NO];
-//        [self.jjcBtn setSelected:NO];
-//        [self.mjBtn setSelected:NO];
-//        [self.noteBtn setSelected:NO];
-//        
-//        [optionBtn setSelected:YES];
-//    }
-//  
-//}
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
 @end

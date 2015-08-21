@@ -13,6 +13,7 @@
         </mutableArray>
         <mutableArray key="PingFangWatch.ttc">
             <string>STHeitiSC-Light</string>
+            <string>STHeitiSC-Light</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -141,6 +142,7 @@
                 <constraint firstItem="SsG-os-72Z" firstAttribute="top" secondItem="Nc0-bQ-ZaI" secondAttribute="bottom" id="zPC-FN-rgR"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <variation key="default">
                 <mask key="constraints">
@@ -162,6 +164,20 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="password1.png" translatesAutoresizingMaskIntoConstraints="NO" id="AhC-dk-hrH">
                     <rect key="frame" x="13" y="109" width="24" height="23"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKW-ps-lxg">
+                    <rect key="frame" x="110" y="235" width="119" height="21"/>
+                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
+                    <state key="normal" title="《捣塔圈用户协议》"/>
+                    <connections>
+                        <action selector="userAgreement:" destination="-1" eventType="touchUpInside" id="KZb-18-tsO"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击登录表示同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0p-F8-eOn">
+                    <rect key="frame" x="31" y="235" width="93" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="11"/>
+                    <color key="textColor" red="0.10120271381578944" green="0.10832134046052631" blue="0.16891961348684212" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="913-Lx-doT">
                     <rect key="frame" x="36" y="168" width="185" height="30"/>
                     <color key="backgroundColor" red="0.90136527264999999" green="0.76746958449736835" blue="0.074492368934210518" alpha="1" colorSpace="calibratedRGB"/>
@@ -196,6 +212,7 @@
                     </connections>
                 </textField>
             </subviews>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="ld6-wK-aih" userLabel="register">
@@ -344,9 +361,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbI-Fk-A9z">
-                    <rect key="frame" x="187" y="394" width="119" height="21"/>
+                    <rect key="frame" x="181" y="394" width="119" height="21"/>
                     <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
-                    <state key="normal" title="《dota圈子用户协议》"/>
+                    <state key="normal" title="《捣塔圈用户协议》"/>
                     <connections>
                         <action selector="userAgreement:" destination="-1" eventType="touchUpInside" id="8Xg-WZ-Tqp"/>
                     </connections>
@@ -376,6 +393,7 @@
                     </connections>
                 </button>
             </subviews>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-465" y="84.5"/>
         </view>

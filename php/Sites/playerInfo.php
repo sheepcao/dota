@@ -121,15 +121,58 @@
                 
                 
                 $response["isReviewed"] = $user["isReviewed"];
-                $response["JJCscore"] = $user["JJCscore"];
                 $response["gameID"] = $user["gameID"];
-                $response["TTscore"] = $user["TTscore"];
-                $response["WinRatio"] = $user["WinRatio"];
-                $response["soldier"] = $user["soldier"];
-                $response["heroFirst"] = $user["heroFirst"];
-                $response["heroSecond"] = $user["heroSecond"];
-                $response["heroThird"] = $user["heroThird"];
-                $response["created_Time"] = $user["created_Time"];
+                $response["gameName"] = $user["gameName"];
+
+                $response["JJCinfo"]["JJCscore"] = $user["JJCscore"];
+                $response["JJCinfo"]["JJCtotal"] = $user["JJCtotal"];
+                $response["JJCinfo"]["JJCmvp"] = $user["JJCmvp"];
+                $response["JJCinfo"]["JJCPianJiang"] = $user["JJCPianJiang"];
+                $response["JJCinfo"]["JJCPoDi"] = $user["JJCPoDi"];
+                $response["JJCinfo"]["JJCPoJun"] = $user["JJCPoJun"];
+                $response["JJCinfo"]["JJCYingHun"] = $user["JJCYingHun"];
+                $response["JJCinfo"]["JJCBuWang"] = $user["JJCBuWang"];
+                $response["JJCinfo"]["JJCFuHao"] = $user["JJCFuHao"];
+                $response["JJCinfo"]["JJCDoubleKill"] = $user["JJCDoubleKill"];
+                $response["JJCinfo"]["JJCTripleKill"] = $user["JJCTripleKill"];
+                $response["JJCinfo"]["JJCWinRatio"] = $user["JJCWinRatio"];
+                $response["JJCinfo"]["JJCheroFirst"] = $user["JJCheroFirst"];
+                $response["JJCinfo"]["JJCheroSecond"] = $user["JJCheroSecond"];
+                $response["JJCinfo"]["JJCheroThird"] = $user["JJCheroThird"];
+
+                
+                $response["TTinfo"]["TTscore"] = $user["TTscore"];
+                $response["TTinfo"]["TTtotal"] = $user["TTtotal"];
+                $response["TTinfo"]["TTmvp"] = $user["TTmvp"];
+                $response["TTinfo"]["TTPianJiang"] = $user["TTPianJiang"];
+                $response["TTinfo"]["TTPoDi"] = $user["TTPoDi"];
+                $response["TTinfo"]["TTPoJun"] = $user["TTPoJun"];
+                $response["TTinfo"]["TTYingHun"] = $user["TTYingHun"];
+                $response["TTinfo"]["TTBuWang"] = $user["TTBuWang"];
+                $response["TTinfo"]["TTFuHao"] = $user["TTFuHao"];
+                $response["TTinfo"]["TTDoubleKill"] = $user["TTDoubleKill"];
+                $response["TTinfo"]["TTTripleKill"] = $user["TTTripleKill"];
+                $response["TTinfo"]["TTWinRatio"] = $user["TTWinRatio"];
+                $response["TTinfo"]["TTheroFirst"] = $user["TTheroFirst"];
+                $response["TTinfo"]["TTheroSecond"] = $user["TTheroSecond"];
+                $response["TTinfo"]["TTheroThird"] = $user["TTheroThird"];
+               
+                
+                $response["MJinfo"]["MJscore"] = $user["MJscore"];
+                $response["MJinfo"]["MJtotal"] = $user["MJtotal"];
+                $response["MJinfo"]["MJmvp"] = $user["MJmvp"];
+                $response["MJinfo"]["MJPianJiang"] = $user["MJPianJiang"];
+                $response["MJinfo"]["MJPoDi"] = $user["MJPoDi"];
+                $response["MJinfo"]["MJPoJun"] = $user["MJPoJun"];
+                $response["MJinfo"]["MJYingHun"] = $user["MJYingHun"];
+                $response["MJinfo"]["MJBuWang"] = $user["MJBuWang"];
+                $response["MJinfo"]["MJFuHao"] = $user["MJFuHao"];
+                $response["MJinfo"]["MJDoubleKill"] = $user["MJDoubleKill"];
+                $response["MJinfo"]["MJTripleKill"] = $user["MJTripleKill"];
+                $response["MJinfo"]["MJWinRatio"] = $user["MJWinRatio"];
+                $response["MJinfo"]["MJheroFirst"] = $user["MJheroFirst"];
+                $response["MJinfo"]["MJheroSecond"] = $user["MJheroSecond"];
+                $response["MJinfo"]["MJheroThird"] = $user["MJheroThird"];
                 
                 
                 sendResponse(200,json_encode($response));
@@ -139,182 +182,16 @@
                 $response["$name"] = $name;
                 $response["error"] = 1;
                 $response["error_msg"] = "user not found!";
-                sendResponse(4030,json_encode($response));
+                sendResponse(417,json_encode($response));
             }
-        } else if ($tag == 'register') {
-            // Request type is Register new user
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $age = $_POST['age'];
-            $sex = $_POST['sex'];
-            
-            
-            // check if user is already existed
-            if ($db->isUserExisted($name)) {
-                // user is already existed - error response
-                $responseError =array("error_msg" => "User already existed");
-                //			$response["error"] = 2;
-                //			$response["error_msg"] = "User already existed";
-                sendResponse(4042,json_encode($responseError));
-            } else {
-                // store user
-                $user = $db->storeUser($name, $email, $password, $age, $sex);
-                if ($user) {
-                    // user stored successfully
-                    $response["success"] = 1;
-                    $response["username"] = $user["unique_id"];
-                    $response["email"] = $user["email"];
-                    $response["age"] = $user["age"];
-                    $response["sex"] = $user["sex"];
-                    $response["created_at"] = $user["created_at"];
-                    $response["updated_at"] = $user["updated_at"];
-                    
-                    
-                    
-                    if ((($_FILES["file"]["type"] == "image/gif")
-                         || ($_FILES["file"]["type"] == "image/jpeg")
-                         || ($_FILES["file"]["type"] == "image/pjpeg"))
-                        && ($_FILES["file"]["size"] < 2000000))
-                    {
-                        if ($_FILES["file"]["error"] > 0)
-                        {
-                            $response["error"] = 1;
-                            $response["error_msg"] = "Return Code: " . $_FILES["file"]["error"];
-                            
-                            sendResponse(2004,json_encode($response));
-
-                            
-                        }
-                        else
-                        {
-//                            $response["success"] = 1;
-                            $response["Upload"] = $_FILES["file"]["name"];
-                            $response["Type"] = $_FILES["file"]["type"];
-                            $response["Size"]= ($_FILES["file"]["size"] / 1024);
-                            $response["Temp file"] = $_FILES["file"]["tmp_name"];
-      
-//                            if (file_exists(getcwd() ."/upload/"))
-//                            {
-//                                $response["errorPath"] = "upload  exists.";
-//                                sendResponse(2010,json_encode($response));
-//                                
-//                            }
-                            if(!is_writable(getcwd() ."/upload/") )
-                            {
-                                $response["errorPath"] = "upload  is not writable.";
-
-                            }
-
-
-                            if (file_exists(getcwd() ."/upload/" . $_FILES["file"]["name"]))
-                            {
-                                $response["error"] = $_FILES["file"]["name"] . " already exists.";
-                                
-                            }
-                            else
-                            {
-                                $moved = move_uploaded_file($_FILES["file"]["tmp_name"],
-                                                   getcwd() ."/upload/" . $_FILES["file"]["name"]);
-                                if($moved)
-                                {
-                                    $response["NoError"] = "Stored in: " . getcwd() . "/upload/" . $_FILES["file"]["name"];
-                                }
-                                else
-                                {
-                                
-                                    $response["errorUploading"] = "Return Code: " . $_FILES["file"]["error"];
-
-                                }
-                                
-                                
-                            }
-                        }
-                    }
-                    
-                    
-                    
-                    
-                    
-                    sendResponse(200,json_encode($response));
-                } else {
-                    // user failed to store
-                    $response["error"] = 1;
-                    $response["error_msg"] = "Error occurred in Registration";
-                    sendResponse(4,json_encode($response));
-                }
-            }
-            
-         
-          
-            
-            
-            
-        } else {
-            echo "Invalid Request";
+       
         }
         
         
-        
+    
     } else {
         echo "Access Denied";
     }
 
-    
-    
-//    
-//    
-//    $response = array("tag" => $tag, "success" => 0, "error" => 0);
-//
-//    
-//    
-//    
-//    
-//    if ((($_FILES["file"]["type"] == "image/gif")
-//         || ($_FILES["file"]["type"] == "image/jpeg")
-//         || ($_FILES["file"]["type"] == "image/pjpeg"))
-//        && ($_FILES["file"]["size"] < 20000))
-//    {
-//        if ($_FILES["file"]["error"] > 0)
-//        {
-//            $response["error"] = 1;
-//            $response["error_msg"] = "Return Code: " . $_FILES["file"]["error"];
-//            
-//        }
-//        else
-//        {
-//            $response["success"] = 1;
-//            $response["Upload"] = $_FILES["file"]["name"];
-//            $response["Type"] = $_FILES["file"]["type"];
-//            $response["Size"]= ($_FILES["file"]["size"] / 1024);
-//            $response["Temp file"] = $_FILES["file"]["tmp_name"];
-//            sendResponse(200,json_encode($response));
-////            echo "Upload: " . $_FILES["file"]["name"] . "<br />";
-////            echo "Type: " . $_FILES["file"]["type"] . "<br />";
-////            echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
-////            echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
-//            
-//            if (file_exists("upload/" . $_FILES["file"]["name"]))
-//            {
-//                $response["error"] = $_FILES["file"]["name"] . " already exists.";
-//                sendResponse(2010,json_encode($response));
-//
-//            }
-//            else
-//            {
-//                move_uploaded_file($_FILES["file"]["tmp_name"],
-//                                   "upload/" . $_FILES["file"]["name"]);
-//                $response["error"] = "Stored in: " . "upload/" . $_FILES["file"]["name"];
-//                sendResponse(2002,json_encode($response));
-//
-//
-////                echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
-//            }
-//        }
-//    }
-//    else
-//    {
-//        echo "Invalid file";
-   
-//    }
+
 ?>

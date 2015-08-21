@@ -70,12 +70,20 @@
     _radarManager = [BMKRadarManager getRadarManagerInstance];
     _locServer = [[BMKLocationService alloc] init];
     _locServer.delegate = self;
-    
+    lock = [[NSLock alloc] init];
+
     [self judgeIsLocaltionabele];
 
     [_locServer startUserLocationService];
 
     [[DataCenter sharedDataCenter] setIsGuest:NO];
+    [[DataCenter sharedDataCenter] setNeedLoginDefault:YES];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"] == nil) {
+          [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"invisible"];
+    }
+  
+
     self.signature = @"";
     if(!self.title) self.title = @"附近";
     
@@ -379,12 +387,14 @@
        
     }else if([[[notification userInfo] objectForKey:@"eventType"] intValue] == MFSideMenuStateEventMenuWillOpen)
     {
+        
+        
         if ([[DataCenter sharedDataCenter] isGuest]) {
             if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
                 SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
                 [leftMenuVC.logoutBtn setTitle:@"登录" forState:UIControlStateNormal];
                 [leftMenuVC.unLoginLabel setHidden:NO];
-                [leftMenuVC.itemsTable setHidden:YES];
+//                [leftMenuVC.itemsTable setHidden:YES];
                 [leftMenuVC.ageLabel setHidden:YES];
                 [leftMenuVC.headImage setHidden:YES];
                 [leftMenuVC.headBtn setHidden:YES];
@@ -392,7 +402,8 @@
                 [leftMenuVC.sexImg setHidden:YES];
                 [leftMenuVC.usernameLabel setHidden:YES];
                 [leftMenuVC.cycleIMG setHidden:YES];
-
+                
+                [leftMenuVC.itemsTable reloadData];
                 
                 
             }
@@ -403,7 +414,7 @@
                 SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
                 [leftMenuVC.logoutBtn setTitle:@"注销" forState:UIControlStateNormal];
                 [leftMenuVC.unLoginLabel setHidden:YES];
-                [leftMenuVC.itemsTable setHidden:NO];
+//                [leftMenuVC.itemsTable setHidden:NO];
                 [leftMenuVC.ageLabel setHidden:NO];
                 [leftMenuVC.headImage setHidden:NO];
                 [leftMenuVC.headBtn setHidden:NO];
@@ -411,6 +422,8 @@
                 [leftMenuVC.sexImg setHidden:NO];
                 [leftMenuVC.usernameLabel setHidden:NO];
                 [leftMenuVC.cycleIMG setHidden:NO];
+                [leftMenuVC.itemsTable reloadData];
+
 
                 NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
                 NSString *favorString = @"关注";
@@ -419,8 +432,6 @@
                     favorString = [NSString stringWithFormat:@"关注(%lu)",(unsigned long)favorArray.count];
                 }
                 
-                leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
-                [leftMenuVC.itemsTable reloadData];
             }
         }
     }
@@ -486,7 +497,7 @@
 }
 
 
-- (void)userLogin:(NSString *)username Pswd:(NSString *)password {
+- (void)userLogin:(NSDictionary *)userinfoDic {
     
     [self.view endEditing:YES];// this will do the trick
     
@@ -496,11 +507,11 @@
     hud.labelText = @"登录中...";
     hud.dimBackground = YES;
     
-    NSDictionary *parameters = @{@"tag": @"login",@"name":username,@"password":password};
+    NSDictionary *parameters = @{@"tag": @"login",@"name":[userinfoDic objectForKey:@"username"],@"password":[userinfoDic objectForKey:@"password"]};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager.requestSerializer setTimeoutInterval:30];  //Time out after 25 seconds
+    [manager.requestSerializer setTimeoutInterval:20];  //Time out after 25 seconds
     
     
     [manager POST:registerService parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -510,7 +521,22 @@
         
         
         [hud hide:YES afterDelay:0.6];
-        [self performSelector:@selector(successLogin:) withObject:responseObject afterDelay:1.01];
+        
+        
+        [self configUserInfo:userinfoDic];
+        
+        
+        if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
+            
+            SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+            
+            self.signature = [leftMenuVC requestSignature];
+            
+        }
+        
+        
+        [self uploadLocation];
+
         
         
         NSLog(@"JSON: %@", responseObject);
@@ -518,13 +544,15 @@
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR: %@",  operation.responseString);
         
-        hud.mode = MBProgressHUDModeCustomView;
-        hud.labelText = @"Error";
-        [hud hide:YES afterDelay:1.5];
         
         
+        [hud hide:YES ];
+        
+        
+        [self cancelUploadLocation];
+        [self showLoginPage];
         if ([operation.responseString containsString:@"Incorrect username or password!"]) {
-            UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您输入的用户名或密码有误，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您的默认密码有误，请重新登录" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [userNameAlert show];
         }else
         {
@@ -537,7 +565,8 @@
     }];
     
     
-    
+    [[DataCenter sharedDataCenter] setNeedLoginDefault:NO];
+
     
     
     
@@ -573,27 +602,33 @@
             
             NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
             
+            if ([[DataCenter sharedDataCenter] needLoginDefault]) {
+                [self userLogin:userDic];
+
+            }else
+            {
+                [self configUserInfo:userDic];
+                
+                
+                if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
+                    
+                    SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+                    
+                    self.signature = [leftMenuVC requestSignature];
+                    
+                }
+                
+                
+                [self uploadLocation];
+            }
+            
             
             if([[DataCenter sharedDataCenter] needConfirmLevelInfo])
             {
                 [self showConfirmLevel];
             }
             
-         
-            [self configUserInfo:userDic];
-            
-            
-            if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
-
-                SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
-                
-                self.signature = [leftMenuVC requestSignature];
-                
-            }
-            
-            //        [self performSelector:@selector(uploadRadarInfo) withObject:nil afterDelay:0.75];
-
-            [self uploadLocation];
+ 
 
             
         }else
@@ -737,7 +772,7 @@
         UIAlertView *alet = [[UIAlertView alloc] initWithTitle:@"错误" message:@"当前无法定位，请检查您的隐私设置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alet show];
     }
-    [_radarManager startAutoUpload:10];
+    [_radarManager startAutoUpload:7.5];
    
     NSLog(@"uploadLocation");
 
@@ -795,6 +830,7 @@
 - (void)setNearbyInfos:(NSMutableArray *)nearbyInfos {
     
 
+    
 
     [_nearbyInfos removeAllObjects];
     [_nearbyInfos addObjectsFromArray:nearbyInfos];
@@ -979,53 +1015,53 @@
 }
 
 
-
-- (void)nearbySearchWithPageIndex{
-    BMKRadarNearbySearchOption *option = [[BMKRadarNearbySearchOption alloc] init]
-    ;
-    option.radius = _searchRadius;
-    option.sortType = BMK_RADAR_SORT_TYPE_DISTANCE_FROM_NEAR_TO_FAR;
-    //test
-    option.centerPt = _myCoor;
-    //    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
-    option.pageIndex = 0;
-    
-    if (_myCoor.latitude <0.01) {
-        MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
-        hud.mode = MBProgressHUDModeCustomView;
-        hud.labelText = @"定位失败";
-        if (hud) {
-            [hud hide:YES afterDelay:1.0];
-            
-        }
-        NSLog(@"定位失败");
-        
-    }
-    
-    //    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    //    NSString *doc = [NSString stringWithFormat:@"%@/22.txt",documentDir];
-    //    NSLog(@"path:%@",doc);
-    //    NSString *log = [NSString stringWithFormat:@"error:%f",_myCoor.latitude];
-    //    NSError *error;
-    //
-    //    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    
-    BOOL res = [_radarManager getRadarNearbySearchRequest:option];
-    if (res) {
-        NSLog(@"get 成功");
-    } else {
-        //        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
-        //        hud.mode = MBProgressHUDModeCustomView;
-        //        hud.labelText = @"失败";
-        //        if (hud) {
-        //            [hud hide:YES afterDelay:1.0];
-        //            
-        //        }
-        //        NSLog(@"get 失败");
-    }
-    
-}
-
+//
+//- (void)nearbySearchWithPageIndex{
+//    BMKRadarNearbySearchOption *option = [[BMKRadarNearbySearchOption alloc] init]
+//    ;
+//    option.radius = _searchRadius;
+//    option.sortType = BMK_RADAR_SORT_TYPE_DISTANCE_FROM_NEAR_TO_FAR;
+//    //test
+//    option.centerPt = _myCoor;
+//    //    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
+//    option.pageIndex = 0;
+//    
+//    if (_myCoor.latitude <0.01) {
+//        MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
+//        hud.mode = MBProgressHUDModeCustomView;
+//        hud.labelText = @"定位失败";
+//        if (hud) {
+//            [hud hide:YES afterDelay:1.0];
+//            
+//        }
+//        NSLog(@"定位失败");
+//        
+//    }
+//    
+//    //    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    //    NSString *doc = [NSString stringWithFormat:@"%@/22.txt",documentDir];
+//    //    NSLog(@"path:%@",doc);
+//    //    NSString *log = [NSString stringWithFormat:@"error:%f",_myCoor.latitude];
+//    //    NSError *error;
+//    //
+//    //    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
+//    
+//    BOOL res = [_radarManager getRadarNearbySearchRequest:option];
+//    if (res) {
+//        NSLog(@"get 成功");
+//    } else {
+//        //        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
+//        //        hud.mode = MBProgressHUDModeCustomView;
+//        //        hud.labelText = @"失败";
+//        //        if (hud) {
+//        //            [hud hide:YES afterDelay:1.0];
+//        //            
+//        //        }
+//        //        NSLog(@"get 失败");
+//    }
+//    
+//}
+//
 #pragma custom annotation
 
 
@@ -1154,7 +1190,7 @@
 //    _radarManager.userId =[NSString stringWithFormat:@"dotaer%d",random];
     if (self.myUserInfo.username) {
         _radarManager.userId =self.myUserInfo.username;
-        info.extInfo = [NSString stringWithFormat:@"%@-%@-%@-%@",self.myUserInfo.sex,self.myUserInfo.age,self.myUserInfo.isReviewed,self.myUserInfo.TTscore];
+        info.extInfo = [NSString stringWithFormat:@"%@-%@-%@-%@-%@",self.myUserInfo.sex,self.myUserInfo.age,self.myUserInfo.isReviewed,self.myUserInfo.TTscore,[[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"]];
         [lock lock];
         
         
@@ -1297,7 +1333,22 @@
     NSLog(@"onGetRadarNearbySearchResult  %d", error);
     if (error == BMK_RADAR_NO_ERROR) {
         NSLog(@"result.infoList.count:  %d", (int)result.infoList.count);
-        self.nearbyInfos = (NSMutableArray *)result.infoList;
+        
+        NSMutableArray *tempArray =[NSMutableArray arrayWithArray:result.infoList];
+        NSMutableArray *destArray = [[NSMutableArray alloc] init];
+        for (BMKRadarNearbyInfo *info in tempArray) {
+            NSArray *userExtinfo = [info.extInfo componentsSeparatedByString:@"-"];
+            if (userExtinfo.count>4) {
+                if (![userExtinfo[4] isEqualToString:@"yes"])
+                {
+                   [destArray addObject:info];
+
+                }
+                    
+            }
+        }
+        
+        self.nearbyInfos = destArray;
         
 
         _curPageIndex = result.pageIndex;
@@ -1319,7 +1370,7 @@
             [self.pageFront setEnabled:NO];
         }
         
-        [self.pageNumLabel setText:[NSString stringWithFormat:@"%ld",_curPageIndex+1]];
+        [self.pageNumLabel setText:[NSString stringWithFormat:@"%d",_curPageIndex+1]];
         
 
     }else if (error == BMK_RADAR_NETWOKR_ERROR || error == BMK_RADAR_NETWOKR_TIMEOUT || error == BMK_RADAR_PERMISSION_UNFINISHED)
@@ -1477,7 +1528,7 @@
             
             UILabel *userCount = [[UILabel alloc] initWithFrame:CGRectMake(112*factor-6-14, 112*factor-6-13, 16, 16)];
             userCount.textAlignment = NSTextAlignmentCenter;
-            [userCount setText:[NSString stringWithFormat:@"%lu",anno.containUsers.count + 1 ]];
+            [userCount setText:[NSString stringWithFormat:@"%u",anno.containUsers.count + 1 ]];
             userCount.font = [UIFont boldSystemFontOfSize:8.2f];
             userCount.tag = 103;
             
@@ -1647,5 +1698,13 @@
     _locServer = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _mapView = nil;
+}
+
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 @end

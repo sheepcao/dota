@@ -12,6 +12,7 @@
 #import "globalVar.h"
 #import "playerBtn.h"
 #import "MBProgressHUD.h"
+#import "VideoListViewController.h"
 
 @interface publisherViewController ()<GADBannerViewDelegate>
 @property (nonatomic ,strong) NSArray *publisherArray;
@@ -42,12 +43,7 @@
     self.bannerView.rootViewController = self;
     
     GADRequest *request = [GADRequest request];
-    // Requests test ads on devices you specify. Your test device ID is printed to the console when
-    // an ad request is made. GADBannerView automatically returns test ads when running on a
-    // simulator.
-    //    request.testDevices = @[
-    //                            @"df49cbdc51415aab50e8dee3cac69ff5"  // Eric's iPod Touch
-    //                            ];
+
     [self.bannerView loadRequest:request];
     
     [self.view addSubview:self.bannerView];
@@ -76,6 +72,7 @@
 }
 
 
+
 - (void)requestPublisherVideos
 {
 
@@ -91,7 +88,7 @@
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
         [manager.requestSerializer setTimeoutInterval:30];
-        NSString *infoString = [NSString stringWithFormat:@"https://openapi.youku.com/v2/videos/by_user.json?client_id=cb52b838b5477abd&user_name=%@&count=30",publisherName];
+        NSString *infoString = [NSString stringWithFormat:@"https://openapi.youku.com/v2/videos/by_user.json?client_id=cb52b838b5477abd&user_name=%@&count=15",publisherName];
         
         NSString* infoURLstring = [infoString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
@@ -102,7 +99,7 @@
             [self refreshButton:relatedBtn Using:responseObject];
             
             if (hud.superview) {
-                [hud hide:YES afterDelay:1.0];
+                [hud hide:YES afterDelay:1.6];
             }
             
             
@@ -176,7 +173,25 @@
 
 -(void)jumpToVideos:(playerBtn *)btn
 {
-    
+    if (self.publisherVideosDic.count == self.publisherArray.count) {
+        
+        NSDictionary *videoDic = [self.publisherVideosDic objectForKey:btn.playerName];
+        
+        VideoListViewController *videoVC = [[VideoListViewController alloc] initWithNibName:@"VideoListViewController" bundle:nil];
+        videoVC.videoDic = videoDic;
+        videoVC.title = btn.playerName;
+
+        [self.navigationController pushViewController:videoVC animated:YES];
+
+    }
+
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

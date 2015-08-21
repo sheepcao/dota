@@ -131,7 +131,7 @@
                 $response["success"] = 0;
                 $response["error"] = 1;
                 $response["error_msg"] = $userSignature;
-                sendResponse(4030,json_encode($response));
+                sendResponse(417,json_encode($response));
             }
         }else if($tag == 'getNote') {
             // Request type is check Login
@@ -161,7 +161,7 @@
                 $response["success"] = 0;
                 $response["error"] = 1;
                 $response["error_msg"] = "no records";
-                sendResponse(4030,json_encode($response));
+                sendResponse(417,json_encode($response));
             }
         }else {
             echo "Invalid Request";

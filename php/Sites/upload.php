@@ -106,6 +106,7 @@
                 // echo json with success = 1
                 $response["success"] = 1;
                 $response["username"] = $user["unique_id"];
+                $response["password"] = $user["password"];
                 $response["email"] = $user["email"];
                 $response["age"] = $user["age"];
                 $response["sex"] = $user["sex"];
@@ -120,12 +121,12 @@
             } else {
                 // user not found
                 // echo json with error = 1
-                $response["$name"] = $name;
-                $response["$password"] = $password;
+                $response["name"] = $name;
+                $response["password"] = $password;
 
                 $response["error"] = 1;
                 $response["error_msg"] = "Incorrect username or password!";
-                sendResponse(4030,json_encode($response));
+                sendResponse(417,json_encode($response));
             }
         } else if ($tag == 'register') {
             // Request type is Register new user
@@ -142,7 +143,7 @@
                 $responseError =array("error_msg" => "User already existed");
                 //			$response["error"] = 2;
                 //			$response["error_msg"] = "User already existed";
-                sendResponse(4042,json_encode($responseError));
+                sendResponse(417,json_encode($responseError));
             } else {
                 // store user
                 $user = $db->storeUser($name, $email, $password, $age, $sex);
@@ -170,7 +171,7 @@
                             $response["error"] = 1;
                             $response["error_msg"] = "Return Code: " . $_FILES["file"]["error"];
                             
-                            sendResponse(2004,json_encode($response));
+                            sendResponse(417,json_encode($response));
 
                             
                         }
@@ -229,7 +230,7 @@
                     // user failed to store
                     $response["error"] = 1;
                     $response["error_msg"] = "Error occurred in Registration";
-                    sendResponse(4,json_encode($response));
+                    sendResponse(417,json_encode($response));
                 }
             }
             
@@ -238,6 +239,32 @@
             
             
             
+        }else if ($tag == 'changePassword') {
+            // Request type is check Login
+            $name = $_POST['name'];
+            $password = $_POST['password'];
+            
+            
+            // check for user
+            $user = $db->changePassword($name, $password);
+            if ($user != false) {
+                // user found
+                // echo json with success = 1
+                $response["success"] = 1;
+          
+                
+                
+                sendResponse(200,json_encode($response));
+            } else {
+                // user not found
+                // echo json with error = 1
+                $response["name"] = $name;
+                $response["password"] = $password;
+                
+                $response["error"] = 1;
+                $response["error_msg"] = "change password failed!";
+                sendResponse(417,json_encode($response));
+            }
         }else if ($tag == 'uploadLevel') {
 
             $username = $_POST['username'];
@@ -274,7 +301,7 @@
                         $response["error"] = 1;
                         $response["error_msg"] = "Return Code: " . $_FILES["file"]["error"];
                         
-                        sendResponse(2004,json_encode($response));
+                        sendResponse(417,json_encode($response));
                         
                         
                     }
@@ -312,7 +339,7 @@
                         {
                             
                             $response["errorUploading"] = "Return Code: " . $_FILES["file"]["error"];
-                            sendResponse(2090,json_encode($response));
+                            sendResponse(417,json_encode($response));
                             
                             
                         }
@@ -333,7 +360,7 @@
                         {
                             
                             $response["errorUploading"] = "Return Code: " . $_FILES["file"]["error"];
-                            sendResponse(2090,json_encode($response));
+                            sendResponse(417,json_encode($response));
                             
                             
                         }
@@ -346,7 +373,7 @@
                     $response["error"] = 1;
                     $response["error_msg"] = "not success!!!!!!";
                     
-                    sendResponse(2004,json_encode($response));
+                    sendResponse(417,json_encode($response));
                     
                 }
                 
@@ -358,7 +385,7 @@
                 
                 $response["error"] = 1;
                 $response["error_msg"] = "level info register failed!";
-                sendResponse(4030,json_encode($response));
+                sendResponse(417,json_encode($response));
             }
 
             
@@ -374,7 +401,7 @@
                     $response["error"] = 1;
                     $response["error_msg"] = "Return Code: " . $_FILES["file"]["error"];
                     
-                    sendResponse(2004,json_encode($response));
+                    sendResponse(417,json_encode($response));
                     
                     
                 }
@@ -412,7 +439,7 @@
                     {
                         
                         $response["errorUploading"] = "Return Code: " . $_FILES["file"]["error"];
-                        sendResponse(2090,json_encode($response));
+                        sendResponse(417,json_encode($response));
                         
                         
                     }
@@ -433,7 +460,7 @@
                     {
                         
                         $response["errorUploading"] = "Return Code: " . $_FILES["file"]["error"];
-                        sendResponse(2090,json_encode($response));
+                        sendResponse(417,json_encode($response));
                         
                         
                     }

@@ -58,6 +58,18 @@ class DB_Functions {
             return false;
         }
     }
+    
+    public function changePassword($name, $password)
+    {
+        $result = mysql_query("update userinfo set password = '$password' WHERE unique_id = '$name'") or die(mysql_error());
+        if ($result)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
 
     /**
      * Check user is existed or not
@@ -176,62 +188,62 @@ class DB_Functions {
      * Storing level
      *
      */
-    public function registerLevel($username)
-    {
-        $isReviewed = "no";
-
-        
-        $userResult = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
-        
-        $no_of_rows = mysql_num_rows($userResult);
-        
-        if ($no_of_rows > 0) {
-            
-            
-            $update = mysql_query("update levelinfo set isReviewed ='$isReviewed', created_Time = NOW() where username = '$username'") or die(mysql_error());
-            
-            if($update)
-            {
-                
-                $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
-                if ($result)
-                {
-                    return mysql_fetch_array($result);
-                    
-                }else
-                {
-                    return false;
-                }
-            }else
-            {
-                return false;
-            }
-            
-            
-        } else {
-            
-            
-            $insert = mysql_query("INSERT INTO levelinfo(username, isReviewed,created_Time) VALUES('$username', '$isReviewed',NOW())") or die(mysql_error());
-            if ($insert)
-            {
-                $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
-                if ($result)
-                {
-                    return mysql_fetch_array($result);
-                    
-                }else
-                {
-                    return false;
-                }
-            }else
-            {
-                return false;
-            }
-            
-        
-        }
-    }
-
+//    public function registerLevel($username)
+//    {
+//        $isReviewed = "no";
+//
+//        
+//        $userResult = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
+//        
+//        $no_of_rows = mysql_num_rows($userResult);
+//        
+//        if ($no_of_rows > 0) {
+//            
+//            
+//            $update = mysql_query("update levelinfo set isReviewed ='$isReviewed', created_Time = NOW() where username = '$username'") or die(mysql_error());
+//            
+//            if($update)
+//            {
+//                
+//                $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
+//                if ($result)
+//                {
+//                    return mysql_fetch_array($result);
+//                    
+//                }else
+//                {
+//                    return false;
+//                }
+//            }else
+//            {
+//                return false;
+//            }
+//            
+//            
+//        } else {
+//            
+//            
+//            $insert = mysql_query("INSERT INTO levelinfo(username, isReviewed,created_Time) VALUES('$username', '$isReviewed',NOW())") or die(mysql_error());
+//            if ($insert)
+//            {
+//                $result = mysql_query("SELECT * FROM levelinfo WHERE username = '$username'") or die(mysql_error());
+//                if ($result)
+//                {
+//                    return mysql_fetch_array($result);
+//                    
+//                }else
+//                {
+//                    return false;
+//                }
+//            }else
+//            {
+//                return false;
+//            }
+//            
+//        
+//        }
+//    }
+//
     /**
      * get Reviews
      * returns Reviews
@@ -240,7 +252,7 @@ class DB_Functions {
     
     public function fetchAllReviews($reviewStatus) {
 
-        $result = mysql_query("SELECT * FROM levelinfo WHERE isReviewed = '$reviewStatus'") or die(mysql_error());
+        $result = mysql_query("SELECT * FROM userinfo WHERE isReviewed = '$reviewStatus'") or die(mysql_error());
         // check for result
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {
@@ -252,12 +264,73 @@ class DB_Functions {
     }
 
     
-    public function updateUserLevel($username,$isReviewed,$gameID,$gameName,$JJCinfo,$TTinfo,$MJinfo)
+    public function storeGameAccount($gameName,$password)
     {
         
+        $userResult = mysql_query("SELECT * FROM gameaccountinfo WHERE username = '$gameName'") or die(mysql_error());
         
+        $no_of_rows = mysql_num_rows($userResult);
+        
+        if ($no_of_rows > 0) {
+            
+            $update = mysql_query("update gameaccountinfo set password = '$password' where username = '$gameName'") or die(mysql_error());
+            
+            
+        } else {
+            
+            $insert = mysql_query("INSERT INTO gameaccountinfo(username, password) VALUES('$gameName', '$password')") or die(mysql_error());
+        }
+    }
+    
+    
+    public function submitUserLevel($username,$password,$age,$gender,$isReviewed,$gameID,$gameName,$JJCinfo,$TTinfo,$MJinfo)
+    {
+        $email = "123@123.com";
+        $updateUserinfo = mysql_query("INSERT INTO userinfo(unique_id,email, password, age, sex, isReviewed, gameID, gameName, created_at) VALUES ('$username', '$email', '$password','$age', '$gender', '$isReviewed', '$gameID' , '$gameName',NOW())") or die(mysql_error());
+        
+   
+        
+        
+        if($updateUserinfo)
+        {
+            
+            $this->updateJJCLevel($username,$JJCinfo);
+            $this->updateTTLevel($username,$TTinfo);
+            $this->updateMJLevel($username,$MJinfo);
+            
+            
+            $result = mysql_query("SELECT * FROM userinfo u left join JJCinfo j on j.JJCusername = u.unique_id left join TTinfo t on t.TTusername = u.unique_id left join MJinfo m on m.MJusername = u.unique_id WHERE unique_id = '$username'") or die(mysql_error());
+            // check for result
+            $no_of_rows = mysql_num_rows($result);
+            if ($no_of_rows > 0) {
+                $result = mysql_fetch_array($result);
+                return $result;
+            }else {
+                // user not found
+                return $result;
+            }
+            
+            
+            
+        }else
+        {
+            return false;
+        }
+        
+        
+        
+    }
+    
+    
+    public function updateUserLevel($username,$isReviewed,$gameID,$gameName,$password,$JJCinfo,$TTinfo,$MJinfo)
+    {
+        
+    
         $updateUserinfo = mysql_query("update userinfo set isReviewed ='$isReviewed',gameID = '$gameID', gameName = '$gameName' where unique_id = '$username'") or die(mysql_error());
+
         
+        $this->storeGameAccount($gameName,$password);
+
         if($updateUserinfo)
         {
             

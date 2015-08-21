@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A40195541B859D8500B7142A /* settingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40195521B859D8500B7142A /* settingViewController.m */; };
+		A40195551B859D8500B7142A /* settingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40195531B859D8500B7142A /* settingViewController.xib */; };
+		A401955A1B85BA2600B7142A /* passwordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40195581B85BA2600B7142A /* passwordViewController.m */; };
+		A401955B1B85BA2600B7142A /* passwordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40195591B85BA2600B7142A /* passwordViewController.xib */; };
 		A41256431B7B1491005827F9 /* defaultHead.png in Resources */ = {isa = PBXBuildFile; fileRef = A41256421B7B1491005827F9 /* defaultHead.png */; };
 		A41256451B7B29FC005827F9 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41256441B7B29FC005827F9 /* BaiduMapAPI.framework */; };
 		A41256471B7B2A0D005827F9 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A41256461B7B2A0D005827F9 /* mapapi.bundle */; };
@@ -61,7 +65,6 @@
 		A42F396D1B84888A005877B9 /* 满楼水平.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F39591B84888A005877B9 /* 满楼水平.jpeg */; };
 		A42F396E1B84888A005877B9 /* 满楼都素我的人.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F395A1B84888A005877B9 /* 满楼都素我的人.jpeg */; };
 		A42F396F1B84888A005877B9 /* 狗头神教牛蛙.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F395B1B84888A005877B9 /* 狗头神教牛蛙.jpeg */; };
-		A42F39701B84888A005877B9 /* 舞ル灬.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A42F395C1B84888A005877B9 /* 舞ル灬.jpeg */; };
 		A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4319D971B5601F900DB8775 /* MapAnnotationBG@2x.png */; };
 		A4319D9B1B56072500DB8775 /* myPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4319D9A1B56072500DB8775 /* myPointAnnotation.m */; };
 		A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4319D9C1B56248900DB8775 /* MapUserCountBG@2x.png */; };
@@ -89,7 +92,8 @@
 		A452ABDA1B7894640067F004 /* userAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A452ABD81B7894640067F004 /* userAgreementViewController.m */; };
 		A452ABDB1B7894640067F004 /* userAgreementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A452ABD91B7894640067F004 /* userAgreementViewController.xib */; };
 		A45F545E1B78E8E400761872 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A45F545D1B78E8E400761872 /* Images-2.xcassets */; };
-		A46E8A931B78D53100B7EEB0 /* ICON 512.png in Resources */ = {isa = PBXBuildFile; fileRef = A46E8A921B78D53100B7EEB0 /* ICON 512.png */; };
+		A46EA7841B86157B004FF955 /* WatchVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46EA7821B86157B004FF955 /* WatchVideoViewController.m */; };
+		A46EA7851B86157B004FF955 /* WatchVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46EA7831B86157B004FF955 /* WatchVideoViewController.xib */; };
 		A476A24F1B75A1B2007D86C7 /* jjc0.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A2461B75A1B2007D86C7 /* jjc0.png */; };
 		A476A2501B75A1B2007D86C7 /* JJC1.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A2471B75A1B2007D86C7 /* JJC1.png */; };
 		A476A2511B75A1B2007D86C7 /* MJ0.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A2481B75A1B2007D86C7 /* MJ0.png */; };
@@ -158,13 +162,8 @@
 		A4BDF16F1B749DBA000096C5 /* dian2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BDF16E1B749DBA000096C5 /* dian2.png */; };
 		A4C0C4E31B7CA15A0027CA9E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C0C4E21B7CA15A0027CA9E /* StoreKit.framework */; };
 		A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */; };
-		A4CC4AAB1B672ABA00950537 /* videoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AA91B672ABA00950537 /* videoViewController.m */; };
-		A4CC4AAC1B672ABA00950537 /* videoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AAA1B672ABA00950537 /* videoViewController.xib */; };
 		A4CC4AB01B672B3300950537 /* videoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AAE1B672B3300950537 /* videoTableViewCell.m */; };
 		A4CC4AB11B672B3300950537 /* videoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AAF1B672B3300950537 /* videoTableViewCell.xib */; };
-		A4CC4AB51B674A3800950537 /* playVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AB31B674A3800950537 /* playVideoViewController.m */; };
-		A4CC4AB61B674A3800950537 /* playVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CC4AB41B674A3800950537 /* playVideoViewController.xib */; };
-		A4CC4AB91B674B8300950537 /* YoukuWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC4AB81B674B8300950537 /* YoukuWebView.m */; };
 		A4CC54181B674EAD00950537 /* youku_play.html in Resources */ = {isa = PBXBuildFile; fileRef = A4CC54171B674EAD00950537 /* youku_play.html */; };
 		A4CC541B1B67520300950537 /* videoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC541A1B67520300950537 /* videoButton.m */; };
 		A4CC541D1B67609C00950537 /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A4CC541C1B67609C00950537 /* start.html */; };
@@ -209,6 +208,8 @@
 		A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */; };
 		A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */; };
 		A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB21B57599A00786FD1 /* 11logo2.png */; };
+		A4FB58111B86B56800A5D7B9 /* ICON 512.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FB58101B86B56800A5D7B9 /* ICON 512.png */; };
+		A4FB58131B8701BF00A5D7B9 /* 舞ル灬.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A4FB58121B8701BF00A5D7B9 /* 舞ル灬.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +223,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A40195511B859D8400B7142A /* settingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingViewController.h; sourceTree = "<group>"; };
+		A40195521B859D8500B7142A /* settingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingViewController.m; sourceTree = "<group>"; };
+		A40195531B859D8500B7142A /* settingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = settingViewController.xib; sourceTree = "<group>"; };
+		A40195571B85BA2600B7142A /* passwordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = passwordViewController.h; sourceTree = "<group>"; };
+		A40195581B85BA2600B7142A /* passwordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = passwordViewController.m; sourceTree = "<group>"; };
+		A40195591B85BA2600B7142A /* passwordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = passwordViewController.xib; sourceTree = "<group>"; };
 		A41256421B7B1491005827F9 /* defaultHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHead.png; sourceTree = "<group>"; };
 		A41256441B7B29FC005827F9 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A41256461B7B2A0D005827F9 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
@@ -300,7 +307,6 @@
 		A42F39591B84888A005877B9 /* 满楼水平.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "满楼水平.jpeg"; sourceTree = "<group>"; };
 		A42F395A1B84888A005877B9 /* 满楼都素我的人.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "满楼都素我的人.jpeg"; sourceTree = "<group>"; };
 		A42F395B1B84888A005877B9 /* 狗头神教牛蛙.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "狗头神教牛蛙.jpeg"; sourceTree = "<group>"; };
-		A42F395C1B84888A005877B9 /* 舞ル灬.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "舞ル灬.jpeg"; sourceTree = "<group>"; };
 		A4319D971B5601F900DB8775 /* MapAnnotationBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapAnnotationBG@2x.png"; sourceTree = "<group>"; };
 		A4319D991B56072500DB8775 /* myPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPointAnnotation.h; sourceTree = "<group>"; };
 		A4319D9A1B56072500DB8775 /* myPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myPointAnnotation.m; sourceTree = "<group>"; };
@@ -340,7 +346,9 @@
 		A452ABD81B7894640067F004 /* userAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userAgreementViewController.m; sourceTree = "<group>"; };
 		A452ABD91B7894640067F004 /* userAgreementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = userAgreementViewController.xib; sourceTree = "<group>"; };
 		A45F545D1B78E8E400761872 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
-		A46E8A921B78D53100B7EEB0 /* ICON 512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ICON 512.png"; sourceTree = "<group>"; };
+		A46EA7811B86157B004FF955 /* WatchVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchVideoViewController.h; sourceTree = "<group>"; };
+		A46EA7821B86157B004FF955 /* WatchVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchVideoViewController.m; sourceTree = "<group>"; };
+		A46EA7831B86157B004FF955 /* WatchVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WatchVideoViewController.xib; sourceTree = "<group>"; };
 		A476A2461B75A1B2007D86C7 /* jjc0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jjc0.png; sourceTree = "<group>"; };
 		A476A2471B75A1B2007D86C7 /* JJC1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JJC1.png; sourceTree = "<group>"; };
 		A476A2481B75A1B2007D86C7 /* MJ0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MJ0.png; sourceTree = "<group>"; };
@@ -419,17 +427,9 @@
 		A4BDF16E1B749DBA000096C5 /* dian2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dian2.png; sourceTree = "<group>"; };
 		A4C0C4E21B7CA15A0027CA9E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A4CC4AA61B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hero_terminable_skin_bg_hover@2x.png"; sourceTree = "<group>"; };
-		A4CC4AA81B672ABA00950537 /* videoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoViewController.h; sourceTree = "<group>"; };
-		A4CC4AA91B672ABA00950537 /* videoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoViewController.m; sourceTree = "<group>"; };
-		A4CC4AAA1B672ABA00950537 /* videoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = videoViewController.xib; sourceTree = "<group>"; };
 		A4CC4AAD1B672B3200950537 /* videoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoTableViewCell.h; sourceTree = "<group>"; };
 		A4CC4AAE1B672B3300950537 /* videoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoTableViewCell.m; sourceTree = "<group>"; };
 		A4CC4AAF1B672B3300950537 /* videoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = videoTableViewCell.xib; sourceTree = "<group>"; };
-		A4CC4AB21B674A3800950537 /* playVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playVideoViewController.h; sourceTree = "<group>"; };
-		A4CC4AB31B674A3800950537 /* playVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playVideoViewController.m; sourceTree = "<group>"; };
-		A4CC4AB41B674A3800950537 /* playVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = playVideoViewController.xib; sourceTree = "<group>"; };
-		A4CC4AB71B674B8300950537 /* YoukuWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoukuWebView.h; sourceTree = "<group>"; };
-		A4CC4AB81B674B8300950537 /* YoukuWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoukuWebView.m; sourceTree = "<group>"; };
 		A4CC54171B674EAD00950537 /* youku_play.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = youku_play.html; sourceTree = "<group>"; };
 		A4CC54191B67520300950537 /* videoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoButton.h; sourceTree = "<group>"; };
 		A4CC541A1B67520300950537 /* videoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoButton.m; sourceTree = "<group>"; };
@@ -487,6 +487,8 @@
 		A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerPageViewController.m; sourceTree = "<group>"; };
 		A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = playerPageViewController.xib; sourceTree = "<group>"; };
 		A4F51BB21B57599A00786FD1 /* 11logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11logo2.png; sourceTree = "<group>"; };
+		A4FB58101B86B56800A5D7B9 /* ICON 512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ICON 512.png"; sourceTree = "<group>"; };
+		A4FB58121B8701BF00A5D7B9 /* 舞ル灬.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "舞ル灬.jpeg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,6 +496,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4DDDA011B686E4100ACD655 /* MediaPlayer.framework in Frameworks */,
 				A4D13E531B4CF96A00C06A2B /* MessageUI.framework in Frameworks */,
 				A4B8A7751B6B78FE00BFEDDC /* EventKitUI.framework in Frameworks */,
 				A4B8A7731B6B78FA00BFEDDC /* EventKit.framework in Frameworks */,
@@ -512,7 +515,6 @@
 				A4B8A75C1B6B5CF600BFEDDC /* libicucore.dylib in Frameworks */,
 				A447FEDF1B4A27600053D982 /* QuartzCore.framework in Frameworks */,
 				A447FEF11B4A80300053D982 /* SystemConfiguration.framework in Frameworks */,
-				A4DDDA011B686E4100ACD655 /* MediaPlayer.framework in Frameworks */,
 				A4B8A7571B6B5C1C00BFEDDC /* ShareSDKShareActionSheet.framework in Frameworks */,
 				A4D13E571B4CF98600C06A2B /* Foundation.framework in Frameworks */,
 				A4B8A7471B6B5C1C00BFEDDC /* QZoneConnection.framework in Frameworks */,
@@ -569,6 +571,19 @@
 				A4D13E521B4CF96A00C06A2B /* MessageUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A40195561B859D8900B7142A /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				A40195511B859D8400B7142A /* settingViewController.h */,
+				A40195521B859D8500B7142A /* settingViewController.m */,
+				A40195531B859D8500B7142A /* settingViewController.xib */,
+				A40195571B85BA2600B7142A /* passwordViewController.h */,
+				A40195581B85BA2600B7142A /* passwordViewController.m */,
+				A40195591B85BA2600B7142A /* passwordViewController.xib */,
+			);
+			name = setting;
 			sourceTree = "<group>";
 		};
 		A412D00A1B4FAB86006180A0 /* AFNetworking */ = {
@@ -647,7 +662,7 @@
 				A42F39591B84888A005877B9 /* 满楼水平.jpeg */,
 				A42F395A1B84888A005877B9 /* 满楼都素我的人.jpeg */,
 				A42F395B1B84888A005877B9 /* 狗头神教牛蛙.jpeg */,
-				A42F395C1B84888A005877B9 /* 舞ル灬.jpeg */,
+				A4FB58121B8701BF00A5D7B9 /* 舞ル灬.jpeg */,
 			);
 			name = publisherHead;
 			sourceTree = "<group>";
@@ -694,6 +709,7 @@
 				A4D13E0D1B4CBC5700C06A2B /* SideMenuViewController.h */,
 				A4D13E0E1B4CBC5700C06A2B /* SideMenuViewController.m */,
 				A4D13E801B4D1A2300C06A2B /* SideMenuViewController.xib */,
+				A40195561B859D8900B7142A /* setting */,
 				A4F51BAA1B57430B00786FD1 /* playerPageViewController.h */,
 				A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */,
 				A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */,
@@ -863,14 +879,6 @@
 			children = (
 				A4CC54191B67520300950537 /* videoButton.h */,
 				A4CC541A1B67520300950537 /* videoButton.m */,
-				A4CC4AB71B674B8300950537 /* YoukuWebView.h */,
-				A4CC4AB81B674B8300950537 /* YoukuWebView.m */,
-				A4CC4AB21B674A3800950537 /* playVideoViewController.h */,
-				A4CC4AB31B674A3800950537 /* playVideoViewController.m */,
-				A4CC4AB41B674A3800950537 /* playVideoViewController.xib */,
-				A4CC4AA81B672ABA00950537 /* videoViewController.h */,
-				A4CC4AA91B672ABA00950537 /* videoViewController.m */,
-				A4CC4AAA1B672ABA00950537 /* videoViewController.xib */,
 				A42F39451B84689A005877B9 /* playerBtn.h */,
 				A42F39461B84689A005877B9 /* playerBtn.m */,
 				A4CC4AAD1B672B3200950537 /* videoTableViewCell.h */,
@@ -882,6 +890,9 @@
 				A42F393B1B841BB9005877B9 /* VideoListViewController.h */,
 				A42F393C1B841BB9005877B9 /* VideoListViewController.m */,
 				A42F393D1B841BB9005877B9 /* VideoListViewController.xib */,
+				A46EA7811B86157B004FF955 /* WatchVideoViewController.h */,
+				A46EA7821B86157B004FF955 /* WatchVideoViewController.m */,
+				A46EA7831B86157B004FF955 /* WatchVideoViewController.xib */,
 			);
 			name = video;
 			sourceTree = "<group>";
@@ -1014,7 +1025,7 @@
 		A4DA56181B4E49F80010C95D /* login */ = {
 			isa = PBXGroup;
 			children = (
-				A46E8A921B78D53100B7EEB0 /* ICON 512.png */,
+				A4FB58101B86B56800A5D7B9 /* ICON 512.png */,
 				A4319D9C1B56248900DB8775 /* MapUserCountBG@2x.png */,
 				A4319D9D1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg */,
 				A4319D971B5601F900DB8775 /* MapAnnotationBG@2x.png */,
@@ -1140,7 +1151,6 @@
 				A42E829A1B66195E00A431E0 /* 封面1.png in Resources */,
 				A476A2531B75A1B2007D86C7 /* note0.png in Resources */,
 				A4DA561C1B4E4B860010C95D /* username.png in Resources */,
-				A46E8A931B78D53100B7EEB0 /* ICON 512.png in Resources */,
 				A4DA561B1B4E4B860010C95D /* password.png in Resources */,
 				A42F396D1B84888A005877B9 /* 满楼水平.jpeg in Resources */,
 				A4DDDA051B687C6100ACD655 /* mid_fujin@2x.png in Resources */,
@@ -1155,6 +1165,7 @@
 				A4BDF1691B748B31000096C5 /* 流浪.jpg in Resources */,
 				A42F39611B84888A005877B9 /* GuAi小乖.jpeg in Resources */,
 				A42F396C1B84888A005877B9 /* 水一亦寒.jpeg in Resources */,
+				A40195551B859D8500B7142A /* settingViewController.xib in Resources */,
 				A4319D9F1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg in Resources */,
 				A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */,
 				A42F39641B84888A005877B9 /* Pc冷冷.jpeg in Resources */,
@@ -1184,19 +1195,18 @@
 				A4E02BF01B6A10CD000997C0 /* bottomBack3.png in Resources */,
 				A4B8A74C1B6B5C1C00BFEDDC /* ShareSDKLocalizable.strings in Resources */,
 				A452ABD61B7883B90067F004 /* eye29.png in Resources */,
-				A4CC4AAC1B672ABA00950537 /* videoViewController.xib in Resources */,
 				A42F396B1B84888A005877B9 /* 梅西❤Huang.jpeg in Resources */,
 				A476A24F1B75A1B2007D86C7 /* jjc0.png in Resources */,
 				A4E02BE91B69F736000997C0 /* levelno.png in Resources */,
 				A4DA56241B4E73280010C95D /* select.png in Resources */,
 				A476A2571B75A1B2007D86C7 /* tt1.png in Resources */,
-				A42F39701B84888A005877B9 /* 舞ル灬.jpeg in Resources */,
 				A42F39661B84888A005877B9 /* 卜严骏Pis.jpeg in Resources */,
 				A476A25D1B774649007D86C7 /* cycle2.png in Resources */,
 				A4DA56201B4E4C700010C95D /* username1.png in Resources */,
 				A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */,
 				A42F39681B84888A005877B9 /* 小爷不狂.jpeg in Resources */,
 				A4DDDA0D1B68A64900ACD655 /* sideBack.png in Resources */,
+				A401955B1B85BA2600B7142A /* passwordViewController.xib in Resources */,
 				A45F545E1B78E8E400761872 /* Images-2.xcassets in Resources */,
 				A476A2511B75A1B2007D86C7 /* MJ0.png in Resources */,
 				A4D13E1B1B4CEBE300C06A2B /* Default-568h@2x.png in Resources */,
@@ -1210,6 +1220,7 @@
 				A4BDF16D1B748E68000096C5 /* dian.jpg in Resources */,
 				A4B8A7221B6B562400BFEDDC /* favorTableViewCell.xib in Resources */,
 				A4DA56271B4E73660010C95D /* female@2x.png in Resources */,
+				A4FB58111B86B56800A5D7B9 /* ICON 512.png in Resources */,
 				A42F396A1B84888A005877B9 /* 朴一生dota.jpeg in Resources */,
 				A4D13E1D1B4CEBE300C06A2B /* Default@2x.png in Resources */,
 				A42F395E1B84888A005877B9 /* DOta情书.jpeg in Resources */,
@@ -1219,7 +1230,6 @@
 				A4BDF1651B74464B000096C5 /* tt3.png in Resources */,
 				A447FEAA1B4A198B0053D982 /* LaunchScreen.xib in Resources */,
 				A42E82A41B662EA800A431E0 /* chat_bubble_white@2x.png in Resources */,
-				A4CC4AB61B674A3800950537 /* playVideoViewController.xib in Resources */,
 				A4B8A74D1B6B5C1C00BFEDDC /* Resource.bundle in Resources */,
 				A4B8A71D1B6B515100BFEDDC /* favorViewController.xib in Resources */,
 				A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */,
@@ -1236,7 +1246,9 @@
 				A42F395D1B84888A005877B9 /* 伍声2009.jpeg in Resources */,
 				A476A25F1B776E16007D86C7 /* juggBack.png in Resources */,
 				A42F39441B842BB8005877B9 /* publisherViewController.xib in Resources */,
+				A46EA7851B86157B004FF955 /* WatchVideoViewController.xib in Resources */,
 				A447FEE81B4A4AF80053D982 /* dotaerViewController.xib in Resources */,
+				A4FB58131B8701BF00A5D7B9 /* 舞ル灬.jpeg in Resources */,
 				A4B8A7151B6B073900BFEDDC /* search1.png in Resources */,
 				A4DDDA041B687C6100ACD655 /* mid_ditu.png in Resources */,
 				A42E829C1B661B1C00A431E0 /* moon.png in Resources */,
@@ -1286,13 +1298,11 @@
 				A42F393E1B841BB9005877B9 /* VideoListViewController.m in Sources */,
 				A412D0371B4FAB87006180A0 /* AFURLRequestSerialization.m in Sources */,
 				A4DA56131B4E1AFA0010C95D /* FXBlurView.m in Sources */,
-				A4CC4AB91B674B8300950537 /* YoukuWebView.m in Sources */,
 				A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */,
 				A412D0331B4FAB87006180A0 /* AFHTTPSessionManager.m in Sources */,
 				A412D0311B4FAB87006180A0 /* AFHTTPRequestOperation.m in Sources */,
 				A4BA89B41B70A7A000B94279 /* achieveTableViewCell.m in Sources */,
 				A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */,
-				A4CC4AAB1B672ABA00950537 /* videoViewController.m in Sources */,
 				A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */,
 				A4CC541B1B67520300950537 /* videoButton.m in Sources */,
 				A412D03A1B4FAB87006180A0 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1301,19 +1311,21 @@
 				A412D03E1B4FAB87006180A0 /* UIImageView+AFNetworking.m in Sources */,
 				A4319D9B1B56072500DB8775 /* myPointAnnotation.m in Sources */,
 				A412D0341B4FAB87006180A0 /* AFNetworkReachabilityManager.m in Sources */,
-				A4CC4AB51B674A3800950537 /* playVideoViewController.m in Sources */,
 				A4319DA21B564FFA00DB8775 /* FabonacciNum.m in Sources */,
 				A412D0391B4FAB87006180A0 /* AFURLSessionManager.m in Sources */,
 				A41C10281B53B131006E5CF9 /* MBProgressHUD.m in Sources */,
 				A4D13E0C1B4CBB9C00C06A2B /* UIViewController+MFSideMenuAdditions.m in Sources */,
 				A4B8A7211B6B562400BFEDDC /* favorTableViewCell.m in Sources */,
+				A40195541B859D8500B7142A /* settingViewController.m in Sources */,
 				A412D03C1B4FAB87006180A0 /* UIAlertView+AFNetworking.m in Sources */,
 				A4B8A71C1B6B515100BFEDDC /* favorViewController.m in Sources */,
 				A447FE9F1B4A198B0053D982 /* AppDelegate.mm in Sources */,
 				A4D13E171B4CEA6800C06A2B /* listCellTableViewCell.m in Sources */,
 				A447FE9C1B4A198B0053D982 /* main.m in Sources */,
+				A401955A1B85BA2600B7142A /* passwordViewController.m in Sources */,
 				A412D0381B4FAB87006180A0 /* AFURLResponseSerialization.m in Sources */,
 				A412D03D1B4FAB87006180A0 /* UIButton+AFNetworking.m in Sources */,
+				A46EA7841B86157B004FF955 /* WatchVideoViewController.m in Sources */,
 				A412D0301B4FAB87006180A0 /* AFAppDotNetAPIClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
