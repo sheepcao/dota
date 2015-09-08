@@ -12,6 +12,9 @@
 #import "MBProgressHUD.h"
 #import "globalVar.h"
 #import "playerPageViewController.h"
+#import "addCommentViewController.h"
+#import "DataCenter.h"
+#import "commentDetailViewController.h"
 
 @interface topicsViewController ()
 
@@ -25,7 +28,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+    self.title = @"今日话题";
+    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+
     [self.topicLabel setText:self.topic];
+    
     
     [[NSUserDefaults standardUserDefaults] setObject:self.topicDay forKey:@"topicDay"];
     [self.imgDelegate cancelNewImg];
@@ -34,8 +42,47 @@
     [self requestComments];
 }
 
+
+- (UIBarButtonItem *)rightMenuBarButtonItem {
+    
+    
+    UIButton *btnNext1 =[[UIButton alloc] init];
+    [btnNext1 setTitle:@"往期话题" forState:UIControlStateNormal];
+    [btnNext1 setTitleColor:[UIColor colorWithRed:47/255.0f green:140/255.0f blue:255/255.0f alpha:1.0] forState:UIControlStateNormal];
+    
+    btnNext1.titleLabel.font = [UIFont systemFontOfSize:17.0f];
+    
+    btnNext1.frame = CGRectMake(15, SCREEN_WIDTH-85, 70, 35);
+    UIBarButtonItem *btnNext =[[UIBarButtonItem alloc] initWithCustomView:btnNext1];
+    btnNext1.tag = 0;
+    [btnNext1 addTarget:self action:@selector(topicHistory) forControlEvents:UIControlEventTouchUpInside];
+    
+    return btnNext;
+    
+    
+}
+
+-(void)topicHistory
+{
+    
+}
+
+
 -(void)requestComments
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.dimBackground = YES;
+    
+    if (!self.topicDay) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText =  @"网络请求失败,请稍后重试";
+        [hud hide:YES afterDelay:1.2];
+        return;
+        
+    }
+    
     NSDictionary *parameters = @{@"tag": @"fetchComments",@"topicDate":self.topicDay};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -53,15 +100,19 @@
         
         //fetch comment and ups OK.........to be continue!!!
         
-        [self.commentCountLabel setText:[NSString stringWithFormat:@"%lu条评论",self.commentsArray.count]];
+        [self.commentCountLabel setText:[NSString stringWithFormat:@"%lu个见解",self.commentsArray.count]];
         [self.commentTable reloadData];
+        
+        [hud hide:YES];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"comment JsonError: %@", error.localizedDescription);
         NSLog(@"comment Json ERROR: %@",  operation.responseString);
         
         
-        
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText =  @"网络请求失败,请稍后重试";
+        [hud hide:YES afterDelay:1.2];
         
         
     }];
@@ -124,8 +175,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSDictionary *commentDic = self.commentsArray[indexPath.row];
     
-       
+    commentDetailViewController *commentDetail = [[commentDetailViewController alloc] initWithNibName:@"commentDetailViewController" bundle:nil];
+    commentDetail.username = [commentDic objectForKey:@"comment_user"];
+    commentDetail.likeCount = [commentDic objectForKey:@"upsCount"];
+    commentDetail.commentContent = [commentDic objectForKey:@"comment_content"];
+    
+    [self.navigationController pushViewController:commentDetail animated:YES];
+
+    
 }
 
 - (BOOL)shouldAutorotate {
@@ -143,6 +202,23 @@
 }
 
 - (IBAction)addComment:(id)sender {
+    
+    if ([[DataCenter sharedDataCenter] isGuest]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"仅限注册用户发表见解";
+        [hud hide:YES afterDelay:1.2];
+        return;
+    }
+    
+    addCommentViewController *addCommentVc = [[addCommentViewController alloc] initWithNibName:@"addCommentViewController" bundle:nil];
+    
+
+    addCommentVc.topicDay = self.topicDay;
+
+    [self.navigationController pushViewController:addCommentVc animated:YES];
+
 }
 
 

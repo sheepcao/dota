@@ -66,7 +66,7 @@
          NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
         username = [userDic objectForKey:@"username"];
     }
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.superview animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.superview.superview animated:YES];
     
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.dimBackground = YES;

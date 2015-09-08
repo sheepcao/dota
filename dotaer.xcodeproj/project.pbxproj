@@ -176,6 +176,12 @@
 		A4CC541B1B67520300950537 /* videoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC541A1B67520300950537 /* videoButton.m */; };
 		A4CC541D1B67609C00950537 /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A4CC541C1B67609C00950537 /* start.html */; };
 		A4CC54251B676FD400950537 /* UIWebView+YouKu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CC54221B676FD400950537 /* UIWebView+YouKu.m */; };
+		A4CF5C451B9EB47700FBFD36 /* topicHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF5C431B9EB47700FBFD36 /* topicHistoryViewController.m */; };
+		A4CF5C461B9EB47700FBFD36 /* topicHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5C441B9EB47700FBFD36 /* topicHistoryViewController.xib */; };
+		A4CF5C4A1B9EB76400FBFD36 /* topicHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF5C481B9EB76400FBFD36 /* topicHistoryTableViewCell.m */; };
+		A4CF5C4B1B9EB76400FBFD36 /* topicHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5C491B9EB76400FBFD36 /* topicHistoryTableViewCell.xib */; };
+		A4CF5C4F1B9EB8AC00FBFD36 /* commentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CF5C4D1B9EB8AC00FBFD36 /* commentDetailViewController.m */; };
+		A4CF5C501B9EB8AC00FBFD36 /* commentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CF5C4E1B9EB8AC00FBFD36 /* commentDetailViewController.xib */; };
 		A4CFDE581B5E1B0800EAC77E /* levelInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */; };
 		A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */; };
 		A4D13E0A1B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D13E051B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m */; };
@@ -456,6 +462,15 @@
 		A4CC541C1B67609C00950537 /* start.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = start.html; sourceTree = "<group>"; };
 		A4CC54211B676FD400950537 /* UIWebView+YouKu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+YouKu.h"; sourceTree = "<group>"; };
 		A4CC54221B676FD400950537 /* UIWebView+YouKu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+YouKu.m"; sourceTree = "<group>"; };
+		A4CF5C421B9EB47700FBFD36 /* topicHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topicHistoryViewController.h; sourceTree = "<group>"; };
+		A4CF5C431B9EB47700FBFD36 /* topicHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topicHistoryViewController.m; sourceTree = "<group>"; };
+		A4CF5C441B9EB47700FBFD36 /* topicHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topicHistoryViewController.xib; sourceTree = "<group>"; };
+		A4CF5C471B9EB76400FBFD36 /* topicHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topicHistoryTableViewCell.h; sourceTree = "<group>"; };
+		A4CF5C481B9EB76400FBFD36 /* topicHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topicHistoryTableViewCell.m; sourceTree = "<group>"; };
+		A4CF5C491B9EB76400FBFD36 /* topicHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topicHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		A4CF5C4C1B9EB8AC00FBFD36 /* commentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentDetailViewController.h; sourceTree = "<group>"; };
+		A4CF5C4D1B9EB8AC00FBFD36 /* commentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentDetailViewController.m; sourceTree = "<group>"; };
+		A4CF5C4E1B9EB8AC00FBFD36 /* commentDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = commentDetailViewController.xib; sourceTree = "<group>"; };
 		A4CFDE551B5E1B0800EAC77E /* levelInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelInfoViewController.h; sourceTree = "<group>"; };
 		A4CFDE561B5E1B0800EAC77E /* levelInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = levelInfoViewController.m; sourceTree = "<group>"; };
 		A4CFDE571B5E1B0800EAC77E /* levelInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = levelInfoViewController.xib; sourceTree = "<group>"; };
@@ -745,6 +760,12 @@
 				A403743D1B9D904400B9CC7B /* addCommentViewController.h */,
 				A403743E1B9D904400B9CC7B /* addCommentViewController.m */,
 				A403743F1B9D904400B9CC7B /* addCommentViewController.xib */,
+				A4CF5C4C1B9EB8AC00FBFD36 /* commentDetailViewController.h */,
+				A4CF5C4D1B9EB8AC00FBFD36 /* commentDetailViewController.m */,
+				A4CF5C4E1B9EB8AC00FBFD36 /* commentDetailViewController.xib */,
+				A4CF5C421B9EB47700FBFD36 /* topicHistoryViewController.h */,
+				A4CF5C431B9EB47700FBFD36 /* topicHistoryViewController.m */,
+				A4CF5C441B9EB47700FBFD36 /* topicHistoryViewController.xib */,
 				A447FEF81B4A843F0053D982 /* listViewRelated */,
 				A447FEE61B4A48710053D982 /* myMenu */,
 				A447FEC41B4A1BC30053D982 /* login */,
@@ -887,6 +908,9 @@
 				A432D1BA1B96CE990084F4FA /* commentTableViewCell.h */,
 				A432D1BB1B96CE990084F4FA /* commentTableViewCell.m */,
 				A432D1BC1B96CE990084F4FA /* commentTableViewCell.xib */,
+				A4CF5C471B9EB76400FBFD36 /* topicHistoryTableViewCell.h */,
+				A4CF5C481B9EB76400FBFD36 /* topicHistoryTableViewCell.m */,
+				A4CF5C491B9EB76400FBFD36 /* topicHistoryTableViewCell.xib */,
 			);
 			name = listViewRelated;
 			sourceTree = "<group>";
@@ -1180,6 +1204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4CF5C4B1B9EB76400FBFD36 /* topicHistoryTableViewCell.xib in Resources */,
 				A42E829A1B66195E00A431E0 /* 封面1.png in Resources */,
 				A476A2531B75A1B2007D86C7 /* note0.png in Resources */,
 				A4DA561C1B4E4B860010C95D /* username.png in Resources */,
@@ -1194,6 +1219,7 @@
 				A42F39671B84888A005877B9 /* 天枫燚.jpeg in Resources */,
 				A42F396F1B84888A005877B9 /* 狗头神教牛蛙.jpeg in Resources */,
 				A4DA56281B4E73660010C95D /* male@2x.png in Resources */,
+				A4CF5C501B9EB8AC00FBFD36 /* commentDetailViewController.xib in Resources */,
 				A4BDF1691B748B31000096C5 /* 流浪.jpg in Resources */,
 				A42F39611B84888A005877B9 /* GuAi小乖.jpeg in Resources */,
 				A42F396C1B84888A005877B9 /* 水一亦寒.jpeg in Resources */,
@@ -1203,6 +1229,7 @@
 				A42F39641B84888A005877B9 /* Pc冷冷.jpeg in Resources */,
 				A41256471B7B2A0D005827F9 /* mapapi.bundle in Resources */,
 				A42F39631B84888A005877B9 /* Music咖啡。.jpeg in Resources */,
+				A4CF5C461B9EB47700FBFD36 /* topicHistoryViewController.xib in Resources */,
 				A42F39621B84888A005877B9 /* Kevinnnnnnnnnnn.jpeg in Resources */,
 				A42E82A01B662AD600A431E0 /* chat_bar.png in Resources */,
 				A432D1BE1B96CE990084F4FA /* commentTableViewCell.xib in Resources */,
@@ -1334,6 +1361,7 @@
 				A4D13E0B1B4CBB9C00C06A2B /* MFSideMenuShadow.m in Sources */,
 				A4DF4EDD1B58DB6E004E9F59 /* noteTableViewCell.m in Sources */,
 				A42F393E1B841BB9005877B9 /* VideoListViewController.m in Sources */,
+				A4CF5C4A1B9EB76400FBFD36 /* topicHistoryTableViewCell.m in Sources */,
 				A412D0371B4FAB87006180A0 /* AFURLRequestSerialization.m in Sources */,
 				A4DA56131B4E1AFA0010C95D /* FXBlurView.m in Sources */,
 				A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */,
@@ -1342,6 +1370,7 @@
 				A40374401B9D904400B9CC7B /* addCommentViewController.m in Sources */,
 				A412D0311B4FAB87006180A0 /* AFHTTPRequestOperation.m in Sources */,
 				A4BA89B41B70A7A000B94279 /* achieveTableViewCell.m in Sources */,
+				A4CF5C4F1B9EB8AC00FBFD36 /* commentDetailViewController.m in Sources */,
 				A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */,
 				A4A1FE3B1B54FA890065C0CA /* userInfo.m in Sources */,
 				A4CC541B1B67520300950537 /* videoButton.m in Sources */,
@@ -1367,6 +1396,7 @@
 				A412D03D1B4FAB87006180A0 /* UIButton+AFNetworking.m in Sources */,
 				A46EA7841B86157B004FF955 /* WatchVideoViewController.m in Sources */,
 				A412D0301B4FAB87006180A0 /* AFAppDotNetAPIClient.m in Sources */,
+				A4CF5C451B9EB47700FBFD36 /* topicHistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

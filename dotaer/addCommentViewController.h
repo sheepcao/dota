@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface addCommentViewController : UIViewController
+@property (strong,nonatomic) NSString *topicDay;
 
 @end
