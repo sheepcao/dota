@@ -41,7 +41,9 @@
     
     
     [self.bannerView loadRequest:request];
-    [self.view addSubview:self.bannerView];
+    //need to recover..............
+
+//    [self.view addSubview:self.bannerView];
     
     self.videoArray = [NSMutableArray arrayWithArray: [self.videoDic objectForKey:@"videos"]];
     

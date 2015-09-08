@@ -30,4 +30,9 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginOut_upConstrains;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeightConstrains;
+
+
+@property (strong,nonatomic) NSString *topicDay;
+@property (strong,nonatomic) NSString *topic;
+
 @end

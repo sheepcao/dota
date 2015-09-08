@@ -19,6 +19,10 @@
 #import "favorViewController.h"
 #import "publisherViewController.h"
 #import "settingViewController.h"
+#import "topicsViewController.h"
+
+@interface SideMenuViewController()<cancelNewImgDelegate>
+@end
 
 @implementation SideMenuViewController
 
@@ -29,7 +33,9 @@
     self.headImage.layer.masksToBounds = YES;
     
 
-    
+    self.menuContainerViewController.leftMenuWidth = SCREEN_WIDTH*4/7;
+    self.menuContainerViewController.menuWidth = SCREEN_WIDTH*4/7;
+
     UIVisualEffect *blurEffect;
     blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
@@ -188,7 +194,70 @@
         }
     }else if(indexPath.row == 3)
     {
-        [self shareAppTapped];
+        
+        topicsViewController *topicVC = [[topicsViewController alloc] initWithNibName:@"topicsViewController" bundle:nil];
+        topicVC.imgDelegate = self;
+
+        
+        if ([self.topic isEqualToString:@""]) {
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            
+            hud.mode = MBProgressHUDModeIndeterminate;
+            
+            
+            NSDictionary *parameters = @{@"tag": @"todayTopic"};
+            
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+            [manager.requestSerializer setTimeoutInterval:12];  //Time out after 25 seconds
+            
+            
+            [manager POST:@"http://localhost/~ericcao/makeTopic.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+                NSLog(@"topic Json: %@", responseObject);
+                
+                self.topic = [responseObject objectForKey:@"topic_content"];
+                self.topicDay = [responseObject objectForKey:@"topic_day"] ;
+                
+                UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+                NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+                [temp addObject:topicVC];
+                navigationController.viewControllers = temp;
+               
+                [hud hide:YES];
+
+                
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"topic JsonError: %@", error.localizedDescription);
+                NSLog(@"topic Json ERROR: %@",  operation.responseString);
+                
+                
+                
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"获取今日话题失败，请检查网络并重试";
+                
+                [hud hide:YES afterDelay:1];
+                
+                
+                
+            }];
+            
+
+
+        }else
+        {
+            topicVC.topic = self.topic;
+            topicVC.topicDay = self.topicDay;
+            
+            UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+            NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+            [temp addObject:topicVC];
+            navigationController.viewControllers = temp;
+        }
+        
+
+//        [self shareAppTapped];
     }else if (indexPath.row == 4)
     {
         settingViewController *settingVC = [[settingViewController alloc] initWithNibName:@"settingViewController" bundle:nil];
@@ -482,6 +551,15 @@
     
     
     
+}
+
+-(void)cancelNewImg
+{
+    for (UIView *img in [self.itemsTable subviews]) {
+        if (img.tag == 101) {
+            [img removeFromSuperview];
+        }
+    }
 }
 
 - (BOOL)shouldAutorotate {

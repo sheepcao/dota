@@ -11,6 +11,9 @@
 		A40195551B859D8500B7142A /* settingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40195531B859D8500B7142A /* settingViewController.xib */; };
 		A401955A1B85BA2600B7142A /* passwordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40195581B85BA2600B7142A /* passwordViewController.m */; };
 		A401955B1B85BA2600B7142A /* passwordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40195591B85BA2600B7142A /* passwordViewController.xib */; };
+		A403743C1B9D8C0E00B9CC7B /* userButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A403743B1B9D8C0E00B9CC7B /* userButton.m */; };
+		A40374401B9D904400B9CC7B /* addCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A403743E1B9D904400B9CC7B /* addCommentViewController.m */; };
+		A40374411B9D904400B9CC7B /* addCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A403743F1B9D904400B9CC7B /* addCommentViewController.xib */; };
 		A41256431B7B1491005827F9 /* defaultHead.png in Resources */ = {isa = PBXBuildFile; fileRef = A41256421B7B1491005827F9 /* defaultHead.png */; };
 		A41256451B7B29FC005827F9 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41256441B7B29FC005827F9 /* BaiduMapAPI.framework */; };
 		A41256471B7B2A0D005827F9 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A41256461B7B2A0D005827F9 /* mapapi.bundle */; };
@@ -70,6 +73,11 @@
 		A4319D9E1B56248900DB8775 /* MapUserCountBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4319D9C1B56248900DB8775 /* MapUserCountBG@2x.png */; };
 		A4319D9F1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4319D9D1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg */; };
 		A4319DA21B564FFA00DB8775 /* FabonacciNum.m in Sources */ = {isa = PBXBuildFile; fileRef = A4319DA11B564FFA00DB8775 /* FabonacciNum.m */; };
+		A432D1B81B96C9EA0084F4FA /* topicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A432D1B61B96C9EA0084F4FA /* topicsViewController.m */; };
+		A432D1B91B96C9EA0084F4FA /* topicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A432D1B71B96C9EA0084F4FA /* topicsViewController.xib */; };
+		A432D1BD1B96CE990084F4FA /* commentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A432D1BB1B96CE990084F4FA /* commentTableViewCell.m */; };
+		A432D1BE1B96CE990084F4FA /* commentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A432D1BC1B96CE990084F4FA /* commentTableViewCell.xib */; };
+		A44562A51B9C0B650024D97D /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = A44562A41B9C0B650024D97D /* new.png */; };
 		A447FE9C1B4A198B0053D982 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9B1B4A198B0053D982 /* main.m */; };
 		A447FE9F1B4A198B0053D982 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9E1B4A198B0053D982 /* AppDelegate.mm */; };
 		A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447FEA11B4A198B0053D982 /* dotaerViewController.mm */; };
@@ -229,6 +237,11 @@
 		A40195571B85BA2600B7142A /* passwordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = passwordViewController.h; sourceTree = "<group>"; };
 		A40195581B85BA2600B7142A /* passwordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = passwordViewController.m; sourceTree = "<group>"; };
 		A40195591B85BA2600B7142A /* passwordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = passwordViewController.xib; sourceTree = "<group>"; };
+		A403743A1B9D8C0E00B9CC7B /* userButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userButton.h; sourceTree = "<group>"; };
+		A403743B1B9D8C0E00B9CC7B /* userButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userButton.m; sourceTree = "<group>"; };
+		A403743D1B9D904400B9CC7B /* addCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addCommentViewController.h; sourceTree = "<group>"; };
+		A403743E1B9D904400B9CC7B /* addCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addCommentViewController.m; sourceTree = "<group>"; };
+		A403743F1B9D904400B9CC7B /* addCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = addCommentViewController.xib; sourceTree = "<group>"; };
 		A41256421B7B1491005827F9 /* defaultHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHead.png; sourceTree = "<group>"; };
 		A41256441B7B29FC005827F9 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A41256461B7B2A0D005827F9 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
@@ -314,6 +327,13 @@
 		A4319D9D1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MapUserDefaultIcon@2x.jpg"; sourceTree = "<group>"; };
 		A4319DA01B564FFA00DB8775 /* FabonacciNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FabonacciNum.h; path = MFSideMenu/FabonacciNum.h; sourceTree = "<group>"; };
 		A4319DA11B564FFA00DB8775 /* FabonacciNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FabonacciNum.m; path = MFSideMenu/FabonacciNum.m; sourceTree = "<group>"; };
+		A432D1B51B96C9EA0084F4FA /* topicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topicsViewController.h; sourceTree = "<group>"; };
+		A432D1B61B96C9EA0084F4FA /* topicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topicsViewController.m; sourceTree = "<group>"; };
+		A432D1B71B96C9EA0084F4FA /* topicsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topicsViewController.xib; sourceTree = "<group>"; };
+		A432D1BA1B96CE990084F4FA /* commentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentTableViewCell.h; sourceTree = "<group>"; };
+		A432D1BB1B96CE990084F4FA /* commentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentTableViewCell.m; sourceTree = "<group>"; };
+		A432D1BC1B96CE990084F4FA /* commentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = commentTableViewCell.xib; sourceTree = "<group>"; };
+		A44562A41B9C0B650024D97D /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		A447FE961B4A198B0053D982 /* dotaer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dotaer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A447FE9A1B4A198B0053D982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A447FE9B1B4A198B0053D982 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -719,6 +739,12 @@
 				A447FEA01B4A198B0053D982 /* dotaerViewController.h */,
 				A447FEA11B4A198B0053D982 /* dotaerViewController.mm */,
 				A447FEE71B4A4AF80053D982 /* dotaerViewController.xib */,
+				A432D1B51B96C9EA0084F4FA /* topicsViewController.h */,
+				A432D1B61B96C9EA0084F4FA /* topicsViewController.m */,
+				A432D1B71B96C9EA0084F4FA /* topicsViewController.xib */,
+				A403743D1B9D904400B9CC7B /* addCommentViewController.h */,
+				A403743E1B9D904400B9CC7B /* addCommentViewController.m */,
+				A403743F1B9D904400B9CC7B /* addCommentViewController.xib */,
 				A447FEF81B4A843F0053D982 /* listViewRelated */,
 				A447FEE61B4A48710053D982 /* myMenu */,
 				A447FEC41B4A1BC30053D982 /* login */,
@@ -767,6 +793,7 @@
 				A42E829D1B6621E000A431E0 /* thumb.png */,
 				A42E82991B66195E00A431E0 /* 封面1.png */,
 				A42E829B1B661B1C00A431E0 /* moon.png */,
+				A44562A41B9C0B650024D97D /* new.png */,
 				A4F51BAF1B57593600786FD1 /* dotaImage */,
 				A4DA56181B4E49F80010C95D /* login */,
 				A4D13E181B4CEBE300C06A2B /* Default-568h@2x.png */,
@@ -857,6 +884,9 @@
 				A4B8A71E1B6B562400BFEDDC /* favorTableViewCell.h */,
 				A4B8A71F1B6B562400BFEDDC /* favorTableViewCell.m */,
 				A4B8A7201B6B562400BFEDDC /* favorTableViewCell.xib */,
+				A432D1BA1B96CE990084F4FA /* commentTableViewCell.h */,
+				A432D1BB1B96CE990084F4FA /* commentTableViewCell.m */,
+				A432D1BC1B96CE990084F4FA /* commentTableViewCell.xib */,
 			);
 			name = listViewRelated;
 			sourceTree = "<group>";
@@ -870,6 +900,8 @@
 				A4A1FE3A1B54FA890065C0CA /* userInfo.m */,
 				A4A166EB1B5CDEA8003A8F3D /* DataCenter.h */,
 				A4A166EC1B5CDEA8003A8F3D /* DataCenter.m */,
+				A403743A1B9D8C0E00B9CC7B /* userButton.h */,
+				A403743B1B9D8C0E00B9CC7B /* userButton.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -1173,6 +1205,7 @@
 				A42F39631B84888A005877B9 /* Music咖啡。.jpeg in Resources */,
 				A42F39621B84888A005877B9 /* Kevinnnnnnnnnnn.jpeg in Resources */,
 				A42E82A01B662AD600A431E0 /* chat_bar.png in Resources */,
+				A432D1BE1B96CE990084F4FA /* commentTableViewCell.xib in Resources */,
 				A4E02BEA1B69F736000997C0 /* levelyes.png in Resources */,
 				A4DA561F1B4E4C700010C95D /* password1.png in Resources */,
 				A4B8A7551B6B5C1C00BFEDDC /* ShareSDKFlatShareViewUI.bundle in Resources */,
@@ -1206,18 +1239,21 @@
 				A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */,
 				A42F39681B84888A005877B9 /* 小爷不狂.jpeg in Resources */,
 				A4DDDA0D1B68A64900ACD655 /* sideBack.png in Resources */,
+				A432D1B91B96C9EA0084F4FA /* topicsViewController.xib in Resources */,
 				A401955B1B85BA2600B7142A /* passwordViewController.xib in Resources */,
 				A45F545E1B78E8E400761872 /* Images-2.xcassets in Resources */,
 				A476A2511B75A1B2007D86C7 /* MJ0.png in Resources */,
 				A4D13E1B1B4CEBE300C06A2B /* Default-568h@2x.png in Resources */,
 				A447FEE41B4A48600053D982 /* myMenuViewController.xib in Resources */,
 				A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */,
+				A40374411B9D904400B9CC7B /* addCommentViewController.xib in Resources */,
 				A42E82A21B662B5400A431E0 /* chat_bg_left@2x.png in Resources */,
 				A4BA89B51B70A7A000B94279 /* achieveTableViewCell.xib in Resources */,
 				A42F396E1B84888A005877B9 /* 满楼都素我的人.jpeg in Resources */,
 				A4BDF1641B74464B000096C5 /* tt2.png in Resources */,
 				A4B8A7521B6B5C1C00BFEDDC /* WeiboSDK.bundle in Resources */,
 				A4BDF16D1B748E68000096C5 /* dian.jpg in Resources */,
+				A44562A51B9C0B650024D97D /* new.png in Resources */,
 				A4B8A7221B6B562400BFEDDC /* favorTableViewCell.xib in Resources */,
 				A4DA56271B4E73660010C95D /* female@2x.png in Resources */,
 				A4FB58111B86B56800A5D7B9 /* ICON 512.png in Resources */,
@@ -1282,10 +1318,12 @@
 				A42F39471B84689A005877B9 /* playerBtn.m in Sources */,
 				A4CC54251B676FD400950537 /* UIWebView+YouKu.m in Sources */,
 				A4D13E0F1B4CBC5700C06A2B /* SideMenuViewController.m in Sources */,
+				A432D1BD1B96CE990084F4FA /* commentTableViewCell.m in Sources */,
 				A42F39431B842BB8005877B9 /* publisherViewController.m in Sources */,
 				A4E4695D1B7B7034004275D8 /* submitScoreViewController.m in Sources */,
 				A447FEC21B4A1BBB0053D982 /* loginViewController.m in Sources */,
 				A412D0321B4FAB87006180A0 /* AFHTTPRequestOperationManager.m in Sources */,
+				A432D1B81B96C9EA0084F4FA /* topicsViewController.m in Sources */,
 				A4D13E0A1B4CBB9C00C06A2B /* MFSideMenuContainerViewController.m in Sources */,
 				A4CFDE581B5E1B0800EAC77E /* levelInfoViewController.m in Sources */,
 				A412D0361B4FAB87006180A0 /* AFURLConnectionOperation.m in Sources */,
@@ -1300,6 +1338,8 @@
 				A4DA56131B4E1AFA0010C95D /* FXBlurView.m in Sources */,
 				A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */,
 				A412D0331B4FAB87006180A0 /* AFHTTPSessionManager.m in Sources */,
+				A403743C1B9D8C0E00B9CC7B /* userButton.m in Sources */,
+				A40374401B9D904400B9CC7B /* addCommentViewController.m in Sources */,
 				A412D0311B4FAB87006180A0 /* AFHTTPRequestOperation.m in Sources */,
 				A4BA89B41B70A7A000B94279 /* achieveTableViewCell.m in Sources */,
 				A447FEA21B4A198B0053D982 /* dotaerViewController.mm in Sources */,
@@ -1471,7 +1511,7 @@
 				GCC_INPUT_FILETYPE = automatic;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/inc/**";
 				INFOPLIST_FILE = dotaer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1484,7 +1524,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "287ef70d-f4db-429b-958b-38ea0beae5e1";
+				PROVISIONING_PROFILE = "02ad20e5-4c71-4e38-9fa0-cd5daad43f67";
 			};
 			name = Debug;
 		};
@@ -1493,8 +1533,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: CAO GUANGXU (JTX9TS223Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: CAO GUANGXU";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CAO GUANGXU";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1508,7 +1548,7 @@
 				GCC_INPUT_FILETYPE = automatic;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/inc/**";
 				INFOPLIST_FILE = dotaer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1521,7 +1561,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "287ef70d-f4db-429b-958b-38ea0beae5e1";
+				PROVISIONING_PROFILE = "e24797ef-e925-416b-8bf2-bf68b7d4f3d7";
 			};
 			name = Release;
 		};

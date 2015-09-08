@@ -52,6 +52,9 @@
 
 @property (strong,nonatomic) userInfo *myUserInfo;
 @property (strong,nonatomic) NSString *signature;
+@property (strong,nonatomic) NSString *topic;
+@property (strong,nonatomic) NSString *topicDay;
+
 
 @property (nonatomic, strong) NSMutableArray *nearbyInfos;
 @property (nonatomic) NSInteger curPageIndex;
@@ -94,7 +97,7 @@
     self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
 
     [self setupCenterView];
-    
+    [self requestTopic];
     [self performSelector:@selector(dismissHUD) withObject:nil afterDelay:6.6f];
 
     NSLog(@"dotaerViewController did load");
@@ -131,6 +134,77 @@
     }
 }
 
+
+-(void)requestTopic
+{
+    
+
+    self.topic = @"";
+    self.topicDay = @"1";
+    
+    NSDictionary *parameters = @{@"tag": @"todayTopic"};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:20];  //Time out after 25 seconds
+    
+    
+    [manager POST:@"http://localhost/~ericcao/makeTopic.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        NSLog(@"topic Json: %@", responseObject);
+
+        self.topic = [responseObject objectForKey:@"topic_content"];
+        self.topicDay = [responseObject objectForKey:@"topic_day"] ;
+
+        SideMenuViewController *leftMenuVC;
+        
+        if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
+            leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
+            
+            
+            
+            leftMenuVC.topicDay = self.topicDay;
+            leftMenuVC.topic = self.topic;
+            
+            
+        }
+
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"topicDay"] && [[[NSUserDefaults standardUserDefaults] objectForKey:@"topicDay"] isEqualToString:self.topicDay]) {
+            
+           
+        }else
+        {
+            NSLog(@"今日有新的话题！！！！！目录和item都加红点。。。");
+            
+            UIImageView *haveNewtopicImg = [[UIImageView alloc] initWithFrame:CGRectMake(leftMenuVC.itemsTable.frame.size.width*2/3-10, leftMenuVC.itemsTable.rowHeight*4, 30, 14)];
+            [haveNewtopicImg setImage:[UIImage imageNamed:@"new.png"]];
+            haveNewtopicImg.tag = 101;
+            
+            for (UIView *img in [leftMenuVC.itemsTable subviews]) {
+                if (img.tag == 101) {
+                    return ;
+                }
+                
+                [leftMenuVC.itemsTable addSubview:haveNewtopicImg];
+       
+
+                
+            }
+
+        }
+        
+    
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"topic JsonError: %@", error.localizedDescription);
+        NSLog(@"topic Json ERROR: %@",  operation.responseString);
+
+        
+        
+        
+        
+    }];
+    
+
+}
 -(void)setupCenterView
 {
     UIVisualEffect *blurEffect_b;
@@ -160,7 +234,8 @@
 //                            ];
     [self.bannerView loadRequest:request];
     
-    [self.view addSubview:self.bannerView];
+    //need to recover..............
+//    [self.view addSubview:self.bannerView];
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64+50, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64-50))];
 
@@ -735,8 +810,7 @@
         {
             [self performSelectorInBackground:@selector(updateUserScores:) withObject:self.myUserInfo.username];
 
-//            leftMenuVC.items = [NSArray arrayWithObjects:@"我的主页",favorString,@"分享好友",@"意见反馈", nil];
-//            [leftMenuVC.itemsTable  reloadData];
+
         }
         
         
@@ -1193,9 +1267,7 @@
         info.extInfo = [NSString stringWithFormat:@"%@-%@-%@-%@-%@",self.myUserInfo.sex,self.myUserInfo.age,self.myUserInfo.isReviewed,self.myUserInfo.TTscore,[[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"]];
         [lock lock];
         
-        
-//        info.pt =  CLLocationCoordinate2DMake(34.216, 108.896);//我的地理坐标
-        
+
         //test
         info.pt = _curLocation;
         [lock unlock];
@@ -1690,6 +1762,16 @@
 -(void)fillTTScore:(NSString *)score
 {
     self.myUserInfo.TTscore = score;
+    self.myUserInfo.isReviewed = @"yes";
+    
+     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
+    if (![score isKindOfClass:[NSNull class]] && ![score isEqualToString:@""])
+    {
+        [userDic setValue:score forKey:@"TTscore"];
+        [userDic setValue:@"yes" forKey:@"isReviewed"];
+    }
+
+    
 }
 - (void) dealloc {
     _radarManager = nil;

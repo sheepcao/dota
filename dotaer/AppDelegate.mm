@@ -46,6 +46,17 @@ BMKMapManager* _mapManager;
     }
     
     
+
+    
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
@@ -56,11 +67,13 @@ BMKMapManager* _mapManager;
     }
     
     SideMenuViewController *leftMenuViewController = [[SideMenuViewController alloc] init];
-    leftMenuViewController.items = [NSArray arrayWithObjects:@"视频解说",@"我的主页",favorString,@"分享好友",@"圈子设置", nil];
+    leftMenuViewController.items = [NSArray arrayWithObjects:@"视频解说",@"我的主页",favorString,@"今日话题",@"圈子设置", nil];
     MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController
                                                     containerWithCenterViewController:[self navigationController]
                                                     leftMenuViewController:leftMenuViewController
                                                     rightMenuViewController:nil];
+    container.leftMenuWidth = SCREEN_WIDTH*4/7;
+    container.menuWidth = SCREEN_WIDTH*4/7;
     self.window.rootViewController = container;
     
     [self.window makeKeyAndVisible];
@@ -72,6 +85,17 @@ BMKMapManager* _mapManager;
     [self setShareIDs];
     
     return YES;
+}
+
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSLog(@"My token is: %@", deviceToken);
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    NSLog(@"Failed to get token, error: %@", error);
 }
 
 

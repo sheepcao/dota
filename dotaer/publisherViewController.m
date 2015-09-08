@@ -45,8 +45,9 @@
     GADRequest *request = [GADRequest request];
 
     [self.bannerView loadRequest:request];
-    
-    [self.view addSubview:self.bannerView];
+    //need to recover..............
+
+//    [self.view addSubview:self.bannerView];
     
     
     
