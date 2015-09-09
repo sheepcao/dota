@@ -89,7 +89,7 @@
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
         [manager.requestSerializer setTimeoutInterval:30];
-        NSString *infoString = [NSString stringWithFormat:@"https://openapi.youku.com/v2/videos/by_user.json?client_id=cb52b838b5477abd&user_name=%@&count=15",publisherName];
+        NSString *infoString = [NSString stringWithFormat:@"https://openapi.youku.com/v2/videos/by_user.json?client_id=cb52b838b5477abd&user_name=%@&count=30",publisherName];
         
         NSString* infoURLstring = [infoString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {

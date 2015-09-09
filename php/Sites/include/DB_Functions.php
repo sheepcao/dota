@@ -87,6 +87,135 @@ class DB_Functions {
     }
     
 
+    /**
+     * Storing new topic
+     * returns user topic detail
+     */
+    public function storeTopic($content) {
+        
+        $result = mysql_query("INSERT INTO topicsinfo(topic_content, topic_day) VALUES('$content',CURDATE())");
+        // check for successful store
+        if ($result) {
+            // get user details
+            $result = mysql_query("SELECT * FROM topicsinfo ORDER BY topic_day DESC LIMIT 1") or die(mysql_error());
+            // return user details
+            return mysql_fetch_array($result);
+        } else {
+            return false;
+        }
+    }
+    
+    public function todayTopic() {
+        
+        $result = mysql_query("SELECT * FROM topicsinfo ORDER BY topic_day DESC LIMIT 1") or die(mysql_error());
+        // check for successful store
+        if ($result) {
+
+            return mysql_fetch_array($result);
+        } else {
+            return false;
+        }
+    }
+    
+    
+    public function fetchTopic() {
+        
+        $result = mysql_query("SELECT * FROM topicsinfo ORDER BY topic_day DESC LIMIT 1,50") or die(mysql_error());
+        // check for successful store
+        if ($result) {
+            
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    
+    
+    public function fetchComments($Date) {
+        
+        $result = mysql_query("SELECT * FROM commentsinfo where comment_topic_day = '$Date'") or die(mysql_error());
+        // check for successful store
+        if ($result) {
+            
+            return $result;
+        } else {
+            return false;
+        }
+    }
+    
+    public function fetchCommentsCount($Date) {
+        
+        $result = mysql_query("SELECT count(*) FROM commentsinfo where comment_topic_day = '$Date'") or die(mysql_error());
+        // check for successful store
+        if ($result) {
+            
+            return mysql_fetch_array($result);
+        } else {
+            return false;
+        }
+    }
+    
+    
+    public function addNewComment($commentContent,$commentUser,$commentDay) {
+        
+        $result = mysql_query("INSERT INTO commentsinfo(comment_content, comment_user,comment_topic_day,comment_time) VALUES('$commentContent','$commentUser','$commentDay',NOW())");
+//        return "11";
+        // check for successful store
+        if ($result) {
+            $final = mysql_query("SELECT count(*) FROM commentsinfo where comment_topic_day = '$commentDay'") or die(mysql_error());
+            return mysql_fetch_array($final);
+        } else {
+            return false;
+        }
+    }
+    
+    public function fetchUps($commentID) {
+        
+        $result = mysql_query("SELECT count(*) FROM upsinfo where up_comment_id = '$commentID'") or die(mysql_error());
+        // check for successful store
+        if ($result) {
+            
+            return mysql_fetch_array($result);
+        } else {
+            return false;
+        }
+    }
+    
+    
+    public function addUps($commentID,$commentUser) {
+        
+        $isExsited = mysql_query("SELECT * FROM upsinfo where up_comment_id = '$commentID' AND up_user = '$commentUser'") or die(mysql_error());
+        
+        $no_of_rows = mysql_num_rows($isExsited);
+        if ($no_of_rows > 0) {
+            // user existed
+            $exsit[] = -1;
+            return $exsit;
+        } else {
+            // user not existed
+            $insert = mysql_query("INSERT INTO upsinfo(up_user, up_comment_id) VALUES('$commentUser', '$commentID')") or die(mysql_error());
+            // check for successful store
+            
+            if ($insert)
+            {
+                $result = mysql_query("SELECT count(*) FROM upsinfo where up_comment_id = '$commentID'") or die(mysql_error());
+                if ($result)
+                {
+                    return mysql_fetch_array($result);
+                    
+                }else
+                {
+                    return false;
+                }
+            }else
+            {
+                return false;
+            }
+
+        }
+
+    
+    }
 
     /**
      * Get playerInfo by name

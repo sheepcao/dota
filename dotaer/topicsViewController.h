@@ -26,6 +26,7 @@
 @property (strong,nonatomic) NSString *topic;
 @property (strong,nonatomic) NSString *topicDay;
 
+@property BOOL isFromHistory;
 
 - (IBAction)checkMyComment:(id)sender;
 

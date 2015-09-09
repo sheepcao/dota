@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface topicHistoryViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *topicsTable;
 
 @end

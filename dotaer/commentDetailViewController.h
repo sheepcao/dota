@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *likeCount;
 @property (nonatomic, strong) NSString *commentContent;
+@property (nonatomic, strong) NSString *commentID;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *headIMG;

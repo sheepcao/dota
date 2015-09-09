@@ -197,6 +197,7 @@
         
         topicsViewController *topicVC = [[topicsViewController alloc] initWithNibName:@"topicsViewController" bundle:nil];
         topicVC.imgDelegate = self;
+        topicVC.isFromHistory = NO;
 
         
         if ([self.topic isEqualToString:@""]) {
@@ -510,48 +511,6 @@
     return NO;
 }
 
-
--(void)shareAppTapped
-
-{
-    [MobClick event:@"shareApp"];
-    
-    
-    UIImage *icon = [UIImage imageNamed:@"ICON 512"];
-    
-    id<ISSContent> publishContent = [ShareSDK content:@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。"
-                                       defaultContent:NSLocalizedString(@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。。",nil)
-                                                image:[ShareSDK pngImageWithImage:icon]
-                                                title:@"捣塔圈"
-                                                  url:REVIEW_URL
-                                          description:NSLocalizedString(@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。",nil)
-                                            mediaType:SSPublishContentMediaTypeNews];
-    //创建弹出菜单容器
-    id<ISSContainer> container = [ShareSDK container];
-    
-    //弹出分享菜单
-    [ShareSDK showShareActionSheet:container
-                         shareList:nil
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions:nil
-                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                
-                                if (state == SSResponseStateSuccess)
-                                {
-                                    //eric: to be sned da bai....
-                                    NSLog(NSLocalizedString(@"TEXT_ShARE_SUC", @"分享成功"));
-                                }
-                                else if (state == SSResponseStateFail)
-                                {
-                                    NSLog(NSLocalizedString(@"TEXT_ShARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
-                                }
-                            }];
-    
-    
-    
-}
 
 -(void)cancelNewImg
 {

@@ -1764,11 +1764,15 @@
     self.myUserInfo.TTscore = score;
     self.myUserInfo.isReviewed = @"yes";
     
-     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
+     NSMutableDictionary *userDic = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"]];
+    
     if (![score isKindOfClass:[NSNull class]] && ![score isEqualToString:@""])
     {
-        [userDic setValue:score forKey:@"TTscore"];
-        [userDic setValue:@"yes" forKey:@"isReviewed"];
+        
+        [userDic setObject:score forKey:@"TTscore"];
+        [userDic setObject:@"yes" forKey:@"isReviewed"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:userDic forKey:@"userInfoDic"];
     }
 
     

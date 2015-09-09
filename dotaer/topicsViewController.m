@@ -15,6 +15,7 @@
 #import "addCommentViewController.h"
 #import "DataCenter.h"
 #import "commentDetailViewController.h"
+#import "topicHistoryViewController.h"
 
 @interface topicsViewController ()
 
@@ -29,17 +30,32 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    self.title = @"今日话题";
-    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
 
     [self.topicLabel setText:self.topic];
     
+    if(self.isFromHistory)
+    {
+        self.title = [self.topicDay componentsSeparatedByString:@" "][0];
+
+    }else
+    {
+        self.title = @"今日话题";
+
+        [[NSUserDefaults standardUserDefaults] setObject:self.topicDay forKey:@"topicDay"];
+        self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+
+    }
     
-    [[NSUserDefaults standardUserDefaults] setObject:self.topicDay forKey:@"topicDay"];
     [self.imgDelegate cancelNewImg];
     
     self.commentsArray = [[NSMutableArray alloc] init];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self requestComments];
+
 }
 
 
@@ -64,7 +80,8 @@
 
 -(void)topicHistory
 {
-    
+    topicHistoryViewController *topicHistory = [[topicHistoryViewController alloc] initWithNibName:@"topicHistoryViewController" bundle:nil];
+    [self.navigationController pushViewController:topicHistory animated:YES];
 }
 
 
@@ -152,7 +169,7 @@
     cell.commentID = [commentDic objectForKey:@"comment_id"];
     [cell.usernameLabel setText:[commentDic objectForKey:@"comment_user"]];
     cell.userBtn.username = [commentDic objectForKey:@"comment_user"];
-    [cell.likeCountLabel setText:[NSString stringWithFormat:@"%@",[commentDic objectForKey:@"upsCount"]]];
+    [cell.likeCountLabel setText:[NSString stringWithFormat:@"赞:%@",[commentDic objectForKey:@"upsCount"]]];
     
     NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,[commentDic objectForKey:@"comment_user"]];
 
@@ -181,6 +198,9 @@
     commentDetail.username = [commentDic objectForKey:@"comment_user"];
     commentDetail.likeCount = [commentDic objectForKey:@"upsCount"];
     commentDetail.commentContent = [commentDic objectForKey:@"comment_content"];
+    commentDetail.commentID = [commentDic objectForKey:@"comment_id"];
+
+    
     
     [self.navigationController pushViewController:commentDetail animated:YES];
 

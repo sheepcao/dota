@@ -60,7 +60,7 @@
                                 <action selector="likeTapped:" destination="-1" eventType="touchUpInside" id="shB-pN-xH3"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0E-gQ-Kbw">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0E-gQ-Kbw">
                             <rect key="frame" x="307" y="71" width="82" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="HyU-uU-JIY"/>

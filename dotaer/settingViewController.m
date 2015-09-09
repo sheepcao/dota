@@ -56,7 +56,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if([[DataCenter sharedDataCenter] isGuest])
     {
-        return 3;
+        return 5;
     }else{
         
         NSInteger rowCount = 0;
@@ -69,7 +69,7 @@
             rowCount = 1;
         }else if (section ==2)
         {
-            rowCount = 3;
+            rowCount = 5;
         }
         
         return rowCount;
@@ -98,15 +98,20 @@
    
     if([[DataCenter sharedDataCenter] isGuest])
     {
-        
         if (indexPath.row == 0) {
+            [cell.textLabel setText:@"分享好友"];
+            
+        }else if (indexPath.row == 1) {
+            [cell.textLabel setText:@"好评鼓励"];
+            
+        }else if (indexPath.row == 2) {
             [cell.textLabel setText:@"团队作品"];
             
-        }else if (indexPath.row == 1)
+        }else if (indexPath.row == 3)
         {
             [cell.textLabel setText:@"意见反馈"];
             
-        }else if (indexPath.row == 2)
+        }else if (indexPath.row == 4)
         {
             [cell.textLabel setText:@"官方QQ:82107815"];
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -150,15 +155,21 @@
             case 2:
             {
                 if (indexPath.row == 0) {
+                    [cell.textLabel setText:@"分享好友"];
+                    
+                }else if (indexPath.row == 1) {
+                    [cell.textLabel setText:@"好评鼓励"];
+                    
+                }else if (indexPath.row == 2) {
                     [cell.textLabel setText:@"团队作品"];
 
                     
-                }else if (indexPath.row == 1)
+                }else if (indexPath.row == 3)
                 {
                     [cell.textLabel setText:@"意见反馈"];
 
                     
-                }else if (indexPath.row == 2)
+                }else if (indexPath.row == 4)
                 {
                     [cell.textLabel setText:@"官方QQ:82107815"];
                     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -259,9 +270,14 @@
     if([[DataCenter sharedDataCenter] isGuest])
     {
         if (indexPath.row == 0) {
+            [self shareAppTapped];
+        }if (indexPath.row == 1) {
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:REVIEW_URL]];
+        }else if (indexPath.row == 2) {
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ALLAPP_URL]];
-        }else if(indexPath.row == 1)
+        }else if(indexPath.row == 3)
         {
             [self contactTapped];
         }
@@ -277,9 +293,14 @@
                 break;
             case 2:
                 if (indexPath.row == 0) {
+                    [self shareAppTapped];
+                }if (indexPath.row == 1) {
+                    
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:REVIEW_URL]];
+                }else if (indexPath.row == 2) {
                     
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ALLAPP_URL]];
-                }else if(indexPath.row == 1)
+                }else if(indexPath.row == 3)
                 {
                     [self contactTapped];
                 }
@@ -402,6 +423,51 @@
     [self  dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+
+
+-(void)shareAppTapped
+
+{
+    [MobClick event:@"shareApp"];
+    
+    
+    UIImage *icon = [UIImage imageNamed:@"ICON 512"];
+    
+    id<ISSContent> publishContent = [ShareSDK content:@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。"
+                                       defaultContent:NSLocalizedString(@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。。",nil)
+                                                image:[ShareSDK pngImageWithImage:icon]
+                                                title:@"捣塔圈"
+                                                  url:REVIEW_URL
+                                          description:NSLocalizedString(@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。",nil)
+                                            mediaType:SSPublishContentMediaTypeNews];
+    //创建弹出菜单容器
+    id<ISSContainer> container = [ShareSDK container];
+    
+    //弹出分享菜单
+    [ShareSDK showShareActionSheet:container
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions:nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    //eric: to be sned da bai....
+                                    NSLog(NSLocalizedString(@"TEXT_ShARE_SUC", @"分享成功"));
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(NSLocalizedString(@"TEXT_ShARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+                                }
+                            }];
+    
+    
+    
+}
+
 
 - (BOOL)shouldAutorotate {
     return NO;

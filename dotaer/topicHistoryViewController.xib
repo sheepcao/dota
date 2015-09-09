@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="topicHistoryViewController">
             <connections>
+                <outlet property="topicsTable" destination="Kvb-TS-f1d" id="VWX-WB-Qew"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,12 +16,34 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kvb-TS-f1d">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kvb-TS-f1d">
+                    <rect key="frame" x="0.0" y="45" width="414" height="691"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9YY-Ph-CpK"/>
+                        <outlet property="delegate" destination="-1" id="cLT-a2-X3S"/>
+                    </connections>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最多显示近50条往期话题" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saf-Qw-ZxU">
+                    <rect key="frame" x="0.0" y="22" width="414" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="SRY-KM-tIL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Kvb-TS-f1d" firstAttribute="top" secondItem="saf-Qw-ZxU" secondAttribute="bottom" constant="2" id="1h3-Nt-KN3"/>
+                <constraint firstAttribute="trailing" secondItem="Kvb-TS-f1d" secondAttribute="trailing" id="60g-qu-WzZ"/>
+                <constraint firstAttribute="bottom" secondItem="Kvb-TS-f1d" secondAttribute="bottom" id="77Z-so-Qv0"/>
+                <constraint firstAttribute="trailing" secondItem="saf-Qw-ZxU" secondAttribute="trailing" id="8C2-3J-Bcj"/>
+                <constraint firstItem="Kvb-TS-f1d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9YT-4B-Pdf"/>
+                <constraint firstItem="saf-Qw-ZxU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pBo-st-cVZ"/>
+                <constraint firstItem="saf-Qw-ZxU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="sG1-Sv-wim"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
         </view>
     </objects>

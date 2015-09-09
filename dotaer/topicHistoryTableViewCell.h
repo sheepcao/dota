@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface topicHistoryTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *topicLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

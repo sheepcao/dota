@@ -34,10 +34,10 @@
     self.usernameLabel = usernameLabel;
     
     if ([[DataCenter sharedDataCenter] isGuest]) {
-        [self.likeBtn setEnabled:NO];
+        [self.likeBtn setHidden:YES];
     }else
     {
-        [self.likeBtn setEnabled:YES];
+        [self.likeBtn setHidden:NO];
 
     }
     

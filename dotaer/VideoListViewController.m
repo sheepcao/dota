@@ -43,7 +43,6 @@
     [self.bannerView loadRequest:request];
     //need to recover..............
 
-//    [self.view addSubview:self.bannerView];
     
     self.videoArray = [NSMutableArray arrayWithArray: [self.videoDic objectForKey:@"videos"]];
     
@@ -99,13 +98,13 @@
         viewCount = [NSString stringWithFormat:@"%d万",(int)[viewCount longLongValue]/10000];
     }
     [cell.playCountLabel setText:[NSString stringWithFormat:@"%@",viewCount]];
-    NSLog(@"view count :%@",[self.videoArray[indexPath.row] objectForKey:@"view_count"]);
-    
 
-    if((indexPath.row+1)%15 == 0 )
+    NSLog(@"index:%ld",indexPath.row);
+
+    if((indexPath.row+1)%30 == 0 )
     {
         if (self.videoArray.count <= (indexPath.row+1) && (indexPath.row+1) < [self.totalVideos intValue]) {
-            [self requestMoreVideo:((int)indexPath.row +1 +15)];
+            [self requestMoreVideo:((int)indexPath.row +1 +30)];
         }
     }
     
@@ -310,14 +309,22 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager.requestSerializer setTimeoutInterval:30];
-    NSString *infoString = [NSString stringWithFormat:@"https://openapi.youku.com/v2/videos/by_user.json?client_id=cb52b838b5477abd&user_name=%@&count=%d",self.title,total];
+    NSString *infoString;
+
+    infoString = [NSString stringWithFormat:@"https://openapi.youku.com/v2/videos/by_user.json?client_id=cb52b838b5477abd&user_name=%@&count=30&page=%d",self.title,total/30];
+    NSLog(@"total:%d",total);
     
     NSString* infoURLstring = [infoString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@" --- responseObject:%@",responseObject);
         
-        [self.videoArray removeAllObjects];
-        self.videoArray = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"videos"]];
+//        [self.videoArray removeAllObjects];
+        NSArray *videoNewArray = [responseObject objectForKey:@"videos"];
+
+     
+        self.videoArray = [NSMutableArray arrayWithArray:[self.videoArray arrayByAddingObjectsFromArray:videoNewArray]];
+        
+//        self.videoArray = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"videos"]];
 
         [self.publisherListTable reloadData];
         if (hud.superview) {

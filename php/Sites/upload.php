@@ -154,6 +154,7 @@
                     $response["email"] = $user["email"];
                     $response["age"] = $user["age"];
                     $response["sex"] = $user["sex"];
+                    $response["password"] = $user["password"];
                     $response["created_at"] = $user["created_at"];
                     $response["updated_at"] = $user["updated_at"];
                     $response["isReviewed"] = $user["isReviewed"];
