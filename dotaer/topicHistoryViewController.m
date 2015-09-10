@@ -11,6 +11,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "topicHistoryTableViewCell.h"
 #import "topicsViewController.h"
+#import "globalVar.h"
 
 @interface topicHistoryViewController ()
 
@@ -51,7 +52,7 @@
     [manager.requestSerializer setTimeoutInterval:20];  //Time out after 25 seconds
     
     
-    [manager POST:@"http://localhost/~ericcao/makeTopic.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    [manager POST:topicURL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@"comment Json: %@", responseObject);
         
         NSArray *tempArray = [[NSMutableArray alloc] initWithArray:[responseObject objectForKey:@"topics"]];
@@ -155,6 +156,12 @@
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent; // your own style
+}
 
+- (BOOL)prefersStatusBarHidden {
+    return NO; // your own visibility code
+}
 
 @end

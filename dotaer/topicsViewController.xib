@@ -68,9 +68,10 @@
                         <action selector="checkMyComment:" destination="-1" eventType="touchUpInside" id="pM2-3x-Hs3"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="miV-iw-Nlg">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="miV-iw-Nlg">
                     <rect key="frame" x="8" y="250" width="398" height="478"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="9" minY="0.0" maxX="9" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="yom-fr-yMj"/>
                         <outlet property="delegate" destination="-1" id="UX8-Yi-VhL"/>
@@ -81,12 +82,16 @@
             <constraints>
                 <constraint firstItem="5Nl-db-HfZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="0RQ-1Z-x4V"/>
                 <constraint firstItem="PjG-rd-agb" firstAttribute="centerY" secondItem="VgH-3g-ya9" secondAttribute="centerY" id="1sm-jJ-PCS"/>
+                <constraint firstItem="miV-iw-Nlg" firstAttribute="top" secondItem="PjG-rd-agb" secondAttribute="bottom" constant="13" id="9O8-ix-hFz"/>
                 <constraint firstItem="rD6-uU-IzC" firstAttribute="leading" secondItem="VgH-3g-ya9" secondAttribute="trailing" constant="8" id="ANo-IY-j36"/>
                 <constraint firstItem="PjG-rd-agb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="BbI-4L-pdL"/>
+                <constraint firstAttribute="bottom" secondItem="miV-iw-Nlg" secondAttribute="bottom" constant="8" id="CjJ-8s-VkC"/>
                 <constraint firstAttribute="centerX" secondItem="5Nl-db-HfZ" secondAttribute="centerX" id="Rfz-kf-BUF"/>
+                <constraint firstAttribute="trailing" secondItem="miV-iw-Nlg" secondAttribute="trailing" constant="8" id="fYu-13-ZfD"/>
                 <constraint firstItem="rD6-uU-IzC" firstAttribute="centerY" secondItem="PjG-rd-agb" secondAttribute="centerY" id="hI0-eI-jR6"/>
                 <constraint firstItem="PjG-rd-agb" firstAttribute="top" secondItem="5Nl-db-HfZ" secondAttribute="bottom" constant="8" id="p5j-h7-vp8"/>
                 <constraint firstItem="5Nl-db-HfZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="uyX-s9-J9L"/>
+                <constraint firstItem="miV-iw-Nlg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="zPr-bt-jhD"/>
                 <constraint firstAttribute="trailing" secondItem="rD6-uU-IzC" secondAttribute="trailing" constant="8" id="zxB-ub-1tp"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

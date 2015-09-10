@@ -36,17 +36,17 @@
     self.menuContainerViewController.leftMenuWidth = SCREEN_WIDTH*4/7;
     self.menuContainerViewController.menuWidth = SCREEN_WIDTH*4/7;
 
-    UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    
-    UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    
-    visualEffectView.frame = self.sideBackImage.bounds;
-    [self.sideBackImage addSubview:visualEffectView];
-    
-    
-    [self.usernameLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
+//    UIVisualEffect *blurEffect;
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    UIVisualEffectView *visualEffectView;
+//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    
+//    visualEffectView.frame = self.sideBackImage.bounds;
+//    [self.sideBackImage addSubview:visualEffectView];
+//    
+//    
+    [self.usernameLabel setTextColor:[UIColor colorWithRed:248/255.0f green:248/255.0f blue:248/255.0f alpha:1.0f]];
 
 
     
@@ -58,18 +58,47 @@
 
 -(void)viewDidLayoutSubviews
 {
-    if(!IS_IPHONE_4_OR_LESS)
+    if(IS_IPHONE_5)
     {
         [self.loginOut_upConstrains setConstant:40];
         [self.logoutBtn setNeedsUpdateConstraints];
         
+        [self.tableYConstrains setConstant:15];
+
+
         [self.tableHeightConstrains setConstant:210];
         [self.itemsTable setNeedsUpdateConstraints];
 
         [self.view setNeedsUpdateConstraints];
         [self.view layoutIfNeeded];
         
+    }else if(IS_IPHONE_6)
+    {
+        [self.loginOut_upConstrains setConstant:70];
+        [self.logoutBtn setNeedsUpdateConstraints];
+        
+        [self.tableYConstrains setConstant:-10];
+        [self.tableHeightConstrains setConstant:230];
+        [self.itemsTable setNeedsUpdateConstraints];
+        
+        [self.view setNeedsUpdateConstraints];
+        [self.view layoutIfNeeded];
+        
+    }else if(IS_IPHONE_6P)
+    {
+        [self.loginOut_upConstrains setConstant:75];
+        [self.logoutBtn setNeedsUpdateConstraints];
+        
+        [self.tableYConstrains setConstant:-25];
+
+        [self.tableHeightConstrains setConstant:235];
+        [self.itemsTable setNeedsUpdateConstraints];
+        
+        [self.view setNeedsUpdateConstraints];
+        [self.view layoutIfNeeded];
+        
     }
+
 
 }
 
@@ -103,7 +132,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.textLabel.text = self.items[indexPath.row];
-    cell.textLabel.textColor = [UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f];
+    cell.textLabel.textColor = [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f];
     
 
 
@@ -126,11 +155,17 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(!IS_IPHONE_4_OR_LESS){
-        return 42;
-    }else
-    {
+    if(IS_IPHONE_4_OR_LESS){
         return 35;
+    }else if(IS_IPHONE_5)
+    {
+        return 42;
+    }else if(IS_IPHONE_6)
+    {
+        return 48;
+    }else 
+    {
+        return 50;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -214,7 +249,7 @@
             [manager.requestSerializer setTimeoutInterval:12];  //Time out after 25 seconds
             
             
-            [manager POST:@"http://localhost/~ericcao/makeTopic.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+            [manager POST:topicURL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
                 NSLog(@"topic Json: %@", responseObject);
                 
                 self.topic = [responseObject objectForKey:@"topic_content"];

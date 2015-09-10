@@ -33,7 +33,7 @@
     NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     [self.headIMG setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
-    [self.likeCountLabel setText:[NSString stringWithFormat:@"赞: %@",self.likeCount]];
+    [self.likeCountLabel setText:self.likeCount];
     
     [self.commentBody setText:self.commentContent];
     
@@ -106,7 +106,7 @@
     [manager.requestSerializer setTimeoutInterval:12];  //Time out after 25 seconds
     
     
-    [manager POST:@"http://localhost/~ericcao/comments.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    [manager POST:commentURL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@"ups Json: %@", responseObject);
         
         if ([[responseObject objectForKey:@"ups_count"] intValue] == -1) {
@@ -135,4 +135,17 @@
     
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent; // your own style
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO; // your own visibility code
+}
 @end

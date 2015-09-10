@@ -77,6 +77,13 @@
 		A432D1B91B96C9EA0084F4FA /* topicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A432D1B71B96C9EA0084F4FA /* topicsViewController.xib */; };
 		A432D1BD1B96CE990084F4FA /* commentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A432D1BB1B96CE990084F4FA /* commentTableViewCell.m */; };
 		A432D1BE1B96CE990084F4FA /* commentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A432D1BC1B96CE990084F4FA /* commentTableViewCell.xib */; };
+		A438D84C1BA171A900D85541 /* infoBack.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8451BA171A900D85541 /* infoBack.png */; };
+		A438D84D1BA171A900D85541 /* listButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8461BA171A900D85541 /* listButton.png */; };
+		A438D84E1BA171A900D85541 /* listButtonPress.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8471BA171A900D85541 /* listButtonPress.png */; };
+		A438D84F1BA171A900D85541 /* mainBack.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8481BA171A900D85541 /* mainBack.png */; };
+		A438D8501BA171A900D85541 /* sideBar.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8491BA171A900D85541 /* sideBar.png */; };
+		A438D8511BA171A900D85541 /* titleLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D84A1BA171A900D85541 /* titleLabel.png */; };
+		A438D8521BA171A900D85541 /* topBar.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D84B1BA171A900D85541 /* topBar.png */; };
 		A44562A51B9C0B650024D97D /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = A44562A41B9C0B650024D97D /* new.png */; };
 		A447FE9C1B4A198B0053D982 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9B1B4A198B0053D982 /* main.m */; };
 		A447FE9F1B4A198B0053D982 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9E1B4A198B0053D982 /* AppDelegate.mm */; };
@@ -339,6 +346,13 @@
 		A432D1BA1B96CE990084F4FA /* commentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentTableViewCell.h; sourceTree = "<group>"; };
 		A432D1BB1B96CE990084F4FA /* commentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentTableViewCell.m; sourceTree = "<group>"; };
 		A432D1BC1B96CE990084F4FA /* commentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = commentTableViewCell.xib; sourceTree = "<group>"; };
+		A438D8451BA171A900D85541 /* infoBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoBack.png; sourceTree = "<group>"; };
+		A438D8461BA171A900D85541 /* listButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listButton.png; sourceTree = "<group>"; };
+		A438D8471BA171A900D85541 /* listButtonPress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listButtonPress.png; sourceTree = "<group>"; };
+		A438D8481BA171A900D85541 /* mainBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainBack.png; sourceTree = "<group>"; };
+		A438D8491BA171A900D85541 /* sideBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sideBar.png; sourceTree = "<group>"; };
+		A438D84A1BA171A900D85541 /* titleLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleLabel.png; sourceTree = "<group>"; };
+		A438D84B1BA171A900D85541 /* topBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topBar.png; sourceTree = "<group>"; };
 		A44562A41B9C0B650024D97D /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		A447FE961B4A198B0053D982 /* dotaer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dotaer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A447FE9A1B4A198B0053D982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -702,6 +716,20 @@
 			name = publisherHead;
 			sourceTree = "<group>";
 		};
+		A438D8421BA1706900D85541 /* newUI */ = {
+			isa = PBXGroup;
+			children = (
+				A438D8451BA171A900D85541 /* infoBack.png */,
+				A438D8461BA171A900D85541 /* listButton.png */,
+				A438D8471BA171A900D85541 /* listButtonPress.png */,
+				A438D8481BA171A900D85541 /* mainBack.png */,
+				A438D8491BA171A900D85541 /* sideBar.png */,
+				A438D84A1BA171A900D85541 /* titleLabel.png */,
+				A438D84B1BA171A900D85541 /* topBar.png */,
+			);
+			name = newUI;
+			sourceTree = "<group>";
+		};
 		A447FE8D1B4A198B0053D982 = {
 			isa = PBXGroup;
 			children = (
@@ -781,6 +809,7 @@
 			isa = PBXGroup;
 			children = (
 				A42F39481B84887A005877B9 /* publisherHead */,
+				A438D8421BA1706900D85541 /* newUI */,
 				A476A2461B75A1B2007D86C7 /* jjc0.png */,
 				A476A2471B75A1B2007D86C7 /* JJC1.png */,
 				A476A2481B75A1B2007D86C7 /* MJ0.png */,
@@ -1211,6 +1240,7 @@
 				A4DA561B1B4E4B860010C95D /* password.png in Resources */,
 				A42F396D1B84888A005877B9 /* 满楼水平.jpeg in Resources */,
 				A4DDDA051B687C6100ACD655 /* mid_fujin@2x.png in Resources */,
+				A438D8511BA171A900D85541 /* titleLabel.png in Resources */,
 				A478DAC91B70E5AB0005CB41 /* 黑.jpg in Resources */,
 				A447FEFA1B4A84600053D982 /* listCell.xib in Resources */,
 				A4BDF1621B74464B000096C5 /* menu1.png in Resources */,
@@ -1238,6 +1268,7 @@
 				A4B8A7551B6B5C1C00BFEDDC /* ShareSDKFlatShareViewUI.bundle in Resources */,
 				A476A2551B75A1B2007D86C7 /* title.png in Resources */,
 				A42F395F1B84888A005877B9 /* dota第一视角直播录制.jpeg in Resources */,
+				A438D84E1BA171A900D85541 /* listButtonPress.png in Resources */,
 				A42F39651B84888A005877B9 /* superhebefans.jpeg in Resources */,
 				A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */,
 				A447FEC31B4A1BBB0053D982 /* loginViewController.xib in Resources */,
@@ -1253,6 +1284,7 @@
 				A4E02BDE1B69C752000997C0 /* position.png in Resources */,
 				A476A2561B75A1B2007D86C7 /* tt0.png in Resources */,
 				A4E02BF01B6A10CD000997C0 /* bottomBack3.png in Resources */,
+				A438D8501BA171A900D85541 /* sideBar.png in Resources */,
 				A4B8A74C1B6B5C1C00BFEDDC /* ShareSDKLocalizable.strings in Resources */,
 				A452ABD61B7883B90067F004 /* eye29.png in Resources */,
 				A42F396B1B84888A005877B9 /* 梅西❤Huang.jpeg in Resources */,
@@ -1261,11 +1293,13 @@
 				A4DA56241B4E73280010C95D /* select.png in Resources */,
 				A476A2571B75A1B2007D86C7 /* tt1.png in Resources */,
 				A42F39661B84888A005877B9 /* 卜严骏Pis.jpeg in Resources */,
+				A438D84D1BA171A900D85541 /* listButton.png in Resources */,
 				A476A25D1B774649007D86C7 /* cycle2.png in Resources */,
 				A4DA56201B4E4C700010C95D /* username1.png in Resources */,
 				A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */,
 				A42F39681B84888A005877B9 /* 小爷不狂.jpeg in Resources */,
 				A4DDDA0D1B68A64900ACD655 /* sideBack.png in Resources */,
+				A438D84C1BA171A900D85541 /* infoBack.png in Resources */,
 				A432D1B91B96C9EA0084F4FA /* topicsViewController.xib in Resources */,
 				A401955B1B85BA2600B7142A /* passwordViewController.xib in Resources */,
 				A45F545E1B78E8E400761872 /* Images-2.xcassets in Resources */,
@@ -1274,6 +1308,7 @@
 				A447FEE41B4A48600053D982 /* myMenuViewController.xib in Resources */,
 				A4CFDE591B5E1B0800EAC77E /* levelInfoViewController.xib in Resources */,
 				A40374411B9D904400B9CC7B /* addCommentViewController.xib in Resources */,
+				A438D84F1BA171A900D85541 /* mainBack.png in Resources */,
 				A42E82A21B662B5400A431E0 /* chat_bg_left@2x.png in Resources */,
 				A4BA89B51B70A7A000B94279 /* achieveTableViewCell.xib in Resources */,
 				A42F396E1B84888A005877B9 /* 满楼都素我的人.jpeg in Resources */,
@@ -1283,6 +1318,7 @@
 				A44562A51B9C0B650024D97D /* new.png in Resources */,
 				A4B8A7221B6B562400BFEDDC /* favorTableViewCell.xib in Resources */,
 				A4DA56271B4E73660010C95D /* female@2x.png in Resources */,
+				A438D8521BA171A900D85541 /* topBar.png in Resources */,
 				A4FB58111B86B56800A5D7B9 /* ICON 512.png in Resources */,
 				A42F396A1B84888A005877B9 /* 朴一生dota.jpeg in Resources */,
 				A4D13E1D1B4CEBE300C06A2B /* Default@2x.png in Resources */,

@@ -10,6 +10,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "MBProgressHUD.h"
 #import "DataCenter.h"
+#import "globalVar.h"
 
 @implementation commentTableViewCell
 
@@ -85,7 +86,7 @@
     [manager.requestSerializer setTimeoutInterval:12];  //Time out after 25 seconds
     
     
-    [manager POST:@"http://localhost/~ericcao/comments.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    [manager POST:commentURL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@"ups Json: %@", responseObject);
         
         if ([[responseObject objectForKey:@"ups_count"] intValue] == -1) {

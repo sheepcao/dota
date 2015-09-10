@@ -107,7 +107,7 @@
     [manager.requestSerializer setTimeoutInterval:20];  //Time out after 25 seconds
     
     
-    [manager POST:@"http://localhost/~ericcao/comments.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    [manager POST:commentURL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@"comment Json: %@", responseObject);
         
         NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:[responseObject objectForKey:@"comments"]];
@@ -194,9 +194,11 @@
     
     NSDictionary *commentDic = self.commentsArray[indexPath.row];
     
+    commentTableViewCell *cell =(commentTableViewCell *) [tableView cellForRowAtIndexPath:indexPath];
+    
     commentDetailViewController *commentDetail = [[commentDetailViewController alloc] initWithNibName:@"commentDetailViewController" bundle:nil];
     commentDetail.username = [commentDic objectForKey:@"comment_user"];
-    commentDetail.likeCount = [commentDic objectForKey:@"upsCount"];
+    commentDetail.likeCount = cell.likeCountLabel.text;
     commentDetail.commentContent = [commentDic objectForKey:@"comment_content"];
     commentDetail.commentID = [commentDic objectForKey:@"comment_id"];
 
@@ -264,5 +266,15 @@
     sortedArray = [orignalArray sortedArrayUsingDescriptors:sortDescriptors];
     return sortedArray;
     
+}
+
+
+
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent; // your own style
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO; // your own visibility code
 }
 @end

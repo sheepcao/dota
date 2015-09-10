@@ -28,8 +28,12 @@ BMKMapManager* _mapManager;
 }
 
 - (UINavigationController *)navigationController {
-    return [[UINavigationController alloc]
-            initWithRootViewController:[self demoController]];
+    
+    UINavigationController * navi = [[UINavigationController alloc]
+                                     initWithRootViewController:[self demoController]];
+    [navi.navigationBar setBackgroundImage:[UIImage imageNamed:@"topBar.png"] forBarMetrics:UIBarMetricsDefault];
+    
+    return navi;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -84,6 +88,19 @@ BMKMapManager* _mapManager;
     
     [self setShareIDs];
     
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+
+    
+//    if (launchOptions) {
+//        NSDictionary* pushNotificationKey = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+//        if (pushNotificationKey) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"noti" message:@"remote noti!!!!!~~~~~~~" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [alert show];
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        
+//    }
+    
     return YES;
 }
 
@@ -99,6 +116,13 @@ BMKMapManager* _mapManager;
 }
 
 
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"%@",userInfo);
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

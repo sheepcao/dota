@@ -149,7 +149,7 @@
     [manager.requestSerializer setTimeoutInterval:20];  //Time out after 25 seconds
     
     
-    [manager POST:@"http://localhost/~ericcao/makeTopic.php" parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    [manager POST:topicURL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@"topic Json: %@", responseObject);
 
         self.topic = [responseObject objectForKey:@"topic_content"];
@@ -207,20 +207,20 @@
 }
 -(void)setupCenterView
 {
-    UIVisualEffect *blurEffect_b;
-    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    
-    UIVisualEffectView *visualEffectView_b;
-    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
-    
-    visualEffectView_b.frame =CGRectMake(0, 0, self.backBlur.frame.size.width, self.backBlur.frame.size.height) ;
-    [self.backBlur addSubview:visualEffectView_b];
+//    UIVisualEffect *blurEffect_b;
+//    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    UIVisualEffectView *visualEffectView_b;
+//    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
+//    
+//    visualEffectView_b.frame =CGRectMake(0, 0, self.backBlur.frame.size.width, self.backBlur.frame.size.height) ;
+//    [self.backBlur addSubview:visualEffectView_b];
     
     
     NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
     
     
-    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,64,SCREEN_WIDTH, 50)];
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 50)];
     self.bannerView.delegate = self;
     self.bannerView.adUnitID =ADMOB_ID;
     self.bannerView.rootViewController = self;
@@ -237,7 +237,7 @@
     //need to recover..............
 //    [self.view addSubview:self.bannerView];
     
-    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64+50, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64-50))];
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0+50, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64-50))];
 
     containerView.backgroundColor = [UIColor clearColor];
     
@@ -252,6 +252,7 @@
     
     self.listView.backgroundColor = [UIColor clearColor];
     self.listView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    [self.listView setSeparatorInset:UIEdgeInsetsMake(0,30,0,30)];
     _nearbyInfos = [NSMutableArray array];
     
     
@@ -266,41 +267,45 @@
     self.containerView = containerView;
     
     
-    UIView *searchingBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT - containerView.frame.size.height - containerView.frame.origin.y)];
+    UIView *searchingBar = [[UIView alloc] initWithFrame:CGRectMake(0,  containerView.frame.size.height+containerView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT -64- containerView.frame.size.height - containerView.frame.origin.y)];
+//    NSLog(@"searchingBar:%@-----container:%@",searchingBar,containerView);
     
     searchingBar.backgroundColor = [UIColor lightGrayColor];
     
     UIImageView *bottomBarBack = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, searchingBar.frame.size.width, searchingBar.frame.size.height)];
-    [bottomBarBack setImage:[UIImage imageNamed:@"bottomBack3.png"]];
+    [bottomBarBack setImage:[UIImage imageNamed:@"topBar.png"]];
     
     [searchingBar addSubview:bottomBarBack];
     
-    UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    
-    UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    
-    visualEffectView.frame = CGRectMake(-3, 0, bottomBarBack.frame.size.width+6, bottomBarBack.frame.size.height+8);
-    [bottomBarBack addSubview:visualEffectView];
+//    UIVisualEffect *blurEffect;
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+//    
+//    UIVisualEffectView *visualEffectView;
+//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    
+//    visualEffectView.frame = CGRectMake(-3, 0, bottomBarBack.frame.size.width+6, bottomBarBack.frame.size.height+8);
+//    [bottomBarBack addSubview:visualEffectView];
     
     [self.view addSubview:searchingBar];
     
-    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height*1.2, searchingBar.frame.size.height/8, searchingBar.frame.size.height*3/4, searchingBar.frame.size.height*3/4)];
+    UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height*1.3, searchingBar.frame.size.height*0.2, 2*searchingBar.frame.size.height*0.6, searchingBar.frame.size.height*0.6)];
     
     
     
 //    [searchBtn setTitle:@"查" forState:UIControlStateNormal];
 
-    [searchBtn setImage:[UIImage imageNamed:@"search1.png"] forState:UIControlStateNormal];
-    searchBtn.layer.cornerRadius = searchBtn.frame.size.width/2;
-    [searchBtn setImageEdgeInsets:UIEdgeInsetsMake(1.4, 1.4, 1.4, 1.4)];
-    searchBtn.layer.masksToBounds = NO;
-    searchBtn.layer.shadowOffset = CGSizeMake(2, 2);
-    searchBtn.layer.shadowRadius = searchBtn.frame.size.width/2;
-    searchBtn.layer.shadowColor = [UIColor colorWithRed:255/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f].CGColor;
-    searchBtn.layer.shadowOpacity = 0.9f;
-    searchBtn.layer.borderWidth = 0;
+    [searchBtn setBackgroundImage:[UIImage imageNamed:@"listButton.png"] forState:UIControlStateNormal];
+    [searchBtn setBackgroundImage:[UIImage imageNamed:@"listButtonPress.png"] forState:UIControlStateHighlighted];
+    [searchBtn setTitle:@"搜 索" forState:UIControlStateNormal];
+    [searchBtn setTitleColor:[UIColor colorWithRed:250/255.0f green:250/255.0f  blue:250/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+//    searchBtn.layer.cornerRadius = searchBtn.frame.size.width/2;
+//    [searchBtn setImageEdgeInsets:UIEdgeInsetsMake(1.4, 1.4, 1.4, 1.4)];
+//    searchBtn.layer.masksToBounds = NO;
+//    searchBtn.layer.shadowOffset = CGSizeMake(2, 2);
+//    searchBtn.layer.shadowRadius = searchBtn.frame.size.width/2;
+//    searchBtn.layer.shadowColor = [UIColor colorWithRed:255/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f].CGColor;
+//    searchBtn.layer.shadowOpacity = 0.9f;
+//    searchBtn.layer.borderWidth = 0;
 
     [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
     [searchingBar addSubview:searchBtn];
@@ -312,7 +317,7 @@
     [pageBar setBackgroundColor:[UIColor clearColor]];
     UIButton *pageUpBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 5, 60, 30)];
     [pageUpBtn setTitle:@"前一页" forState:UIControlStateNormal];
-    [pageUpBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [pageUpBtn setTitleColor:[UIColor colorWithRed:7/255.0f green:7/255.0f  blue:7/255.0f  alpha:1.0f] forState:UIControlStateNormal];
     [pageUpBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     
     [pageUpBtn addTarget:self action:@selector(pageUp) forControlEvents:UIControlEventTouchUpInside];
@@ -320,7 +325,7 @@
     
     UIButton *pageDownBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 80, 5, 60, 30)];
     [pageDownBtn setTitle:@"下一页" forState:UIControlStateNormal];
-    [pageDownBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [pageDownBtn setTitleColor:[UIColor colorWithRed:7/255.0f green:7/255.0f  blue:7/255.0f  alpha:1.0f] forState:UIControlStateNormal];
     [pageDownBtn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     
     [pageDownBtn addTarget:self action:@selector(pageDown) forControlEvents:UIControlEventTouchUpInside];
@@ -328,7 +333,7 @@
     
     UILabel *pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-20, 5, 40, 30)];
     [pageLabel setText:nil];
-    [pageLabel setTextColor:[UIColor colorWithRed:234/255.0f green:234/255.0f  blue:234/255.0f  alpha:1.0f]];
+    [pageLabel setTextColor:[UIColor colorWithRed:7/255.0f green:7/255.0f  blue:7/255.0f  alpha:1.0f]];
     pageLabel.textAlignment = NSTextAlignmentCenter;
     
     [pageBar addSubview:pageLabel];
@@ -341,17 +346,20 @@
     [self.view addSubview:pageBar];
     
     
-    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-80, searchingBar.frame.size.height/2-17, 160, 34)];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(82, searchingBar.frame.size.height/2-17, searchingBar.frame.size.width-82-1.15*searchBtn.frame.size.width, 34)];
     slider.minimumValue = 13;
     slider.maximumValue = 31;
-    slider.value = 18;
-    slider.maximumTrackTintColor = [UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f];
+    slider.value = 22;
+    slider.maximumTrackTintColor = [UIColor colorWithRed:248/255.0f green:248/255.0f blue:248/255.0f alpha:1.0f];
     slider.minimumTrackTintColor = [UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f];
+    
 //    [slider setThumbTintColor:[UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f]];
 
-    UIImage* minTrack = [UIImage imageNamed:@"eye29.png"];
-    [slider setThumbImage:minTrack forState:UIControlStateNormal];
+//    UIImage* minTrack = [UIImage imageNamed:@"eye29.png"];
+//    [slider setThumbImage:minTrack forState:UIControlStateNormal];
 
+    [slider setThumbTintColor:[UIColor colorWithRed:108/255.0f green:178/255.0f blue:175/255.0f alpha:1.0f]];
+    
     _searchRadius = [FabonacciNum calculateFabonacci:slider.value];
     
     [slider addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
@@ -359,10 +367,12 @@
     self.radiusSlider = slider;
     [searchingBar addSubview:slider];
     
-    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, searchingBar.frame.size.height/8, 60, searchingBar.frame.size.height*3/4)];
-    [self.distanceLabel setText:@"< 2KM"];
-    [self.distanceLabel setTextColor:[UIColor colorWithRed:23/255.0f green:168/255.0f blue:144/255.0f alpha:1.0f]];
-    self.distanceLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, searchingBar.frame.size.height/8, 63, searchingBar.frame.size.height*3/4)];
+    self.distanceLabel.textAlignment = NSTextAlignmentCenter;
+//    [self.distanceLabel setBackgroundColor:[UIColor yellowColor]];
+    [self.distanceLabel setText:@"11KM"];
+    [self.distanceLabel setTextColor:[UIColor colorWithRed:247/255.0f green:257/255.0f blue:257/255.0f alpha:1.0f]];
+    self.distanceLabel.font = [UIFont systemFontOfSize:14.5f];
     [searchingBar addSubview:self.distanceLabel];
 
 }
@@ -467,7 +477,7 @@
         if ([[DataCenter sharedDataCenter] isGuest]) {
             if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
                 SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
-                [leftMenuVC.logoutBtn setTitle:@"登录" forState:UIControlStateNormal];
+                [leftMenuVC.logoutBtn setTitle:@"登 录" forState:UIControlStateNormal];
                 [leftMenuVC.unLoginLabel setHidden:NO];
 //                [leftMenuVC.itemsTable setHidden:YES];
                 [leftMenuVC.ageLabel setHidden:YES];
@@ -487,7 +497,7 @@
             
             if ( [self.menuContainerViewController.leftMenuViewController isKindOfClass:[SideMenuViewController class]]) {
                 SideMenuViewController *leftMenuVC = (SideMenuViewController *)self.menuContainerViewController.leftMenuViewController;
-                [leftMenuVC.logoutBtn setTitle:@"注销" forState:UIControlStateNormal];
+                [leftMenuVC.logoutBtn setTitle:@"注 销" forState:UIControlStateNormal];
                 [leftMenuVC.unLoginLabel setHidden:YES];
 //                [leftMenuVC.itemsTable setHidden:NO];
                 [leftMenuVC.ageLabel setHidden:NO];
@@ -967,7 +977,7 @@
 
         
         if (_searchRadius<1000) {
-            self.distanceLabel.text = [NSString stringWithFormat:@"< %d00米",(int)_searchRadius/100];
+            self.distanceLabel.text = [NSString stringWithFormat:@"%d00米",(int)_searchRadius/100];
             
         }else if(_searchRadius>10000000)
         {
@@ -975,7 +985,7 @@
             
         }else
         {
-            self.distanceLabel.text = [NSString stringWithFormat:@"< %dKM",((int)_searchRadius/1000) +1];
+            self.distanceLabel.text = [NSString stringWithFormat:@"%dKM",((int)_searchRadius/1000) +1];
             
         }
         
@@ -1089,53 +1099,7 @@
 }
 
 
-//
-//- (void)nearbySearchWithPageIndex{
-//    BMKRadarNearbySearchOption *option = [[BMKRadarNearbySearchOption alloc] init]
-//    ;
-//    option.radius = _searchRadius;
-//    option.sortType = BMK_RADAR_SORT_TYPE_DISTANCE_FROM_NEAR_TO_FAR;
-//    //test
-//    option.centerPt = _myCoor;
-//    //    option.centerPt = CLLocationCoordinate2DMake(34.226, 108.886);
-//    option.pageIndex = 0;
-//    
-//    if (_myCoor.latitude <0.01) {
-//        MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
-//        hud.mode = MBProgressHUDModeCustomView;
-//        hud.labelText = @"定位失败";
-//        if (hud) {
-//            [hud hide:YES afterDelay:1.0];
-//            
-//        }
-//        NSLog(@"定位失败");
-//        
-//    }
-//    
-//    //    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//    //    NSString *doc = [NSString stringWithFormat:@"%@/22.txt",documentDir];
-//    //    NSLog(@"path:%@",doc);
-//    //    NSString *log = [NSString stringWithFormat:@"error:%f",_myCoor.latitude];
-//    //    NSError *error;
-//    //
-//    //    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
-//    
-//    BOOL res = [_radarManager getRadarNearbySearchRequest:option];
-//    if (res) {
-//        NSLog(@"get 成功");
-//    } else {
-//        //        MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:345];
-//        //        hud.mode = MBProgressHUDModeCustomView;
-//        //        hud.labelText = @"失败";
-//        //        if (hud) {
-//        //            [hud hide:YES afterDelay:1.0];
-//        //            
-//        //        }
-//        //        NSLog(@"get 失败");
-//    }
-//    
-//}
-//
+
 #pragma custom annotation
 
 
@@ -1223,13 +1187,13 @@
         if ([userExtinfo[2] isEqualToString:@"no"]) {
             [cell.confirmLevelImage setImage:[UIImage imageNamed:@"levelno"]];
             [cell.confirmLevelLabel setText:@"暂未认证"];
-            [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:150/255.0f green:150/255.0f blue:150/255.0f alpha:1.0f]];
+            [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:73/255.0f green:73/255.0f blue:73/255.0f alpha:1.0f]];
             [cell.scoreLabel setHidden:YES];
         }else
         {
             [cell.confirmLevelImage setImage:[UIImage imageNamed:@"levelyes"]];
             [cell.confirmLevelLabel setText:@"已认证"];
-            [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0f]];
+            [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:255/255.0f green:70/255.0f blue:0 alpha:1.0f]];
             [cell.scoreLabel setHidden:NO];
             [cell.scoreLabel setText:[NSString stringWithFormat:@"天梯:%@",userExtinfo[3] ]];
 
@@ -1792,5 +1756,12 @@
 }
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
+}
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent; // your own style
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO; // your own visibility code
 }
 @end

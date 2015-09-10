@@ -29,6 +29,8 @@
 #define signatureService @"http://cgx.nwpu.info/Sites/signature.php"
 #define noteService @"http://cgx.nwpu.info/Sites/note.php"
 #define confirmLevel @"http://cgx.nwpu.info/Sites/confirmLevel.php"
+#define commentURL @"http://cgx.nwpu.info/Sites/comments.php"
+#define topicURL @"http://cgx.nwpu.info/Sites/makeTopic.php"
 
 #define imagePath @"http://cgx.nwpu.info/Sites/upload/"
 

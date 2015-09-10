@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeightConstrains;
 
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableYConstrains;
+
 @property (strong,nonatomic) NSString *topicDay;
 @property (strong,nonatomic) NSString *topic;
 
