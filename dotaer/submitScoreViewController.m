@@ -9,6 +9,7 @@
 #import "submitScoreViewController.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "globalVar.h"
+#import "DataCenter.h"
 @interface submitScoreViewController ()
 
 @end
@@ -235,7 +236,7 @@
             MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:123];
             [hud hide:YES];
             
-            if([result containsString:@"密码错误"])
+            if([DataCenter myContainsStringFrom:result ForSting:@"密码错误"])
             {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"用户名或密码错误，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];

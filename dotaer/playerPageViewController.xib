@@ -18,7 +18,6 @@
                 <outlet property="contentView" destination="Fgh-SV-7Ke" id="DVg-CE-9Wi"/>
                 <outlet property="distanceImage" destination="HSp-Vo-8oe" id="H4m-Kd-drf"/>
                 <outlet property="distanceLabel" destination="kFI-G8-DbV" id="OSH-IU-6Jh"/>
-                <outlet property="downPartBack" destination="Hbc-c6-3iU" id="1hV-AL-BMO"/>
                 <outlet property="favorBtn" destination="8Ig-n9-2on" id="mRI-kh-sZB"/>
                 <outlet property="gameIDLabel" destination="bff-KC-b2y" id="4em-nx-GMy"/>
                 <outlet property="headImage" destination="p4a-lZ-R3C" id="qxs-U8-4X7"/>
@@ -48,20 +47,29 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fgh-SV-7Ke" userLabel="contentView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOg-60-GS0" userLabel="line">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vvz-kq-Swa">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        </imageView>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOg-60-GS0" userLabel="line">
                             <rect key="frame" x="0.0" y="143" width="414" height="1.5"/>
                             <color key="backgroundColor" red="1" green="0.59657689144736847" blue="0.097322162828947373" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1.5" id="lMi-nc-OCp"/>
                             </constraints>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="黑.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Hbc-c6-3iU">
-                            <rect key="frame" x="0.0" y="144" width="414" height="591.5"/>
-                        </imageView>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dti-KO-WPD" userLabel="achieveView">
                             <rect key="frame" x="47" y="145" width="320" height="591"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="封面1.png" translatesAutoresizingMaskIntoConstraints="NO" id="s1B-2S-N1V">
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="暂未认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iko-1A-bA2">
+                                    <rect key="frame" x="125" y="285.5" width="69" height="21.5"/>
+                                    <color key="backgroundColor" red="0.20142886513157876" green="0.7314967105421053" blue="0.65553042763157898" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" red="0.87450980389999999" green="0.62352941179999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="s1B-2S-N1V">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="591"/>
                                     <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
@@ -182,9 +190,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IiC-HH-iJR" userLabel="infoView">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="143"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="剑圣1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="d1p-7P-8h5">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="d1p-7P-8h5">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="143"/>
-                                    <color key="backgroundColor" red="0.31301398029999999" green="0.72008634869999999" blue="0.84251644739999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6g-EI-m67" customClass="FXBlurView">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="143"/>
@@ -301,15 +308,6 @@
                                 <constraint firstItem="HSp-Vo-8oe" firstAttribute="centerY" secondItem="kFI-G8-DbV" secondAttribute="centerY" id="yOI-Pl-cbY"/>
                             </constraints>
                         </view>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="暂未认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iko-1A-bA2">
-                            <rect key="frame" x="0.0" y="0.0" width="69" height="21.5"/>
-                            <color key="backgroundColor" red="0.20142886513157876" green="0.7314967105421053" blue="0.65553042763157898" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                            <color key="shadowColor" red="0.87450980389999999" green="0.62352941179999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <size key="shadowOffset" width="1" height="1"/>
-                        </label>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bff-KC-b2y">
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="1" green="0.56743421049999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -398,18 +396,18 @@
                         <constraint firstItem="JOg-60-GS0" firstAttribute="top" secondItem="IiC-HH-iJR" secondAttribute="bottom" id="12N-UR-5pJ"/>
                         <constraint firstAttribute="bottom" secondItem="dti-KO-WPD" secondAttribute="bottom" id="3DS-e4-LYG"/>
                         <constraint firstAttribute="trailing" secondItem="JOg-60-GS0" secondAttribute="trailing" id="5Kc-En-90A"/>
-                        <constraint firstAttribute="trailing" secondItem="Hbc-c6-3iU" secondAttribute="trailing" id="8Jh-ks-joq"/>
+                        <constraint firstItem="Vvz-kq-Swa" firstAttribute="leading" secondItem="Fgh-SV-7Ke" secondAttribute="leading" id="5yJ-ud-H0G"/>
+                        <constraint firstItem="Vvz-kq-Swa" firstAttribute="top" secondItem="Fgh-SV-7Ke" secondAttribute="top" id="HYR-Zd-Re8"/>
                         <constraint firstItem="dti-KO-WPD" firstAttribute="top" secondItem="JOg-60-GS0" secondAttribute="bottom" id="Jis-xL-tph"/>
-                        <constraint firstItem="Hbc-c6-3iU" firstAttribute="top" secondItem="JOg-60-GS0" secondAttribute="bottom" id="LeM-b4-xQO"/>
-                        <constraint firstAttribute="bottom" secondItem="Hbc-c6-3iU" secondAttribute="bottom" id="Ls8-Vn-9tV"/>
+                        <constraint firstAttribute="bottom" secondItem="Vvz-kq-Swa" secondAttribute="bottom" id="Jsi-aD-ON6"/>
                         <constraint firstItem="IiC-HH-iJR" firstAttribute="leading" secondItem="Fgh-SV-7Ke" secondAttribute="leading" id="MQZ-qB-n75"/>
                         <constraint firstItem="30U-Qw-obK" firstAttribute="height" secondItem="v0W-cS-8z2" secondAttribute="height" id="PUT-Ch-7s1"/>
                         <constraint firstAttribute="centerX" secondItem="dti-KO-WPD" secondAttribute="centerX" id="U3W-dV-lag"/>
                         <constraint firstItem="v0W-cS-8z2" firstAttribute="leading" secondItem="Fgh-SV-7Ke" secondAttribute="leading" id="XSF-63-Bp1"/>
-                        <constraint firstItem="Hbc-c6-3iU" firstAttribute="leading" secondItem="Fgh-SV-7Ke" secondAttribute="leading" id="Xag-Tl-5WE"/>
                         <constraint firstItem="v0W-cS-8z2" firstAttribute="top" secondItem="JOg-60-GS0" secondAttribute="bottom" id="cWM-wj-K01"/>
                         <constraint firstAttribute="centerX" secondItem="IiC-HH-iJR" secondAttribute="centerX" id="e7i-BN-q65"/>
                         <constraint firstItem="30U-Qw-obK" firstAttribute="centerY" secondItem="v0W-cS-8z2" secondAttribute="centerY" id="j1a-JO-tK6"/>
+                        <constraint firstAttribute="trailing" secondItem="Vvz-kq-Swa" secondAttribute="trailing" id="jVR-Ci-rSA"/>
                         <constraint firstAttribute="trailing" secondItem="IiC-HH-iJR" secondAttribute="trailing" id="pOK-Io-wzC"/>
                         <constraint firstItem="30U-Qw-obK" firstAttribute="leading" secondItem="v0W-cS-8z2" secondAttribute="trailing" id="q66-pV-x36"/>
                         <constraint firstAttribute="bottom" secondItem="v0W-cS-8z2" secondAttribute="bottom" id="uuS-Pj-C38"/>
@@ -455,16 +453,16 @@
         <image name="MJ0.png" width="70" height="200"/>
         <image name="MJ1.png" width="70" height="200"/>
         <image name="cycle2.png" width="200" height="200"/>
+        <image name="infoBack.png" width="1080" height="378"/>
         <image name="jjc0.png" width="70" height="200"/>
+        <image name="mainBack.png" width="1080" height="1747"/>
         <image name="note0.png" width="70" height="200"/>
         <image name="note1.png" width="70" height="200"/>
         <image name="position.png" width="50" height="50"/>
         <image name="thumb.png" width="100" height="100"/>
         <image name="tt0.png" width="70" height="200"/>
         <image name="tt1.png" width="70" height="200"/>
-        <image name="剑圣1.jpg" width="400" height="300"/>
         <image name="封面1.png" width="1258" height="564"/>
-        <image name="黑.jpg" width="500" height="375"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

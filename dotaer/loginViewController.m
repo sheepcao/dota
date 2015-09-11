@@ -255,6 +255,9 @@ bool emailOK;
     
     NSLog(@"set guest!!!");
     [[DataCenter sharedDataCenter] setIsGuest:YES];
+    
+    [self submitDeviceTockenFor:@"SystemAnonymous"];
+
     self.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -381,7 +384,7 @@ bool emailOK;
             [hud hide:YES afterDelay:1.5];
             
             NSLog(@"Error: %@ ***** %@", operation.responseString, error);
-            if ([operation.responseString containsString:@"User already existed"]) {
+            if ([DataCenter myContainsStringFrom:operation.responseString ForSting:@"User already existed"]) {
                 UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您输入的用户名已存在，换一个吧" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [userNameAlert show];
             }else
@@ -458,7 +461,7 @@ bool emailOK;
         [hud hide:YES afterDelay:1.5];
         
         
-        if ([operation.responseString containsString:@"Incorrect username or password!"]) {
+        if ([DataCenter myContainsStringFrom:operation.responseString ForSting:@"Incorrect username or password"]) {
             UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您输入的用户名或密码有误，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [userNameAlert show];
         }else
@@ -509,9 +512,46 @@ bool emailOK;
     [[NSUserDefaults standardUserDefaults] setObject:userDic forKey:@"userInfoDic"];
     [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"haveDefaultUser"];
 
+    [self submitDeviceTockenFor:[userDic objectForKey:@"username"]];
+
     self.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
     [self dismissViewControllerAnimated:YES completion:nil];
 
+}
+
+
+
+
+-(void)submitDeviceTockenFor:(NSString *)username
+{
+    NSString *device = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    NSString *token = [[device description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSLog(@"token:%@",token);
+    
+    NSDictionary *parameters = @{@"tag": @"addDevice",@"username":username,@"device":token};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:20];  //Time out after 25 seconds
+    
+    
+    [manager POST:deviceURL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        NSLog(@"device Json: %@", responseObject);
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"device JsonError: %@", error.localizedDescription);
+        NSLog(@"device Json ERROR: %@",  operation.responseString);
+        
+        
+        
+        
+        
+    }];
+    
 }
 
 - (BOOL)shouldAutorotate {

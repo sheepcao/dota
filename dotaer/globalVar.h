@@ -32,6 +32,8 @@
 #define commentURL @"http://cgx.nwpu.info/Sites/comments.php"
 #define topicURL @"http://cgx.nwpu.info/Sites/makeTopic.php"
 
+#define deviceURL @"http://cgx.nwpu.info/Sites/deviceURL.php"
+
 #define imagePath @"http://cgx.nwpu.info/Sites/upload/"
 
 #define client_secret @"2d43c235b66c114fece5f67ae504f70a"

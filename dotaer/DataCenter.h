@@ -24,5 +24,7 @@
 - (void)addFavor:(NSString *)username;
 - (void)removeFavor:(NSString *)username;
 
++ (BOOL)myContainsStringFrom:(NSString*)str ForSting:(NSString*)other;
+
 -(UIImage *)compressImage:(UIImage *)image;
 @end

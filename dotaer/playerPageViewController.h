@@ -64,5 +64,4 @@
 @property (weak, nonatomic) IBOutlet UIButton *mjBtn;
 @property (weak, nonatomic) IBOutlet UIButton *jjcBtn;
 @property (weak, nonatomic) IBOutlet UIView *optinView;
-@property (weak, nonatomic) IBOutlet UIImageView *downPartBack;
 @end

@@ -175,7 +175,23 @@
         {
             NSLog(@"今日有新的话题！！！！！目录和item都加红点。。。");
             
-            UIImageView *haveNewtopicImg = [[UIImageView alloc] initWithFrame:CGRectMake(leftMenuVC.itemsTable.frame.size.width*2/3-10, leftMenuVC.itemsTable.rowHeight*4, 30, 14)];
+            int rowHeight = 35;
+            
+            if(IS_IPHONE_4_OR_LESS){
+                
+            }else if(IS_IPHONE_5)
+            {
+                rowHeight = 42;
+            }else if(IS_IPHONE_6)
+            {
+                rowHeight = 48;
+            }else 
+            {
+                rowHeight = 50;
+            }
+            
+            
+            UIImageView *haveNewtopicImg = [[UIImageView alloc] initWithFrame:CGRectMake(leftMenuVC.itemsTable.frame.size.width*2/3-10, rowHeight*3.4, 30, 14)];
             [haveNewtopicImg setImage:[UIImage imageNamed:@"new.png"]];
             haveNewtopicImg.tag = 101;
             
@@ -636,7 +652,7 @@
         
         [self cancelUploadLocation];
         [self showLoginPage];
-        if ([operation.responseString containsString:@"Incorrect username or password!"]) {
+        if ([DataCenter myContainsStringFrom:operation.responseString ForSting:@"Incorrect username or password"]) {
             UIAlertView *userNameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"您的默认密码有误，请重新登录" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [userNameAlert show];
         }else
@@ -676,6 +692,7 @@
     if ([[DataCenter sharedDataCenter] isGuest]) {
         NSLog(@"isGuest!");
         [self cancelUploadLocation];
+
         return;
     }else
     {
@@ -686,6 +703,7 @@
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"haveDefaultUser"] isEqualToString:@"yes"]) {
             
             NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfoDic"];
+            
             
             if ([[DataCenter sharedDataCenter] needLoginDefault]) {
                 [self userLogin:userDic];
@@ -729,6 +747,7 @@
 
     
 }
+
 
 -(void)updateUserScores:(NSString *)username
 {
@@ -992,7 +1011,7 @@
 
     }else
     {
-        _searchRadius = 99999999999;//无限远
+        _searchRadius = 99999999;//无限远
         [self.distanceLabel setText:@"> 500KM"];
 
     }
@@ -1034,6 +1053,15 @@
 
 -(void)pageUp
 {
+    MBProgressHUD *hud2 = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
+    hud2.tag = 456;
+    
+    hud2.mode = MBProgressHUDModeText;
+    hud2.labelText = @"正在搜索...";
+    
+    [hud2 hide:YES afterDelay:18];
+    
+    
     if (_curPageIndex>0) {
         _curPageIndex --;
 //        [NSThread detachNewThreadSelector:@selector(nearbySearchWithPageIndex:) toTarget:self withObject:[NSNumber numberWithInteger:_curPageIndex]];
@@ -1043,6 +1071,15 @@
 }
 -(void)pageDown
 {
+    MBProgressHUD *hud2 = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
+    hud2.tag = 456;
+    
+    hud2.mode = MBProgressHUDModeText;
+    hud2.labelText = @"正在搜索...";
+    
+    [hud2 hide:YES afterDelay:18];
+    
+    
     if (_curPageIndex<_totalPageNum) {
         _curPageIndex ++;
 //        [NSThread detachNewThreadSelector:@selector(nearbySearchWithPageIndex:) toTarget:self withObject:[NSNumber numberWithInteger:_curPageIndex]];

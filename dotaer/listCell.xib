@@ -21,7 +21,7 @@
                             <constraint firstAttribute="width" constant="145" id="6ha-Zg-936"/>
                             <constraint firstAttribute="height" constant="21" id="qts-yZ-Izg"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" red="0.21841591282894737" green="0.21895559210526316" blue="0.22180818256578946" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -54,7 +54,7 @@
                             <constraint firstAttribute="width" constant="46" id="8gp-fp-c6Z"/>
                             <constraint firstAttribute="height" constant="21" id="FFG-Eh-B48"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.99994860200000002" green="0.27063630756578949" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -64,7 +64,7 @@
                             <constraint firstAttribute="width" constant="69" id="Ga1-yC-TqY"/>
                             <constraint firstAttribute="height" constant="15" id="ZqI-xv-TOW"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="1" green="0.27450980392156865" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

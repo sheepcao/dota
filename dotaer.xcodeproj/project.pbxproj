@@ -77,7 +77,6 @@
 		A432D1B91B96C9EA0084F4FA /* topicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A432D1B71B96C9EA0084F4FA /* topicsViewController.xib */; };
 		A432D1BD1B96CE990084F4FA /* commentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A432D1BB1B96CE990084F4FA /* commentTableViewCell.m */; };
 		A432D1BE1B96CE990084F4FA /* commentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A432D1BC1B96CE990084F4FA /* commentTableViewCell.xib */; };
-		A438D84C1BA171A900D85541 /* infoBack.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8451BA171A900D85541 /* infoBack.png */; };
 		A438D84D1BA171A900D85541 /* listButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8461BA171A900D85541 /* listButton.png */; };
 		A438D84E1BA171A900D85541 /* listButtonPress.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8471BA171A900D85541 /* listButtonPress.png */; };
 		A438D84F1BA171A900D85541 /* mainBack.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8481BA171A900D85541 /* mainBack.png */; };
@@ -226,6 +225,7 @@
 		A4E02BF01B6A10CD000997C0 /* bottomBack3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E02BEF1B6A10CD000997C0 /* bottomBack3.png */; };
 		A4E4695D1B7B7034004275D8 /* submitScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E4695B1B7B7034004275D8 /* submitScoreViewController.m */; };
 		A4E4695E1B7B7034004275D8 /* submitScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4695C1B7B7034004275D8 /* submitScoreViewController.xib */; };
+		A4F4977F1BA2C5F200E3F7A8 /* infoBack.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F4977E1BA2C5F200E3F7A8 /* infoBack.png */; };
 		A4F51BAD1B57430B00786FD1 /* playerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */; };
 		A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */; };
 		A4F51BB31B57599A00786FD1 /* 11logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F51BB21B57599A00786FD1 /* 11logo2.png */; };
@@ -346,7 +346,6 @@
 		A432D1BA1B96CE990084F4FA /* commentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentTableViewCell.h; sourceTree = "<group>"; };
 		A432D1BB1B96CE990084F4FA /* commentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentTableViewCell.m; sourceTree = "<group>"; };
 		A432D1BC1B96CE990084F4FA /* commentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = commentTableViewCell.xib; sourceTree = "<group>"; };
-		A438D8451BA171A900D85541 /* infoBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoBack.png; sourceTree = "<group>"; };
 		A438D8461BA171A900D85541 /* listButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listButton.png; sourceTree = "<group>"; };
 		A438D8471BA171A900D85541 /* listButtonPress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listButtonPress.png; sourceTree = "<group>"; };
 		A438D8481BA171A900D85541 /* mainBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainBack.png; sourceTree = "<group>"; };
@@ -532,6 +531,7 @@
 		A4E4695A1B7B7034004275D8 /* submitScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = submitScoreViewController.h; sourceTree = "<group>"; };
 		A4E4695B1B7B7034004275D8 /* submitScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = submitScoreViewController.m; sourceTree = "<group>"; };
 		A4E4695C1B7B7034004275D8 /* submitScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = submitScoreViewController.xib; sourceTree = "<group>"; };
+		A4F4977E1BA2C5F200E3F7A8 /* infoBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoBack.png; sourceTree = "<group>"; };
 		A4F51BAA1B57430B00786FD1 /* playerPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerPageViewController.h; sourceTree = "<group>"; };
 		A4F51BAB1B57430B00786FD1 /* playerPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerPageViewController.m; sourceTree = "<group>"; };
 		A4F51BAC1B57430B00786FD1 /* playerPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = playerPageViewController.xib; sourceTree = "<group>"; };
@@ -719,7 +719,7 @@
 		A438D8421BA1706900D85541 /* newUI */ = {
 			isa = PBXGroup;
 			children = (
-				A438D8451BA171A900D85541 /* infoBack.png */,
+				A4F4977E1BA2C5F200E3F7A8 /* infoBack.png */,
 				A438D8461BA171A900D85541 /* listButton.png */,
 				A438D8471BA171A900D85541 /* listButtonPress.png */,
 				A438D8481BA171A900D85541 /* mainBack.png */,
@@ -1262,6 +1262,7 @@
 				A4CF5C461B9EB47700FBFD36 /* topicHistoryViewController.xib in Resources */,
 				A42F39621B84888A005877B9 /* Kevinnnnnnnnnnn.jpeg in Resources */,
 				A42E82A01B662AD600A431E0 /* chat_bar.png in Resources */,
+				A4F4977F1BA2C5F200E3F7A8 /* infoBack.png in Resources */,
 				A432D1BE1B96CE990084F4FA /* commentTableViewCell.xib in Resources */,
 				A4E02BEA1B69F736000997C0 /* levelyes.png in Resources */,
 				A4DA561F1B4E4C700010C95D /* password1.png in Resources */,
@@ -1299,7 +1300,6 @@
 				A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */,
 				A42F39681B84888A005877B9 /* 小爷不狂.jpeg in Resources */,
 				A4DDDA0D1B68A64900ACD655 /* sideBack.png in Resources */,
-				A438D84C1BA171A900D85541 /* infoBack.png in Resources */,
 				A432D1B91B96C9EA0084F4FA /* topicsViewController.xib in Resources */,
 				A401955B1B85BA2600B7142A /* passwordViewController.xib in Resources */,
 				A45F545E1B78E8E400761872 /* Images-2.xcassets in Resources */,

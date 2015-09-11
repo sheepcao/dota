@@ -118,6 +118,9 @@
 
 
 
-
++ (BOOL)myContainsStringFrom:(NSString*)str ForSting:(NSString*)other {
+    NSRange range = [str rangeOfString:other];
+    return range.length != 0;
+}
 
 @end

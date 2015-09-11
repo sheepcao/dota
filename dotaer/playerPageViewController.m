@@ -101,24 +101,24 @@
 
     }
 
-    UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    UIVisualEffect *blurEffect;
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    UIVisualEffectView *visualEffectView2;
+//    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    
+//    visualEffectView2.frame = self.infoBackImage.bounds;
+//    [self.infoBackImage addSubview:visualEffectView2];
     
-    UIVisualEffectView *visualEffectView2;
-    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    
-    visualEffectView2.frame = self.infoBackImage.bounds;
-    [self.infoBackImage addSubview:visualEffectView2];
-    
-    NSLog(@"5555555");
-    UIVisualEffect *blurEffect2;
-    blurEffect2 = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    
-    UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect2];
-    
-    visualEffectView.frame = self.downPartBack.bounds;
-    [self.downPartBack addSubview:visualEffectView];
+//    NSLog(@"5555555");
+//    UIVisualEffect *blurEffect2;
+//    blurEffect2 = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+//    
+//    UIVisualEffectView *visualEffectView;
+//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect2];
+//    
+//    visualEffectView.frame = self.downPartBack.bounds;
+//    [self.downPartBack addSubview:visualEffectView];
     
     
     self.blurView.blurRadius = 7.0f;
@@ -258,15 +258,15 @@
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
         UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-        [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
+        [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
         
-        UIVisualEffect *blurEffect;
-        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *visualEffectView2;
-        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-        visualEffectView2.frame = backIMG.bounds;
-        [backIMG addSubview:visualEffectView2];
-        NSLog(@"6666666");
+//        UIVisualEffect *blurEffect;
+//        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//        UIVisualEffectView *visualEffectView2;
+//        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//        visualEffectView2.frame = backIMG.bounds;
+//        [backIMG addSubview:visualEffectView2];
+//        NSLog(@"6666666");
 
         [noRecordView addSubview:backIMG];
         [noRecordView addSubview:noRecordLabel];
@@ -275,7 +275,7 @@
         
         
         
-        [self.notConfirmLevel setHidden:NO];
+        [self.notConfirmLevel setHidden:YES];
 
 //        
 //        UILabel *noNoteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height-35) ];
@@ -361,15 +361,15 @@
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
         UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-        [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
-        
-        UIVisualEffect *blurEffect;
-        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *visualEffectView2;
-        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-        visualEffectView2.frame = backIMG.bounds;
-        [backIMG addSubview:visualEffectView2];
-        NSLog(@"77777777");
+        [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
+//        
+//        UIVisualEffect *blurEffect;
+//        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//        UIVisualEffectView *visualEffectView2;
+//        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//        visualEffectView2.frame = backIMG.bounds;
+//        [backIMG addSubview:visualEffectView2];
+//        NSLog(@"77777777");
 
         [noRecordView addSubview:backIMG];
         [noRecordView addSubview:noRecordLabel];
@@ -381,7 +381,7 @@
         [self.mjBtn setEnabled:NO];
 //        [self.infoTableView setScrollEnabled:NO];
         
-        [self.notConfirmLevel setHidden:NO];
+        [self.notConfirmLevel setHidden:YES];
         
         if(![[DataCenter sharedDataCenter] isGuest] && [[[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"] isEqualToString:self.playerName])
         {
@@ -659,16 +659,16 @@
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
                     UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-                    [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
+                    [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
                     
-                    UIVisualEffect *blurEffect;
-                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-                    UIVisualEffectView *visualEffectView2;
-                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-                    visualEffectView2.frame = backIMG.frame;
-                    [backIMG addSubview:visualEffectView2];
-                    
-                    NSLog(@"111111");
+//                    UIVisualEffect *blurEffect;
+//                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//                    UIVisualEffectView *visualEffectView2;
+//                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//                    visualEffectView2.frame = backIMG.frame;
+//                    [backIMG addSubview:visualEffectView2];
+//                    
+//                    NSLog(@"111111");
                     [noRecordView addSubview:backIMG];
                     [noRecordView addSubview:noRecordLabel];
                     
@@ -720,15 +720,15 @@
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
                     UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-                    [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
+                    [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
                     
-                    UIVisualEffect *blurEffect;
-                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-                    UIVisualEffectView *visualEffectView2;
-                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-                    visualEffectView2.frame = backIMG.frame;
-                    [backIMG addSubview:visualEffectView2];
-                     NSLog(@"2222222");
+//                    UIVisualEffect *blurEffect;
+//                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//                    UIVisualEffectView *visualEffectView2;
+//                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//                    visualEffectView2.frame = backIMG.frame;
+//                    [backIMG addSubview:visualEffectView2];
+//                     NSLog(@"2222222");
                     [noRecordView addSubview:backIMG];
                     [noRecordView addSubview:noRecordLabel];
                     
@@ -776,15 +776,15 @@
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
                     UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
-                    [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
+                    [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
                     
-                    UIVisualEffect *blurEffect;
-                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-                    UIVisualEffectView *visualEffectView2;
-                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-                    visualEffectView2.frame = backIMG.frame;
-                    [backIMG addSubview:visualEffectView2];
-                    NSLog(@"333333333");
+//                    UIVisualEffect *blurEffect;
+//                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//                    UIVisualEffectView *visualEffectView2;
+//                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//                    visualEffectView2.frame = backIMG.frame;
+//                    [backIMG addSubview:visualEffectView2];
+//                    NSLog(@"333333333");
 
                     [noRecordView addSubview:backIMG];
                     [noRecordView addSubview:noRecordLabel];
@@ -919,7 +919,7 @@
     [customTextView setBackgroundColor:[UIColor whiteColor]];
     customTextView.tag = 777;
     invisibleTextFiled = [[UITextField alloc]initWithFrame:CGRectMake(3, 2, customTextView.frame.size.width-6, 36)];
-    invisibleTextFiled.placeholder = @"回复：";
+    invisibleTextFiled.placeholder = @"回复:";
     invisibleTextFiled.layer.borderWidth = 0.5;
     invisibleTextFiled.layer.cornerRadius = 7;
     invisibleTextFiled.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -959,7 +959,14 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.dimBackground = YES;
     
-    NSDictionary *parameters = @{@"tag": @"addNote",@"username":self.playerName, @"content":content,@"visitor":visitorName};
+    NSString *replyTo = @"none";
+    NSArray *replyArray = [content componentsSeparatedByString:@"回复:"];
+    if (replyArray.count>1) {
+        replyTo = [replyArray[1] componentsSeparatedByString:@","][0];
+    }
+    
+    
+    NSDictionary *parameters = @{@"tag": @"addNote",@"username":self.playerName, @"content":content,@"visitor":visitorName,@"replyTo":replyTo};
     
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -1053,15 +1060,15 @@
         [noteBtn setTitleColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f] forState:UIControlStateNormal];
         
         UIImageView *backIMG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, noRecordView.frame.size.width, noRecordView.frame.size.height)];
-        [backIMG setImage:[UIImage imageNamed:@"黑.jpg"]];
+        [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
         
-        UIVisualEffect *blurEffect;
-        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *visualEffectView2;
-        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-        visualEffectView2.frame = backIMG.bounds;
-        [backIMG addSubview:visualEffectView2];
-        NSLog(@"4444444444");
+//        UIVisualEffect *blurEffect;
+//        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//        UIVisualEffectView *visualEffectView2;
+//        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//        visualEffectView2.frame = backIMG.bounds;
+//        [backIMG addSubview:visualEffectView2];
+//        NSLog(@"4444444444");
 
         [noRecordView addSubview:backIMG];
         [noRecordView addSubview:noRecordLabel];
@@ -1140,7 +1147,7 @@
     UIView *customTextView = [self.view viewWithTag:777];
     [UIView animateWithDuration: 0.05
                      animations: ^{
-                         [customTextView setFrame:CGRectMake(0, SCREEN_HEIGHT-keyboardSize.height-40, SCREEN_WIDTH, 40)];
+                         [customTextView setFrame:CGRectMake(0, SCREEN_HEIGHT-keyboardSize.height-103, SCREEN_WIDTH, 40)];
                          
                      }
                      completion:nil

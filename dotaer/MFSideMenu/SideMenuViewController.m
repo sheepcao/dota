@@ -156,7 +156,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(IS_IPHONE_4_OR_LESS){
-        return 35;
+        return 33;
     }else if(IS_IPHONE_5)
     {
         return 42;

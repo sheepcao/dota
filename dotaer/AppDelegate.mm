@@ -108,11 +108,14 @@ BMKMapManager* _mapManager;
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     NSLog(@"My token is: %@", deviceToken);
+    [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:@"deviceToken"];
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
     NSLog(@"Failed to get token, error: %@", error);
+    [[NSUserDefaults standardUserDefaults] setObject:@"none" forKey:@"deviceToken"];
+
 }
 
 
