@@ -148,7 +148,11 @@
     [self requestReverseGeocode];
     
     
-    
+//    
+//    [self.ttBtn setTitle:@"天梯" forState:<#(UIControlState)#>];
+//    [self.jjcBtn setEnabled:NO];
+//    [self.mjBtn setEnabled:NO];
+
     
     
     
