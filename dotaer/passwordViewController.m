@@ -122,5 +122,12 @@
 - (BOOL)shouldAutorotate {
     return NO;
 }
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent; // your own style
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO; // your own visibility code
+}
 
 @end

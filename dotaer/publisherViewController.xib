@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -16,11 +17,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dian2.png" translatesAutoresizingMaskIntoConstraints="NO" id="rjN-9B-Mgl">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="rjN-9B-Mgl">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsg-ht-Kah">
-                    <rect key="frame" x="0.0" y="114" width="414" height="622"/>
+                    <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -31,13 +32,13 @@
                 <constraint firstAttribute="trailing" secondItem="rjN-9B-Mgl" secondAttribute="trailing" id="b9R-ZN-oSh"/>
                 <constraint firstAttribute="trailing" secondItem="Jsg-ht-Kah" secondAttribute="trailing" id="gH2-cg-FD1"/>
                 <constraint firstItem="Jsg-ht-Kah" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qpN-4k-xso"/>
-                <constraint firstItem="Jsg-ht-Kah" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="114" id="spO-dJ-Ch5"/>
+                <constraint firstItem="Jsg-ht-Kah" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="spO-dJ-Ch5"/>
                 <constraint firstAttribute="bottom" secondItem="rjN-9B-Mgl" secondAttribute="bottom" id="tqH-kr-iiK"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
         </view>
     </objects>
     <resources>
-        <image name="dian2.png" width="185" height="511"/>
+        <image name="mainBack.png" width="1080" height="1747"/>
     </resources>
 </document>

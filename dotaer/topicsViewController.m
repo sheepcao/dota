@@ -65,7 +65,7 @@
     
     UIButton *btnNext1 =[[UIButton alloc] init];
     [btnNext1 setTitle:@"往期话题" forState:UIControlStateNormal];
-    [btnNext1 setTitleColor:[UIColor colorWithRed:47/255.0f green:140/255.0f blue:255/255.0f alpha:1.0] forState:UIControlStateNormal];
+    [btnNext1 setTitleColor:[UIColor colorWithRed:250/255.0f green:250/255.0f blue:250/255.0f alpha:1.0] forState:UIControlStateNormal];
     
     btnNext1.titleLabel.font = [UIFont systemFontOfSize:17.0f];
     

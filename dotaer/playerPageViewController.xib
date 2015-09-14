@@ -253,13 +253,13 @@
                                         <constraint firstAttribute="height" constant="30" id="ySJ-5g-06v"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
-                                    <color key="textColor" red="0.76567639802631571" green="0.91090152138157898" blue="0.87168482730263153" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NO-za-aLr">
                                     <rect key="frame" x="30" y="106" width="354" height="35"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" red="1" green="0.68634354440000001" blue="0.27025082239999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cycle2.png" translatesAutoresizingMaskIntoConstraints="NO" id="iy4-UO-CPf">
@@ -325,6 +325,9 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-cS-8z2" userLabel="optionView">
                             <rect key="frame" x="0.0" y="681" width="414" height="55"/>
                             <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topBar.png" translatesAutoresizingMaskIntoConstraints="NO" id="xny-Ae-6O9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                </imageView>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwY-mK-kp8" userLabel="JJC">
                                     <rect key="frame" x="116" y="10" width="82.5" height="34.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -407,7 +410,10 @@
                                 <constraint firstItem="8dk-K4-VGC" firstAttribute="width" secondItem="DB7-2P-Gg9" secondAttribute="width" id="0fO-k8-pWh"/>
                                 <constraint firstItem="YUA-7Z-8ok" firstAttribute="centerY" secondItem="bze-7h-gdc" secondAttribute="centerY" id="6Dx-5S-1ED"/>
                                 <constraint firstItem="QwY-mK-kp8" firstAttribute="width" secondItem="bze-7h-gdc" secondAttribute="width" id="8Zc-RK-3UA"/>
+                                <constraint firstItem="xny-Ae-6O9" firstAttribute="leading" secondItem="v0W-cS-8z2" secondAttribute="leading" id="9V6-zy-l5H"/>
+                                <constraint firstItem="xny-Ae-6O9" firstAttribute="top" secondItem="v0W-cS-8z2" secondAttribute="top" id="AeO-EO-cmd"/>
                                 <constraint firstItem="YUA-7Z-8ok" firstAttribute="width" secondItem="bze-7h-gdc" secondAttribute="width" id="Bha-9m-QFQ"/>
+                                <constraint firstAttribute="bottom" secondItem="xny-Ae-6O9" secondAttribute="bottom" id="Cgy-UQ-AE0"/>
                                 <constraint firstItem="DB7-2P-Gg9" firstAttribute="leading" secondItem="bze-7h-gdc" secondAttribute="trailing" id="FvH-lS-aJe"/>
                                 <constraint firstItem="mu8-He-ZRn" firstAttribute="height" secondItem="v0W-cS-8z2" secondAttribute="height" id="GSs-bg-uvx"/>
                                 <constraint firstAttribute="centerY" secondItem="bze-7h-gdc" secondAttribute="centerY" id="Hof-E3-WQP"/>
@@ -421,6 +427,7 @@
                                 <constraint firstItem="8dk-K4-VGC" firstAttribute="height" secondItem="DB7-2P-Gg9" secondAttribute="height" id="aYn-Rr-G9n"/>
                                 <constraint firstItem="mu8-He-ZRn" firstAttribute="width" secondItem="DB7-2P-Gg9" secondAttribute="width" id="d8t-8M-KGi"/>
                                 <constraint firstAttribute="width" secondItem="bze-7h-gdc" secondAttribute="width" multiplier="5:1" id="dqM-8g-Led"/>
+                                <constraint firstAttribute="trailing" secondItem="xny-Ae-6O9" secondAttribute="trailing" id="fFe-Wi-g3k"/>
                                 <constraint firstItem="buY-jM-ECD" firstAttribute="centerY" secondItem="DB7-2P-Gg9" secondAttribute="centerY" id="fQo-RQ-bjA"/>
                                 <constraint firstItem="mu8-He-ZRn" firstAttribute="centerY" secondItem="DB7-2P-Gg9" secondAttribute="centerY" id="fxy-9m-e4s"/>
                                 <constraint firstItem="8dk-K4-VGC" firstAttribute="height" secondItem="buY-jM-ECD" secondAttribute="height" id="hA2-hK-f4X"/>
@@ -503,6 +510,7 @@
         <image name="mainBack.png" width="1080" height="1747"/>
         <image name="position.png" width="50" height="50"/>
         <image name="thumb.png" width="100" height="100"/>
+        <image name="topBar.png" width="1080" height="166"/>
         <image name="封面1.png" width="1258" height="564"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

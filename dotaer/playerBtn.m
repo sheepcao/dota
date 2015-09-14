@@ -26,18 +26,22 @@
     
     self.head.layer.cornerRadius = self.head.frame.size.height/2;
     self.head.layer.masksToBounds = YES;
+    
+    self.head.layer.borderWidth = 0.7f;
+    self.head.layer.borderColor = [UIColor colorWithRed:90/255.0f green:90/255.0f blue:90/255.0f alpha:1.0f].CGColor;
+    
     [self addSubview:self.head];
 
     self.name = [[UILabel alloc] initWithFrame:CGRectMake(2, self.head.frame.size.height*1.2+self.head.frame.origin.y, frame.size.width-4, self.head.frame.size.height/5)];
-    [self.name setText:@"2009伍声"];
-    [self.name setTextColor:[UIColor whiteColor]];
+    [self.name setText:@""];
+    [self.name setTextColor:[UIColor colorWithRed:25/255.0f green:25/255.0f  blue:25/255.0f  alpha:1.0f]];
     self.name.textAlignment = NSTextAlignmentCenter;
     self.name.font = [UIFont systemFontOfSize:13.0f];
     [self addSubview:self.name];
    
     self.update = [[UILabel alloc] initWithFrame:CGRectMake(2, self.name.frame.size.height*1.2+self.name.frame.origin.y, frame.size.width-4, self.head.frame.size.height/5)];
     [self.update setText:@"更新于   "];
-    [self.update setTextColor:[UIColor whiteColor]];
+    [self.update setTextColor:[UIColor colorWithRed:25/255.0f green:25/255.0f  blue:25/255.0f  alpha:1.0f]];
     self.update.textAlignment = NSTextAlignmentCenter;
     self.update.font = [UIFont systemFontOfSize:11.0f];
 

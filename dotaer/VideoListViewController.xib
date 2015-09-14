@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -16,11 +17,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dian2.png" translatesAutoresizingMaskIntoConstraints="NO" id="z11-yD-nvu">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="z11-yD-nvu">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="220" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ntB-2o-1iL">
-                    <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" red="0.54117647059999996" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -39,7 +40,7 @@
                 <constraint firstAttribute="trailing" secondItem="ntB-2o-1iL" secondAttribute="trailing" id="YvE-GQ-YbC"/>
                 <constraint firstItem="z11-yD-nvu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="imr-G1-ACv"/>
                 <constraint firstAttribute="bottom" secondItem="z11-yD-nvu" secondAttribute="bottom" id="l7w-wa-tXC"/>
-                <constraint firstItem="ntB-2o-1iL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="ogU-u8-aTs"/>
+                <constraint firstItem="ntB-2o-1iL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ogU-u8-aTs"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -47,6 +48,6 @@
         </view>
     </objects>
     <resources>
-        <image name="dian2.png" width="185" height="511"/>
+        <image name="mainBack.png" width="1080" height="1747"/>
     </resources>
 </document>

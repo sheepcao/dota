@@ -37,7 +37,7 @@
 
 
     
-    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,64,SCREEN_WIDTH, 50)];
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 50)];
     self.bannerView.delegate = self;
     self.bannerView.adUnitID =ADMOB_ID;
     self.bannerView.rootViewController = self;
@@ -51,15 +51,15 @@
     
     
     
-    UIVisualEffect *blurEffect_b;
-    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    
-    UIVisualEffectView *visualEffectView_b;
-    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
-    
-    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
-    [self.backIMG addSubview:visualEffectView_b];
-    
+//    UIVisualEffect *blurEffect_b;
+//    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    UIVisualEffectView *visualEffectView_b;
+//    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
+//    
+//    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
+//    [self.backIMG addSubview:visualEffectView_b];
+//    
     [self setupScroll];
 
     [self requestPublisherVideos];
@@ -163,7 +163,9 @@
         [publisherBtn addTarget:self action:@selector(jumpToVideos:) forControlEvents:UIControlEventTouchUpInside];
         publisherBtn.layer.cornerRadius = 10.0f;
         publisherBtn.layer.borderWidth = 0.7f;
-        publisherBtn.layer.borderColor = [UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f].CGColor;
+//        publisherBtn.layer.borderColor = [UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f].CGColor;
+        publisherBtn.layer.borderColor = [UIColor colorWithRed:50/255.0f green:50/255.0f blue:50/255.0f alpha:1.0f].CGColor;
+
         [publisherBtn.name setText:self.nameArray[i]];
         [publisherBtn.head setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpeg",self.publisherArray[i]]]];
         [self.publisherScroll addSubview:publisherBtn];

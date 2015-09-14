@@ -20,6 +20,7 @@
 #import "publisherViewController.h"
 #import "settingViewController.h"
 #import "topicsViewController.h"
+#import "searchHomeViewController.h"
 
 @interface SideMenuViewController()<cancelNewImgDelegate>
 @end
@@ -210,24 +211,7 @@
             navigationController.viewControllers = temp;
         }
 
-    } else if (indexPath.row == 2)
-    {
-        NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
-        if (favorArray && favorArray.count>0)
-        {
-            favorViewController *favorVC = [[favorViewController alloc] initWithNibName:@"favorViewController" bundle:nil];
-            favorVC.isFromFavor = YES;
-            
-            UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-            NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
-            [temp addObject:favorVC];
-            navigationController.viewControllers = temp;
-        }else
-        {
-            [tableView deselectRowAtIndexPath:indexPath animated:NO];
-            return;
-        }
-    }else if(indexPath.row == 3)
+    }else if(indexPath.row == 2)
     {
         
         topicsViewController *topicVC = [[topicsViewController alloc] initWithNibName:@"topicsViewController" bundle:nil];
@@ -294,13 +278,21 @@
         
 
 //        [self shareAppTapped];
-    }else if (indexPath.row == 4)
+    }else if (indexPath.row == 3)
     {
         settingViewController *settingVC = [[settingViewController alloc] initWithNibName:@"settingViewController" bundle:nil];
         
         UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
         NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
         [temp addObject:settingVC];
+        navigationController.viewControllers = temp;
+    } else if (indexPath.row == 4)
+    {
+        searchHomeViewController *scoreSearchVC = [[searchHomeViewController alloc] initWithNibName:@"searchHomeViewController" bundle:nil];
+        
+        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
+        [temp addObject:scoreSearchVC];
         navigationController.viewControllers = temp;
     }
 
@@ -561,5 +553,13 @@
 }
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent; // your own style
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO; // your own visibility code
 }
 @end

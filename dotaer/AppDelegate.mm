@@ -32,6 +32,9 @@ BMKMapManager* _mapManager;
     UINavigationController * navi = [[UINavigationController alloc]
                                      initWithRootViewController:[self demoController]];
     [navi.navigationBar setBackgroundImage:[UIImage imageNamed:@"topBar.png"] forBarMetrics:UIBarMetricsDefault];
+    [navi.navigationBar setBarTintColor:[UIColor whiteColor]];
+//    [navi.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//    navi.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     
     return navi;
 }
@@ -63,15 +66,15 @@ BMKMapManager* _mapManager;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
-    NSString *favorString = @"关注";
-    if (favorArray && favorArray.count>0)
-    {
-        favorString = [NSString stringWithFormat:@"关注(%lu)",(unsigned long)favorArray.count];
-    }
+//    NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+//    NSString *favorString = @"关注";
+//    if (favorArray && favorArray.count>0)
+//    {
+//        favorString = [NSString stringWithFormat:@"关注(%lu)",(unsigned long)favorArray.count];
+//    }
     
     SideMenuViewController *leftMenuViewController = [[SideMenuViewController alloc] init];
-    leftMenuViewController.items = [NSArray arrayWithObjects:@"视频解说",@"我的主页",favorString,@"今日话题",@"圈子设置", nil];
+    leftMenuViewController.items = [NSArray arrayWithObjects:@"视频解说",@"我的主页",@"今日话题",@"我的圈子",@"战绩小秘书", nil];
     MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController
                                                     containerWithCenterViewController:[self navigationController]
                                                     leftMenuViewController:leftMenuViewController
@@ -89,6 +92,9 @@ BMKMapManager* _mapManager;
     [self setShareIDs];
     
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 
     
 //    if (launchOptions) {

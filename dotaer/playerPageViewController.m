@@ -16,6 +16,7 @@
 #import "DataCenter.h"
 
 #import "submitScoreViewController.h"
+#import "scoreSearchViewController.h"
 
 
 
@@ -257,7 +258,7 @@
 
         UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
         [noRecordLabel setText:@"暂未战绩认证"];
-        [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
+        [noRecordLabel setTextColor:[UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f]];
         noRecordLabel.textAlignment = NSTextAlignmentCenter;
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
@@ -496,22 +497,31 @@
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 1, 60, 28)];
         title.backgroundColor = [UIColor clearColor];
         title.font=[UIFont fontWithName:@"Helvetica-Bold" size:13];
-        title.textColor = [UIColor colorWithRed:255/255.0f green:145/255.0f blue:0 alpha:1.0];
+        title.textColor = [UIColor colorWithRed:20/255.0f green:20/255.0f blue:20/255.0f alpha:1.0];
         [title setText:@"留言板"];
         
-        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-60-30, 3.5, 47, 25)];
-        btn.backgroundColor = [UIColor purpleColor];
-        btn.layer.cornerRadius = 4.2f;
-        btn.layer.shadowOffset = CGSizeMake(1.5, 1.8);
-        btn.layer.shadowRadius = 0.5;
-        btn.layer.shadowOpacity = 0.4;
+        
+        
+        UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-75, 3.5, 55, 25)];
+        [btn setBackgroundImage:[UIImage imageNamed:@"listButton.png"] forState:UIControlStateNormal];
+//        btn.backgroundColor = [UIColor purpleColor];
+//        btn.layer.cornerRadius = 4.2f;
+//        btn.layer.shadowOffset = CGSizeMake(1.5, 1.8);
+//        btn.layer.shadowRadius = 0.5;
+//        btn.layer.shadowOpacity = 0.4;
         
         btn.titleLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:13];
         [btn setTitle:@"留言" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(leaveMesg) forControlEvents:UIControlEventTouchUpInside];
         
         UIView * sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.sectionHeaderHeight)];
-        [sectionView setBackgroundColor:[UIColor colorWithRed:239/255.0f green:239/255.0f blue:239/255.0f alpha:1.0]];
+        [sectionView setBackgroundColor:[UIColor colorWithRed:200/255.0f green:200/255.0f blue:200/255.0f alpha:1.0]];
+        
+//        UIImageView *backImg = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"blackBack.png"]];
+//        
+//        [backImg setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+//        
+//        [sectionView addSubview:backImg];
         [sectionView addSubview:btn];
         [sectionView addSubview:title];
         
@@ -587,7 +597,7 @@
 //        
 //        [cell.userHeadImage setImage:img];
         
-        [cell.cellNumber setText:[NSString stringWithFormat:@"%u.",self.notesArray.count - indexPath.row]];
+        [cell.cellNumber setText:[NSString stringWithFormat:@"%lu.",self.notesArray.count - indexPath.row]];
         
         if (![self.visitorArray[indexPath.row] isEqualToString: @"匿名游客"]) {
             cell.visitorDetailBtn.tag = indexPath.row;
@@ -658,7 +668,7 @@
                     
                     UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
                     [noRecordLabel setText:@"暂未战斗"];
-                    [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f]];
                     noRecordLabel.textAlignment = NSTextAlignmentCenter;
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
@@ -702,6 +712,8 @@
                     [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroSecond"]]];
                     [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroThird"]]];
                     
+                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
+                    
  
                 }
 
@@ -719,7 +731,7 @@
                     
                     UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
                     [noRecordLabel setText:@"暂未战斗"];
-                    [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f]];
                     noRecordLabel.textAlignment = NSTextAlignmentCenter;
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
@@ -758,6 +770,9 @@
                 [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroFirst"]]];
                 [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroSecond"]]];
                 [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroThird"]]];
+                    
+                    
+                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
 
                 }
                 
@@ -775,20 +790,14 @@
                     
                     UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
                     [noRecordLabel setText:@"暂未战斗"];
-                    [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
+                    [noRecordLabel setTextColor:[UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f]];
                     noRecordLabel.textAlignment = NSTextAlignmentCenter;
                     [noRecordLabel setBackgroundColor:[UIColor clearColor]];
                     
                     UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
                     [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
                     
-//                    UIVisualEffect *blurEffect;
-//                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//                    UIVisualEffectView *visualEffectView2;
-//                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//                    visualEffectView2.frame = backIMG.frame;
-//                    [backIMG addSubview:visualEffectView2];
-//                    NSLog(@"333333333");
+
 
                     [noRecordView addSubview:backIMG];
                     [noRecordView addSubview:noRecordLabel];
@@ -817,6 +826,9 @@
                     [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroFirst"]]];
                     [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroSecond"]]];
                     [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroThird"]]];
+                    
+                    
+                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }
 
@@ -843,6 +855,17 @@
     
     
     return url;
+}
+
+-(void)heroDetail:(UIButton *)sender
+{
+   NSString *gameName = [self.playerLevelInfoDic objectForKey:@"gameName"];
+    
+    scoreSearchViewController *scoreSearchVC = [[scoreSearchViewController alloc] initWithNibName:@"scoreSearchViewController" bundle:nil];
+    scoreSearchVC.keyword = gameName;
+    [self.navigationController pushViewController:scoreSearchVC animated:YES];
+
+    
 }
 
 -(void)visotorDetail:(UIButton *)sender

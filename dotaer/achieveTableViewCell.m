@@ -48,4 +48,6 @@
     return NO;
 }
 
+- (IBAction)heroDetailTap:(id)sender {
+}
 @end

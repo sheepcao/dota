@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -15,13 +16,13 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dian2.png" translatesAutoresizingMaskIntoConstraints="NO" id="uVY-AK-laE">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="uVY-AK-laE">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AQx-Hz-olt">
-                    <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="separatorColor" red="0.54117647059999996" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="separatorColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="separatorInset" minX="40" minY="0.0" maxX="40" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="wdY-Ut-e1y"/>
@@ -36,7 +37,7 @@
                 <constraint firstItem="AQx-Hz-olt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DfO-Ov-Rqx"/>
                 <constraint firstAttribute="bottom" secondItem="AQx-Hz-olt" secondAttribute="bottom" id="RPU-PE-ayo"/>
                 <constraint firstAttribute="trailing" secondItem="AQx-Hz-olt" secondAttribute="trailing" id="gd3-aU-4oa"/>
-                <constraint firstItem="AQx-Hz-olt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="hgP-yI-U8R"/>
+                <constraint firstItem="AQx-Hz-olt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hgP-yI-U8R"/>
                 <constraint firstItem="uVY-AK-laE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="n2B-7k-u3w"/>
                 <constraint firstAttribute="bottom" secondItem="uVY-AK-laE" secondAttribute="bottom" id="wxg-NR-RSa"/>
             </constraints>
@@ -44,6 +45,6 @@
         </view>
     </objects>
     <resources>
-        <image name="dian2.png" width="185" height="511"/>
+        <image name="mainBack.png" width="1080" height="1747"/>
     </resources>
 </document>

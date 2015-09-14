@@ -10,6 +10,8 @@
 #import "globalVar.h"
 #import "passwordViewController.h"
 #import "DataCenter.h"
+#import "favorViewController.h"
+#import "MBProgressHUD.h"
 
 @interface settingViewController ()
 
@@ -21,15 +23,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"圈子设置";
-    UIVisualEffect *blurEffect_b;
-    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    self.title = @"我的圈子";
     
-    UIVisualEffectView *visualEffectView_b;
-    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
-    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
-    [self.backIMG addSubview:visualEffectView_b];
+//    UIVisualEffect *blurEffect_b;
+//    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    UIVisualEffectView *visualEffectView_b;
+//    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
+//    
+//    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
+//    [self.backIMG addSubview:visualEffectView_b];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,17 +51,21 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if([[DataCenter sharedDataCenter] isGuest])
     {
-        return 1;
+        return 2;
     }else
     {
-        return 3;
+        return 4;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if([[DataCenter sharedDataCenter] isGuest])
     {
-        return 5;
+        if (section == 0) {
+            return 1;
+        }else{
+            return 5;
+        }
     }else{
         
         NSInteger rowCount = 0;
@@ -68,6 +77,10 @@
         {
             rowCount = 1;
         }else if (section ==2)
+        {
+            rowCount = 1;
+        }
+        else if (section ==3)
         {
             rowCount = 5;
         }
@@ -89,36 +102,53 @@
     cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [cell.textLabel setTextColor:[UIColor colorWithRed:234/255.0f green:234/255.0f blue:234/255.0f alpha:1.0f]];
-    cell.textLabel.font = [UIFont systemFontOfSize:15.5f];
+    [cell.textLabel setTextColor:[UIColor colorWithRed:35/255.0f green:35/255.0f blue:35/255.0f alpha:1.0f]];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
     
-    UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(30, 59, SCREEN_WIDTH-45, 0.55)];
-    [bottomLine setBackgroundColor:[UIColor colorWithRed:138/255.0f green:221/255.0f blue:221/255.0f alpha:1.0f]];
+    UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(30, 60, SCREEN_WIDTH-45, 0.75)];
+    [bottomLine setBackgroundColor:[UIColor colorWithRed:110/255.0f green:110/255.0f blue:110/255.0f alpha:1.0f]];
     [cell addSubview:bottomLine];
    
     if([[DataCenter sharedDataCenter] isGuest])
     {
-        if (indexPath.row == 0) {
-            [cell.textLabel setText:@"分享好友"];
-            
-        }else if (indexPath.row == 1) {
-            [cell.textLabel setText:@"好评鼓励"];
-            
-        }else if (indexPath.row == 2) {
-            [cell.textLabel setText:@"团队作品"];
-            
-        }else if (indexPath.row == 3)
-        {
-            [cell.textLabel setText:@"意见反馈"];
-            
-        }else if (indexPath.row == 4)
-        {
-            [cell.textLabel setText:@"官方QQ:82107815"];
-            cell.accessoryType = UITableViewCellAccessoryNone;
+        switch (indexPath.section) {
+            case 0:
+                
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
+                [cell.textLabel setText:@"关注的人"];
+
+                
+                break;
+            case 1:
+            {
+                if (indexPath.row == 0) {
+                    [cell.textLabel setText:@"分享好友"];
+                    
+                }else if (indexPath.row == 1) {
+                    [cell.textLabel setText:@"好评鼓励"];
+                    
+                }else if (indexPath.row == 2) {
+                    [cell.textLabel setText:@"团队作品"];
+                    
+                }else if (indexPath.row == 3)
+                {
+                    [cell.textLabel setText:@"意见反馈"];
+                    
+                }else if (indexPath.row == 4)
+                {
+                    [cell.textLabel setText:@"官方QQ:82107815"];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    
+                }
+
+                break;
+            }
+                default:
+                break;
         }
         
-  
+         
 
     }else
     {
@@ -153,6 +183,16 @@
                 break;
             }
             case 2:
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                
+                [cell.textLabel setText:@"关注的人"];
+                
+                
+                
+                break;
+            }
+            case 3:
             {
                 if (indexPath.row == 0) {
                     [cell.textLabel setText:@"分享好友"];
@@ -189,25 +229,7 @@
     
     return cell;
 }
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
-//// fixed font style. use custom view (UILabel) if you want something different
-//{
-//    NSString *title = @"";
-//    switch (section) {
-//        case 0:
-//            title = @"账号设置";
-//            break;
-//        case 1:
-//            title = @"隐私设置";
-//            break;
-//        case 2:
-//            title = @"关于我们";
-//            break;
-//        default:
-//            break;
-//    }
-//    return  title;
-//}
+
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -215,7 +237,13 @@
 
     if([[DataCenter sharedDataCenter] isGuest])
     {
-        title = @"关于我们";
+        if(section == 0)
+        {
+            title = @"关注";
+        }else
+        {
+            title = @"关于我们";
+        }
     }else
     {
         switch (section) {
@@ -226,6 +254,9 @@
                 title = @"隐私设置";
                 break;
             case 2:
+                title = @"关注";
+                break;
+            case 3:
                 title = @"关于我们";
                 break;
             default:
@@ -235,12 +266,12 @@
     
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
         
-        [headerView setBackgroundColor:[UIColor colorWithRed:70/255.0f green:100/255.0f blue:90/255.0f alpha:0.5f]];
+        [headerView setBackgroundColor:[UIColor colorWithRed:130/255.0f green:130/255.0f blue:130/255.0f alpha:1.0f]];
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 4, 80, 27)];
         [titleLabel setText:title];
-        titleLabel.font = [UIFont systemFontOfSize:13.0f];
-        [titleLabel setTextColor:[UIColor colorWithRed:255/255.0f green:152/255.0f blue:25/255.0f alpha:1.0f]];
+        titleLabel.font = [UIFont systemFontOfSize:17.0f];
+        [titleLabel setTextColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f]];
         [headerView addSubview:titleLabel];
         
 
@@ -269,19 +300,48 @@
     
     if([[DataCenter sharedDataCenter] isGuest])
     {
-        if (indexPath.row == 0) {
-            [self shareAppTapped];
-        }if (indexPath.row == 1) {
-            
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:REVIEW_URL]];
-        }else if (indexPath.row == 2) {
-            
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ALLAPP_URL]];
-        }else if(indexPath.row == 3)
+        if(indexPath.section == 0)
         {
-            [self contactTapped];
-        }
+            NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+            if (favorArray && favorArray.count>0)
+            {
+                favorViewController *favorVC = [[favorViewController alloc] initWithNibName:@"favorViewController" bundle:nil];
+                favorVC.isFromFavor = YES;
+                
+                [self.navigationController pushViewController:favorVC animated:YES];
 
+                
+            }else
+            {
+                [tableView deselectRowAtIndexPath:indexPath animated:NO];
+                
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"尚未关注任何人";
+                
+                return;
+                
+            }
+
+        }else
+        {
+            if (indexPath.row == 0) {
+                [self shareAppTapped];
+            }if (indexPath.row == 1) {
+                
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:REVIEW_URL]];
+            }else if (indexPath.row == 2) {
+                
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ALLAPP_URL]];
+            }else if(indexPath.row == 3)
+            {
+                [self contactTapped];
+            }
+
+        }
+        
+       
     }else
     {
         switch (indexPath.section) {
@@ -291,7 +351,37 @@
                     [self.navigationController pushViewController:passwordVC animated:YES];
                 }
                 break;
+                
+                
             case 2:
+            {
+                NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+                if (favorArray && favorArray.count>0)
+                {
+                    favorViewController *favorVC = [[favorViewController alloc] initWithNibName:@"favorViewController" bundle:nil];
+                    favorVC.isFromFavor = YES;
+                    
+                    [self.navigationController pushViewController:favorVC animated:YES];
+                    
+                    
+                }else
+                {
+                    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+                    
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    
+                    hud.mode = MBProgressHUDModeText;
+                    hud.labelText = @"尚未关注任何人";
+                    
+                    return;
+                    
+                }
+
+                
+                break;
+            }
+                
+            case 3:
                 if (indexPath.row == 0) {
                     [self shareAppTapped];
                 }if (indexPath.row == 1) {
@@ -473,5 +563,12 @@
     return NO;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent; // your own style
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO; // your own visibility code
+}
 
 @end

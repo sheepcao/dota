@@ -50,4 +50,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *ratioTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalGameTitleLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *heroDetailButton;
+
 @end

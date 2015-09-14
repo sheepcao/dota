@@ -191,7 +191,7 @@
             }
             
             
-            UIImageView *haveNewtopicImg = [[UIImageView alloc] initWithFrame:CGRectMake(leftMenuVC.itemsTable.frame.size.width*2/3-10, rowHeight*3.4, 30, 14)];
+            UIImageView *haveNewtopicImg = [[UIImageView alloc] initWithFrame:CGRectMake(leftMenuVC.itemsTable.frame.size.width*2/3-10, rowHeight*2.3, 30, 14)];
             [haveNewtopicImg setImage:[UIImage imageNamed:@"new.png"]];
             haveNewtopicImg.tag = 101;
             
@@ -251,7 +251,7 @@
     [self.bannerView loadRequest:request];
     
     //need to recover..............
-//    [self.view addSubview:self.bannerView];
+    [self.view addSubview:self.bannerView];
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0+50, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64-50))];
 
@@ -1800,5 +1800,15 @@
 
 - (BOOL)prefersStatusBarHidden {
     return NO; // your own visibility code
+}
+
+- (void)adViewDidReceiveAd:(GADBannerView *)bannerView
+
+{
+    NSLog(@"ad received");
+}
+- (void)adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"error AD .. %@",error);
 }
 @end
