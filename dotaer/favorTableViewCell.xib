@@ -22,7 +22,7 @@
                             <constraint firstAttribute="height" constant="21" id="R19-FA-Odg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                        <color key="textColor" red="0.8193359375" green="0.8193359375" blue="0.77328330592105265" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.12864925986842105" green="0.13322368421052633" blue="0.12464021381578948" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cycle2.png" translatesAutoresizingMaskIntoConstraints="NO" id="cTr-jf-M4Q">

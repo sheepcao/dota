@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -9,6 +10,7 @@
                 <outlet property="blurBack" destination="vsK-Rq-u1I" id="xRH-hM-jZj"/>
                 <outlet property="password" destination="gok-BW-ivm" id="YGL-3M-yHj"/>
                 <outlet property="roundBack" destination="znO-R8-LN8" id="fOq-Xi-DMW"/>
+                <outlet property="roundBackIMG" destination="TJQ-Ty-8rb" id="ddg-dY-Mcv"/>
                 <outlet property="submitBtn" destination="cto-3e-hqB" id="ipX-jq-Jze"/>
                 <outlet property="username" destination="d9G-kS-Lki" id="lLC-3g-xlV"/>
                 <outlet property="view" destination="2v8-Sh-xqC" id="2xl-At-Ihh"/>
@@ -19,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotaLogin.png" translatesAutoresizingMaskIntoConstraints="NO" id="cSg-Xd-iwY">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="cSg-Xd-iwY">
                     <rect key="frame" x="0.0" y="-51" width="414" height="838"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsK-Rq-u1I" customClass="FXBlurView">
@@ -30,7 +32,7 @@
                             <subviews>
                                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="90e-sj-ghb">
                                     <rect key="frame" x="0.0" y="0.0" width="413" height="64"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" red="0.18187191611842105" green="0.16817434210526316" blue="0.16817434210526316" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bW7-ht-ksR">
                                     <rect key="frame" x="321" y="26" width="52" height="35"/>
@@ -40,7 +42,7 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <state key="normal" title="取 消">
-                                        <color key="titleColor" red="0.14800061677631574" green="0.14800061677631579" blue="0.14800061677631579" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.93765419400000005" green="0.94194592929999998" blue="0.93737150489999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -54,11 +56,11 @@
                                         <constraint firstAttribute="height" constant="30" id="R4d-h3-SWs"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.14800061680000001" green="0.14800061680000001" blue="0.14800061680000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.93765419400000005" green="0.94194592929999998" blue="0.93737150489999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.30843955592105265" green="0.30872224506578949" blue="0.31640625" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="64" id="437-LF-JZ6"/>
                                 <constraint firstAttribute="centerX" secondItem="6Or-I3-Q4L" secondAttribute="centerX" id="GPb-8R-eZj"/>
@@ -80,9 +82,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drq-NK-lFW" userLabel="login">
                             <rect key="frame" x="77" y="189" width="258" height="258"/>
                             <subviews>
-                                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znO-R8-LN8" userLabel="roundBack">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znO-R8-LN8" userLabel="roundBack">
                                     <rect key="frame" x="0.0" y="0.0" width="258" height="258"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="TJQ-Ty-8rb">
+                                            <rect key="frame" x="0.0" y="0.0" width="258" height="258"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11平台账号：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhe-N3-Sxl">
                                             <rect key="frame" x="8" y="14" width="129" height="21"/>
                                             <constraints>
@@ -96,7 +101,11 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.92100193900000005" green="0.92516024100000005" blue="0.94854634289999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstItem="TJQ-Ty-8rb" firstAttribute="leading" secondItem="znO-R8-LN8" secondAttribute="leading" id="GqB-50-3xx"/>
                                         <constraint firstItem="Mhe-N3-Sxl" firstAttribute="leading" secondItem="znO-R8-LN8" secondAttribute="leading" constant="8" id="LIq-Kc-O13"/>
+                                        <constraint firstAttribute="trailing" secondItem="TJQ-Ty-8rb" secondAttribute="trailing" id="ajf-Fa-lNJ"/>
+                                        <constraint firstItem="TJQ-Ty-8rb" firstAttribute="top" secondItem="znO-R8-LN8" secondAttribute="top" id="i9c-qB-bni"/>
+                                        <constraint firstAttribute="bottom" secondItem="TJQ-Ty-8rb" secondAttribute="bottom" id="ild-0Y-OE2"/>
                                         <constraint firstItem="Mhe-N3-Sxl" firstAttribute="top" secondItem="znO-R8-LN8" secondAttribute="top" constant="14" id="sSL-AW-LSr"/>
                                     </constraints>
                                 </view>
@@ -155,7 +164,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入您的11平台账号绑定战绩" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXK-Vs-Xjw">
                                     <rect key="frame" x="0.0" y="0.0" width="413" height="60"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                    <color key="textColor" red="0.95065789469999995" green="0.94798519739999998" blue="0.94852487659999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.97496916114736831" green="0.97741056746578947" blue="0.97795024666578945" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -174,7 +183,6 @@
                             </variation>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.18999280430000001" green="0.39365748360000002" blue="0.22260485200526317" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="cjB-U0-7ha" secondAttribute="trailing" id="5Sh-JK-8Lk"/>
                         <constraint firstItem="cjB-U0-7ha" firstAttribute="top" secondItem="vsK-Rq-u1I" secondAttribute="top" id="Lja-aJ-mMc"/>
@@ -222,7 +230,8 @@
         </view>
     </objects>
     <resources>
-        <image name="dotaLogin.png" width="432" height="768"/>
+        <image name="blackBack.png" width="1080" height="1725"/>
+        <image name="mainBack.png" width="1080" height="1747"/>
         <image name="password1.png" width="50" height="50"/>
         <image name="username1.png" width="50" height="50"/>
     </resources>

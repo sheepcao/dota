@@ -21,21 +21,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"修改密码";
-    UIVisualEffect *blurEffect_b;
-    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    
-    UIVisualEffectView *visualEffectView_b;
-    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
-    
-    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
-    [self.backIMG addSubview:visualEffectView_b];
-    
+//    UIVisualEffect *blurEffect_b;
+//    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    UIVisualEffectView *visualEffectView_b;
+//    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
+//    
+//    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
+//    [self.backIMG addSubview:visualEffectView_b];
+//    
     
     self.submitBtn.layer.cornerRadius = 10.0f;
     self.submitBtn.layer.borderWidth = 0.7f;
-    self.submitBtn.layer.borderColor = [UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f].CGColor;
+    self.submitBtn.layer.borderColor = [UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f].CGColor;
     
-    [self.submitBtn setTitleColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [self.submitBtn setTitleColor:[UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f] forState:UIControlStateNormal];
 
 }
 

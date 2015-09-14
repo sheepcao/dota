@@ -38,6 +38,7 @@ bool emailOK;
     // Do any additional setup after loading the view from its nib.
     self.blurView.blurRadius = 3.8;
     self.roundBack.layer.cornerRadius = 7.5;
+    self.roundBack.layer.masksToBounds = YES;
     self.loginBtn.layer.cornerRadius = 15.0f;
     self.submitBtn.layer.cornerRadius = 15.0f;
     [self disableSubmitBtn];

@@ -23,6 +23,9 @@
     self.blurBack.blurRadius = 3.8;
     self.submitBtn.layer.cornerRadius = 15.0f;
     
+    self.roundBackIMG.layer.cornerRadius = 7.5;
+    self.roundBackIMG.layer.masksToBounds = YES;
+    
 }
 
 -(void)requestExtroInfoWithUser:(NSString *)username andPassword:(NSString *)password

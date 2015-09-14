@@ -32,14 +32,14 @@
         self.title = @"玩家";
     }
     
-    UIVisualEffect *blurEffect_b;
-    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    
-    UIVisualEffectView *visualEffectView_b;
-    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
-    
-    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
-    [self.backIMG addSubview:visualEffectView_b];
+//    UIVisualEffect *blurEffect_b;
+//    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    
+//    UIVisualEffectView *visualEffectView_b;
+//    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
+//    
+//    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
+//    [self.backIMG addSubview:visualEffectView_b];
     
 
     

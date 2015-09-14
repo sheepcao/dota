@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -35,7 +36,7 @@
                 <outlet property="passwordField" destination="Tf7-2p-NX3" id="KcE-tq-MgJ"/>
                 <outlet property="passwordLoginField" destination="gqL-6a-VWa" id="9z4-1A-P47"/>
                 <outlet property="registerView" destination="ld6-wK-aih" id="MXU-GN-Jxy"/>
-                <outlet property="roundBack" destination="6ZY-9I-54X" id="HpM-8N-PqL"/>
+                <outlet property="roundBack" destination="amO-8M-4oh" id="6IP-pd-kBV"/>
                 <outlet property="submitBtn" destination="MFE-FZ-VmA" id="5IO-O7-lvo"/>
                 <outlet property="userLoginField" destination="kFF-af-bVP" id="c25-ys-178"/>
                 <outlet property="usernameField" destination="gH1-zp-Cu0" id="NHH-wa-3gN"/>
@@ -47,10 +48,10 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotaLogin.png" translatesAutoresizingMaskIntoConstraints="NO" id="1X8-BL-qu9">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="1X8-BL-qu9">
                     <rect key="frame" x="0.0" y="-51" width="414" height="838"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nc0-bQ-ZaI" customClass="FXBlurView">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nc0-bQ-ZaI" customClass="FXBlurView">
                     <rect key="frame" x="0.0" y="0.0" width="413" height="676"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
@@ -73,7 +74,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.32786800986842107" green="0.53839432565789469" blue="0.32786800986842107" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.46263363486842107" green="0.45577199835526316" blue="0.45577199835526316" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="centerX" secondItem="gMj-lN-Wg5" secondAttribute="centerX" id="CRX-0g-9fD"/>
                                 <constraint firstAttribute="height" secondItem="gMj-lN-Wg5" secondAttribute="height" id="ILv-rD-SRX"/>
@@ -84,7 +85,7 @@
                             <rect key="frame" x="207" y="2" width="207" height="56"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
                             <state key="normal" title="随便看看">
-                                <color key="titleColor" red="0.88309518909999996" green="0.88967413650000005" blue="0.88967413650000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -95,7 +96,7 @@
                             <rect key="frame" x="0.0" y="2" width="207" height="56"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="21"/>
                             <state key="normal" title="前往注册">
-                                <color key="titleColor" red="0.88309518909999996" green="0.88967413650000005" blue="0.88967413650000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -154,7 +155,10 @@
             <rect key="frame" x="0.0" y="0.0" width="258" height="258"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZY-9I-54X" userLabel="roundBack">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="amO-8M-4oh">
+                    <rect key="frame" x="0.0" y="0.0" width="258" height="258"/>
+                </imageView>
+                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZY-9I-54X" userLabel="roundBack">
                     <rect key="frame" x="0.0" y="0.0" width="258" height="258"/>
                     <color key="backgroundColor" red="0.92100193900000005" green="0.92516024100000005" blue="0.94854634289999995" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
@@ -175,7 +179,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击登录表示同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0p-F8-eOn">
                     <rect key="frame" x="31" y="235" width="93" height="21"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="11"/>
-                    <color key="textColor" red="0.10120271381578944" green="0.10832134046052631" blue="0.16891961348684212" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="913-Lx-doT">
@@ -240,13 +244,13 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="男" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPY-iR-OTH">
                     <rect key="frame" x="179" y="114" width="25" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="女" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGf-Eq-9X1">
                     <rect key="frame" x="262" y="114" width="25" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atu-vd-L3K">
@@ -272,7 +276,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" (以上基本信息不可修改)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osj-sQ-d22">
                     <rect key="frame" x="158" y="144" width="140" height="16"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="12"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XAK-RP-7xy">
@@ -304,7 +308,7 @@
                 </textField>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B36-mZ-cYT" userLabel="line">
                     <rect key="frame" x="151" y="168" width="155" height="1"/>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.78500205592105265" green="0.78071032072368418" blue="0.78071032072368418" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="年龄" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-0D-TAl" userLabel="age">
                     <rect key="frame" x="210" y="76" width="51" height="30"/>
@@ -348,16 +352,10 @@
                         <action selector="submitRegister:" destination="-1" eventType="touchUpInside" id="WcD-UT-kl4"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="（重要：用于实力认证）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kK-Am-h6y">
-                    <rect key="frame" x="9" y="217" width="153" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="点击提交表示同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny9-LC-9zE">
                     <rect key="frame" x="104" y="394" width="93" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbI-Fk-A9z">
@@ -404,9 +402,10 @@
         </view>
     </objects>
     <resources>
+        <image name="blackBack.png" width="1080" height="1725"/>
         <image name="cake.png" width="50" height="50"/>
-        <image name="dotaLogin.png" width="432" height="768"/>
         <image name="female.png" width="19" height="22"/>
+        <image name="mainBack.png" width="1080" height="1747"/>
         <image name="male.png" width="19" height="22"/>
         <image name="password1.png" width="50" height="50"/>
         <image name="select.png" width="44" height="44"/>

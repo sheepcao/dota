@@ -16,6 +16,7 @@
 @end
 
 @interface submitScoreViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *roundBackIMG;
 @property (weak, nonatomic) IBOutlet FXBlurView *blurBack;
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
