@@ -31,6 +31,10 @@
 
 
 - (IBAction)search {
+    
+    [self.view endEditing:YES];// this will do the trick
+
+    
     if (self.keywordField.text && ![[self.keywordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
     {
         scoreSearchViewController *scoreSearchVC = [[scoreSearchViewController alloc] initWithNibName:@"scoreSearchViewController" bundle:nil];

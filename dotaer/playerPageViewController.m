@@ -712,7 +712,7 @@
                     [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroSecond"]]];
                     [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroThird"]]];
                     
-                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
+//                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
                     
  
                 }
@@ -772,7 +772,7 @@
                 [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroThird"]]];
                     
                     
-                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
+//                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
 
                 }
                 
@@ -828,7 +828,7 @@
                     [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroThird"]]];
                     
                     
-                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
+//                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }
 

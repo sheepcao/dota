@@ -202,7 +202,7 @@
                                         <constraint firstAttribute="height" constant="25" id="CdZ-vG-c4f"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" red="0.76567639802631571" green="0.91090152138157898" blue="0.87168482730263153" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.97496916109999998" green="0.97741056749999999" blue="0.97795024669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5Z-Fy-etN">
@@ -212,7 +212,7 @@
                                         <constraint firstAttribute="width" constant="42" id="YZ8-Pv-4HJ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.76567639802631571" green="0.91090152138157898" blue="0.87168482730263153" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.97496916109999998" green="0.97741056749999999" blue="0.97795024669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="position.png" translatesAutoresizingMaskIntoConstraints="NO" id="HSp-Vo-8oe">

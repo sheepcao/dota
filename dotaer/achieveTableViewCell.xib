@@ -397,19 +397,6 @@
                                             <constraint firstAttribute="width" secondItem="D29-MK-tok" secondAttribute="height" multiplier="1:1" id="PWg-1Q-WJY"/>
                                         </constraints>
                                     </imageView>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnm-DI-cDv">
-                                        <rect key="frame" x="255" y="35" width="54.5" height="22.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Mnm-DI-cDv" secondAttribute="height" multiplier="228:95" id="c6g-rd-MJz"/>
-                                            <constraint firstAttribute="width" constant="54.5" id="h4T-eg-OzC"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="详情&gt;&gt;" backgroundImage="listButton.png">
-                                            <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted" backgroundImage="listButtonPress.png"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -424,8 +411,6 @@
                                     <constraint firstItem="kEa-9i-Hl0" firstAttribute="centerY" secondItem="I2i-LB-rbg" secondAttribute="centerY" id="frt-vB-3qF"/>
                                     <constraint firstItem="D29-MK-tok" firstAttribute="centerY" secondItem="kEa-9i-Hl0" secondAttribute="centerY" id="iY3-0d-tfs"/>
                                     <constraint firstItem="kEa-9i-Hl0" firstAttribute="centerY" secondItem="QHH-A3-ksD" secondAttribute="centerY" id="khv-NR-Rp6"/>
-                                    <constraint firstItem="D29-MK-tok" firstAttribute="bottom" secondItem="Mnm-DI-cDv" secondAttribute="bottom" constant="1" id="mab-CJ-K0v"/>
-                                    <constraint firstItem="Mnm-DI-cDv" firstAttribute="leading" secondItem="D29-MK-tok" secondAttribute="trailing" constant="10" id="nzZ-rW-Zxb"/>
                                     <constraint firstItem="QHH-A3-ksD" firstAttribute="leading" secondItem="kEa-9i-Hl0" secondAttribute="trailing" constant="20" id="rdr-BZ-g4u"/>
                                 </constraints>
                             </view>
@@ -517,7 +502,6 @@
                 <outlet property="fuhao" destination="Cdh-WV-Psy" id="asp-wF-6qw"/>
                 <outlet property="fuhaoLabel" destination="iFT-eA-Si2" id="yTx-zs-X5Q"/>
                 <outlet property="gameNameLabel" destination="OkC-bP-mxs" id="xoK-Ak-pEZ"/>
-                <outlet property="heroDetailButton" destination="Mnm-DI-cDv" id="MeT-pl-XJ5"/>
                 <outlet property="heroFirstImg" destination="kEa-9i-Hl0" id="kHo-MO-RZv"/>
                 <outlet property="heroSecondImg" destination="QHH-A3-ksD" id="sL5-n8-Yau"/>
                 <outlet property="heroThirdImg" destination="D29-MK-tok" id="hYj-c0-Fjl"/>
@@ -543,8 +527,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="listButton.png" width="228" height="95"/>
-        <image name="listButtonPress.png" width="228" height="95"/>
         <image name="thumb.png" width="100" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

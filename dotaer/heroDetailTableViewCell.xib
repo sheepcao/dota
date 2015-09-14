@@ -3,8 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -19,7 +19,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="THP-33-Don">
                         <rect key="frame" x="8" y="8" width="53" height="53.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="THP-33-Don" secondAttribute="height" multiplier="1:1" id="pKW-7e-KA6"/>
+                            <constraint firstAttribute="height" constant="53.5" id="WgF-YC-VNA"/>
+                            <constraint firstAttribute="width" constant="53" id="sCT-8a-mu4"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="场次:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDy-va-QUH">
@@ -91,7 +92,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siN-GJ-g70">
-                        <rect key="frame" x="243.5" y="24" width="33" height="21"/>
+                        <rect key="frame" x="243" y="24" width="33" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="33" id="Isq-dx-CVe"/>
                             <constraint firstAttribute="height" constant="21" id="uVZ-h0-mH8"/>
@@ -101,7 +102,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6e-LR-2FR">
-                        <rect key="frame" x="277.5" y="24" width="43" height="21"/>
+                        <rect key="frame" x="277" y="24" width="43" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="43" id="9Zt-4j-zYR"/>
                             <constraint firstAttribute="height" constant="21" id="tsE-OZ-Gjs"/>
@@ -113,7 +114,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="w5A-Dm-5t5" firstAttribute="centerX" secondItem="Rdq-Ul-I12" secondAttribute="centerX" id="2II-AN-842"/>
-                    <constraint firstItem="THP-33-Don" firstAttribute="centerY" secondItem="Rdq-Ul-I12" secondAttribute="centerY" constant="-15" id="51T-z8-DUd"/>
+                    <constraint firstItem="THP-33-Don" firstAttribute="centerY" secondItem="Rdq-Ul-I12" secondAttribute="centerY" multiplier="0.999999" constant="-15" id="51T-z8-DUd"/>
                     <constraint firstItem="w5A-Dm-5t5" firstAttribute="centerY" secondItem="nDy-va-QUH" secondAttribute="centerY" id="5k1-6e-hfc"/>
                     <constraint firstItem="w5A-Dm-5t5" firstAttribute="centerY" secondItem="sCK-Pj-YHW" secondAttribute="centerY" id="7Bx-sN-UVP"/>
                     <constraint firstItem="pxf-M1-Xjd" firstAttribute="centerY" secondItem="BvZ-vl-MA5" secondAttribute="centerY" id="8W1-IK-aoT"/>
@@ -121,11 +122,10 @@
                     <constraint firstItem="BvZ-vl-MA5" firstAttribute="height" secondItem="w5A-Dm-5t5" secondAttribute="height" id="APl-y1-230"/>
                     <constraint firstItem="siN-GJ-g70" firstAttribute="leading" secondItem="rdb-gs-D55" secondAttribute="trailing" constant="18" id="Ccy-ue-xhV"/>
                     <constraint firstItem="w5A-Dm-5t5" firstAttribute="width" secondItem="nDy-va-QUH" secondAttribute="width" id="CgC-v2-oGe"/>
-                    <constraint firstItem="THP-33-Don" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="DIH-Zl-s9F"/>
                     <constraint firstItem="BvZ-vl-MA5" firstAttribute="centerX" secondItem="nDy-va-QUH" secondAttribute="centerX" id="Ext-dW-E7r"/>
                     <constraint firstItem="w5A-Dm-5t5" firstAttribute="height" secondItem="Rdq-Ul-I12" secondAttribute="height" id="HYx-LF-TCC"/>
                     <constraint firstItem="w5A-Dm-5t5" firstAttribute="width" secondItem="Rdq-Ul-I12" secondAttribute="width" id="OWF-kK-f8J"/>
-                    <constraint firstItem="w5A-Dm-5t5" firstAttribute="centerY" secondItem="THP-33-Don" secondAttribute="centerY" constant="-15" id="SJR-U5-vEj"/>
+                    <constraint firstItem="w5A-Dm-5t5" firstAttribute="centerY" secondItem="THP-33-Don" secondAttribute="centerY" multiplier="0.999999" constant="-15" id="SJR-U5-vEj"/>
                     <constraint firstAttribute="centerX" secondItem="w5A-Dm-5t5" secondAttribute="centerX" constant="-15" id="Tps-fm-gXa"/>
                     <constraint firstItem="NA3-hp-lG6" firstAttribute="leading" secondItem="w5A-Dm-5t5" secondAttribute="trailing" constant="1" id="cim-GV-SQ2"/>
                     <constraint firstItem="THP-33-Don" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="dMV-Vb-9kf"/>
@@ -133,7 +133,7 @@
                     <constraint firstItem="Rdq-Ul-I12" firstAttribute="centerY" secondItem="rdb-gs-D55" secondAttribute="centerY" id="daV-Y2-A9B"/>
                     <constraint firstItem="rdb-gs-D55" firstAttribute="leading" secondItem="Rdq-Ul-I12" secondAttribute="trailing" constant="1" id="iZX-6B-SbQ"/>
                     <constraint firstItem="K6e-LR-2FR" firstAttribute="centerY" secondItem="siN-GJ-g70" secondAttribute="centerY" id="l8G-Lf-RLh"/>
-                    <constraint firstItem="siN-GJ-g70" firstAttribute="centerY" secondItem="THP-33-Don" secondAttribute="centerY" id="mHR-XB-n4y"/>
+                    <constraint firstItem="siN-GJ-g70" firstAttribute="centerY" secondItem="THP-33-Don" secondAttribute="centerY" multiplier="0.99999" id="mHR-XB-n4y"/>
                     <constraint firstItem="w5A-Dm-5t5" firstAttribute="leading" secondItem="sCK-Pj-YHW" secondAttribute="trailing" constant="2" id="mh2-5k-TU0"/>
                     <constraint firstItem="w5A-Dm-5t5" firstAttribute="height" secondItem="nDy-va-QUH" secondAttribute="height" id="np7-yV-iOj"/>
                     <constraint firstItem="BvZ-vl-MA5" firstAttribute="centerY" secondItem="Rdq-Ul-I12" secondAttribute="centerY" id="syi-hO-iNc"/>

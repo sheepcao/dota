@@ -3032,11 +3032,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/scoreSearchViewController.m"
-            timestampString = "463934256.08796"
+            timestampString = "463943751.340271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "-requestScores:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3048,11 +3048,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/scoreSearchViewController.m"
-            timestampString = "463934256.08796"
+            timestampString = "463943751.340271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
             landmarkName = "-requestTTHeroScores:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3064,11 +3064,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/scoreSearchViewController.m"
-            timestampString = "463934256.08796"
+            timestampString = "463943751.340271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
             landmarkName = "-requestTTHeroScores:"
             landmarkType = "5">
             <Locations>
@@ -3112,11 +3112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/scoreSearchViewController.m"
-            timestampString = "463934256.08796"
+            timestampString = "463943751.340271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "646"
-            endingLineNumber = "646"
+            startingLineNumber = "666"
+            endingLineNumber = "666"
             landmarkName = "-setupJJCinfosWithDic:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3128,11 +3128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/scoreSearchViewController.m"
-            timestampString = "463934256.08796"
+            timestampString = "463943751.340271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "695"
-            endingLineNumber = "695"
+            startingLineNumber = "715"
+            endingLineNumber = "715"
             landmarkName = "-JJCTapped:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3144,11 +3144,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/scoreSearchViewController.m"
-            timestampString = "463934256.08796"
+            timestampString = "463943751.340271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "-requestTTHeroScores:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3160,11 +3160,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "dotaer/scoreSearchViewController.m"
-            timestampString = "463934256.08796"
+            timestampString = "463943751.340271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "493"
-            endingLineNumber = "493"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
             landmarkName = "-requestJJCHeroScores:"
             landmarkType = "5">
          </BreakpointContent>

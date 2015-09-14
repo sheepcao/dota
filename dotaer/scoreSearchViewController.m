@@ -59,7 +59,15 @@ bool JJCHeroScoreFinish;
     [self.JJCScores setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
 
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    self.navigationItem.leftBarButtonItem=newBackButton;
     
+
+}
+
+-(void)back
+{
+    [self.navigationController popViewControllerAnimated:NO];
 
 }
 
@@ -68,6 +76,18 @@ bool JJCHeroScoreFinish;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+        for (NSLayoutConstraint *c in self.view.constraints) {
+                [self.view removeConstraint:c];
+            
+        }
+
+    NSLog(@"disappear!!!!!");
+}
+    
 
 
 -(void)requestExtroInfoWithUser:(NSString *)username
