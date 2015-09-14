@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -19,6 +19,9 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="o0a-U1-L0E">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="| 斧王最喜欢和谁劣单| 斧王最喜欢和谁劣单| 斧王最喜欢和谁劣单| 斧王最喜欢和谁劣单" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nl-db-HfZ">
                     <rect key="frame" x="25" y="0.0" width="364" height="129"/>
                     <constraints>
@@ -46,7 +49,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="添加评论">
-                        <color key="titleColor" red="0.19207442429999999" green="0.72643400489999999" blue="0.88484272200000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.12864925990000001" green="0.1332236842" blue="0.1246402138" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -70,7 +73,8 @@
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="miV-iw-Nlg">
                     <rect key="frame" x="8" y="180" width="398" height="548"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" red="0.25804379111842107" green="0.26462273848684209" blue="0.25804379111842107" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="separatorInset" minX="9" minY="0.0" maxX="9" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="yom-fr-yMj"/>
@@ -86,7 +90,11 @@
                 <constraint firstItem="rD6-uU-IzC" firstAttribute="leading" secondItem="VgH-3g-ya9" secondAttribute="trailing" constant="8" id="ANo-IY-j36"/>
                 <constraint firstItem="PjG-rd-agb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="BbI-4L-pdL"/>
                 <constraint firstAttribute="bottom" secondItem="miV-iw-Nlg" secondAttribute="bottom" constant="8" id="CjJ-8s-VkC"/>
+                <constraint firstItem="o0a-U1-L0E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EZq-PY-Rj6"/>
+                <constraint firstAttribute="trailing" secondItem="o0a-U1-L0E" secondAttribute="trailing" id="R9G-1W-wPK"/>
                 <constraint firstAttribute="centerX" secondItem="5Nl-db-HfZ" secondAttribute="centerX" id="Rfz-kf-BUF"/>
+                <constraint firstAttribute="bottom" secondItem="o0a-U1-L0E" secondAttribute="bottom" id="UVi-c9-iOa"/>
+                <constraint firstItem="o0a-U1-L0E" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="X06-xW-4GQ"/>
                 <constraint firstAttribute="trailing" secondItem="miV-iw-Nlg" secondAttribute="trailing" constant="8" id="fYu-13-ZfD"/>
                 <constraint firstItem="rD6-uU-IzC" firstAttribute="centerY" secondItem="PjG-rd-agb" secondAttribute="centerY" id="hI0-eI-jR6"/>
                 <constraint firstItem="PjG-rd-agb" firstAttribute="top" secondItem="5Nl-db-HfZ" secondAttribute="bottom" constant="8" id="p5j-h7-vp8"/>
@@ -96,6 +104,15 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <point key="canvasLocation" x="228" y="198"/>
         </view>
     </objects>
+    <resources>
+        <image name="mainBack.png" width="1080" height="1747"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

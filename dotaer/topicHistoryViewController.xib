@@ -16,9 +16,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="WkA-jD-s5a">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kvb-TS-f1d">
                     <rect key="frame" x="0.0" y="23" width="414" height="713"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="9YY-Ph-CpK"/>
                         <outlet property="delegate" destination="-1" id="cLT-a2-X3S"/>
@@ -37,14 +40,21 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Kvb-TS-f1d" firstAttribute="top" secondItem="saf-Qw-ZxU" secondAttribute="bottom" constant="2" id="1h3-Nt-KN3"/>
+                <constraint firstItem="WkA-jD-s5a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3gJ-uR-xrs"/>
                 <constraint firstAttribute="trailing" secondItem="Kvb-TS-f1d" secondAttribute="trailing" id="60g-qu-WzZ"/>
                 <constraint firstAttribute="bottom" secondItem="Kvb-TS-f1d" secondAttribute="bottom" id="77Z-so-Qv0"/>
                 <constraint firstAttribute="trailing" secondItem="saf-Qw-ZxU" secondAttribute="trailing" id="8C2-3J-Bcj"/>
                 <constraint firstItem="Kvb-TS-f1d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9YT-4B-Pdf"/>
+                <constraint firstItem="WkA-jD-s5a" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Hij-6x-8Bi"/>
+                <constraint firstAttribute="bottom" secondItem="WkA-jD-s5a" secondAttribute="bottom" id="cHK-QI-4G5"/>
+                <constraint firstAttribute="trailing" secondItem="WkA-jD-s5a" secondAttribute="trailing" id="h1F-1Z-6ck"/>
                 <constraint firstItem="saf-Qw-ZxU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pBo-st-cVZ"/>
                 <constraint firstItem="saf-Qw-ZxU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sG1-Sv-wim"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
         </view>
     </objects>
+    <resources>
+        <image name="mainBack.png" width="1080" height="1747"/>
+    </resources>
 </document>

@@ -35,6 +35,7 @@ bool JJCHeroScoreFinish;
     // Do any additional setup after loading the view from its nib.
     
     self.title =self.keyword;
+    self.heroInfosArray = [[NSArray alloc] init];
     
      mainScoreFinish = NO;
      TTHeroScoreFinish = NO;
@@ -482,7 +483,7 @@ bool JJCHeroScoreFinish;
         self.JJCheroInfosArray = [self sortArray:self.JJCheroInfosArray];
 
         
-        self.heroInfosArray = [NSArray arrayWithArray:self.JJCheroInfosArray];
+//        self.heroInfosArray = [NSArray arrayWithArray:self.JJCheroInfosArray];
 
         NSLog(@"heroInfosArray: %@", self.heroInfosArray);
 //        [self.heroInfoTable reloadData];

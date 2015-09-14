@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -111,7 +111,6 @@
                         <constraint firstItem="Wlm-2s-vUX" firstAttribute="centerX" secondItem="tQp-YZ-qKY" secondAttribute="centerX" id="9hS-t7-JiE"/>
                         <constraint firstItem="WrQ-d5-1p4" firstAttribute="height" secondItem="eYH-tg-v38" secondAttribute="height" id="COp-6l-tGF"/>
                         <constraint firstItem="eYH-tg-v38" firstAttribute="height" secondItem="1En-WO-wLs" secondAttribute="height" id="DQX-6D-W6G"/>
-                        <constraint firstAttribute="centerX" secondItem="1En-WO-wLs" secondAttribute="centerX" id="FNi-yd-KTH"/>
                         <constraint firstItem="eYH-tg-v38" firstAttribute="height" secondItem="tEJ-iB-k8u" secondAttribute="height" id="Fjh-CJ-etg"/>
                         <constraint firstItem="Mwc-4g-UCc" firstAttribute="height" secondItem="iaQ-dt-5WF" secondAttribute="height" id="G3i-RU-LuP"/>
                         <constraint firstItem="Wlm-2s-vUX" firstAttribute="top" secondItem="tQp-YZ-qKY" secondAttribute="bottom" constant="-1" id="HJx-jR-tT3"/>
@@ -122,14 +121,11 @@
                         <constraint firstItem="YJZ-dT-EqC" firstAttribute="height" secondItem="Mwc-4g-UCc" secondAttribute="height" id="Lgr-0i-Zhe"/>
                         <constraint firstItem="eYH-tg-v38" firstAttribute="leading" secondItem="Mwc-4g-UCc" secondAttribute="trailing" id="N2V-Ra-A5e"/>
                         <constraint firstItem="Wlm-2s-vUX" firstAttribute="width" secondItem="tQp-YZ-qKY" secondAttribute="width" id="Qwg-Sj-WnX"/>
-                        <constraint firstItem="eYH-tg-v38" firstAttribute="leading" secondItem="yNh-gU-yEr" secondAttribute="leading" constant="17" id="T9I-GY-jvE"/>
-                        <constraint firstItem="iaQ-dt-5WF" firstAttribute="height" secondItem="eYH-tg-v38" secondAttribute="height" id="TTk-Ag-6Yu"/>
                         <constraint firstItem="Mwc-4g-UCc" firstAttribute="width" secondItem="yNh-gU-yEr" secondAttribute="width" multiplier="1:25" id="TfH-Ec-7WM"/>
                         <constraint firstItem="eYH-tg-v38" firstAttribute="width" secondItem="tEJ-iB-k8u" secondAttribute="width" id="Uek-ra-T7D"/>
                         <constraint firstItem="Wlm-2s-vUX" firstAttribute="width" secondItem="BHs-WR-3mk" secondAttribute="width" id="Un5-jd-uiV"/>
                         <constraint firstItem="NAs-Ve-aw7" firstAttribute="centerY" secondItem="Mwc-4g-UCc" secondAttribute="centerY" id="acK-Ym-bit"/>
                         <constraint firstItem="WrQ-d5-1p4" firstAttribute="leading" secondItem="iaQ-dt-5WF" secondAttribute="trailing" id="bm5-La-yXl"/>
-                        <constraint firstAttribute="height" constant="75" id="btw-dG-pGk"/>
                         <constraint firstItem="NAs-Ve-aw7" firstAttribute="height" secondItem="Mwc-4g-UCc" secondAttribute="height" id="dJB-Yl-ymF"/>
                         <constraint firstItem="eYH-tg-v38" firstAttribute="centerX" secondItem="tEJ-iB-k8u" secondAttribute="centerX" id="fkO-X6-BCx"/>
                         <constraint firstItem="rdS-Fw-a0D" firstAttribute="centerX" secondItem="1En-WO-wLs" secondAttribute="centerX" id="gyI-EJ-S0E"/>
@@ -140,13 +136,11 @@
                         <constraint firstItem="Wlm-2s-vUX" firstAttribute="height" secondItem="tQp-YZ-qKY" secondAttribute="height" id="j9O-kO-cAi"/>
                         <constraint firstItem="rdS-Fw-a0D" firstAttribute="top" secondItem="1En-WO-wLs" secondAttribute="bottom" constant="-1" id="k1R-65-eHL"/>
                         <constraint firstItem="tEJ-iB-k8u" firstAttribute="top" secondItem="eYH-tg-v38" secondAttribute="bottom" constant="-1" id="lw0-6M-28A"/>
-                        <constraint firstItem="iaQ-dt-5WF" firstAttribute="width" secondItem="eYH-tg-v38" secondAttribute="width" id="mAl-ft-xcO"/>
                         <constraint firstItem="NAs-Ve-aw7" firstAttribute="width" secondItem="Mwc-4g-UCc" secondAttribute="width" id="mLY-wL-gSq"/>
                         <constraint firstItem="eYH-tg-v38" firstAttribute="centerY" secondItem="1En-WO-wLs" secondAttribute="centerY" id="nGc-Jk-Gnw"/>
                         <constraint firstItem="WrQ-d5-1p4" firstAttribute="centerY" secondItem="eYH-tg-v38" secondAttribute="centerY" id="q3W-m0-6Bk"/>
                         <constraint firstItem="Mwc-4g-UCc" firstAttribute="centerY" secondItem="iaQ-dt-5WF" secondAttribute="centerY" id="qDl-8u-3d3"/>
                         <constraint firstItem="YJZ-dT-EqC" firstAttribute="leading" secondItem="1En-WO-wLs" secondAttribute="trailing" id="rER-Pf-5SC"/>
-                        <constraint firstAttribute="trailing" secondItem="tQp-YZ-qKY" secondAttribute="trailing" constant="17" id="rtv-mp-WkO"/>
                         <constraint firstItem="Wlm-2s-vUX" firstAttribute="height" secondItem="BHs-WR-3mk" secondAttribute="height" id="siZ-oe-hXq"/>
                         <constraint firstItem="iaQ-dt-5WF" firstAttribute="leading" secondItem="tQp-YZ-qKY" secondAttribute="trailing" id="stW-UI-RJU"/>
                         <constraint firstItem="tQp-YZ-qKY" firstAttribute="centerY" secondItem="1En-WO-wLs" secondAttribute="centerY" id="tmJ-x5-i1L"/>
@@ -158,16 +152,6 @@
                         <constraint firstItem="BHs-WR-3mk" firstAttribute="top" secondItem="WrQ-d5-1p4" secondAttribute="bottom" constant="-1" id="xzI-4b-1TP"/>
                         <constraint firstItem="YJZ-dT-EqC" firstAttribute="centerY" secondItem="Mwc-4g-UCc" secondAttribute="centerY" id="za2-kd-SGq"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="btw-dG-pGk"/>
-                            <exclude reference="T9I-GY-jvE"/>
-                            <exclude reference="FNi-yd-KTH"/>
-                            <exclude reference="rtv-mp-WkO"/>
-                            <exclude reference="TTk-Ag-6Yu"/>
-                            <exclude reference="mAl-ft-xcO"/>
-                        </mask>
-                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kap-lo-LDk" userLabel="optionView">
                     <rect key="frame" x="0.0" y="676" width="414" height="60"/>
@@ -266,8 +250,6 @@
                 <constraint firstAttribute="bottom" secondItem="b3J-Fk-RIe" secondAttribute="bottom" id="Xge-UN-05j"/>
                 <constraint firstItem="b3J-Fk-RIe" firstAttribute="height" secondItem="yNh-gU-yEr" secondAttribute="height" multiplier="7:1" id="Zni-rT-Zdd"/>
                 <constraint firstAttribute="trailing" secondItem="kap-lo-LDk" secondAttribute="trailing" id="btz-6Q-meI"/>
-                <constraint firstItem="tEo-ve-eXH" firstAttribute="top" secondItem="yNh-gU-yEr" secondAttribute="top" constant="83" id="dU8-tX-wMp"/>
-                <constraint firstItem="tEo-ve-eXH" firstAttribute="bottom" secondItem="kap-lo-LDk" secondAttribute="bottom" constant="-68" id="eHa-mY-8NI"/>
                 <constraint firstAttribute="bottom" secondItem="kap-lo-LDk" secondAttribute="bottom" id="l8c-XB-Vfq"/>
                 <constraint firstItem="tEo-ve-eXH" firstAttribute="top" secondItem="yNh-gU-yEr" secondAttribute="bottom" id="lgz-tW-NPw"/>
                 <constraint firstItem="b3J-Fk-RIe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mmO-ni-hUN"/>
@@ -276,12 +258,7 @@
                 <constraint firstItem="kap-lo-LDk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yPd-Av-nqU"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="dU8-tX-wMp"/>
-                    <exclude reference="eHa-mY-8NI"/>
-                </mask>
-            </variation>
+            <point key="canvasLocation" x="228" y="198"/>
         </view>
     </objects>
     <resources>
@@ -290,4 +267,9 @@
         <image name="mainBack.png" width="1080" height="1747"/>
         <image name="topBar.png" width="1080" height="166"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

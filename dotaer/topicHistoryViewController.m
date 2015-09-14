@@ -145,6 +145,7 @@
 
     [self.navigationController pushViewController:topicVC animated:YES];
     
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
    
     

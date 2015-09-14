@@ -26,6 +26,7 @@
 @implementation loginViewController
 
 bool emailOK;
+bool nameOK;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +34,7 @@ bool emailOK;
     [[DataCenter sharedDataCenter] setIsGuest:NO];
 
     emailOK = NO;
+    nameOK = NO;
     self.sexInfo = @"";
     
     // Do any additional setup after loading the view from its nib.
@@ -71,6 +73,20 @@ bool emailOK;
 {
     if (textField.tag ==100) {
         
+        if ([self validateName:textField.text]) {
+            nameOK = YES;
+        }else
+        {
+            nameOK = NO;
+            if (![textField.text isEqualToString:@""]) {
+                UIAlertView *nameAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"只接受汉子、字母和数字作为用户名" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [nameAlert show];
+                textField.text = @"";
+            }
+            
+        }
+
+        
         
         CGSize textSize = [textField.text sizeWithAttributes:@{ NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Thin" size:13.0] }];
         if (textSize.width>=textField.frame.size.width) {
@@ -104,6 +120,15 @@ bool emailOK;
     
     return [emailTest evaluateWithObject:candidate];
 }
+
+
+- (BOOL) validateName: (NSString *) candidate {
+    NSString *regex = @"[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]+";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    
+    return [pred evaluateWithObject:candidate];
+}
+
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
@@ -322,6 +347,12 @@ bool emailOK;
         [emailAlert show];
         
         return false;
+    }else if (!nameOK)
+    {
+        UIAlertView *emailAlert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"非法昵称，请修正" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [emailAlert show];
+        
+        return false;
     }
     return true;
     
@@ -526,6 +557,9 @@ bool emailOK;
 -(void)submitDeviceTockenFor:(NSString *)username
 {
     NSString *device = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    if ([device isKindOfClass:[NSNull class]]) {
+        return;
+    }
     NSString *token = [[device description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     

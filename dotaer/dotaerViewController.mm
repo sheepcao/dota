@@ -146,7 +146,7 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager.requestSerializer setTimeoutInterval:20];  //Time out after 25 seconds
+    [manager.requestSerializer setTimeoutInterval:12];  //Time out after 25 seconds
     
     
     [manager POST:topicURL parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
@@ -612,7 +612,7 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager.requestSerializer setTimeoutInterval:20];  //Time out after 25 seconds
+    [manager.requestSerializer setTimeoutInterval:15];  //Time out after 25 seconds
     
     
     [manager POST:registerService parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -1036,7 +1036,7 @@
     hud2.mode = MBProgressHUDModeText;
     hud2.labelText = @"正在搜索...";
 
-    [hud2 hide:YES afterDelay:18];
+    [hud2 hide:YES afterDelay:12];
 //    [self performSelector:@selector(dismissHUD:) withObject:hud2 afterDelay:20.0f];
 
 //    [self performSelectorInBackground:@selector(nearbySearchWithPageIndex:) withObject:[NSNumber numberWithInteger:_curPageIndex]];

@@ -34,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赞:21000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a3-5C-46J">
-                        <rect key="frame" x="324" y="50" width="46" height="21"/>
+                        <rect key="frame" x="325.5" y="52.5" width="46" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="46" id="rt8-AW-qAj"/>
                             <constraint firstAttribute="height" constant="21" id="xpo-UQ-Rev"/>
@@ -43,14 +43,13 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxP-6N-Afi">
-                        <rect key="frame" x="333" y="17" width="28" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxP-6N-Afi">
+                        <rect key="frame" x="336" y="19.5" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="2cd-vL-z9g"/>
-                            <constraint firstAttribute="width" constant="28" id="yfY-bu-MIl"/>
+                            <constraint firstAttribute="height" constant="25" id="2cd-vL-z9g"/>
+                            <constraint firstAttribute="width" constant="25" id="yfY-bu-MIl"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="赞">
+                        <state key="normal" image="like.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -62,11 +61,11 @@
                     <constraint firstItem="HxP-6N-Afi" firstAttribute="centerY" secondItem="uZe-O2-aeX" secondAttribute="centerY" constant="-12" id="226-1K-OAm"/>
                     <constraint firstItem="Xbs-Pp-fpV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="92Y-fj-pef"/>
                     <constraint firstItem="Xbs-Pp-fpV" firstAttribute="centerY" secondItem="uZe-O2-aeX" secondAttribute="centerY" constant="-0.25" id="9t3-fl-lcf"/>
-                    <constraint firstItem="0a3-5C-46J" firstAttribute="top" secondItem="HxP-6N-Afi" secondAttribute="bottom" constant="3" id="FFl-iQ-hS3"/>
+                    <constraint firstItem="0a3-5C-46J" firstAttribute="top" secondItem="HxP-6N-Afi" secondAttribute="bottom" constant="8" id="FFl-iQ-hS3"/>
                     <constraint firstItem="uZe-O2-aeX" firstAttribute="leading" secondItem="Xbs-Pp-fpV" secondAttribute="trailing" constant="1" id="Mti-5D-FBn"/>
                     <constraint firstItem="0a3-5C-46J" firstAttribute="centerX" secondItem="HxP-6N-Afi" secondAttribute="centerX" id="Nx8-Gc-d7L"/>
                     <constraint firstItem="Xbs-Pp-fpV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Zev-3X-xGs"/>
-                    <constraint firstItem="HxP-6N-Afi" firstAttribute="leading" secondItem="uZe-O2-aeX" secondAttribute="trailing" constant="7" id="biS-kW-3lp"/>
+                    <constraint firstItem="HxP-6N-Afi" firstAttribute="leading" secondItem="uZe-O2-aeX" secondAttribute="trailing" constant="10" id="biS-kW-3lp"/>
                     <constraint firstItem="Xbs-Pp-fpV" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="hru-CU-ADB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="HxP-6N-Afi" secondAttribute="trailing" constant="6" id="oXA-nk-SNj"/>
                 </constraints>
@@ -80,4 +79,7 @@
             <point key="canvasLocation" x="268" y="194"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="like.png" width="128" height="128"/>
+    </resources>
 </document>

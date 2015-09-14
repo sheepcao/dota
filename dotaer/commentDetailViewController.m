@@ -23,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.headIMG.layer.cornerRadius = self.headIMG.frame.size.height/2;
+    self.headIMG.layer.cornerRadius = self.headIMG.bounds.size.height/2;
     self.headIMG.layer.masksToBounds = YES;
     
     [self.usernameLabel setText:self.username];

@@ -201,7 +201,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="CdZ-vG-c4f"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.76567639802631571" green="0.91090152138157898" blue="0.87168482730263153" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -211,7 +211,7 @@
                                         <constraint firstAttribute="height" constant="22" id="Dxc-8Y-RRu"/>
                                         <constraint firstAttribute="width" constant="42" id="YZ8-Pv-4HJ"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.76567639802631571" green="0.91090152138157898" blue="0.87168482730263153" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -236,7 +236,7 @@
                                         <constraint firstAttribute="width" secondItem="8Ig-n9-2on" secondAttribute="height" multiplier="45:22" id="50l-pN-Gas"/>
                                         <constraint firstAttribute="width" constant="45" id="XZJ-5x-sSW"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <size key="titleShadowOffset" width="0.69999999999999996" height="1"/>
                                     <state key="normal" title="+关注">
                                         <color key="titleColor" red="1" green="0.68634354440000001" blue="0.27025082239999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -252,7 +252,7 @@
                                         <constraint firstAttribute="width" constant="120" id="QOC-Dl-UN0"/>
                                         <constraint firstAttribute="height" constant="30" id="ySJ-5g-06v"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <color key="textColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
