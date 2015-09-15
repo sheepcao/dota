@@ -178,6 +178,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
+        
+        [MobClick event:@"videoMenu"];
+
         publisherViewController *VideoVC = [[publisherViewController alloc] initWithNibName:@"publisherViewController" bundle:nil];
         
         UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
@@ -187,6 +190,9 @@
         
         
     }else if (indexPath.row == 1) {
+        
+        [MobClick event:@"selfPage"];
+
         
         if([[tableView cellForRowAtIndexPath:indexPath].textLabel.text isEqualToString:@"我的主页"])
         {
@@ -213,6 +219,9 @@
 
     }else if(indexPath.row == 2)
     {
+        
+        [MobClick event:@"todayTopic"];
+
         
         topicsViewController *topicVC = [[topicsViewController alloc] initWithNibName:@"topicsViewController" bundle:nil];
         topicVC.imgDelegate = self;
@@ -280,12 +289,17 @@
 //        [self shareAppTapped];
     }else if (indexPath.row == 3)
     {
+        [MobClick event:@"mySetting"];
+
+        
         settingViewController *settingVC = [[settingViewController alloc] initWithNibName:@"settingViewController" bundle:nil];
         
         UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
         NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
         [temp addObject:settingVC];
         navigationController.viewControllers = temp;
+        
+        
     } else if (indexPath.row == 4)
     {
         searchHomeViewController *scoreSearchVC = [[searchHomeViewController alloc] initWithNibName:@"searchHomeViewController" bundle:nil];
@@ -421,6 +435,8 @@
         [self performSelector:@selector(successUpload:) withObject:picker afterDelay:1.1];
         
         [self.headImage setImage:headIMG];
+        [MobClick event:@"changeHead"];
+
         
         
         
@@ -516,6 +532,9 @@
         NSLog(@"content:%@",[responseObject objectForKey:@"content"]);
 
         [self.signatureTextView setText:[responseObject objectForKey:@"content"]];
+        
+        [MobClick event:@"signature"];
+
 
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

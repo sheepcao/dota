@@ -60,7 +60,7 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"JSON ERROR: %@",  operation.responseString);
+//        NSLog(@"JSON ERROR: %@",  operation.responseString);
         
      
         
@@ -254,7 +254,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"JSON ERROR: %@",  operation.responseString);
+//        NSLog(@"JSON ERROR: %@",  operation.responseString);
     }];
 
 
@@ -276,7 +276,7 @@
     
     [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
-        NSLog(@"Scores: %@", responseObject);
+//        NSLog(@"Scores: %@", responseObject);
         
 
         
@@ -292,7 +292,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"Scores ERROR: %@",  operation.responseString);
+//        NSLog(@"Scores ERROR: %@",  operation.responseString);
 
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -600,11 +600,11 @@
         [[NSUserDefaults standardUserDefaults] setObject:userGameAccount forKey:username];
         
         
-        NSLog(@"JSON: %@", responseObject);
+//        NSLog(@"JSON: %@", responseObject);
         
         [self.TTscoreDelegate fillTTScore:[[responseObject objectForKey:@"TTinfo"] objectForKey:@"TTscore"]];
         
-        NSLog(@"JJCheroFirst: %@", [[responseObject objectForKey:@"JJCinfo"] objectForKey:@"JJCheroFirst"]);
+//        NSLog(@"JJCheroFirst: %@", [[responseObject objectForKey:@"JJCinfo"] objectForKey:@"JJCheroFirst"]);
         
         [self performSelector:@selector(backToSelfInfo) withObject:nil afterDelay:2];
         
@@ -612,8 +612,8 @@
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"JSON ERROR: %@",  operation.responseString);
+//        NSLog(@"Error: %@", error.localizedDescription);
+//        NSLog(@"JSON ERROR: %@",  operation.responseString);
         
         MBProgressHUD *hud1 = (MBProgressHUD *)[self.view viewWithTag:123];
         if (hud1) {

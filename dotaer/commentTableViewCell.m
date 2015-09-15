@@ -95,7 +95,7 @@
             [hud hide:YES afterDelay:1.5];
         }else
         {
-            [self.likeCountLabel setText:[responseObject objectForKey:@"ups_count"]];
+            [self.likeCountLabel setText:[NSString stringWithFormat:@"赞:%@",[responseObject objectForKey:@"ups_count"]]];
             [hud hide:YES];
 
         }

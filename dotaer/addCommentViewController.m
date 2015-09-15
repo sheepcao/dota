@@ -33,6 +33,7 @@
     
     textbodyView = [[UITextView alloc] initWithFrame:CGRectMake(10, 34, SCREEN_WIDTH-20, 150)];
     textbodyView.delegate = self;
+    [textbodyView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:textbodyView];
     
     [textbodyView becomeFirstResponder];
@@ -51,7 +52,7 @@
     
     UIButton *btnNext1 =[[UIButton alloc] init];
     [btnNext1 setTitle:@"取消" forState:UIControlStateNormal];
-    [btnNext1 setTitleColor:[UIColor colorWithRed:47/255.0f green:140/255.0f blue:255/255.0f alpha:1.0] forState:UIControlStateNormal];
+    [btnNext1 setTitleColor:[UIColor colorWithRed:249/255.0f green:249/255.0f blue:249/255.0f alpha:1.0] forState:UIControlStateNormal];
     btnNext1.titleLabel.font = [UIFont systemFontOfSize:18.0f];
     
     btnNext1.frame = CGRectMake(15, 17, 50, 35);
@@ -69,7 +70,7 @@
     
     UIButton *btnNext1 =[[UIButton alloc] init];
     [btnNext1 setTitle:@"发布" forState:UIControlStateNormal];
-    [btnNext1 setTitleColor:[UIColor colorWithRed:47/255.0f green:140/255.0f blue:255/255.0f alpha:1.0] forState:UIControlStateNormal];
+    [btnNext1 setTitleColor:[UIColor colorWithRed:249/255.0f green:249/255.0f blue:249/255.0f alpha:1.0] forState:UIControlStateNormal];
     
     btnNext1.titleLabel.font = [UIFont systemFontOfSize:18.0f];
 

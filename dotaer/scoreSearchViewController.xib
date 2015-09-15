@@ -36,7 +36,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="eYH-tg-v38" secondAttribute="height" multiplier="228:95" id="XGV-LL-r29"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -58,46 +58,46 @@
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEJ-iB-k8u">
                             <rect key="frame" x="16" y="62" width="83" height="34.5"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.077533922697368349" green="0.078073601973684209" blue="0.079795435855263164" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdS-Fw-a0D">
                             <rect key="frame" x="116" y="62" width="83" height="34"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.077533922697368349" green="0.078073601973684209" blue="0.079795435855263164" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总场次" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1En-WO-wLs">
                             <rect key="frame" x="116" y="28" width="83" height="34.5"/>
                             <color key="backgroundColor" red="0.2401315789" green="0.2447060033" blue="0.2447060033" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="胜率" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQp-YZ-qKY">
                             <rect key="frame" x="215" y="28" width="83" height="34.5"/>
                             <color key="backgroundColor" red="0.2401315789" green="0.2447060033" blue="0.2447060033" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MVP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrQ-d5-1p4">
                             <rect key="frame" x="315" y="28" width="83" height="34.5"/>
                             <color key="backgroundColor" red="0.2401315789" green="0.2447060033" blue="0.2447060033" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wlm-2s-vUX">
-                            <rect key="frame" x="215" y="62" width="83" height="34.5"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <rect key="frame" x="205" y="62" width="103" height="34.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.077533922697368349" green="0.078073601973684209" blue="0.079795435855263164" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHs-WR-3mk">
-                            <rect key="frame" x="315" y="62" width="83" height="35"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <rect key="frame" x="305" y="62" width="103" height="35"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.077533922697368349" green="0.078073601973684209" blue="0.079795435855263164" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -120,7 +120,7 @@
                         <constraint firstItem="eYH-tg-v38" firstAttribute="width" secondItem="1En-WO-wLs" secondAttribute="width" id="JvY-cS-aKG"/>
                         <constraint firstItem="YJZ-dT-EqC" firstAttribute="height" secondItem="Mwc-4g-UCc" secondAttribute="height" id="Lgr-0i-Zhe"/>
                         <constraint firstItem="eYH-tg-v38" firstAttribute="leading" secondItem="Mwc-4g-UCc" secondAttribute="trailing" id="N2V-Ra-A5e"/>
-                        <constraint firstItem="Wlm-2s-vUX" firstAttribute="width" secondItem="tQp-YZ-qKY" secondAttribute="width" id="Qwg-Sj-WnX"/>
+                        <constraint firstItem="Wlm-2s-vUX" firstAttribute="width" secondItem="tQp-YZ-qKY" secondAttribute="width" constant="20" id="Qwg-Sj-WnX"/>
                         <constraint firstItem="Mwc-4g-UCc" firstAttribute="width" secondItem="yNh-gU-yEr" secondAttribute="width" multiplier="1:25" id="TfH-Ec-7WM"/>
                         <constraint firstItem="eYH-tg-v38" firstAttribute="width" secondItem="tEJ-iB-k8u" secondAttribute="width" id="Uek-ra-T7D"/>
                         <constraint firstItem="Wlm-2s-vUX" firstAttribute="width" secondItem="BHs-WR-3mk" secondAttribute="width" id="Un5-jd-uiV"/>
@@ -233,6 +233,7 @@
                     <rect key="frame" x="0.0" y="105" width="414" height="571"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" red="0.23921568630000001" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Lhp-GJ-XDc"/>
                         <outlet property="delegate" destination="-1" id="wPs-64-kH5"/>

@@ -12,7 +12,6 @@
 #import "SideMenuViewController.h"
 #import "MFSideMenuContainerViewController.h"
 #import "dotaerViewController.h"
-#import "myMenuViewController.h"
 #import "DataCenter.h"
 
 @interface AppDelegate ()<BMKGeneralDelegate>

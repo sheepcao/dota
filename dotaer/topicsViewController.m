@@ -17,7 +17,10 @@
 #import "commentDetailViewController.h"
 #import "topicHistoryViewController.h"
 
-@interface topicsViewController ()
+#import <GoogleMobileAds/GoogleMobileAds.h>
+
+@interface topicsViewController ()<GADBannerViewDelegate>
+
 
 @property (nonatomic,strong) NSMutableArray *commentsArray;
 
@@ -50,6 +53,19 @@
     [self.imgDelegate cancelNewImg];
     
     self.commentsArray = [[NSMutableArray alloc] init];
+    
+    
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50-64,SCREEN_WIDTH, 50)];
+    self.bannerView.delegate = self;
+    self.bannerView.adUnitID =ADMOB_ID;
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+    
+    [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated

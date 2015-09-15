@@ -47,7 +47,7 @@
     [self.bannerView loadRequest:request];
     //need to recover..............
 
-//    [self.view addSubview:self.bannerView];
+    [self.view addSubview:self.bannerView];
     
     
     

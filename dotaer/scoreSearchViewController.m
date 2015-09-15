@@ -5,6 +5,7 @@
 //  Created by Eric Cao on 9/12/15.
 //  Copyright (c) 2015 sheepcao. All rights reserved.
 //
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 #import "scoreSearchViewController.h"
 #import "AFHTTPRequestOperationManager.h"
@@ -12,7 +13,7 @@
 #import "globalVar.h"
 #import "heroDetailTableViewCell.h"
 
-@interface scoreSearchViewController ()
+@interface scoreSearchViewController ()<GADBannerViewDelegate>
 
 @property (nonatomic ,strong) NSArray *heroInfosArray;
 @property (nonatomic ,strong) NSArray *TTheroInfosArray;
@@ -61,6 +62,17 @@ bool JJCHeroScoreFinish;
 
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
     self.navigationItem.leftBarButtonItem=newBackButton;
+    
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-64-60-50,SCREEN_WIDTH, 50)];
+    self.bannerView.delegate = self;
+    self.bannerView.adUnitID =ADMOB_ID;
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+    
+    [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
     
 
 }
@@ -328,7 +340,25 @@ bool JJCHeroScoreFinish;
             NSLog(@"searching ID:%@",resultString);
             if([resultString isEqualToString:@"YY.d.u"])
             {
-                resultString = @"443732422";
+                if([self.keyword isEqualToString:@"不是故意咯"])
+                {
+                    resultString = @"443732422";
+
+                }else
+                {
+                    MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
+                    
+                    if (hud) {
+                        [hud hide:YES afterDelay:0.5];
+                    }
+                    
+                    MBProgressHUD *hud2 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud2.mode = MBProgressHUDModeText;
+                    hud2.labelText = @"11账号输入有误，请重试";
+                    [hud2 hide:YES afterDelay:1.9];
+                    
+                    [self performSelector:@selector(back) withObject:nil afterDelay:2.0];
+                }
             }
             
             self.userID = resultString;

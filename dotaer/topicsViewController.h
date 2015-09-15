@@ -5,7 +5,7 @@
 //  Created by Eric Cao on 9/2/15.
 //  Copyright (c) 2015 sheepcao. All rights reserved.
 //
-
+@class GADBannerView;
 #import <UIKit/UIKit.h>
 
 @protocol cancelNewImgDelegate <NSObject>
@@ -15,6 +15,8 @@
 @end
 
 @interface topicsViewController : UIViewController
+
+@property(nonatomic, strong)  GADBannerView *bannerView;
 
 @property(nonatomic,weak) id <cancelNewImgDelegate> imgDelegate;
 

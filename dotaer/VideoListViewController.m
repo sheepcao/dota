@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50,SCREEN_WIDTH, 50)];
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50-64,SCREEN_WIDTH, 50)];
     self.bannerView.delegate = self;
     self.bannerView.adUnitID =ADMOB_ID;
     self.bannerView.rootViewController = self;
@@ -41,6 +41,7 @@
     
     
     [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
     //need to recover..............
 
     
@@ -223,8 +224,8 @@
         [moviePlayer setFullscreen:YES animated:YES];
         
         
-
         
+        [MobClick event:@"videoPlay"];
 
 
 

@@ -242,16 +242,19 @@
     self.bannerView.rootViewController = self;
     
     GADRequest *request = [GADRequest request];
+    [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
+
     // Requests test ads on devices you specify. Your test device ID is printed to the console when
     // an ad request is made. GADBannerView automatically returns test ads when running on a
     // simulator.
 //    request.testDevices = @[
 //                            @"df49cbdc51415aab50e8dee3cac69ff5"  // Eric's iPod Touch
 //                            ];
-    [self.bannerView loadRequest:request];
+//    [self.bannerView loadRequest:request];
     
     //need to recover..............
-    [self.view addSubview:self.bannerView];
+//    [self.view addSubview:self.bannerView];
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0+50, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64-50))];
 
@@ -601,7 +604,7 @@
 - (void)userLogin:(NSDictionary *)userinfoDic {
     
     [self.view endEditing:YES];// this will do the trick
-    
+
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
@@ -616,7 +619,8 @@
     
     
     [manager POST:registerService parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        [MobClick event:@"UserLogin"];
+
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"登录成功";
         
@@ -691,6 +695,7 @@
     NSLog(@"isGuest:%d",[[DataCenter sharedDataCenter] isGuest]);
     if ([[DataCenter sharedDataCenter] isGuest]) {
         NSLog(@"isGuest!");
+        
         [self cancelUploadLocation];
 
         return;
@@ -832,15 +837,15 @@
         }
         
 
-        if ([self.myUserInfo.isReviewed isEqualToString:@"no"]) {
-
-
-        }else
-        {
-            [self performSelectorInBackground:@selector(updateUserScores:) withObject:self.myUserInfo.username];
-
-
-        }
+//        if ([self.myUserInfo.isReviewed isEqualToString:@"no"]) {
+//
+//
+//        }else
+//        {
+//            [self performSelectorInBackground:@selector(updateUserScores:) withObject:self.myUserInfo.username];
+//
+//
+//        }
         
         
         
@@ -893,6 +898,9 @@
 -(void)mapTapped:(UIButton *)sender
 {
     if (sender.tag ==0) {
+        
+        [MobClick event:@"MapTap"];
+
         [sender setImage:[UIImage imageNamed:@"list.png"] forState:UIControlStateNormal];
         [self.navigationItem.rightBarButtonItem setCustomView:sender];
 
@@ -1022,13 +1030,9 @@
 
 -(void)searchDotaer
 {
-//    MBProgressHUD *hud = (MBProgressHUD *)[self.containerView viewWithTag:345];
-//
-//    if (hud) {
-//        [hud hide:YES];
-//        
-//    }
-    
+
+    [MobClick event:@"searchDotaer"];
+
     _curPageIndex = 0;
     MBProgressHUD *hud2 = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
     hud2.tag = 456;
@@ -1180,7 +1184,14 @@
 
     BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
     cell.userInfo.text = info.userId;
-    cell.userDistance.text = [NSString stringWithFormat:@"%d米", (int)info.distance];
+    if(info.distance>1000)
+    {
+        cell.userDistance.text = [NSString stringWithFormat:@"%dKM", (int)info.distance/1000];
+        
+    }else
+    {
+        cell.userDistance.text = [NSString stringWithFormat:@"%d米", (int)info.distance];
+    }
     
     NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,info.userId];
 
@@ -1250,7 +1261,10 @@
     return 70;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+    [MobClick event:@"tapUser"];
 
+    
     BMKRadarNearbyInfo *info = [_nearbyInfos objectAtIndex:indexPath.row];
     [self jumpToPlayer:info.userId andDistance:info.distance andGeoInfo:info.pt];
     
@@ -1716,6 +1730,7 @@
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
     NSLog(@"tap annotation!");
+    [MobClick event:@"annoTap"];
     
     myPointAnnotation *anno;
     if ([view.annotation isKindOfClass:[myPointAnnotation class]]) {

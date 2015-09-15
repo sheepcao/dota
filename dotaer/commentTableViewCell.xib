@@ -34,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赞:21000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a3-5C-46J">
-                        <rect key="frame" x="325.5" y="52.5" width="46" height="21"/>
+                        <rect key="frame" x="325" y="52" width="46" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="46" id="rt8-AW-qAj"/>
                             <constraint firstAttribute="height" constant="21" id="xpo-UQ-Rev"/>
@@ -44,12 +44,15 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxP-6N-Afi">
-                        <rect key="frame" x="336" y="19.5" width="25" height="25"/>
+                        <rect key="frame" x="336" y="19" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="2cd-vL-z9g"/>
                             <constraint firstAttribute="width" constant="25" id="yfY-bu-MIl"/>
                         </constraints>
-                        <state key="normal" image="like.png">
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="顶" backgroundImage="like.png">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>

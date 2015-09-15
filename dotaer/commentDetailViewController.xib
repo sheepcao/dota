@@ -58,11 +58,14 @@
                             </variation>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BU-aP-nLN">
-                            <rect key="frame" x="331" y="29.5" width="34" height="33.5"/>
+                            <rect key="frame" x="331" y="29" width="34" height="33.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="5BU-aP-nLN" secondAttribute="height" multiplier="1:1" id="L56-tS-rit"/>
                             </constraints>
-                            <state key="normal" image="like.png">
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="7" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="顶" backgroundImage="like.png">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -128,18 +131,18 @@
                     </variation>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bje-hl-0MC">
-                    <rect key="frame" x="8" y="114" width="398" height="549"/>
+                    <rect key="frame" x="8" y="114" width="398" height="514"/>
                     <color key="textColor" red="0.12864925990000001" green="0.1332236842" blue="0.1246402138" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发表于:2015-09-02  12:30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oy-iJ-82b">
-                    <rect key="frame" x="164" y="695" width="235" height="21"/>
+                    <rect key="frame" x="164" y="660" width="235" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="dVq-zs-lQX"/>
                         <constraint firstAttribute="width" constant="235" id="mI4-01-bWq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.36479749177631576" green="0.35796155427631576" blue="0.36736739309210525" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -156,7 +159,7 @@
                 <constraint firstItem="1oy-iJ-82b" firstAttribute="top" secondItem="Bje-hl-0MC" secondAttribute="bottom" constant="32" id="dIC-VC-l4J"/>
                 <constraint firstAttribute="trailing" secondItem="gdh-qW-qnG" secondAttribute="trailing" id="ehk-dE-O6M"/>
                 <constraint firstAttribute="bottom" secondItem="rdG-Lq-g3T" secondAttribute="bottom" id="kmP-RL-U7H"/>
-                <constraint firstAttribute="bottom" secondItem="1oy-iJ-82b" secondAttribute="bottom" constant="20" id="nEv-Pp-okl"/>
+                <constraint firstAttribute="bottom" secondItem="1oy-iJ-82b" secondAttribute="bottom" constant="55" id="nEv-Pp-okl"/>
                 <constraint firstItem="gdh-qW-qnG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pUq-UQ-Xh1"/>
                 <constraint firstAttribute="centerX" secondItem="Bje-hl-0MC" secondAttribute="centerX" id="xc6-j6-s8n"/>
             </constraints>

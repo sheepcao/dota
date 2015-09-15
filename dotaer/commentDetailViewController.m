@@ -12,8 +12,9 @@
 #import "MBProgressHUD.h"
 #import "DataCenter.h"
 #import "playerPageViewController.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface commentDetailViewController ()
+@interface commentDetailViewController ()<GADBannerViewDelegate>
 
 @end
 
@@ -46,6 +47,17 @@
         [self.likeButton setHidden:NO];
         
     }
+    
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50-64,SCREEN_WIDTH, 50)];
+    self.bannerView.delegate = self;
+    self.bannerView.adUnitID =ADMOB_ID;
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+    
+    [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
     
     
 }

@@ -5,6 +5,7 @@
 //  Created by Eric Cao on 8/20/15.
 //  Copyright (c) 2015 sheepcao. All rights reserved.
 //
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 #import "settingViewController.h"
 #import "globalVar.h"
@@ -13,8 +14,9 @@
 #import "favorViewController.h"
 #import "MBProgressHUD.h"
 
-@interface settingViewController ()
+@interface settingViewController ()<GADBannerViewDelegate>
 
+@property (nonatomic,strong) UISwitch *visibleSwitch;
 @end
 
 @implementation settingViewController
@@ -27,14 +29,24 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
-//    UIVisualEffect *blurEffect_b;
-//    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    
-//    UIVisualEffectView *visualEffectView_b;
-//    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
-//    
-//    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
-//    [self.backIMG addSubview:visualEffectView_b];
+
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50-64,SCREEN_WIDTH, 50)];
+    self.bannerView.delegate = self;
+    self.bannerView.adUnitID =ADMOB_ID;
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+    
+    [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
+    
+    
+    self.visibleSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 80, 15, 100, 30)];
+    self.visibleSwitch.transform = CGAffineTransformMakeScale(1.05, 1.0);
+    
+    [self.visibleSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +76,7 @@
         if (section == 0) {
             return 1;
         }else{
-            return 5;
+            return 6;
         }
     }else{
         
@@ -82,7 +94,7 @@
         }
         else if (section ==3)
         {
-            rowCount = 5;
+            rowCount = 6;
         }
         
         return rowCount;
@@ -92,11 +104,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+    UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //    }
+    
+//    if (self.visibleSwitch.superview) {
+//        [self.visibleSwitch removeFromSuperview];
+//    }
     
     cell.backgroundColor = [UIColor clearColor];
     cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -104,6 +120,9 @@
     
     [cell.textLabel setTextColor:[UIColor colorWithRed:35/255.0f green:35/255.0f blue:35/255.0f alpha:1.0f]];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+    
+    [cell.detailTextLabel setTextColor:[UIColor colorWithRed:35/255.0f green:35/255.0f blue:35/255.0f alpha:1.0f]];
+    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:15.0f];
     
     UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(30, 60, SCREEN_WIDTH-45, 0.75)];
     [bottomLine setBackgroundColor:[UIColor colorWithRed:110/255.0f green:110/255.0f blue:110/255.0f alpha:1.0f]];
@@ -140,6 +159,15 @@
                     [cell.textLabel setText:@"官方QQ:82107815"];
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     
+                }else if (indexPath.row == 5)
+                {
+                    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+                    
+                    
+                    [cell.textLabel setText:[NSString stringWithFormat:@"版本: %@",version]];
+//                    [cell.detailTextLabel setText:version];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    
                 }
 
                 break;
@@ -168,18 +196,16 @@
 
                 [cell.textLabel setText:@"隐身(对他人不可见)"];
                 
-                UISwitch *visibleSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 80, 15, 100, 30)];
-                visibleSwitch.transform = CGAffineTransformMakeScale(1.05, 1.0);
+
                 if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"] isEqualToString:@"yes"]) {
-                    visibleSwitch.on = YES;
+                    self.visibleSwitch.on = YES;
                 }else
                 {
-                    visibleSwitch.on = NO;
+                    self.visibleSwitch.on = NO;
                 }
                 
                 
-                [visibleSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-                [cell addSubview:visibleSwitch];
+                [cell addSubview:self.visibleSwitch];
                 break;
             }
             case 2:
@@ -214,7 +240,17 @@
                     [cell.textLabel setText:@"官方QQ:82107815"];
                     cell.accessoryType = UITableViewCellAccessoryNone;
 
+                }else if (indexPath.row == 5)
+                {
+                    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+
+                    
+                    [cell.textLabel setText:[NSString stringWithFormat:@"版本: %@",version]];
+//                    [cell.detailTextLabel setText:version];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    
                 }
+
                 
                 
                 break;
@@ -319,7 +355,7 @@
                 
                 hud.mode = MBProgressHUDModeText;
                 hud.labelText = @"尚未关注任何人";
-                
+                [hud hide:YES afterDelay:1.2];
                 return;
                 
             }
@@ -328,12 +364,17 @@
         {
             if (indexPath.row == 0) {
                 [self shareAppTapped];
+                
             }if (indexPath.row == 1) {
                 
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:REVIEW_URL]];
+                [MobClick event:@"review"];
+
             }else if (indexPath.row == 2) {
                 
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ALLAPP_URL]];
+                [MobClick event:@"teamApp"];
+
             }else if(indexPath.row == 3)
             {
                 [self contactTapped];
@@ -372,7 +413,8 @@
                     
                     hud.mode = MBProgressHUDModeText;
                     hud.labelText = @"尚未关注任何人";
-                    
+                    [hud hide:YES afterDelay:1.2];
+
                     return;
                     
                 }
@@ -387,9 +429,13 @@
                 }if (indexPath.row == 1) {
                     
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:REVIEW_URL]];
+                    [MobClick event:@"review"];
+
                 }else if (indexPath.row == 2) {
                     
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ALLAPP_URL]];
+                    [MobClick event:@"teamApp"];
+
                 }else if(indexPath.row == 3)
                 {
                     [self contactTapped];
@@ -421,7 +467,7 @@
 -(void)contactTapped
 {
     
-    [MobClick event:@"email"];
+//    [MobClick event:@"email"];
     
     
     MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];

@@ -14,9 +14,23 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainBack.png" translatesAutoresizingMaskIntoConstraints="NO" id="s7S-IS-f6g">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <color key="tintColor" red="0.45628597861842107" green="0.81188322368421051" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="s7S-IS-f6g" secondAttribute="trailing" id="Azn-eg-EDd"/>
+                <constraint firstAttribute="bottom" secondItem="s7S-IS-f6g" secondAttribute="bottom" id="QdK-U7-4be"/>
+                <constraint firstItem="s7S-IS-f6g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YMC-Hy-ZTj"/>
+                <constraint firstItem="s7S-IS-f6g" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="daY-kz-Fdh"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
         </view>
     </objects>
+    <resources>
+        <image name="mainBack.png" width="1080" height="1747"/>
+    </resources>
 </document>

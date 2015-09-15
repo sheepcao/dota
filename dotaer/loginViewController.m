@@ -280,6 +280,8 @@ bool nameOK;
 - (IBAction)beGuest:(UIButton *)sender {
     
     NSLog(@"set guest!!!");
+    [MobClick event:@"BeGuest"];
+
     [[DataCenter sharedDataCenter] setIsGuest:YES];
     
     [self submitDeviceTockenFor:@"SystemAnonymous"];
@@ -515,6 +517,8 @@ bool nameOK;
 
 -(void)successLogin:(NSDictionary *)userInfoDic
 {
+    [MobClick event:@"UserLogin"];
+
     
     [[DataCenter sharedDataCenter] setIsGuest:NO];
     [[DataCenter sharedDataCenter] setNeedLoginDefault:NO];

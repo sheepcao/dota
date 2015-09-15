@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="THP-33-Don">
-                        <rect key="frame" x="8" y="8" width="53" height="53.5"/>
+                        <rect key="frame" x="8" y="14" width="42" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="53.5" id="WgF-YC-VNA"/>
-                            <constraint firstAttribute="width" constant="53" id="sCT-8a-mu4"/>
+                            <constraint firstAttribute="height" constant="42" id="WgF-YC-VNA"/>
+                            <constraint firstAttribute="width" constant="42" id="sCT-8a-mu4"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="场次:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDy-va-QUH">

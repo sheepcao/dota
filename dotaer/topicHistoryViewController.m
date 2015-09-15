@@ -12,8 +12,10 @@
 #import "topicHistoryTableViewCell.h"
 #import "topicsViewController.h"
 #import "globalVar.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
-@interface topicHistoryViewController ()
+@interface topicHistoryViewController ()<GADBannerViewDelegate>
+
 
 @property (nonatomic, strong) NSArray *topicsArray;
 
@@ -23,9 +25,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [MobClick event:@"topicHistory"];
+
     // Do any additional setup after loading the view from its nib.
     self.title = @"往期话题";
     [self requestHistoricTopics];
+    
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50-64,SCREEN_WIDTH, 50)];
+    self.bannerView.delegate = self;
+    self.bannerView.adUnitID =ADMOB_ID;
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+    
+    [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
     
 }
 

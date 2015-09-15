@@ -5,10 +5,13 @@
 //  Created by Eric Cao on 9/12/15.
 //  Copyright (c) 2015 sheepcao. All rights reserved.
 //
-
+@class GADBannerView;
 #import <UIKit/UIKit.h>
 
 @interface scoreSearchViewController : UIViewController
+
+@property(nonatomic, strong)  GADBannerView *bannerView;
+
 @property (weak, nonatomic) IBOutlet UITableView *heroInfoTable;
 
 @property (strong, nonatomic) NSString *keyword;
@@ -25,4 +28,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *MVPsLabel;
 
 
+-(void)requestExtroInfoWithUser:(NSString *)username;
 @end

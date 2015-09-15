@@ -28,9 +28,11 @@
 @property (nonatomic,strong) NSMutableArray *visitorArray;
 @property (nonatomic,strong) NSMutableArray *createTimeArray;
 
-@property (nonatomic,strong) NSMutableDictionary *JJCinfoDic;
-@property (nonatomic,strong) NSMutableDictionary *TTinfoDic;
-@property (nonatomic,strong) NSMutableDictionary *MJinfoDic;
+@property (nonatomic,strong) NSDictionary *JJCinfoDic;
+@property (nonatomic,strong) NSDictionary *TTinfoDic;
+@property (nonatomic,strong) NSDictionary *MJinfoDic;
+@property (nonatomic,strong) NSDictionary *AllinfoDic;
+
 @property (nonatomic,strong) NSMutableDictionary *playerLevelInfoDic;
 
 @property (nonatomic,strong) NSMutableDictionary *cellDic;
@@ -47,10 +49,12 @@
 @synthesize contentView;
 @synthesize invisibleTextFiled;
 
+bool needRefresh;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    needRefresh = NO;
     [self.navigationController.navigationItem.backBarButtonItem setTitle:@"附近"];
     self.title = self.playerName;
     
@@ -154,7 +158,8 @@
 //    [self.jjcBtn setEnabled:NO];
 //    [self.mjBtn setEnabled:NO];
 
-    
+    [self requestPlayerInfo];
+
     
     
 
@@ -164,7 +169,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self requestPlayerInfo];
+    if(needRefresh)
+    {
+        [self requestPlayerInfo];
+        needRefresh = NO;
+    }
 
 }
 
@@ -214,15 +223,16 @@
 //    levelInfoViewController *levelInfo = [[levelInfoViewController alloc] initWithNibName:@"levelInfoViewController" bundle:nil];
 //
     submitScoreViewController *levelInfo = [[submitScoreViewController alloc] initWithNibName:@"submitScoreViewController" bundle:nil];
-//
     
     [self presentViewController:levelInfo animated:YES completion:nil];
+    needRefresh = YES;
 }
 
 
 -(void)requestPlayerInfo
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.tag = 123;
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.dimBackground = YES;
     
@@ -236,11 +246,10 @@
     
     [manager POST:playerInfoService parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
-        [hud hide:YES];
 
         NSLog(@"JSON player info: %@", responseObject);
         
-        [self setupPageWithDic:responseObject];
+        [self setupPageWithDic:responseObject withHUD:hud];
         
 
         
@@ -302,7 +311,7 @@
 }
 
 
--(void)setupPageWithDic:(NSDictionary *)dic
+-(void)setupPageWithDic:(NSDictionary *)dic withHUD:(MBProgressHUD *)hud
 {
 //    NSString *headPath = [imagePath stringByAppendingString:self.playerName];
     NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,self.playerName];
@@ -322,19 +331,19 @@
     
     [self.headImage setImageWithURL:url placeholderImage:defaultHead];
 
-//    NSData *data = [NSData dataWithContentsOfURL:url];
-//    UIImage *img;
-//    if (data) {
-//        img = [[UIImage alloc] initWithData:data];
-//    }else
-//    {
-//        img = [UIImage imageNamed:@"defaultHead"];
-//    }
-//    [self.headImage setImage:img];
+
     
     [self.ageLabel setText:[NSString stringWithFormat:@"%@岁",[dic objectForKey:@"age"]]];
     [self.sexImage setImage:[UIImage imageNamed:[dic objectForKey:@"sex"]]];
-    [self.distanceLabel setText:[NSString stringWithFormat:@"%ld米",(unsigned long)self.distance]];
+  
+    if(self.distance>1000)
+    {
+        [self.distanceLabel setText:[NSString stringWithFormat:@"%ldKM",(unsigned long)self.distance/1000]];
+
+    }else
+    {
+          [self.distanceLabel setText:[NSString stringWithFormat:@"%ld米",(unsigned long)self.distance]];
+    }
     
     if ([[dic objectForKey:@"content"] isKindOfClass:[NSNull class]] || [[dic objectForKey:@"content"] isEqualToString:@"编辑个人签名..."]) {
         [self.signatureLabel setText:@"签名的力气都用去打dota了!"];
@@ -361,20 +370,14 @@
         
         UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:noRecordView.frame];
         [noRecordLabel setText:@"暂未战绩认证"];
-        [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
+        [noRecordLabel setTextColor:[UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f]];
         noRecordLabel.textAlignment = NSTextAlignmentCenter;
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
         UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
         [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
 //        
-//        UIVisualEffect *blurEffect;
-//        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//        UIVisualEffectView *visualEffectView2;
-//        visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//        visualEffectView2.frame = backIMG.bounds;
-//        [backIMG addSubview:visualEffectView2];
-//        NSLog(@"77777777");
+
 
         [noRecordView addSubview:backIMG];
         [noRecordView addSubview:noRecordLabel];
@@ -394,6 +397,9 @@
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"战绩认证" style:UIBarButtonItemStylePlain target:self action:@selector(updateLevel)];
         }
         
+        [hud hide:YES];
+
+        
     }else
     {
         [self.ttBtn setEnabled:YES];
@@ -412,10 +418,16 @@
         
         [self.notConfirmLevel setHidden:YES];
         self.playerLevelInfoDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        self.JJCinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"JJCinfo"]];
-        self.TTinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"TTinfo"]];
-        self.MJinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"MJinfo"]];
-        [self.infoTableView reloadData];
+        
+        [self requestExtroInfoWithUser:[dic objectForKey:@"gameName"]];
+
+
+//        
+//        
+//        self.JJCinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"JJCinfo"]];
+//        self.TTinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"TTinfo"]];
+//        self.MJinfoDic = [NSMutableDictionary dictionaryWithDictionary:[dic objectForKey:@"MJinfo"]];
+//        [self.infoTableView reloadData];
     }
 //
 //
@@ -585,19 +597,9 @@
         
         [cell.userHeadImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"defaultHead.png"]];
 
-//        NSData *data = [NSData dataWithContentsOfURL:url];
-//        UIImage *img;
-//        
-//        if (data) {
-//            img = [[UIImage alloc] initWithData:data];
-//        }else
-//        {
-//            img = [UIImage imageNamed:@"defaultHead"];
-//        }
-//        
-//        [cell.userHeadImage setImage:img];
+
         
-        [cell.cellNumber setText:[NSString stringWithFormat:@"%lu.",self.notesArray.count - indexPath.row]];
+        [cell.cellNumber setText:[NSString stringWithFormat:@"%u.",self.notesArray.count - indexPath.row]];
         
         if (![self.visitorArray[indexPath.row] isEqualToString: @"匿名游客"]) {
             cell.visitorDetailBtn.tag = indexPath.row;
@@ -661,7 +663,7 @@
                 if (noRecordView) {
                     [noRecordView removeFromSuperview];
                 }
-                if ([[self.TTinfoDic objectForKey:@"TTscore"] isKindOfClass:[NSNull class]] || ![self.TTinfoDic objectForKey:@"TTscore"]) {
+                if ([[self.AllinfoDic objectForKey:@"ttInfos"] isKindOfClass:[NSNull class]] || ![self.AllinfoDic objectForKey:@"rating"]) {
                     
                     UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
                     noRecordView.tag = 888;
@@ -694,25 +696,25 @@
                     
                     
                     [achieveCell.scoreType setText:@"天梯积分"];
-                    [achieveCell.scoreLabel setText:[self.TTinfoDic objectForKey:@"TTscore"]];
-                    [achieveCell.totalGameLabel setText:[self.TTinfoDic objectForKey:@"TTtotal"]];
-                    [achieveCell.mvpLabel setText:[self.TTinfoDic objectForKey:@"TTmvp"]];
-                    [achieveCell.pianjiangLabel setText:[self.TTinfoDic objectForKey:@"TTPianJiang"]];
-                    [achieveCell.podiLabel setText:[self.TTinfoDic objectForKey:@"TTPoDi"]];
-                    [achieveCell.pojunLabel setText:[self.TTinfoDic objectForKey:@"TTPoJun"]];
-                    [achieveCell.yinghunLabel setText:[self.TTinfoDic objectForKey:@"TTYingHun"]];
-                    [achieveCell.buwangLabel setText:[self.TTinfoDic objectForKey:@"TTBuWang"]];
-                    [achieveCell.fuhaoLabel setText:[self.TTinfoDic objectForKey:@"TTFuHao"]];
-                    [achieveCell.doubleKillLabel setText:[self.TTinfoDic objectForKey:@"TTDoubleKill"]];
-                    [achieveCell.tripleKillLabel setText:[self.TTinfoDic objectForKey:@"TTTripleKill"]];
-                    [achieveCell.winRatioLabel setText:[self.TTinfoDic objectForKey:@"TTWinRatio"]];
+                    [achieveCell.scoreLabel setText:[NSString stringWithFormat:@"%d",[[self.AllinfoDic objectForKey:@"rating"] intValue]]];
+                    [achieveCell.totalGameLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"Total"] intValue]]];
+                    [achieveCell.mvpLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"MVP"] intValue]]];
+                    [achieveCell.pianjiangLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"PianJiang"] intValue]]];
+                    [achieveCell.podiLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"PoDi"] intValue]]];
+                    [achieveCell.pojunLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"PoJun"] intValue]]];
+                    [achieveCell.yinghunLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"YingHun"] intValue]]];
+                    [achieveCell.buwangLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"BuWang"] intValue]]];
+                    [achieveCell.fuhaoLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"FuHao"] intValue]]];
+                    [achieveCell.doubleKillLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"DoubleKill"] intValue]]];
+                    [achieveCell.tripleKillLabel setText:[NSString stringWithFormat:@"%d",[[self.TTinfoDic objectForKey:@"TripleKill"] intValue]]];
+                    [achieveCell.winRatioLabel setText:[self.TTinfoDic objectForKey:@"R_Win"]];
                     
                     
-                    [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroFirst"]]];
-                    [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroSecond"]]];
-                    [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"TTheroThird"]]];
+                    [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"AdeptHero1"]]];
+                    [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"AdeptHero2"]]];
+                    [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.TTinfoDic objectForKey:@"AdeptHero3"]]];
                     
-//                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
+                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
                     
  
                 }
@@ -724,7 +726,7 @@
                 if (noRecordView) {
                     [noRecordView removeFromSuperview];
                 }
-                if ([[self.JJCinfoDic objectForKey:@"JJCscore"] isKindOfClass:[NSNull class]] || ![self.JJCinfoDic objectForKey:@"JJCscore"]) {
+                if ([[self.AllinfoDic objectForKey:@"jjcInfos"] isKindOfClass:[NSNull class]] || ![self.AllinfoDic objectForKey:@"jjcRating"]) {
                     
                     UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
                     noRecordView.tag = 888;
@@ -753,26 +755,26 @@
                 {
                     
                     [achieveCell.scoreType setText:@"竞技场积分"];
-                [achieveCell.scoreLabel setText:[self.JJCinfoDic objectForKey:@"JJCscore"]];
-                [achieveCell.totalGameLabel setText:[self.JJCinfoDic objectForKey:@"JJCtotal"]];
-                [achieveCell.mvpLabel setText:[self.JJCinfoDic objectForKey:@"JJCmvp"]];
-                [achieveCell.pianjiangLabel setText:[self.JJCinfoDic objectForKey:@"JJCPianJiang"]];
-                [achieveCell.podiLabel setText:[self.JJCinfoDic objectForKey:@"JJCPoDi"]];
-                [achieveCell.pojunLabel setText:[self.JJCinfoDic objectForKey:@"JJCPoJun"]];
-                [achieveCell.yinghunLabel setText:[self.JJCinfoDic objectForKey:@"JJCYingHun"]];
-                [achieveCell.buwangLabel setText:[self.JJCinfoDic objectForKey:@"JJCBuWang"]];
-                [achieveCell.fuhaoLabel setText:[self.JJCinfoDic objectForKey:@"JJCFuHao"]];
-                [achieveCell.doubleKillLabel setText:[self.JJCinfoDic objectForKey:@"JJCDoubleKill"]];
-                [achieveCell.tripleKillLabel setText:[self.JJCinfoDic objectForKey:@"JJCTripleKill"]];
-                [achieveCell.winRatioLabel setText:[self.JJCinfoDic objectForKey:@"JJCWinRatio"]];
+                [achieveCell.scoreLabel setText:[NSString stringWithFormat:@"%d",[[self.AllinfoDic objectForKey:@"jjcRating"] intValue]]];
+                [achieveCell.totalGameLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"Total"] intValue]]];
+                [achieveCell.mvpLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"MVP"] intValue]]];
+                [achieveCell.pianjiangLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"PianJiang"] intValue]]];
+                [achieveCell.podiLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"PoDi"] intValue]]];
+                [achieveCell.pojunLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"PoJun"] intValue]]];
+                [achieveCell.yinghunLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"YingHun"] intValue]]];
+                [achieveCell.buwangLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"BuWang"] intValue]]];
+                [achieveCell.fuhaoLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"FuHao"] intValue]]];
+                [achieveCell.doubleKillLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"DoubleKill"] intValue]]];
+                [achieveCell.tripleKillLabel setText:[NSString stringWithFormat:@"%d",[[self.JJCinfoDic objectForKey:@"TripleKill"] intValue]]];
+                [achieveCell.winRatioLabel setText:[self.JJCinfoDic objectForKey:@"R_Win"]];
                 
                 
-                [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroFirst"]]];
-                [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroSecond"]]];
-                [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"JJCheroThird"]]];
+                [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"AdeptHero1"]]];
+                [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"AdeptHero2"]]];
+                [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.JJCinfoDic objectForKey:@"AdeptHero3"]]];
                     
                     
-//                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
+                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
 
                 }
                 
@@ -784,7 +786,7 @@
                 if (noRecordView) {
                     [noRecordView removeFromSuperview];
                 }
-                if ([[self.MJinfoDic objectForKey:@"MJscore"] isKindOfClass:[NSNull class]] || ![self.MJinfoDic objectForKey:@"MJscore"]) {
+                if ([[self.AllinfoDic objectForKey:@"mjInfos"] isKindOfClass:[NSNull class]] || ![self.MJinfoDic objectForKey:@"MingJiang"]) {
                     UIView *noRecordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.infoTableView.frame.size.width, self.infoTableView.frame.size.height)];
                     noRecordView.tag = 888;
                     
@@ -809,26 +811,26 @@
                     
                     
                     [achieveCell.scoreType setText:@"名将等级"];
-                    [achieveCell.scoreLabel setText:[self.MJinfoDic objectForKey:@"MJscore"]];
-                    [achieveCell.totalGameLabel setText:[self.MJinfoDic objectForKey:@"MJtotal"]];
-                    [achieveCell.mvpLabel setText:[self.MJinfoDic objectForKey:@"MJmvp"]];
-                    [achieveCell.pianjiangLabel setText:[self.MJinfoDic objectForKey:@"MJPianJiang"]];
-                    [achieveCell.podiLabel setText:[self.MJinfoDic objectForKey:@"MJPoDi"]];
-                    [achieveCell.pojunLabel setText:[self.MJinfoDic objectForKey:@"MJPoJun"]];
-                    [achieveCell.yinghunLabel setText:[self.MJinfoDic objectForKey:@"MJYingHun"]];
-                    [achieveCell.buwangLabel setText:[self.MJinfoDic objectForKey:@"MJBuWang"]];
-                    [achieveCell.fuhaoLabel setText:[self.MJinfoDic objectForKey:@"MJFuHao"]];
-                    [achieveCell.doubleKillLabel setText:[self.MJinfoDic objectForKey:@"MJDoubleKill"]];
-                    [achieveCell.tripleKillLabel setText:[self.MJinfoDic objectForKey:@"MJTripleKill"]];
-                    [achieveCell.winRatioLabel setText:[self.MJinfoDic objectForKey:@"MJWinRatio"]];
+                    [achieveCell.scoreLabel setText:[self.MJinfoDic objectForKey:@"MingJiang"]];
+                    [achieveCell.totalGameLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"Total"] intValue]]];
+                    [achieveCell.mvpLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"MVP"] intValue]]];
+                    [achieveCell.pianjiangLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"PianJiang"] intValue]]];
+                    [achieveCell.podiLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"PoDi"] intValue]]];
+                    [achieveCell.pojunLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"PoJun"] intValue]]];
+                    [achieveCell.yinghunLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"YingHun"] intValue]]];
+                    [achieveCell.buwangLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"BuWang"] intValue]]];
+                    [achieveCell.fuhaoLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"FuHao"] intValue]]];
+                    [achieveCell.doubleKillLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"DoubleKill"] intValue]]];
+                    [achieveCell.tripleKillLabel setText:[NSString stringWithFormat:@"%d",[[self.MJinfoDic objectForKey:@"TripleKill"] intValue]]];
+                    [achieveCell.winRatioLabel setText:[self.MJinfoDic objectForKey:@"R_Win"]];
                     
                     
-                    [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroFirst"]]];
-                    [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroSecond"]]];
-                    [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"MJheroThird"]]];
+                    [achieveCell.heroFirstImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"AdeptHero1"]]];
+                    [achieveCell.heroSecondImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"AdeptHero2"]]];
+                    [achieveCell.heroThirdImg setImageWithURL:[self loadheroImg:[self.MJinfoDic objectForKey:@"AdeptHero3"]]];
                     
                     
-//                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
+                    [achieveCell.heroDetailButton addTarget:self action:@selector(heroDetail:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }
 
@@ -865,7 +867,8 @@
     scoreSearchVC.keyword = gameName;
     [self.navigationController pushViewController:scoreSearchVC animated:YES];
 
-    
+    [MobClick event:@"heroDetail"];
+
 }
 
 -(void)visotorDetail:(UIButton *)sender
@@ -1073,7 +1076,7 @@
         
         UILabel *noRecordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, noRecordView.frame.size.width, 100)];
         [noRecordLabel setText:@"暂无留言"];
-        [noRecordLabel setTextColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f]];
+        [noRecordLabel setTextColor:[UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f]];
         noRecordLabel.textAlignment = NSTextAlignmentCenter;
         [noRecordLabel setBackgroundColor:[UIColor clearColor]];
         
@@ -1082,9 +1085,9 @@
         [noteBtn addTarget:self action:@selector(leaveMesg) forControlEvents:UIControlEventTouchUpInside];
         noteBtn.layer.cornerRadius = 10.0f;
         noteBtn.layer.borderWidth = 0.7f;
-        noteBtn.layer.borderColor = [UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f].CGColor;
+        noteBtn.layer.borderColor = [UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f].CGColor;
         
-        [noteBtn setTitleColor:[UIColor colorWithRed:138/255.0f green:211/255.0f blue:221/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [noteBtn setTitleColor:[UIColor colorWithRed:21/255.0f green:21/255.0f blue:21/255.0f alpha:1.0f] forState:UIControlStateNormal];
         
         UIImageView *backIMG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, noRecordView.frame.size.width, noRecordView.frame.size.height)];
         [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
@@ -1226,6 +1229,336 @@
 
     
 }
+
+
+
+
+#pragma mark request score from yaoyao
+
+-(void)requestExtroInfoWithUser:(NSString *)username
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+    [manager.requestSerializer setTimeoutInterval:30];
+    
+    
+    
+    NSString *infoURLstring = @"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=";
+    
+    //    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject){} failure:^(AFHTTPRequestOperation *operation, NSError *error){}];
+    //
+    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+        
+        NSString *VIEWSTATEGENERATOR = [self pickVIEWSTATEGENERATOR:responseObject];
+        NSString *VIEWSTATE = [self pickVIEWSTATE:responseObject];
+        NSString *EVENTVALIDATION = [self pickEVENTVALIDATION:responseObject];
+        
+        NSLog(@"VIEWSTATE--%@\nVIEWSTATEGENERATOR--%@\nEVENTVALIDATION--%@\n",VIEWSTATE,VIEWSTATEGENERATOR,EVENTVALIDATION);
+        
+        [self requestUserID:VIEWSTATE :VIEWSTATEGENERATOR :EVENTVALIDATION :@"不是故意咯" :@"xuechan99" :username];
+        
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        
+        
+    }];
+}
+
+-(NSString *)pickVIEWSTATEGENERATOR:(NSData *)responseObject
+{
+    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+    NSLog(@"response: %@", aString);
+    NSError *error2;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__VIEWSTATEGENERATOR\" value=\"(.+)\"" options:0 error:&error2];
+    if (regex != nil) {
+        
+        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
+        
+        if (firstMatch) {
+            
+            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
+            
+            //从urlString当中截取数据
+            
+            NSString *result=[aString substringWithRange:resultRange];
+            
+            //输出结果
+            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSLog(@"result-------%@",result);
+            
+            
+            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
+            if(resultArray.count>1)
+            {
+                NSString *string1 = resultArray[1] ;
+                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
+                
+                NSLog(@"resultString = %@",resultString);
+                return resultString;
+            }
+            
+            
+        }
+    }
+    
+    return nil;
+}
+
+
+-(NSString *)pickVIEWSTATE:(NSData *)responseObject
+{
+    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+    NSLog(@"response: %@", aString);
+    NSError *error2;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__VIEWSTATE\" value=\"(.+)\"" options:0 error:&error2];
+    if (regex != nil) {
+        
+        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
+        
+        if (firstMatch) {
+            
+            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
+            
+            //从urlString当中截取数据
+            
+            NSString *result=[aString substringWithRange:resultRange];
+            
+            //输出结果
+            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSLog(@"result-------%@",result);
+            
+            
+            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
+            if(resultArray.count>1)
+            {
+                NSString *string1 = resultArray[1] ;
+                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
+                
+                NSLog(@"resultString = %@",resultString);
+                return resultString;
+                
+            }
+            
+            
+        }
+    }
+    
+    return nil;
+}
+
+-(NSString *)pickEVENTVALIDATION:(NSData *)responseObject
+{
+    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+    NSLog(@"response: %@", aString);
+    NSError *error2;
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__EVENTVALIDATION\" value=\"(.+)\"" options:0 error:&error2];
+    if (regex != nil) {
+        
+        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
+        
+        if (firstMatch) {
+            
+            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
+            
+            //从urlString当中截取数据
+            
+            NSString *result=[aString substringWithRange:resultRange];
+            
+            //输出结果
+            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSLog(@"result-------%@",result);
+            
+            
+            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
+            if(resultArray.count>1)
+            {
+                NSString *string1 = resultArray[1] ;
+                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
+                
+                NSLog(@"resultString = %@",resultString);
+                return resultString;
+            }
+            
+            
+        }
+    }
+    
+    return nil;
+}
+
+
+-(void)requestUserID:(NSString *)VIEWSTATE :(NSString *)VIEWSTATEGENERATOR :(NSString *)EVENTVALIDATION :(NSString *)username :(NSString *)password :(NSString *)searchName
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+    
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+    
+    [manager.requestSerializer setValue:@"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=" forHTTPHeaderField:@"Referer"];
+    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    
+    
+    
+    [manager.requestSerializer setTimeoutInterval:30];
+    
+    
+    NSString *infoURLstring = @"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=";
+    
+    NSDictionary *parameters = @{@"__VIEWSTATE":VIEWSTATE,@"__VIEWSTATEGENERATOR":VIEWSTATEGENERATOR,@"__EVENTVALIDATION":EVENTVALIDATION,@"txtUser":username,@"txtPassWord":password,@"butLogin":@"登录"};
+    
+    NSLog(@"parameters:%@",parameters);
+    
+    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+        
+        
+        [self requestSearchUserID:searchName];
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+    }];
+    
+    
+    
+}
+
+-(void)requestSearchUserID:(NSString *)searchName
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+    [manager.requestSerializer setTimeoutInterval:30];
+    
+    
+    
+    NSString *name =[searchName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *infoURLstring = [NSString stringWithFormat:@"http://i.5211game.com/Rating/Ladder?u=%@",name];
+    
+    
+    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+        
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"result: %@", result);
+        
+        
+        
+        NSArray *resultArray = [result componentsSeparatedByString:@"YY.d.j = "];
+        
+        NSLog(@"resultArray.count = %ld",(unsigned long)resultArray.count);
+        if (resultArray.count>1) {
+            NSString *resultString = [resultArray[1]componentsSeparatedByString:@",YY.d.k"][0];
+            NSLog(@"searching ID:%@",resultString);
+            if([resultString isEqualToString:@"YY.d.u"])
+            {
+                resultString = @"443732422";
+            }
+            
+            [self requestScores:resultString];
+            
+        }
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        
+        
+    }];
+}
+
+-(void)requestScores:(NSString *)userID
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:30];
+    
+    NSTimeInterval stamp = [[NSDate date] timeIntervalSince1970];
+    
+    NSString *infoURLstring = [NSString stringWithFormat:@"http://i.5211game.com/request/rating/?r=%.0f",stamp*1000];
+    
+    NSDictionary *parameters = @{@"method": @"getrating",@"u":userID,@"t":@"10001"};
+    
+    
+    
+    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+//        NSLog(@"Scores: %@", responseObject);
+        
+        
+        self.AllinfoDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+
+        
+        self.JJCinfoDic = [responseObject objectForKey:@"jjcInfos"];
+        self.TTinfoDic = [responseObject objectForKey:@"ttInfos"];
+        self.MJinfoDic = [responseObject objectForKey:@"mjInfos"];
+        [self.infoTableView reloadData];
+        
+        
+        
+        MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
+        
+        if (hud) {
+            [hud hide:YES afterDelay:0.5];
+        }
+        
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [storage cookies])
+        {
+            [storage deleteCookie:cookie];
+        }
+        
+        
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"Scores ERROR: %@",  operation.responseString);
+        
+        MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
+        
+        if (hud) {
+            [hud hide:YES afterDelay:0.5];
+        }
+        
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [storage cookies])
+        {
+            [storage deleteCookie:cookie];
+        }
+    }];
+    
+}
+
+
+
 
 - (BOOL)shouldAutorotate {
     return NO;

@@ -5,12 +5,14 @@
 //  Created by Eric Cao on 9/14/15.
 //  Copyright (c) 2015 sheepcao. All rights reserved.
 //
-
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "searchHomeViewController.h"
 #import "scoreSearchViewController.h"
 #import "MBProgressHUD.h"
+#import "globalVar.h"
 
-@interface searchHomeViewController ()
+@interface searchHomeViewController ()<GADBannerViewDelegate>
+
 
 @end
 
@@ -21,6 +23,17 @@
     // Do any additional setup after loading the view from its nib.
     
     self.title = @"战绩小秘书";
+    
+    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 50)];
+    self.bannerView.delegate = self;
+    self.bannerView.adUnitID =ADMOB_ID;
+    self.bannerView.rootViewController = self;
+    
+    GADRequest *request = [GADRequest request];
+    
+    
+    [self.bannerView loadRequest:request];
+    [self.view addSubview:self.bannerView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +44,9 @@
 
 
 - (IBAction)search {
+    
+    [MobClick event:@"searchScore"];
+
     
     [self.view endEditing:YES];// this will do the trick
 
