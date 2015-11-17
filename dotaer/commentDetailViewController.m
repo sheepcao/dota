@@ -28,7 +28,8 @@
     self.headIMG.layer.masksToBounds = YES;
     
     [self.usernameLabel setText:self.username];
-    
+    [self.commentTime setText:self.comment_Date];
+
     NSString *headPath = [NSString stringWithFormat:@"%@%@.png",imagePath,self.username];
     
     NSURL *url = [NSURL URLWithString:[headPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

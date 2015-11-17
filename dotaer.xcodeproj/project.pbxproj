@@ -82,7 +82,6 @@
 		A438D84F1BA171A900D85541 /* mainBack.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8481BA171A900D85541 /* mainBack.png */; };
 		A438D8501BA171A900D85541 /* sideBar.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D8491BA171A900D85541 /* sideBar.png */; };
 		A438D8511BA171A900D85541 /* titleLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D84A1BA171A900D85541 /* titleLabel.png */; };
-		A438D8521BA171A900D85541 /* topBar.png in Resources */ = {isa = PBXBuildFile; fileRef = A438D84B1BA171A900D85541 /* topBar.png */; };
 		A44562A51B9C0B650024D97D /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = A44562A41B9C0B650024D97D /* new.png */; };
 		A447FE9C1B4A198B0053D982 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9B1B4A198B0053D982 /* main.m */; };
 		A447FE9F1B4A198B0053D982 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447FE9E1B4A198B0053D982 /* AppDelegate.mm */; };
@@ -104,6 +103,7 @@
 		A452ABDA1B7894640067F004 /* userAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A452ABD81B7894640067F004 /* userAgreementViewController.m */; };
 		A452ABDB1B7894640067F004 /* userAgreementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A452ABD91B7894640067F004 /* userAgreementViewController.xib */; };
 		A45F545E1B78E8E400761872 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A45F545D1B78E8E400761872 /* Images-2.xcassets */; };
+		A46765271BCBA1F4009722BB /* topBar.png in Resources */ = {isa = PBXBuildFile; fileRef = A46765261BCBA1F4009722BB /* topBar.png */; };
 		A46EA7841B86157B004FF955 /* WatchVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46EA7821B86157B004FF955 /* WatchVideoViewController.m */; };
 		A46EA7851B86157B004FF955 /* WatchVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46EA7831B86157B004FF955 /* WatchVideoViewController.xib */; };
 		A476A24F1B75A1B2007D86C7 /* jjc0.png in Resources */ = {isa = PBXBuildFile; fileRef = A476A2461B75A1B2007D86C7 /* jjc0.png */; };
@@ -361,7 +361,6 @@
 		A438D8481BA171A900D85541 /* mainBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainBack.png; sourceTree = "<group>"; };
 		A438D8491BA171A900D85541 /* sideBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sideBar.png; sourceTree = "<group>"; };
 		A438D84A1BA171A900D85541 /* titleLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleLabel.png; sourceTree = "<group>"; };
-		A438D84B1BA171A900D85541 /* topBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topBar.png; sourceTree = "<group>"; };
 		A44562A41B9C0B650024D97D /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		A447FE961B4A198B0053D982 /* dotaer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dotaer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A447FE9A1B4A198B0053D982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -392,6 +391,7 @@
 		A452ABD81B7894640067F004 /* userAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userAgreementViewController.m; sourceTree = "<group>"; };
 		A452ABD91B7894640067F004 /* userAgreementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = userAgreementViewController.xib; sourceTree = "<group>"; };
 		A45F545D1B78E8E400761872 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
+		A46765261BCBA1F4009722BB /* topBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topBar.png; sourceTree = "<group>"; };
 		A46EA7811B86157B004FF955 /* WatchVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchVideoViewController.h; sourceTree = "<group>"; };
 		A46EA7821B86157B004FF955 /* WatchVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchVideoViewController.m; sourceTree = "<group>"; };
 		A46EA7831B86157B004FF955 /* WatchVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WatchVideoViewController.xib; sourceTree = "<group>"; };
@@ -747,7 +747,7 @@
 				A438D8481BA171A900D85541 /* mainBack.png */,
 				A438D8491BA171A900D85541 /* sideBar.png */,
 				A438D84A1BA171A900D85541 /* titleLabel.png */,
-				A438D84B1BA171A900D85541 /* topBar.png */,
+				A46765261BCBA1F4009722BB /* topBar.png */,
 				A4A072D61BA670E30044D444 /* blackBack.png */,
 				A495EA771BA709D100A3B41D /* menu10.png */,
 				A495EA791BA709EC00A3B41D /* mid_ditu.png */,
@@ -1358,7 +1358,6 @@
 				A495EA7E1BA7115E00A3B41D /* like.png in Resources */,
 				A4B8A7221B6B562400BFEDDC /* favorTableViewCell.xib in Resources */,
 				A4DA56271B4E73660010C95D /* female@2x.png in Resources */,
-				A438D8521BA171A900D85541 /* topBar.png in Resources */,
 				A4FB58111B86B56800A5D7B9 /* ICON 512.png in Resources */,
 				A42F396A1B84888A005877B9 /* 朴一生dota.jpeg in Resources */,
 				A4D13E1D1B4CEBE300C06A2B /* Default@2x.png in Resources */,
@@ -1374,6 +1373,7 @@
 				A4B8A71D1B6B515100BFEDDC /* favorViewController.xib in Resources */,
 				A4CC4AA71B670FB600950537 /* hero_terminable_skin_bg_hover@2x.png in Resources */,
 				A4CC541D1B67609C00950537 /* start.html in Resources */,
+				A46765271BCBA1F4009722BB /* topBar.png in Resources */,
 				A476A25B1B77441B007D86C7 /* cycyle1.png in Resources */,
 				A41256431B7B1491005827F9 /* defaultHead.png in Resources */,
 				A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */,
@@ -1636,7 +1636,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02ad20e5-4c71-4e38-9fa0-cd5daad43f67";
+				PROVISIONING_PROFILE = "6b907dca-3487-4894-9472-50f366f25e02";
 			};
 			name = Debug;
 		};

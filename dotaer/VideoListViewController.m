@@ -186,7 +186,7 @@
     
     [manager.requestSerializer setTimeoutInterval:30];
     
-    
+    link = @"341407959";
     NSString *infoURLstring = [NSString stringWithFormat:@"http://lefun.net.cn:3301/?vid=%@",link];
     
     

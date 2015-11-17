@@ -228,7 +228,7 @@
         topicVC.isFromHistory = NO;
 
         
-        if ([self.topic isEqualToString:@""]) {
+        if ([self.topic isEqualToString:@""] || !self.topic) {
             
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             

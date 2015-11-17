@@ -16,8 +16,11 @@
 @property (nonatomic, strong) NSString *likeCount;
 @property (nonatomic, strong) NSString *commentContent;
 @property (nonatomic, strong) NSString *commentID;
+@property (nonatomic, strong) NSString *comment_Date;
 
 
+
+@property (weak, nonatomic) IBOutlet UILabel *commentTime;
 @property (weak, nonatomic) IBOutlet UIImageView *headIMG;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;

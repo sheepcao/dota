@@ -42,14 +42,14 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="levelyes.png" translatesAutoresizingMaskIntoConstraints="NO" id="AGW-eh-m1F">
-                        <rect key="frame" x="71" y="46" width="17" height="17"/>
+                        <rect key="frame" x="100.5" y="46" width="17" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="Fha-F7-Ojr"/>
                             <constraint firstAttribute="width" constant="17" id="HEY-CX-xZS"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已认证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J44-ex-adw">
-                        <rect key="frame" x="90" y="46" width="46" height="21"/>
+                        <rect key="frame" x="119.5" y="46" width="46" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="46" id="8gp-fp-c6Z"/>
                             <constraint firstAttribute="height" constant="21" id="FFG-Eh-B48"/>
@@ -58,8 +58,8 @@
                         <color key="textColor" red="0.99994860200000002" green="0.27063630756578949" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天梯:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdb-Er-dq9">
-                        <rect key="frame" x="136" y="49" width="69" height="15"/>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天梯:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdb-Er-dq9">
+                        <rect key="frame" x="165.5" y="49" width="69" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="69" id="Ga1-yC-TqY"/>
                             <constraint firstAttribute="height" constant="15" id="ZqI-xv-TOW"/>
@@ -129,7 +129,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="fOS-Sz-eXX" secondAttribute="bottom" constant="-6" id="r50-WX-fCh"/>
                     <constraint firstItem="d1d-ye-jYH" firstAttribute="centerY" secondItem="7bf-vC-fw9" secondAttribute="centerY" id="wQc-18-2De"/>
                     <constraint firstItem="7bf-vC-fw9" firstAttribute="top" secondItem="vSU-t9-eAM" secondAttribute="topMargin" constant="7" id="xrV-qQ-Vj5"/>
-                    <constraint firstItem="AGW-eh-m1F" firstAttribute="leading" secondItem="vhv-Ed-EFu" secondAttribute="trailing" constant="21" id="z1P-Io-Tul"/>
+                    <constraint firstItem="AGW-eh-m1F" firstAttribute="leading" secondItem="vhv-Ed-EFu" secondAttribute="trailing" constant="50" id="z1P-Io-Tul"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

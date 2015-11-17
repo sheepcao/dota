@@ -218,6 +218,7 @@
     commentDetail.likeCount = cell.likeCountLabel.text;
     commentDetail.commentContent = [commentDic objectForKey:@"comment_content"];
     commentDetail.commentID = [commentDic objectForKey:@"comment_id"];
+    commentDetail.comment_Date = [commentDic objectForKey:@"comment_time"];
 
     
     

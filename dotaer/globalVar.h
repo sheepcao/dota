@@ -34,6 +34,8 @@
 
 #define deviceURL @"http://cgx.nwpu.info/Sites/deviceURL.php"
 
+#define positionURL @"http://cgx.nwpu.info/Sites/position.php"
+
 #define imagePath @"http://cgx.nwpu.info/Sites/upload/"
 
 #define client_secret @"2d43c235b66c114fece5f67ae504f70a"

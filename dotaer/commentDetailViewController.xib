@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="commentDetailViewController">
             <connections>
                 <outlet property="commentBody" destination="Bje-hl-0MC" id="2HN-dz-8RB"/>
+                <outlet property="commentTime" destination="1oy-iJ-82b" id="t7M-ad-P9q"/>
                 <outlet property="headIMG" destination="1wv-9Z-iDP" id="8TZ-Fu-APe"/>
                 <outlet property="likeButton" destination="5BU-aP-nLN" id="hqD-MT-vzj"/>
                 <outlet property="likeCountLabel" destination="D0E-gQ-Kbw" id="0Ip-ge-hZj"/>
