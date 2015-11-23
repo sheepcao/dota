@@ -32,16 +32,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50-64,SCREEN_WIDTH, 50)];
-    self.bannerView.delegate = self;
-    self.bannerView.adUnitID =ADMOB_ID;
-    self.bannerView.rootViewController = self;
-    
-    GADRequest *request = [GADRequest request];
-    
-    
-    [self.bannerView loadRequest:request];
-    [self.view addSubview:self.bannerView];
+//    self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50-64,SCREEN_WIDTH, 50)];
+//    self.bannerView.delegate = self;
+//    self.bannerView.adUnitID =ADMOB_ID;
+//    self.bannerView.rootViewController = self;
+//    
+//    GADRequest *request = [GADRequest request];
+//    
+//    
+//    [self.bannerView loadRequest:request];
+//    [self.view addSubview:self.bannerView];
     //need to recover..............
 
     
@@ -186,7 +186,7 @@
     
     [manager.requestSerializer setTimeoutInterval:30];
     
-    link = @"341407959";
+//    link = @"341407959";
     NSString *infoURLstring = [NSString stringWithFormat:@"http://lefun.net.cn:3301/?vid=%@",link];
     
     

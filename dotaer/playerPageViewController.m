@@ -1259,7 +1259,22 @@ bool needRefresh;
         NSString *EVENTVALIDATION = [self pickEVENTVALIDATION:responseObject];
         
         NSLog(@"VIEWSTATE--%@\nVIEWSTATEGENERATOR--%@\nEVENTVALIDATION--%@\n",VIEWSTATE,VIEWSTATEGENERATOR,EVENTVALIDATION);
-        
+        if(!VIEWSTATEGENERATOR  || !VIEWSTATE  ||!EVENTVALIDATION)
+        {
+            
+            MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
+            
+            if (hud) {
+                hud.mode = MBProgressHUDModeText;
+
+                hud.labelText = @"网络读取失败，请稍后重试";
+
+                [hud hide:YES afterDelay:0.9];
+            }
+
+            
+            return ;
+        }
         [self requestUserID:VIEWSTATE :VIEWSTATEGENERATOR :EVENTVALIDATION :@"不是故意咯" :@"xuechan99" :username];
         
         

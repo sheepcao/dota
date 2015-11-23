@@ -868,7 +868,7 @@ int uploadPositionCount;
         [alet show];
     }
     
-//    NSLog(@"uploadLocation");
+    //    NSLog(@"uploadLocation");
     
 }
 -(void)cancelUploadLocation
@@ -930,7 +930,7 @@ int uploadPositionCount;
     NSLog(@"nearbyInfos  %@",nearbyInfos);
     
     
-
+    
     [_nearbyInfos removeAllObjects];
     [_nearbyInfos addObjectsFromArray:nearbyInfos];
     
@@ -942,14 +942,14 @@ int uploadPositionCount;
         CLLocationCoordinate2D pt;
         pt.latitude = [[info objectForKey:@"latitude"] doubleValue];
         pt.longitude = [[info objectForKey:@"longitude"] doubleValue];
-
+        
         myPointAnnotation *annotation = [[myPointAnnotation alloc] init];
         annotation.coordinate = pt;
         annotation.title = [info objectForKey:@"username"];
         annotation.annoUserDistance = [[info objectForKey:@"juli"] integerValue];
         annotation.annoUserSex = [info objectForKey:@"sex"];
         
-
+        
         
         //distance....
         
@@ -981,6 +981,14 @@ int uploadPositionCount;
 {
     NSArray * names = [dic objectForKey:@"username"];
     
+    if (names.count>=50 ) {
+        [self.pageForward setEnabled:YES];
+    }else
+    {
+        [self.pageForward setEnabled:NO];
+    }
+    
+    
     
     NSMutableArray *dotaerAray = [[NSMutableArray alloc] initWithCapacity:50];
     for (int i = 0; i<names.count; i++) {
@@ -997,10 +1005,10 @@ int uploadPositionCount;
                                         @"invisible":[dic objectForKey:@"invisible"][i],
                                         @"isReviewed":[dic objectForKey:@"isReviewed"][i]};
             [dotaerAray addObject:oneDotaer];
-
+            
         }
     }
-   
+    
     return dotaerAray;
     
 }
@@ -1075,12 +1083,13 @@ int uploadPositionCount;
     
     [hud2 hide:YES afterDelay:18];
     
-    
-    if (_curPageIndex>0) {
-        _curPageIndex --;
-        //        [NSThread detachNewThreadSelector:@selector(nearbySearchWithPageIndex:) toTarget:self withObject:[NSNumber numberWithInteger:_curPageIndex]];
+    if (_curPageIndex > 0) {
+        _curPageIndex--;
         [self nearbySearchWithPageIndex:[NSNumber numberWithInteger:_curPageIndex]];
+    } else {
+        [self.pageFront setEnabled:NO];
     }
+    
     
 }
 -(void)pageDown
@@ -1093,12 +1102,11 @@ int uploadPositionCount;
     
     [hud2 hide:YES afterDelay:18];
     
+    _curPageIndex ++;
+    [self nearbySearchWithPageIndex:[NSNumber numberWithInteger:_curPageIndex]];
     
-    if (_curPageIndex<_totalPageNum) {
-        _curPageIndex ++;
-        //        [NSThread detachNewThreadSelector:@selector(nearbySearchWithPageIndex:) toTarget:self withObject:[NSNumber numberWithInteger:_curPageIndex]];
-        [self nearbySearchWithPageIndex:[NSNumber numberWithInteger:_curPageIndex]];
-    }
+    [self.pageForward setEnabled:YES];
+    
     
     
 }
@@ -1110,7 +1118,7 @@ int uploadPositionCount;
         
         NSString *page = [NSString stringWithFormat:@"%@",pageIndex];
         NSString *ratio = [NSString stringWithFormat:@"%f",_searchRadius];
-
+        
         
         NSString *lati = [NSString stringWithFormat:@"%f",_myCoor.latitude];
         NSString *longi = [NSString stringWithFormat:@"%f",_myCoor.longitude];
@@ -1135,6 +1143,9 @@ int uploadPositionCount;
                 }
             }
             
+          
+            
+            
             if ([[responseObject objectForKey:@"noRecord"] isEqualToString:@"yes"]) {
                 
                 MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
@@ -1145,14 +1156,28 @@ int uploadPositionCount;
                     [hud hide:YES afterDelay:1.0];
                     
                 }
-
+                
                 
             }else
             {
+                  [self.pageNumLabel setText:[NSString stringWithFormat:@"%d",_curPageIndex+1]];
                 
+                if (_curPageIndex<=0) {
+                    [self.pageFront setEnabled:NO];
+                    
+                }else
+                {
+                    [self.pageFront setEnabled:YES];
+                    
+                }
                 
                 
                 self.nearbyInfos = [self makeDotaer:responseObject];
+                
+                
+                
+                
+                
             }
             NSLog(@"search result info: %@", responseObject);
             
@@ -1176,14 +1201,14 @@ int uploadPositionCount;
     }else
     {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.containerView animated:YES];
-    
+        
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"定位失败, 请重试";
         if (hud) {
             [hud hide:YES afterDelay:1.0];
             
         }
-
+        
     }
     
 }
@@ -1216,7 +1241,7 @@ int uploadPositionCount;
         
     }
     
-   
+    
     
     
 }
@@ -1226,16 +1251,16 @@ int uploadPositionCount;
     
     if (uploadPositionCount%30 != 0) {
         uploadPositionCount++;
-
+        
         return;
     }
     
     uploadPositionCount++;
-
+    
     
     if ((_myCoor.latitude > 0.001 || _myCoor.latitude < -0.001) && (_myCoor.longitude > 0.001 || _myCoor.longitude < -0.001)) {
         
-         NSLog(@"updateMyLocation!!!!%f----%f",_myCoor.latitude,_myCoor.longitude);
+        NSLog(@"updateMyLocation!!!!%f----%f",_myCoor.latitude,_myCoor.longitude);
         
         NSString *lati = [NSString stringWithFormat:@"%f",_myCoor.latitude];
         NSString *longi = [NSString stringWithFormat:@"%f",_myCoor.longitude];
@@ -1253,7 +1278,7 @@ int uploadPositionCount;
             
             
             NSLog(@"position uploaded info: %@", responseObject);
-
+            
             
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -1261,7 +1286,7 @@ int uploadPositionCount;
             uploadPositionCount = 0;
             NSLog(@"position uploaded Error: %@", error.localizedDescription);
             NSLog(@"JSON ERROR333: %@",  operation.responseString);
-           
+            
             
         }];
         
@@ -1309,8 +1334,8 @@ int uploadPositionCount;
     NSString *gender = [info objectForKey:@"sex"];
     NSString *age = [info objectForKey:@"age"];
     NSString *isReviewed = [info objectForKey:@"isReviewed"];
-
-
+    
+    
     if (gender && ![gender isEqualToString:@""]) {
         
         UIImage *defaultHead;
@@ -1339,8 +1364,8 @@ int uploadPositionCount;
             [cell.confirmLevelImage setImage:[UIImage imageNamed:@"levelyes"]];
             [cell.confirmLevelLabel setText:@"已认证"];
             [cell.confirmLevelLabel setTextColor:[UIColor colorWithRed:255/255.0f green:70/255.0f blue:0 alpha:1.0f]];
-//            [cell.scoreLabel setHidden:NO];
-//            [cell.scoreLabel setText:[NSString stringWithFormat:@"天梯:%@",userExtinfo[3] ]];
+            //            [cell.scoreLabel setHidden:NO];
+            //            [cell.scoreLabel setText:[NSString stringWithFormat:@"天梯:%@",userExtinfo[3] ]];
             
         }
     }
@@ -1368,7 +1393,7 @@ int uploadPositionCount;
     CLLocationCoordinate2D pt;
     pt.latitude = [[info objectForKey:@"latitude"] doubleValue];
     pt.longitude = [[info objectForKey:@"longitude"] doubleValue];
-
+    
     
     [self jumpToPlayer:[info objectForKey:@"username"] andDistance:[[info objectForKey:@"juli"] integerValue] andGeoInfo:pt];
     
@@ -1376,73 +1401,6 @@ int uploadPositionCount;
     
 }
 
-//- (BMKRadarUploadInfo *)getCurrInfo {
-//    BMKRadarUploadInfo *info = [[BMKRadarUploadInfo alloc] init];
-//
-////    int random = arc4random()%1000;
-////    _radarManager.userId =[NSString stringWithFormat:@"dotaer%d",random];
-//    if (self.myUserInfo.username) {
-//        _radarManager.userId =self.myUserInfo.username;
-//        info.extInfo = [NSString stringWithFormat:@"%@-%@-%@-%@-%@",self.myUserInfo.sex,self.myUserInfo.age,self.myUserInfo.isReviewed,self.myUserInfo.TTscore,[[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"]];
-//        [lock lock];
-//
-//
-//        //test
-//        info.pt = _curLocation;
-//        [lock unlock];
-//
-//        NSLog(@"getCurrInfo");
-//
-//        return info;
-//    }
-//    else
-//    {
-//
-//        NSLog(@"getCurrInfo");
-//
-//        return nil;
-//    }
-//
-//
-//
-//}
-//
-#pragma mark - BMKRadarManagerDelegate
-
-/*
- *开启自动上传，需实现该回调
- */
-//- (BMKRadarUploadInfo *)getRadarAutoUploadInfo {
-////    if ([[DataCenter sharedDataCenter] isGuest])
-////    {
-////        return nil;
-////    }else
-//
-//    return [self getCurrInfo];
-//}
-//
-///**
-// *返回雷达 上传结果
-// *@param error 错误号，@see BMKRadarErrorCode
-// */
-//- (void)onGetRadarUploadResult:(BMKRadarErrorCode) error {
-//    NSLog(@"onGetRadarUploadResult  %d", error);
-//    if (error == BMK_RADAR_NO_ERROR) {
-//        NSLog(@"成功上传我的位置");
-//
-//    }
-//}
-//
-///**
-// *返回雷达 清除我的信息结果
-// *@param error 错误号，@see BMKRadarErrorCode
-// */
-//- (void)onGetRadarClearMyInfoResult:(BMKRadarErrorCode) error {
-//    NSLog(@"onGetRadarClearMyInfoResult  %d", error);
-//    if (error == BMK_RADAR_NO_ERROR) {
-//        NSLog(@"成功清除我的位置");
-//    }
-//}
 
 #pragma mark - BMKLocationServiceDelegate
 

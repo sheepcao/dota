@@ -32,6 +32,8 @@
         self.title = @"玩家";
     }
     
+    
+    
 //    UIVisualEffect *blurEffect_b;
 //    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
 //    

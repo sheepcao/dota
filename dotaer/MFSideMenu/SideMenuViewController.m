@@ -22,6 +22,9 @@
 #import "topicsViewController.h"
 #import "searchHomeViewController.h"
 
+
+#import "testSearchViewController.h"
+
 @interface SideMenuViewController()<cancelNewImgDelegate>
 @end
 
@@ -181,7 +184,9 @@
         
         [MobClick event:@"videoMenu"];
 
-        publisherViewController *VideoVC = [[publisherViewController alloc] initWithNibName:@"publisherViewController" bundle:nil];
+//        publisherViewController *VideoVC = [[publisherViewController alloc] initWithNibName:@"publisherViewController" bundle:nil];
+        testSearchViewController *VideoVC = [[testSearchViewController alloc] initWithNibName:@"testSearchViewController" bundle:nil];
+
         
         UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
         NSMutableArray *temp = [NSMutableArray arrayWithArray:navigationController.viewControllers];
@@ -201,6 +206,9 @@
             playInfo.playerName = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
             
             playInfo.distance = 0;
+            
+            
+            
             
             
             UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
@@ -381,8 +389,6 @@
 {
     //You can retrieve the actual UIImage
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    //Or you can get the image url from AssetsLibrary
-    
     
     [self.headImage setImage:image];
     [self uploadNewHead:image forImagePicker:picker];
@@ -418,8 +424,6 @@
         
         
         NSString *username = [[[NSUserDefaults standardUserDefaults]  objectForKey:@"userInfoDic"] objectForKey:@"username"];
-        
-        
         
         NSString *fileName = [NSString stringWithFormat:@"%@.png",username];
         

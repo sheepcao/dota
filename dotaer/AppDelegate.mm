@@ -13,6 +13,8 @@
 #import "MFSideMenuContainerViewController.h"
 #import "dotaerViewController.h"
 #import "DataCenter.h"
+#import "BPush.h"
+
 
 @interface AppDelegate ()<BMKGeneralDelegate>
 
@@ -32,8 +34,8 @@ BMKMapManager* _mapManager;
                                      initWithRootViewController:[self demoController]];
     [navi.navigationBar setBackgroundImage:[UIImage imageNamed:@"topBar.png"] forBarMetrics:UIBarMetricsDefault];
     [navi.navigationBar setBarTintColor:[UIColor whiteColor]];
-//    [navi.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-//    navi.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+    //    [navi.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    //    navi.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     
     return navi;
 }
@@ -52,7 +54,7 @@ BMKMapManager* _mapManager;
     }
     
     
-
+    
     
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
@@ -63,14 +65,25 @@ BMKMapManager* _mapManager;
     }
     
     
+    
+    [BPush registerChannel:launchOptions apiKey:@"KG3KtuxpRzggOFYkkFoYRv3t" pushMode:BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:NO];
+    // App 是用户点击推送消息启动
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo) {
+        NSLog(@"从消息启动:%@",userInfo);
+        [BPush handleNotification:userInfo];
+    }
+    
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-//    NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
-//    NSString *favorString = @"关注";
-//    if (favorArray && favorArray.count>0)
-//    {
-//        favorString = [NSString stringWithFormat:@"关注(%lu)",(unsigned long)favorArray.count];
-//    }
+    //    NSMutableArray *favorArray = [[DataCenter sharedDataCenter] fetchFavors];
+    //    NSString *favorString = @"关注";
+    //    if (favorArray && favorArray.count>0)
+    //    {
+    //        favorString = [NSString stringWithFormat:@"关注(%lu)",(unsigned long)favorArray.count];
+    //    }
     
     SideMenuViewController *leftMenuViewController = [[SideMenuViewController alloc] init];
     leftMenuViewController.items = [NSArray arrayWithObjects:@"视频解说",@"我的主页",@"今日话题",@"我的圈子",@"战绩小秘书", nil];
@@ -94,17 +107,13 @@ BMKMapManager* _mapManager;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-
     
-//    if (launchOptions) {
-//        NSDictionary* pushNotificationKey = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-//        if (pushNotificationKey) {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"noti" message:@"remote noti!!!!!~~~~~~~" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alert show];
-            [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
-            [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        
-//    }
+    
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    
     
     return YES;
 }
@@ -114,13 +123,34 @@ BMKMapManager* _mapManager;
 {
     NSLog(@"My token is: %@", deviceToken);
     [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:@"deviceToken"];
+    
+    
+    [BPush registerDeviceToken:deviceToken];
+    [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
+        
+        // 需要在绑定成功后进行 settag listtag deletetag unbind 操作否则会失败
+        if (result) {
+            
+           NSLog(@"%@", [NSString stringWithFormat:@"Method: %@\n%@",BPushRequestMethodBind,result]);
+
+            
+           
+            [BPush setTag:@"Mytag" withCompleteHandler:^(id result, NSError *error) {
+                if (result) {
+                    NSLog(@"设置tag成功");
+                }
+            }];
+        }
+    }];
+    
 }
+
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
     NSLog(@"Failed to get token, error: %@", error);
     [[NSUserDefaults standardUserDefaults] setObject:@"none" forKey:@"deviceToken"];
-
+    
 }
 
 
@@ -148,6 +178,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -187,7 +220,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
                                 appSecret:@"f724ecce1e644e16c1cb44c349f2df27"
                               redirectUri:@"https://api.weibo.com/oauth2/default.html"
                               weiboSDKCls:[WeiboSDK class]];
-       //添加微信应用 注册网址 http://open.weixin.qq.com
+    //添加微信应用 注册网址 http://open.weixin.qq.com
     [ShareSDK connectWeChatWithAppId:@"wxe9f0021070a60b40"
                            wechatCls:[WXApi class]];
     
@@ -218,18 +251,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
         NSLog(@"授权成功");
     }else
     {
-
+        
         NSLog(@"授权失败:%d",iError);
     }
     
-//    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//    NSString *doc = [NSString stringWithFormat:@"%@/11.txt",documentDir];
-//    NSLog(@"path11:%@",doc);
-//    NSString *log = [NSString stringWithFormat:@"error:%d",iError];
-//    NSError *error;
-//    
-//    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
-
+    //    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    //    NSString *doc = [NSString stringWithFormat:@"%@/11.txt",documentDir];
+    //    NSLog(@"path11:%@",doc);
+    //    NSString *log = [NSString stringWithFormat:@"error:%d",iError];
+    //    NSError *error;
+    //
+    //    [log writeToFile:doc atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
 }
 
 
