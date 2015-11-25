@@ -16,9 +16,7 @@
 
 @property (nonatomic, strong) NSString *loginURL;
 
-@property (nonatomic, strong) NSString *VIEWSTATEGENERATOR ;
-@property (nonatomic, strong) NSString *VIEWSTATE;
-@property (nonatomic, strong) NSString *EVENTVALIDATION;
+
 @end
 
 @implementation testSearchViewController
@@ -39,11 +37,10 @@
         [storage deleteCookie:cookie];
     }
     
+//    [self.popAlert roundBack];
 
     [self requestExtroInfoWithUser:@"宝贝拼吧"];
     
-    
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +48,43 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+- (void)loginWith:(NSString *)myloginURL :(NSString *)myVIEWSTATE :(NSString *)myVIEWSTATEGENERATOR :(NSString *)myEVENTVALIDATION :(NSString *)valiCode {
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+    [manager.requestSerializer setTimeoutInterval:30];
+    
+    
+    
+    NSString *infoURLstring = [NSString stringWithFormat:@"http://passport.5211game.com%@",myloginURL];
+    
+    NSDictionary *parameters = @{@"__VIEWSTATE":myVIEWSTATE,@"__VIEWSTATEGENERATOR":myVIEWSTATEGENERATOR,@"__EVENTVALIDATION":myEVENTVALIDATION,@"txtAccountName":@"宝贝拼吧",@"txtPassWord":@"xuechan99",@"txtValidateCode":valiCode,@"ImgButtonLogin.x":@65,@"ImgButtonLogin.y":@13};
+    
+    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+        
+        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"login success:%@",aString);
+        
+        
+
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        
+    }];
+    
+    
+}
 
 -(void)requestExtroInfoWithUser:(NSString *)username
 {
@@ -96,7 +130,7 @@
     }];
 }
 
-
+//
 -(void)requestValidationImage
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -117,8 +151,7 @@
         
         UIImage *aString = [[UIImage alloc] initWithData:responseObject];
         
-        [self.validCode setImage:aString];
-        
+//        [self.popAlert.codeImage setBackgroundImage: aString forState:UIControlStateNormal];
         
         
         
@@ -130,10 +163,10 @@
         
     }];
 }
-
-
-
-
+//
+//
+//
+//
 -(NSString *)pickVIEWSTATEGENERATOR:(NSData *)responseObject
 {
     NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -345,145 +378,142 @@
 
 
 
--(void)requestUserID:(NSString *)VIEWSTATE :(NSString *)VIEWSTATEGENERATOR :(NSString *)EVENTVALIDATION :(NSString *)username :(NSString *)password :(NSString *)searchName
+
+-(NSString *)pickGamerID:(NSData *)responseObject
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
-    
-    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
-    
-    [manager.requestSerializer setValue:@"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=" forHTTPHeaderField:@"Referer"];
-    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
     
     
-    
-    [manager.requestSerializer setTimeoutInterval:30];
-    
-    
-    NSString *infoURLstring = @"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=";
-    
-    NSDictionary *parameters = @{@"__VIEWSTATE":VIEWSTATE,@"__VIEWSTATEGENERATOR":VIEWSTATEGENERATOR,@"__EVENTVALIDATION":EVENTVALIDATION,@"txtUser":username,@"txtPassWord":password,@"butLogin":@"登录"};
-    
-    NSLog(@"parameters:%@",parameters);
-    
-    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+    NSArray *resultArray = [aString componentsSeparatedByString:@"YY.u='"];
+    if(resultArray.count>1)
+    {
+        NSString *string1 = resultArray[1] ;
+        NSString *resultString = [string1 componentsSeparatedByString:@"'"][0];
         
-        
-        
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"JSON ERROR: %@",  operation.responseString);
-    }];
+        NSLog(@"gamer id = %@",resultString);
+        return resultString;
+    }
     
     
     
+    
+    
+    return nil;
 }
 
-
-
-- (IBAction)refreshCode:(UIButton *)sender {
-    
-    [self requestValidationImage];
-    
-}
-- (IBAction)login:(id)sender {
-    
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
-    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
-    [manager.requestSerializer setTimeoutInterval:30];
-    
-    
-    
-    NSString *infoURLstring = [NSString stringWithFormat:@"http://passport.5211game.com%@",loginURL];
-    
-      NSDictionary *parameters = @{@"__VIEWSTATE":VIEWSTATE,@"__VIEWSTATEGENERATOR":VIEWSTATEGENERATOR,@"__EVENTVALIDATION":EVENTVALIDATION,@"txtAccountName":@"宝贝拼吧",@"txtPassWord":@"xuechan99",@"txtValidateCode":self.codeTextField.text,@"ImgButtonLogin.x":@65,@"ImgButtonLogin.y":@13};
-    
-    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
-        
-        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        
-        NSLog(@"login success:%@",aString);
-        
-        NSString *userID = [self pickUserID:responseObject];
-        [self requestScores:userID];
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"JSON ERROR: %@",  operation.responseString);
-        
-        
-    }];
-    
-}
-
-
--(void)requestScores:(NSString *)userID
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    [manager.requestSerializer setTimeoutInterval:30];
-    
-    
-    NSString *infoURLstring = @"http://score.5211game.com/RecordCenter/request/record";
-    
-    NSDictionary *parameters = @{@"method": @"getrecord",@"u":userID,@"t":@"10001"};
-    
-    
-    
-    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-        
-        NSLog(@"Scores: %@", responseObject);
-        
-        
-//        self.AllinfoDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+//
+//
+//
+//
+//
+//- (void)refreshCode:(UIButton *)sender {
+//    
+//    [self requestValidationImage];
+//    
+//}
+//- (void)login:(id)sender {
+//    
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+//    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+//    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+//    [manager.requestSerializer setTimeoutInterval:30];
+//    
+//    
+//    
+//    NSString *infoURLstring = [NSString stringWithFormat:@"http://passport.5211game.com%@",loginURL];
+//    
+//      NSDictionary *parameters = @{@"__VIEWSTATE":VIEWSTATE,@"__VIEWSTATEGENERATOR":VIEWSTATEGENERATOR,@"__EVENTVALIDATION":EVENTVALIDATION,@"txtAccountName":@"宝贝拼吧",@"txtPassWord":@"xuechan99",@"txtValidateCode":self.codeTextField.text,@"ImgButtonLogin.x":@65,@"ImgButtonLogin.y":@13};
+//    
+//    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+//        
+//        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        
+//        NSLog(@"login success:%@",aString);
 //        
 //        
-//        self.JJCinfoDic = [responseObject objectForKey:@"jjcInfos"];
-//        self.TTinfoDic = [responseObject objectForKey:@"ttInfos"];
-//        self.MJinfoDic = [responseObject objectForKey:@"mjInfos"];
-//        [self.infoTableView reloadData];
-        
-        
-        
-        MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
-        
-        if (hud) {
-            [hud hide:YES afterDelay:0.5];
-        }
-        
-
-        
-        
-        
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"Scores ERROR: %@",  operation.responseString);
-        
-        MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
-        
-        if (hud) {
-            [hud hide:YES afterDelay:0.5];
-        }
-        
-
-    }];
-    
-}
-
-
+//        
+////        NSString *userID = [self pickUserID:responseObject];
+////        if (userID) {
+////            [self requestScores:userID];
+////        }else
+////        {
+////         //tip
+////            
+////        }
+//        
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error.localizedDescription);
+//        NSLog(@"JSON ERROR: %@",  operation.responseString);
+//        
+//        
+//    }];
+//    
+//    
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    
+//}
+//
+//
+//-(void)requestScores:(NSString *)userID
+//{
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+//    [manager.requestSerializer setTimeoutInterval:30];
+//    
+//    
+//    NSString *infoURLstring = @"http://score.5211game.com/RecordCenter/request/record";
+//    
+//    NSDictionary *parameters = @{@"method": @"getrecord",@"u":userID,@"t":@"10001"};
+//    
+//    
+//    
+//    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+//        
+//        NSLog(@"Scores: %@", responseObject);
+//        
+//        
+////        self.AllinfoDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+////        
+////        
+////        self.JJCinfoDic = [responseObject objectForKey:@"jjcInfos"];
+////        self.TTinfoDic = [responseObject objectForKey:@"ttInfos"];
+////        self.MJinfoDic = [responseObject objectForKey:@"mjInfos"];
+////        [self.infoTableView reloadData];
+//        
+//        
+//        
+//        MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
+//        
+//        if (hud) {
+//            [hud hide:YES afterDelay:0.5];
+//        }
+//        
+//
+//        
+//        
+//        
+//        
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error.localizedDescription);
+//        NSLog(@"Scores ERROR: %@",  operation.responseString);
+//        
+//        MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
+//        
+//        if (hud) {
+//            [hud hide:YES afterDelay:0.5];
+//        }
+//        
+//
+//    }];
+//    
+//}
+//
+//
 
 @end

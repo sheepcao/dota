@@ -14,11 +14,16 @@
 @property BOOL needConfirmLevelInfo;
 @property BOOL needLoginDefault;
 
+@property BOOL guestFromLogin;
+@property BOOL memberFromLogin;
+
 @property (strong,nonatomic) NSMutableDictionary *userImgDic;
 //@property (nonatomic,strong) NSMutableArray *favorArray;
 
 
 + (id)sharedDataCenter ;
+
+- (void)clearRequestCache;
 - (id)fetchFavors;
 - (BOOL)checkFavor:(NSString *)username;
 - (void)addFavor:(NSString *)username;

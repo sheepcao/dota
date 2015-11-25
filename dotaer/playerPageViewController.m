@@ -17,8 +17,8 @@
 
 #import "submitScoreViewController.h"
 #import "scoreSearchViewController.h"
-
-
+#import "testSearchViewController.h"
+#import "popView.h"
 
 @interface playerPageViewController ()<UITextFieldDelegate,BMKGeoCodeSearchDelegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 @property (nonatomic,strong) UITextField *invisibleTextFiled;
@@ -41,9 +41,24 @@
 @property (nonatomic,strong) BMKGeoCodeSearch *geocodesearch;
 
 
+@property (nonatomic, strong) NSString *loginURL;
+
+@property (nonatomic, strong) NSString *VIEWSTATEGENERATOR ;
+@property (nonatomic, strong) NSString *VIEWSTATE;
+@property (nonatomic, strong) NSString *EVENTVALIDATION;
+
+
+@property (nonatomic, strong) popView *PopAlert;
 @end
 
 @implementation playerPageViewController
+@synthesize loginURL;
+@synthesize VIEWSTATEGENERATOR;
+@synthesize VIEWSTATE;
+@synthesize EVENTVALIDATION;
+
+
+
 
 @synthesize geocodesearch;
 @synthesize contentView;
@@ -105,26 +120,6 @@ bool needRefresh;
         
 
     }
-
-//    UIVisualEffect *blurEffect;
-//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    
-//    UIVisualEffectView *visualEffectView2;
-//    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//    
-//    visualEffectView2.frame = self.infoBackImage.bounds;
-//    [self.infoBackImage addSubview:visualEffectView2];
-    
-//    NSLog(@"5555555");
-//    UIVisualEffect *blurEffect2;
-//    blurEffect2 = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-//    
-//    UIVisualEffectView *visualEffectView;
-//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect2];
-//    
-//    visualEffectView.frame = self.downPartBack.bounds;
-//    [self.downPartBack addSubview:visualEffectView];
-    
     
     self.blurView.blurRadius = 7.0f;
     self.headImage.layer.cornerRadius = 49.0f;
@@ -153,16 +148,35 @@ bool needRefresh;
     [self requestReverseGeocode];
     
     
-//    
-//    [self.ttBtn setTitle:@"天梯" forState:<#(UIControlState)#>];
-//    [self.jjcBtn setEnabled:NO];
-//    [self.mjBtn setEnabled:NO];
 
+    
     [self requestPlayerInfo];
 
     
     
+}
 
+
+-(void)popValidationCodeWithImage:(UIImage *)img
+{
+
+    
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"popView"
+                            
+                                                         owner:nil                                                               	options:nil];
+    
+    self.PopAlert= 	(popView *)[nibContents objectAtIndex:0];
+    [self.PopAlert roundBack];
+    
+    [self.PopAlert.codeImage setBackgroundImage:img forState:UIControlStateNormal];
+    [self.PopAlert setCenter:CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT+50)];
+    [self.view addSubview:self.PopAlert];
+    
+    [UIView animateWithDuration:0.45 delay:0.05 usingSpringWithDamping:1.0 initialSpringVelocity:0.4 options:0 animations:^{
+        [self.PopAlert setCenter:CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2-100)];
+    } completion:nil];
+    
+    
 }
 
 
@@ -419,7 +433,9 @@ bool needRefresh;
         [self.notConfirmLevel setHidden:YES];
         self.playerLevelInfoDic = [NSMutableDictionary dictionaryWithDictionary:dic];
         
-        [self requestExtroInfoWithUser:[dic objectForKey:@"gameName"]];
+
+//        [self requestExtroInfoWithUser:[dic objectForKey:@"gameName"]];
+        [self requestGamerID:[dic objectForKey:@"gameName"]];
 
 
 //        
@@ -909,36 +925,6 @@ bool needRefresh;
     invisibleTextFiled.tag = 2;
 
     [invisibleTextFiled becomeFirstResponder];
-//    UIView *sendNoteView = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//    [sendNoteView setBackgroundColor:[UIColor clearColor]];
-//
-//    
-//    [self.view addSubview:sendNoteView];
-//    
-//    UIView *sendNoteBack = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//    [sendNoteBack setBackgroundColor:[UIColor darkGrayColor]];
-//    sendNoteBack.alpha = 0.6;
-//    [sendNoteView addSubview:sendNoteBack];
-//    
-//    
-//    
-//    UITextView *noteText = [[UITextView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/10, SCREEN_HEIGHT*3/11, SCREEN_WIDTH*4/5, SCREEN_HEIGHT/3)];
-//    [noteText setBackgroundColor:[UIColor yellowColor]];
-//    
-//    [sendNoteView addSubview:noteText];
-//    
-//    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(noteText.frame.origin.x+noteText.frame.size.width-80, noteText.frame.origin.y-32, 60, 30)];
-//    [submit setTitle:@"提交" forState:UIControlStateNormal];
-//    [sendNoteView addSubview:submit];
-//    
-//
-//    [UIView animateWithDuration:0.2 delay:0.4 options:UIViewAnimationOptionCurveLinear animations:^{
-//        [sendNoteView setCenter:CGPointMake(SCREEN_WIDTH/2, (SCREEN_HEIGHT)/2)];
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-//    [noteText becomeFirstResponder];
-//
 }
 
 
@@ -1172,7 +1158,13 @@ bool needRefresh;
 
 -(void)keyboardWasShown:(NSNotification*)notification
 {
+    if (!invisibleTextFiled.isFirstResponder) {
+        return;
+    }
+    
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    
     
     UIView *customTextView = [self.view viewWithTag:777];
     [UIView animateWithDuration: 0.05
@@ -1235,7 +1227,7 @@ bool needRefresh;
 
 #pragma mark request score from yaoyao
 
--(void)requestExtroInfoWithUser:(NSString *)username
+-(void)requestGamerID:(NSString *)username
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
@@ -1246,38 +1238,35 @@ bool needRefresh;
     [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
     [manager.requestSerializer setTimeoutInterval:30];
     
+    NSURL *url = [NSURL URLWithString: [username stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString *infoURLstring =[NSString stringWithFormat: @"http://score.5211game.com/RecordCenter/?u=%@&t=10001",url];
+    NSLog(@"infoURLstring-----%@",infoURLstring);
     
     
-    NSString *infoURLstring = @"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=";
-    
-    //    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject){} failure:^(AFHTTPRequestOperation *operation, NSError *error){}];
     //
     [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
         
-        NSString *VIEWSTATEGENERATOR = [self pickVIEWSTATEGENERATOR:responseObject];
-        NSString *VIEWSTATE = [self pickVIEWSTATE:responseObject];
-        NSString *EVENTVALIDATION = [self pickEVENTVALIDATION:responseObject];
+        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"response: %@", aString);
         
-        NSLog(@"VIEWSTATE--%@\nVIEWSTATEGENERATOR--%@\nEVENTVALIDATION--%@\n",VIEWSTATE,VIEWSTATEGENERATOR,EVENTVALIDATION);
-        if(!VIEWSTATEGENERATOR  || !VIEWSTATE  ||!EVENTVALIDATION)
+        testSearchViewController *searVC = [[testSearchViewController alloc] init];
+        NSString *gamerID = [searVC pickGamerID:responseObject];
+        
+        NSLog(@"gamerID----:%@",gamerID);
+        if (gamerID) {
+            [self requestScores:gamerID];
+
+        }else
         {
-            
             MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
-            
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"请重新输入验证码";
             if (hud) {
-                hud.mode = MBProgressHUDModeText;
-
-                hud.labelText = @"网络读取失败，请稍后重试";
-
-                [hud hide:YES afterDelay:0.9];
+                [hud hide:YES afterDelay:0.85];
             }
-
-            
-            return ;
         }
-        [self requestUserID:VIEWSTATE :VIEWSTATEGENERATOR :EVENTVALIDATION :@"不是故意咯" :@"xuechan99" :username];
-        
-        
+
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -1287,292 +1276,65 @@ bool needRefresh;
         
         
     }];
-}
-
--(NSString *)pickVIEWSTATEGENERATOR:(NSData *)responseObject
-{
-    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-    NSLog(@"response: %@", aString);
-    NSError *error2;
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__VIEWSTATEGENERATOR\" value=\"(.+)\"" options:0 error:&error2];
-    if (regex != nil) {
-        
-        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
-        
-        if (firstMatch) {
-            
-            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
-            
-            //从urlString当中截取数据
-            
-            NSString *result=[aString substringWithRange:resultRange];
-            
-            //输出结果
-            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSLog(@"result-------%@",result);
-            
-            
-            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
-            if(resultArray.count>1)
-            {
-                NSString *string1 = resultArray[1] ;
-                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
-                
-                NSLog(@"resultString = %@",resultString);
-                return resultString;
-            }
-            
-            
-        }
-    }
-    
-    return nil;
-}
-
-
--(NSString *)pickVIEWSTATE:(NSData *)responseObject
-{
-    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-    NSLog(@"response: %@", aString);
-    NSError *error2;
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__VIEWSTATE\" value=\"(.+)\"" options:0 error:&error2];
-    if (regex != nil) {
-        
-        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
-        
-        if (firstMatch) {
-            
-            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
-            
-            //从urlString当中截取数据
-            
-            NSString *result=[aString substringWithRange:resultRange];
-            
-            //输出结果
-            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSLog(@"result-------%@",result);
-            
-            
-            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
-            if(resultArray.count>1)
-            {
-                NSString *string1 = resultArray[1] ;
-                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
-                
-                NSLog(@"resultString = %@",resultString);
-                return resultString;
-                
-            }
-            
-            
-        }
-    }
-    
-    return nil;
-}
-
--(NSString *)pickEVENTVALIDATION:(NSData *)responseObject
-{
-    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-    NSLog(@"response: %@", aString);
-    NSError *error2;
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__EVENTVALIDATION\" value=\"(.+)\"" options:0 error:&error2];
-    if (regex != nil) {
-        
-        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
-        
-        if (firstMatch) {
-            
-            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
-            
-            //从urlString当中截取数据
-            
-            NSString *result=[aString substringWithRange:resultRange];
-            
-            //输出结果
-            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSLog(@"result-------%@",result);
-            
-            
-            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
-            if(resultArray.count>1)
-            {
-                NSString *string1 = resultArray[1] ;
-                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
-                
-                NSLog(@"resultString = %@",resultString);
-                return resultString;
-            }
-            
-            
-        }
-    }
-    
-    return nil;
-}
-
-
--(void)requestUserID:(NSString *)VIEWSTATE :(NSString *)VIEWSTATEGENERATOR :(NSString *)EVENTVALIDATION :(NSString *)username :(NSString *)password :(NSString *)searchName
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
-    
-    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
-    
-    [manager.requestSerializer setValue:@"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=" forHTTPHeaderField:@"Referer"];
-    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    
-    
-    
-    [manager.requestSerializer setTimeoutInterval:30];
-    
-    
-    NSString *infoURLstring = @"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=";
-    
-    NSDictionary *parameters = @{@"__VIEWSTATE":VIEWSTATE,@"__VIEWSTATEGENERATOR":VIEWSTATEGENERATOR,@"__EVENTVALIDATION":EVENTVALIDATION,@"txtUser":username,@"txtPassWord":password,@"butLogin":@"登录"};
-    
-    NSLog(@"parameters:%@",parameters);
-    
-    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
-        
-        
-        [self requestSearchUserID:searchName];
-        
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"JSON ERROR: %@",  operation.responseString);
-    }];
-    
-    
     
 }
 
--(void)requestSearchUserID:(NSString *)searchName
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
-    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
-    [manager.requestSerializer setTimeoutInterval:30];
-    
-    
-    
-    NSString *name =[searchName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *infoURLstring = [NSString stringWithFormat:@"http://i.5211game.com/Rating/Ladder?u=%@",name];
-    
-    
-    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
-        
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"result: %@", result);
-        
-        
-        
-        NSArray *resultArray = [result componentsSeparatedByString:@"YY.d.j = "];
-        
-        NSLog(@"resultArray.count = %ld",(unsigned long)resultArray.count);
-        if (resultArray.count>1) {
-            NSString *resultString = [resultArray[1]componentsSeparatedByString:@",YY.d.k"][0];
-            NSLog(@"searching ID:%@",resultString);
-            if([resultString isEqualToString:@"YY.d.u"])
-            {
-                resultString = @"443732422";
-            }
-            
-            [self requestScores:resultString];
-            
-        }
-        
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
-        NSLog(@"JSON ERROR: %@",  operation.responseString);
-        
-        
-        
-    }];
-}
+
 
 -(void)requestScores:(NSString *)userID
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     [manager.requestSerializer setTimeoutInterval:30];
-    
-    NSTimeInterval stamp = [[NSDate date] timeIntervalSince1970];
-    
-    NSString *infoURLstring = [NSString stringWithFormat:@"http://i.5211game.com/request/rating/?r=%.0f",stamp*1000];
-    
-    NSDictionary *parameters = @{@"method": @"getrating",@"u":userID,@"t":@"10001"};
-    
-    
-    
+
+
+    NSString *infoURLstring = @"http://score.5211game.com/RecordCenter/request/record";
+
+    NSDictionary *parameters = @{@"method": @"getrecord",@"u":userID,@"t":@"10001"};
+
+
+
     [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-        
-//        NSLog(@"Scores: %@", responseObject);
-        
-        
+
+        NSLog(@"Scores: %@", responseObject);
+
+
         self.AllinfoDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
 
-        
+
         self.JJCinfoDic = [responseObject objectForKey:@"jjcInfos"];
         self.TTinfoDic = [responseObject objectForKey:@"ttInfos"];
         self.MJinfoDic = [responseObject objectForKey:@"mjInfos"];
         [self.infoTableView reloadData];
-        
-        
-        
+
+
+
         MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
-        
+
         if (hud) {
             [hud hide:YES afterDelay:0.5];
         }
-        
-        NSHTTPCookie *cookie;
-        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        for (cookie in [storage cookies])
-        {
-            [storage deleteCookie:cookie];
-        }
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"Scores ERROR: %@",  operation.responseString);
-        
+
         MBProgressHUD *hud =(MBProgressHUD *)[self.view viewWithTag:123];
-        
+
         if (hud) {
             [hud hide:YES afterDelay:0.5];
         }
-        
-        NSHTTPCookie *cookie;
-        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        for (cookie in [storage cookies])
-        {
-            [storage deleteCookie:cookie];
-        }
+
+
     }];
-    
+
 }
-
-
 
 
 - (BOOL)shouldAutorotate {

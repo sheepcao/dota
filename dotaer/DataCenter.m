@@ -123,4 +123,15 @@
     return range.length != 0;
 }
 
+
+-(void)clearRequestCache
+{
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies])
+    {
+        [storage deleteCookie:cookie];
+    }
+}
+
 @end

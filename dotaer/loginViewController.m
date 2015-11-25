@@ -14,16 +14,38 @@
 #import "DataCenter.h"
 //#import "levelInfoViewController.h"
 #import "userAgreementViewController.h"
+#import "popView.h"
+
+#import "testSearchViewController.h"
+
 
 @interface loginViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
 @property (weak, nonatomic) IBOutlet FXBlurView *blurView;
 
 @property (strong,nonatomic) NSString *sexInfo;
+
+@property (nonatomic, strong) popView *PopAlert;
+
+
+
+@property (nonatomic, strong) NSString *VIEWSTATEGENERATOR ;
+@property (nonatomic, strong) NSString *VIEWSTATE;
+@property (nonatomic, strong) NSString *EVENTVALIDATION;
+@property (nonatomic, strong) NSString *loginURL;
+
+
+
 @end
 
 
 @implementation loginViewController
+
+@synthesize loginURL;
+@synthesize VIEWSTATEGENERATOR;
+@synthesize VIEWSTATE;
+@synthesize EVENTVALIDATION;
+
 
 bool emailOK;
 bool nameOK;
@@ -283,12 +305,211 @@ bool nameOK;
     [MobClick event:@"BeGuest"];
 
     [[DataCenter sharedDataCenter] setIsGuest:YES];
+    [[DataCenter sharedDataCenter] setGuestFromLogin:YES];
     
+    [self popValidationCodeWithImage];
+
     [self submitDeviceTockenFor:@"SystemAnonymous"];
 
     self.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+
+    
+   
 }
+
+-(void)popValidationCodeWithImage
+{
+    
+    
+    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"popView"
+                            
+                                                         owner:nil                                                               	options:nil];
+    
+    self.PopAlert= 	(popView *)[nibContents objectAtIndex:0];
+    [self.PopAlert roundBack];
+    [self.PopAlert loadingOn:self.PopAlert.contentView withDim:YES];
+    
+    [self.PopAlert.codeImage addTarget:self action:@selector(refreshCode) forControlEvents:UIControlEventTouchUpInside];
+    [self.PopAlert.submitButton addTarget:self action:@selector(prepareCocies) forControlEvents:UIControlEventTouchUpInside];
+    [self.PopAlert.submitButton setEnabled:NO];
+
+    [self.PopAlert setCenter:CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT*3/2)];
+    [self.view addSubview:self.PopAlert];
+    
+    [self requestExtroInfo];
+
+    [UIView animateWithDuration:0.45 delay:0.05 usingSpringWithDamping:1.0 initialSpringVelocity:0.4 options:0 animations:^{
+        [self.PopAlert setCenter:CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)];
+    } completion:nil];
+    
+    
+}
+
+-(void)requestExtroInfo
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+    [manager.requestSerializer setTimeoutInterval:12];
+    
+    [[DataCenter sharedDataCenter] clearRequestCache];
+    
+    NSString *infoURLstring = @"http://score.5211game.com/Ranking/ranking.aspx";
+    
+    //
+    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+        
+        testSearchViewController * testSearchVC = [[testSearchViewController alloc] init];
+        
+        
+        loginURL = [testSearchVC pickURL:responseObject];
+        
+        
+        VIEWSTATEGENERATOR = [testSearchVC pickVIEWSTATEGENERATOR:responseObject];
+        VIEWSTATE = [testSearchVC pickVIEWSTATE:responseObject];
+        EVENTVALIDATION = [testSearchVC pickEVENTVALIDATION:responseObject];
+        
+        NSLog(@"VIEWSTATE--%@\nVIEWSTATEGENERATOR--%@\nEVENTVALIDATION--%@\n",VIEWSTATE,VIEWSTATEGENERATOR,EVENTVALIDATION);
+        
+        
+        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"result------%@\n",aString);
+        
+        
+        [self requestValidationImage];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        
+        
+    }];
+}
+
+
+-(void)requestValidationImage
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+    [manager.requestSerializer setTimeoutInterval:30];
+    
+    
+    
+    NSString *infoURLstring = @"http://passport.5211game.com/ValidateCode.aspx";
+    
+    //
+    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+        
+        
+        UIImage *aString = [[UIImage alloc] initWithData:responseObject];
+        
+        [self.PopAlert.codeImage setBackgroundImage: aString forState:UIControlStateNormal];
+        [self.PopAlert.submitButton setEnabled:YES];
+        
+        if (self.PopAlert.isLoading) {
+            [self.PopAlert loadOver];
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        if (self.PopAlert.isLoading) {
+            [self.PopAlert loadOver];
+        }
+        
+    }];
+}
+
+- (void)refreshCode {
+
+    [self requestValidationImage];
+
+}
+- (void)prepareCocies{
+
+    [self.PopAlert.codeField resignFirstResponder];
+    
+    if (!self.PopAlert.isLoading) {
+        [self.PopAlert loadingOn:self.PopAlert.contentView withDim:YES];
+    }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+    [manager.requestSerializer setTimeoutInterval:30];
+
+
+
+    NSString *infoURLstring = [NSString stringWithFormat:@"http://passport.5211game.com%@",loginURL];
+    NSString *code = @"000000";
+    if (![self.PopAlert.codeField.text isEqualToString:@""]) {
+        code= self.PopAlert.codeField.text;
+
+    }
+    
+    if(!loginURL||!VIEWSTATE||!EVENTVALIDATION||!VIEWSTATEGENERATOR)
+    {
+        if (self.PopAlert.isLoading) {
+            [self.PopAlert loadOver];
+        }
+        return ;
+    }
+
+      NSDictionary *parameters = @{@"__VIEWSTATE":VIEWSTATE,@"__VIEWSTATEGENERATOR":VIEWSTATEGENERATOR,@"__EVENTVALIDATION":EVENTVALIDATION,@"txtAccountName":@"宝贝拼吧",@"txtPassWord":@"xuechan99",@"txtValidateCode":code,@"ImgButtonLogin.x":@65,@"ImgButtonLogin.y":@13};
+
+    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+
+        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+
+        NSLog(@"login success:%@",aString);
+        if (self.PopAlert.isLoading) {
+            [self.PopAlert loadOver];
+        }
+        testSearchViewController * testSearchVC = [[testSearchViewController alloc] init];
+
+        NSString *userID = [testSearchVC pickUserID:responseObject];
+                if (userID) {
+                   
+                    [self dismissViewControllerAnimated:YES completion:nil];
+
+                }else
+                {
+                    [self refreshCode];
+                    [self.PopAlert.codeField setText:@""];
+                    
+                }
+
+
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        if (self.PopAlert.isLoading) {
+            [self.PopAlert loadOver];
+        }
+
+    }];
+
+
+
+}
+
+
 
 -(void)enableSubmitBtn
 {
@@ -551,7 +772,9 @@ bool nameOK;
     [self submitDeviceTockenFor:[userDic objectForKey:@"username"]];
 
     self.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self popValidationCodeWithImage];
+
 
 }
 

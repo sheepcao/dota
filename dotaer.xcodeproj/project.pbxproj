@@ -123,7 +123,10 @@
 		A478DAC91B70E5AB0005CB41 /* 黑.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A478DAC81B70E5AB0005CB41 /* 黑.jpg */; };
 		A478DACF1B70E6EE0005CB41 /* 剑圣1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A478DACE1B70E6EE0005CB41 /* 剑圣1.jpg */; };
 		A47B1B2F1C02DF96001732BF /* testSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47B1B2D1C02DF96001732BF /* testSearchViewController.m */; };
-		A47B1B301C02DF96001732BF /* testSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47B1B2E1C02DF96001732BF /* testSearchViewController.xib */; };
+		A47B1B351C031533001732BF /* popView.m in Sources */ = {isa = PBXBuildFile; fileRef = A47B1B341C031533001732BF /* popView.m */; };
+		A47B1B371C041F28001732BF /* popView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47B1B361C041F28001732BF /* popView.xib */; };
+		A47B1B391C042092001732BF /* testSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47B1B381C042092001732BF /* testSearchViewController.xib */; };
+		A47B1B3B1C042126001732BF /* nocolor.png in Resources */ = {isa = PBXBuildFile; fileRef = A47B1B3A1C042126001732BF /* nocolor.png */; };
 		A495EA781BA709D100A3B41D /* menu10.png in Resources */ = {isa = PBXBuildFile; fileRef = A495EA771BA709D100A3B41D /* menu10.png */; };
 		A495EA7A1BA709EC00A3B41D /* mid_ditu.png in Resources */ = {isa = PBXBuildFile; fileRef = A495EA791BA709EC00A3B41D /* mid_ditu.png */; };
 		A495EA7C1BA70A0300A3B41D /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = A495EA7B1BA70A0300A3B41D /* list.png */; };
@@ -418,7 +421,11 @@
 		A478DACE1B70E6EE0005CB41 /* 剑圣1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "剑圣1.jpg"; sourceTree = "<group>"; };
 		A47B1B2C1C02DF96001732BF /* testSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testSearchViewController.h; sourceTree = "<group>"; };
 		A47B1B2D1C02DF96001732BF /* testSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testSearchViewController.m; sourceTree = "<group>"; };
-		A47B1B2E1C02DF96001732BF /* testSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testSearchViewController.xib; sourceTree = "<group>"; };
+		A47B1B331C031533001732BF /* popView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = popView.h; sourceTree = "<group>"; };
+		A47B1B341C031533001732BF /* popView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = popView.m; sourceTree = "<group>"; };
+		A47B1B361C041F28001732BF /* popView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = popView.xib; sourceTree = "<group>"; };
+		A47B1B381C042092001732BF /* testSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = testSearchViewController.xib; sourceTree = "<group>"; };
+		A47B1B3A1C042126001732BF /* nocolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nocolor.png; sourceTree = "<group>"; };
 		A495EA771BA709D100A3B41D /* menu10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu10.png; sourceTree = "<group>"; };
 		A495EA791BA709EC00A3B41D /* mid_ditu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mid_ditu.png; sourceTree = "<group>"; };
 		A495EA7B1BA70A0300A3B41D /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
@@ -847,6 +854,7 @@
 		A447FE991B4A198B0053D982 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A47B1B3A1C042126001732BF /* nocolor.png */,
 				A42F39481B84887A005877B9 /* publisherHead */,
 				A438D8421BA1706900D85541 /* newUI */,
 				A476A2461B75A1B2007D86C7 /* jjc0.png */,
@@ -998,7 +1006,10 @@
 				A4A072D11BA66DF50044D444 /* searchHomeViewController.xib */,
 				A47B1B2C1C02DF96001732BF /* testSearchViewController.h */,
 				A47B1B2D1C02DF96001732BF /* testSearchViewController.m */,
-				A47B1B2E1C02DF96001732BF /* testSearchViewController.xib */,
+				A47B1B381C042092001732BF /* testSearchViewController.xib */,
+				A47B1B361C041F28001732BF /* popView.xib */,
+				A47B1B331C031533001732BF /* popView.h */,
+				A47B1B341C031533001732BF /* popView.m */,
 			);
 			name = scoreSearch;
 			sourceTree = "<group>";
@@ -1315,6 +1326,7 @@
 				A42F396C1B84888A005877B9 /* 水一亦寒.jpeg in Resources */,
 				A40195551B859D8500B7142A /* settingViewController.xib in Resources */,
 				A4319D9F1B56248900DB8775 /* MapUserDefaultIcon@2x.jpg in Resources */,
+				A47B1B3B1C042126001732BF /* nocolor.png in Resources */,
 				A4319D981B5601F900DB8775 /* MapAnnotationBG@2x.png in Resources */,
 				A495EA7A1BA709EC00A3B41D /* mid_ditu.png in Resources */,
 				A42F39641B84888A005877B9 /* Pc冷冷.jpeg in Resources */,
@@ -1358,6 +1370,7 @@
 				A476A2571B75A1B2007D86C7 /* tt1.png in Resources */,
 				A42F39661B84888A005877B9 /* 卜严骏Pis.jpeg in Resources */,
 				A438D84D1BA171A900D85541 /* listButton.png in Resources */,
+				A47B1B391C042092001732BF /* testSearchViewController.xib in Resources */,
 				A476A25D1B774649007D86C7 /* cycle2.png in Resources */,
 				A4DA56201B4E4C700010C95D /* username1.png in Resources */,
 				A4DDDA0B1B68A49C00ACD655 /* menu.png in Resources */,
@@ -1401,7 +1414,6 @@
 				A46765271BCBA1F4009722BB /* topBar.png in Resources */,
 				A476A25B1B77441B007D86C7 /* cycyle1.png in Resources */,
 				A455F7341BFAE4CD00D97C1F /* test.caf in Resources */,
-				A47B1B301C02DF96001732BF /* testSearchViewController.xib in Resources */,
 				A41256431B7B1491005827F9 /* defaultHead.png in Resources */,
 				A41C102A1B53B738006E5CF9 /* 37x-Checkmark@2x.png in Resources */,
 				A4F51BAE1B57430B00786FD1 /* playerPageViewController.xib in Resources */,
@@ -1418,6 +1430,7 @@
 				A447FEE81B4A4AF80053D982 /* dotaerViewController.xib in Resources */,
 				A4FB58131B8701BF00A5D7B9 /* 舞ル灬.jpeg in Resources */,
 				A4B8A7151B6B073900BFEDDC /* search1.png in Resources */,
+				A47B1B371C041F28001732BF /* popView.xib in Resources */,
 				A4DDDA041B687C6100ACD655 /* mid_ditu1.png in Resources */,
 				A42E829C1B661B1C00A431E0 /* moon.png in Resources */,
 				A447FEA71B4A198B0053D982 /* Images.xcassets in Resources */,
@@ -1496,6 +1509,7 @@
 				A40195541B859D8500B7142A /* settingViewController.m in Sources */,
 				A412D03C1B4FAB87006180A0 /* UIAlertView+AFNetworking.m in Sources */,
 				A4B8A71C1B6B515100BFEDDC /* favorViewController.m in Sources */,
+				A47B1B351C031533001732BF /* popView.m in Sources */,
 				A447FE9F1B4A198B0053D982 /* AppDelegate.mm in Sources */,
 				A4D13E171B4CEA6800C06A2B /* listCellTableViewCell.m in Sources */,
 				A447FE9C1B4A198B0053D982 /* main.m in Sources */,

@@ -153,7 +153,7 @@
                         <constraint firstItem="YJZ-dT-EqC" firstAttribute="centerY" secondItem="Mwc-4g-UCc" secondAttribute="centerY" id="za2-kd-SGq"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kap-lo-LDk" userLabel="optionView">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kap-lo-LDk" userLabel="optionView">
                     <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topBar.png" translatesAutoresizingMaskIntoConstraints="NO" id="07e-SQ-R44">
@@ -230,7 +230,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tEo-ve-eXH">
-                    <rect key="frame" x="0.0" y="105" width="414" height="571"/>
+                    <rect key="frame" x="0.0" y="105" width="414" height="631"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" red="0.23921568630000001" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -243,11 +243,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="b3J-Fk-RIe" secondAttribute="trailing" id="6n6-Me-wyN"/>
+                <constraint firstAttribute="bottom" secondItem="tEo-ve-eXH" secondAttribute="bottom" id="Bi2-KV-eh9"/>
                 <constraint firstAttribute="centerX" secondItem="tEo-ve-eXH" secondAttribute="centerX" id="Cey-ie-kbw"/>
                 <constraint firstItem="b3J-Fk-RIe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gx6-eT-8im"/>
                 <constraint firstItem="yNh-gU-yEr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ILY-M2-U8A"/>
                 <constraint firstItem="tEo-ve-eXH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Jm7-vU-BI0"/>
-                <constraint firstItem="kap-lo-LDk" firstAttribute="top" secondItem="tEo-ve-eXH" secondAttribute="bottom" id="X59-4l-GCd"/>
                 <constraint firstAttribute="bottom" secondItem="b3J-Fk-RIe" secondAttribute="bottom" id="Xge-UN-05j"/>
                 <constraint firstItem="b3J-Fk-RIe" firstAttribute="height" secondItem="yNh-gU-yEr" secondAttribute="height" multiplier="7:1" id="Zni-rT-Zdd"/>
                 <constraint firstAttribute="trailing" secondItem="kap-lo-LDk" secondAttribute="trailing" id="btz-6Q-meI"/>
