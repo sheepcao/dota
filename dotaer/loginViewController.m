@@ -425,7 +425,8 @@ bool nameOK;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
         NSLog(@"JSON ERROR: %@",  operation.responseString);
-        
+        [self.PopAlert.codeImage setTitle:@"刷新" forState:UIControlStateNormal];
+
         if (self.PopAlert.isLoading) {
             [self.PopAlert loadOver];
         }
@@ -729,10 +730,7 @@ bool nameOK;
         
     }];
     
-    
-    
-    
-    
+
     
 }
 

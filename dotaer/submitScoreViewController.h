@@ -22,6 +22,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UIView *roundBack;
+@property (weak, nonatomic) IBOutlet UITextField *codeField;
+@property (weak, nonatomic) IBOutlet UIButton *codeImage;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
+
+- (IBAction)changeCode:(UIButton *)sender;
+
+
 @property (weak, nonatomic) id <setTTscoreDelegate> TTscoreDelegate;
 
 - (IBAction)submit:(id)sender;

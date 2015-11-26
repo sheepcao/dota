@@ -10,11 +10,28 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "globalVar.h"
 #import "DataCenter.h"
+#import "popView.h"
+#import "testSearchViewController.h"
+
 @interface submitScoreViewController ()
 
+@property (strong,nonatomic) MBProgressHUD *hudSmall;
+
+
+@property (nonatomic, strong) NSString *VIEWSTATEGENERATOR ;
+@property (nonatomic, strong) NSString *VIEWSTATE;
+@property (nonatomic, strong) NSString *EVENTVALIDATION;
+@property (nonatomic, strong) NSString *loginURL;
 @end
 
 @implementation submitScoreViewController
+
+@synthesize loginURL;
+@synthesize VIEWSTATEGENERATOR;
+@synthesize VIEWSTATE;
+@synthesize EVENTVALIDATION;
+@synthesize hudSmall;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,240 +43,193 @@
     self.roundBackIMG.layer.cornerRadius = 7.5;
     self.roundBackIMG.layer.masksToBounds = YES;
     
+    [self.submitBtn setEnabled:NO];
+    [self requestExtroInfo];
+    
 }
 
--(void)requestExtroInfoWithUser:(NSString *)username andPassword:(NSString *)password
+
+
+
+
+
+
+
+-(void)requestExtroInfo
+{
+    hudSmall = [MBProgressHUD showHUDAddedTo:self.loadingView animated:YES];
+    hudSmall.margin = 5;
+    hudSmall.color = [UIColor darkGrayColor];
+    hudSmall.mode = MBProgressHUDModeIndeterminate;
+    hudSmall.cornerRadius = 5.8f;
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
+    [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
+    [manager.requestSerializer setTimeoutInterval:12];
+    
+    [[DataCenter sharedDataCenter] clearRequestCache];
+    
+    NSString *infoURLstring = @"http://score.5211game.com/Ranking/ranking.aspx";
+    
+    //
+    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
+        
+        testSearchViewController * testSearchVC = [[testSearchViewController alloc] init];
+        
+        
+        loginURL = [testSearchVC pickURL:responseObject];
+        
+        
+        VIEWSTATEGENERATOR = [testSearchVC pickVIEWSTATEGENERATOR:responseObject];
+        VIEWSTATE = [testSearchVC pickVIEWSTATE:responseObject];
+        EVENTVALIDATION = [testSearchVC pickEVENTVALIDATION:responseObject];
+        
+        NSLog(@"VIEWSTATE--%@\nVIEWSTATEGENERATOR--%@\nEVENTVALIDATION--%@\n",VIEWSTATE,VIEWSTATEGENERATOR,EVENTVALIDATION);
+        
+        
+        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"result------%@\n",aString);
+        
+        
+        [self requestValidationImage];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        
+        
+    }];
+}
+
+
+-(void)requestValidationImage
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
     [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
     [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
     [manager.requestSerializer setTimeoutInterval:30];
-
-
     
-    NSString *infoURLstring = @"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=";
-
-//    [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject){} failure:^(AFHTTPRequestOperation *operation, NSError *error){}];
-//    
+    
+    
+    NSString *infoURLstring = @"http://passport.5211game.com/ValidateCode.aspx";
+    
+    //
     [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
-       
-        NSString *VIEWSTATEGENERATOR = [self pickVIEWSTATEGENERATOR:responseObject];
-        NSString *VIEWSTATE = [self pickVIEWSTATE:responseObject];
-        NSString *EVENTVALIDATION = [self pickEVENTVALIDATION:responseObject];
-        
-        NSLog(@"VIEWSTATE--%@\nVIEWSTATEGENERATOR--%@\nEVENTVALIDATION--%@\n",VIEWSTATE,VIEWSTATEGENERATOR,EVENTVALIDATION);
-        
-        [self requestUserID:VIEWSTATE :VIEWSTATEGENERATOR :EVENTVALIDATION :username :password];
         
         
+        UIImage *aString = [[UIImage alloc] initWithData:responseObject];
         
-
+        [self.codeImage setBackgroundImage: aString forState:UIControlStateNormal];
+        [self.submitBtn setEnabled:YES];
+        
+        if (hudSmall) {
+            [hudSmall hide:YES];
+        }
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
-//        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
         
-     
+        if (hudSmall) {
+            [hudSmall hide:YES];
+        }
         
     }];
 }
 
--(NSString *)pickVIEWSTATEGENERATOR:(NSData *)responseObject
-{
-    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-    NSLog(@"response: %@", aString);
-    NSError *error2;
+
+- (void)prepareCociesWith:(MBProgressHUD *)hud{
     
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__VIEWSTATEGENERATOR\" value=\"(.+)\"" options:0 error:&error2];
-    if (regex != nil) {
-        
-        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
-        
-        if (firstMatch) {
-            
-            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
-            
-            //从urlString当中截取数据
-            
-            NSString *result=[aString substringWithRange:resultRange];
-            
-            //输出结果
-            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSLog(@"result-------%@",result);
-            
-            
-            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
-            if(resultArray.count>1)
-            {
-                NSString *string1 = resultArray[1] ;
-                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
-                
-                NSLog(@"resultString = %@",resultString);
-                return resultString;
-            }
-            
-            
-        }
-    }
-
-    return nil;
-}
-
-
--(NSString *)pickVIEWSTATE:(NSData *)responseObject
-{
-    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-    NSLog(@"response: %@", aString);
-    NSError *error2;
+    [self.codeField resignFirstResponder];
     
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__VIEWSTATE\" value=\"(.+)\"" options:0 error:&error2];
-    if (regex != nil) {
-        
-        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
-        
-        if (firstMatch) {
-            
-            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
-            
-            //从urlString当中截取数据
-            
-            NSString *result=[aString substringWithRange:resultRange];
-            
-            //输出结果
-            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSLog(@"result-------%@",result);
-            
-            
-            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
-            if(resultArray.count>1)
-            {
-                NSString *string1 = resultArray[1] ;
-                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
-                
-                NSLog(@"resultString = %@",resultString);
-                return resultString;
 
-            }
-            
-            
-        }
-    }
- 
-    return nil;
-}
-
--(NSString *)pickEVENTVALIDATION:(NSData *)responseObject
-{
-    NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-    NSLog(@"response: %@", aString);
-    NSError *error2;
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"id=\"__EVENTVALIDATION\" value=\"(.+)\"" options:0 error:&error2];
-    if (regex != nil) {
-        
-        NSTextCheckingResult *firstMatch=[regex firstMatchInString:aString options:0 range:NSMakeRange(0, [aString length])];
-        
-        if (firstMatch) {
-            
-            NSRange resultRange = [firstMatch rangeAtIndex:0]; //等同于 firstMatch.range --- 相匹配的范围
-            
-            //从urlString当中截取数据
-            
-            NSString *result=[aString substringWithRange:resultRange];
-            
-            //输出结果
-            result =  [result stringByReplacingOccurrencesOfString:@" " withString:@""];
-            NSLog(@"result-------%@",result);
-            
-            
-            NSArray *resultArray = [result componentsSeparatedByString:@"value=\""];
-            if(resultArray.count>1)
-            {
-                NSString *string1 = resultArray[1] ;
-                NSString *resultString = [string1 componentsSeparatedByString:@"\""][0];
-                
-                NSLog(@"resultString = %@",resultString);
-                return resultString;
-            }
-            
-            
-        }
-    }
-    
-    return nil;
-}
-
-
--(void)requestUserID:(NSString *)VIEWSTATE :(NSString *)VIEWSTATEGENERATOR :(NSString *)EVENTVALIDATION :(NSString *)username :(NSString *)password
-{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [manager.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0" forHTTPHeaderField:@"User-Agent"];
-
-     [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
-    
-    [manager.requestSerializer setValue:@"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=" forHTTPHeaderField:@"Referer"];
     [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    
-    
-
+    [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
     [manager.requestSerializer setTimeoutInterval:30];
     
     
-    NSString *infoURLstring = @"http://passport.5211game.com/t/Login.aspx?ReturnUrl=http%3a%2f%2fi.5211game.com%2flogin.aspx%3freturnurl%3d%252frating&loginUserName=";
     
-    NSDictionary *parameters = @{@"__VIEWSTATE":VIEWSTATE,@"__VIEWSTATEGENERATOR":VIEWSTATEGENERATOR,@"__EVENTVALIDATION":EVENTVALIDATION,@"txtUser":username,@"txtPassWord":password,@"butLogin":@"登录"};
+    NSString *infoURLstring = [NSString stringWithFormat:@"http://passport.5211game.com%@",loginURL];
+    NSString *code = @"000000";
+    if (![self.codeField.text isEqualToString:@""]) {
+        code= self.codeField.text;
+        
+    }
     
-    NSLog(@"parameters:%@",parameters);
+    if(!loginURL||!VIEWSTATE||!EVENTVALIDATION||!VIEWSTATEGENERATOR)
+    {
+        
+        hud.labelText = @"网络读取失败，请重试";
+        [hud hide:YES afterDelay:1.0f];
+        
+        return ;
+    }
+    
+
+    if (!self.username.text || [self.username.text isEqualToString:@""] || !self.password.text || [self.password.text isEqualToString:@""] || !self.codeField.text || [self.codeField.text isEqualToString:@""])
+    {
+        hud.labelText = @"请完整填写绑定信息";
+        [hud hide:YES afterDelay:1.0f];
+        return ;
+
+    }
+    
+    NSDictionary *parameters = @{@"__VIEWSTATE":VIEWSTATE,@"__VIEWSTATEGENERATOR":VIEWSTATEGENERATOR,@"__EVENTVALIDATION":EVENTVALIDATION,@"txtAccountName":self.username.text,@"txtPassWord":self.password.text,@"txtValidateCode":code,@"ImgButtonLogin.x":@65,@"ImgButtonLogin.y":@13};
     
     [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
         
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"result: %@", result);
+        NSString *aString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
-
+        NSLog(@"login success:%@",aString);
+      
+        testSearchViewController * testSearchVC = [[testSearchViewController alloc] init];
         
-        NSArray *resultArray = [result componentsSeparatedByString:@"YY.d.u = "];
-        
-        NSLog(@"resultArray.count = %ld",resultArray.count);
-        if (resultArray.count>1) {
-            NSString *resultString = [resultArray[1]componentsSeparatedByString:@",YY.d.n"][0];
-            NSLog(@"userID:%@",resultString);
+        NSString *userID = [testSearchVC pickUserID:responseObject];
+        if (userID) {
             
-            [self requestScores:resultString andUserName:username andPassword:password];
-            
+            [self requestScores:userID andUserName:self.username.text andPassword:self.password.text];
         }else
         {
-            MBProgressHUD *hud = (MBProgressHUD *)[self.view viewWithTag:123];
-            [hud hide:YES];
+            [self changeCode:nil];
+            [self.codeField setText:@""];
             
-            if([DataCenter myContainsStringFrom:result ForSting:@"密码错误"])
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"用户名或密码错误，请重新输入" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
-            }else
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"绑定请求出错，请稍后再试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
-            }
+            hud.labelText = @"验证码输入错误";
+            [hud hide:YES afterDelay:1.0f];
         }
-
+        
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
-//        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        hud.labelText = @"网络读取失败，请重试";
+        [hud hide:YES afterDelay:1.0f];
+        
     }];
-
-
+    
+    
     
 }
+
+
+
+
 
 
 -(void)requestScores:(NSString *)userID andUserName:(NSString *)username andPassword:(NSString *)password
@@ -268,38 +238,29 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     [manager.requestSerializer setTimeoutInterval:30];
     
-    NSTimeInterval stamp = [[NSDate date] timeIntervalSince1970];
     
-    NSString *infoURLstring = [NSString stringWithFormat:@"http://i.5211game.com/request/rating/?r=%.0f",stamp*1000];
+    NSString *infoURLstring = @"http://score.5211game.com/RecordCenter/request/record";
     
-    NSDictionary *parameters = @{@"method": @"getrating",@"u":userID,@"t":@"10001"};
+    NSDictionary *parameters = @{@"method": @"getrecord",@"u":userID,@"t":@"10001"};
     
     [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
-//        NSLog(@"Scores: %@", responseObject);
-        
-
         
         [self submitLevel:responseObject ForUserID:userID ForUserName:username AndPassword:password];
 
-        NSHTTPCookie *cookie;
-        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        for (cookie in [storage cookies])
-        {
-            [storage deleteCookie:cookie];
-        }
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
-//        NSLog(@"Scores ERROR: %@",  operation.responseString);
 
-        NSHTTPCookie *cookie;
-        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        for (cookie in [storage cookies])
-        {
-            [storage deleteCookie:cookie];
+        MBProgressHUD *hud1 = (MBProgressHUD *)[self.view viewWithTag:123];
+        if (hud1) {
+            [hud1 hide:YES];
         }
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.labelText = @"认证失败，请检查网络.";
+        
+        [hud hide:YES afterDelay:1.5];
     }];
 
 }
@@ -324,9 +285,7 @@
         hud.dimBackground = YES;
 
         
-
-        
-        [self requestExtroInfoWithUser:self.username.text andPassword:self.password.text];
+        [self prepareCociesWith:hud];
     }else
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"用户名或密码不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -382,17 +341,7 @@
             
         }
         
-        //        NSMutableArray *JJCheroIDs = [NSMutableArray arrayWithObject:[JJCdetail objectForKey:@"AdeptHero1"]];
-        //
-        //        if ([JJCdetail objectForKey:@"AdeptHero2"]) {
-        //            [JJCheroIDs addObject:[JJCdetail objectForKey:@"AdeptHero2"]];
-        //        }
-        //        if ([JJCdetail objectForKey:@"AdeptHero3"]) {
-        //            [JJCheroIDs addObject:[JJCdetail objectForKey:@"AdeptHero3"]];
-        //        }
-        //
-        //        NSLog(@"JJC info:%@  heroIDs:--%@",JJCinfoFull,JJCheroIDs);
-        
+       
     }
     
     
@@ -436,18 +385,7 @@
             
         }
         
-        //        NSMutableArray *TTheroIDs = [NSMutableArray arrayWithObject:[TTdetail objectForKey:@"AdeptHero1"]];
-        //
-        //        if ([TTdetail objectForKey:@"AdeptHero2"]) {
-        //            [TTheroIDs addObject:[TTdetail objectForKey:@"AdeptHero2"]];
-        //        }
-        //        if ([TTdetail objectForKey:@"AdeptHero3"]) {
-        //            [TTheroIDs addObject:[TTdetail objectForKey:@"AdeptHero3"]];
-        //        }
-        //
-        //        NSLog(@"TT info:%@  heroIDs:--%@",TTinfoFull,TTheroIDs);
-        
-        
+     
         
     }
     
@@ -489,17 +427,6 @@
             [MJinfoFull setObject:@"none" forKey:@"MJheroThird"];
             
         }
-        
-        //        NSMutableArray *MJheroIDs = [NSMutableArray arrayWithObject:[MJdetail objectForKey:@"AdeptHero1"]];
-        //
-        //        if ([MJdetail objectForKey:@"AdeptHero2"]) {
-        //            [MJheroIDs addObject:[MJdetail objectForKey:@"AdeptHero2"]];
-        //        }
-        //        if ([MJdetail objectForKey:@"AdeptHero3"]) {
-        //            [MJheroIDs addObject:[MJdetail objectForKey:@"AdeptHero3"]];
-        //        }
-        //
-        //        NSLog(@"JJC info:%@  heroIDs:--%@",MJinfoFull,MJheroIDs);
         
         
     }
@@ -604,7 +531,6 @@
         
         [self.TTscoreDelegate fillTTScore:[[responseObject objectForKey:@"TTinfo"] objectForKey:@"TTscore"]];
         
-//        NSLog(@"JJCheroFirst: %@", [[responseObject objectForKey:@"JJCinfo"] objectForKey:@"JJCheroFirst"]);
         
         [self performSelector:@selector(backToSelfInfo) withObject:nil afterDelay:2];
         
@@ -612,8 +538,6 @@
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error.localizedDescription);
-//        NSLog(@"JSON ERROR: %@",  operation.responseString);
         
         MBProgressHUD *hud1 = (MBProgressHUD *)[self.view viewWithTag:123];
         if (hud1) {
@@ -623,7 +547,6 @@
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeCustomView;
         hud.labelText = @"认证失败，请检查网络.";
-        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
         
         [hud hide:YES afterDelay:1.5];
         
@@ -666,5 +589,10 @@
 
 - (BOOL)prefersStatusBarHidden {
     return NO; // your own visibility code
+}
+- (IBAction)changeCode:(UIButton *)sender {
+    
+    [self requestValidationImage];
+
 }
 @end
