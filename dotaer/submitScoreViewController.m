@@ -71,7 +71,6 @@
     [manager.requestSerializer setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
     [manager.requestSerializer setValue:@"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3" forHTTPHeaderField:@"Accept-Language"];
     [manager.requestSerializer setTimeoutInterval:12];
-    
     [[DataCenter sharedDataCenter] clearRequestCache];
     
     NSString *infoURLstring = @"http://score.5211game.com/Ranking/ranking.aspx";

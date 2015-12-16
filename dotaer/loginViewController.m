@@ -486,6 +486,7 @@ bool nameOK;
         NSString *userID = [testSearchVC pickUserID:responseObject];
                 if (userID) {
                    
+                   
                     [self dismissViewControllerAnimated:YES completion:nil];
 
                 }else
@@ -741,6 +742,18 @@ bool nameOK;
     
     [[DataCenter sharedDataCenter] setIsGuest:NO];
     [[DataCenter sharedDataCenter] setNeedLoginDefault:NO];
+    
+    NSString *invis = [[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"];
+    if ([invis isEqualToString:@"yes"]) {
+        [[DataCenter sharedDataCenter] setAlertLocationPermission:NO];
+    }else
+    {
+        [[DataCenter sharedDataCenter] setAlertLocationPermission:YES];
+
+    }
+
+
+    
 
 
     NSString *isReviewed = @"yes";
@@ -766,6 +779,8 @@ bool nameOK;
     
     [[NSUserDefaults standardUserDefaults] setObject:userDic forKey:@"userInfoDic"];
     [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"haveDefaultUser"];
+    
+    
 
     [self submitDeviceTockenFor:[userDic objectForKey:@"username"]];
 

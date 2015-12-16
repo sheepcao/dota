@@ -13,6 +13,8 @@
 @property BOOL isGuest;
 @property BOOL needConfirmLevelInfo;
 @property BOOL needLoginDefault;
+@property BOOL alertLocationPermission;
+
 
 @property BOOL guestFromLogin;
 @property BOOL memberFromLogin;

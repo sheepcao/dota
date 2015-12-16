@@ -475,7 +475,7 @@ bool JJCHeroScoreFinish;
 
 -(NSURL *)loadheroImg:(NSString *)ImgName
 {
-    NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://i.5211game.com/img/dota/hero/%@.jpg",ImgName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://score.5211game.com/RecordCenter/img/dota/hero/%@.jpg",ImgName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     
     return url;

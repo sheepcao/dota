@@ -184,8 +184,7 @@
         
         [MobClick event:@"videoMenu"];
 
-//        publisherViewController *VideoVC = [[publisherViewController alloc] initWithNibName:@"publisherViewController" bundle:nil];
-        testSearchViewController *VideoVC = [[testSearchViewController alloc] initWithNibName:@"testSearchViewController" bundle:nil];
+        publisherViewController *VideoVC = [[publisherViewController alloc] initWithNibName:@"publisherViewController" bundle:nil];
 
         
         UINavigationController *navigationController = self.menuContainerViewController.centerViewController;

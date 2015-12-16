@@ -693,14 +693,7 @@ bool needRefresh;
                     UIImageView *backIMG = [[UIImageView alloc] initWithFrame:noRecordView.frame];
                     [backIMG setImage:[UIImage imageNamed:@"mainBack.png"]];
                     
-//                    UIVisualEffect *blurEffect;
-//                    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//                    UIVisualEffectView *visualEffectView2;
-//                    visualEffectView2 = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//                    visualEffectView2.frame = backIMG.frame;
-//                    [backIMG addSubview:visualEffectView2];
-//                    
-//                    NSLog(@"111111");
+
                     [noRecordView addSubview:backIMG];
                     [noRecordView addSubview:noRecordLabel];
                     
@@ -869,7 +862,7 @@ bool needRefresh;
 
 -(NSURL *)loadheroImg:(NSString *)ImgName
 {
-    NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://i.5211game.com/img/dota/hero/%@.jpg",ImgName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"http://score.5211game.com/RecordCenter/img/dota/hero/%@.jpg",ImgName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     
     return url;

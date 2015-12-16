@@ -24,6 +24,7 @@
 #import "favorViewController.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "testSearchViewController.h"
+#import "settingViewController.h"
 
 
 #define annoRatio 0.37
@@ -93,6 +94,7 @@ int uploadPositionCount;
     [super viewDidLoad];
     
     
+    
     uploadPositionCount = 0;
     _locServer = [[BMKLocationService alloc] init];
     _locServer.delegate = self;
@@ -104,6 +106,7 @@ int uploadPositionCount;
     
     [[DataCenter sharedDataCenter] setIsGuest:NO];
     [[DataCenter sharedDataCenter] setNeedLoginDefault:YES];
+    [[DataCenter sharedDataCenter] setAlertLocationPermission:NO];
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"] == nil) {
         [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"invisible"];
@@ -126,6 +129,13 @@ int uploadPositionCount;
     NSLog(@"dotaerViewController did load");
     
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_mapView viewWillAppear];
+
 }
 
 -(void)judgeIsLocaltionabele
@@ -246,17 +256,7 @@ int uploadPositionCount;
 }
 -(void)setupCenterView
 {
-    //    UIVisualEffect *blurEffect_b;
-    //    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    //
-    //    UIVisualEffectView *visualEffectView_b;
-    //    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
-    //
-    //    visualEffectView_b.frame =CGRectMake(0, 0, self.backBlur.frame.size.width, self.backBlur.frame.size.height) ;
-    //    [self.backBlur addSubview:visualEffectView_b];
-    
-    
-    NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
+       NSLog(@"nav:%f,%f",self.navigationController.navigationBar.frame.size.height,self.navigationController.navigationBar.frame.origin.y);
     
     
     self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 50)];
@@ -267,18 +267,6 @@ int uploadPositionCount;
     GADRequest *request = [GADRequest request];
     [self.bannerView loadRequest:request];
     [self.view addSubview:self.bannerView];
-    
-    // Requests test ads on devices you specify. Your test device ID is printed to the console when
-    // an ad request is made. GADBannerView automatically returns test ads when running on a
-    // simulator.
-    //    request.testDevices = @[
-    //                            @"df49cbdc51415aab50e8dee3cac69ff5"  // Eric's iPod Touch
-    //                            ];
-    //    [self.bannerView loadRequest:request];
-    
-    //need to recover..............
-    //    [self.view addSubview:self.bannerView];
-    
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0+50, SCREEN_WIDTH, 0.88*(SCREEN_HEIGHT-64-50))];
     
     containerView.backgroundColor = [UIColor clearColor];
@@ -302,7 +290,8 @@ int uploadPositionCount;
     self.mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, containerView.frame.size.width, containerView.frame.size.height)];
     self.mapView.backgroundColor = [UIColor whiteColor];
     self.mapView.zoomEnabled = YES;
-    
+    self.mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+
     [containerView addSubview:self.listView];
     
     
@@ -319,36 +308,18 @@ int uploadPositionCount;
     
     [searchingBar addSubview:bottomBarBack];
     
-    //    UIVisualEffect *blurEffect;
-    //    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    //
-    //    UIVisualEffectView *visualEffectView;
-    //    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    //
-    //    visualEffectView.frame = CGRectMake(-3, 0, bottomBarBack.frame.size.width+6, bottomBarBack.frame.size.height+8);
-    //    [bottomBarBack addSubview:visualEffectView];
-    
     [self.view addSubview:searchingBar];
     
     UIButton *searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(searchingBar.frame.size.width-searchingBar.frame.size.height*1.3, searchingBar.frame.size.height*0.2, 2*searchingBar.frame.size.height*0.6, searchingBar.frame.size.height*0.6)];
     
     
     
-    //    [searchBtn setTitle:@"查" forState:UIControlStateNormal];
     
     [searchBtn setBackgroundImage:[UIImage imageNamed:@"listButton.png"] forState:UIControlStateNormal];
     [searchBtn setBackgroundImage:[UIImage imageNamed:@"listButtonPress.png"] forState:UIControlStateHighlighted];
     [searchBtn setTitle:@"搜 索" forState:UIControlStateNormal];
     [searchBtn setTitleColor:[UIColor colorWithRed:250/255.0f green:250/255.0f  blue:250/255.0f  alpha:1.0f] forState:UIControlStateNormal];
-    //    searchBtn.layer.cornerRadius = searchBtn.frame.size.width/2;
-    //    [searchBtn setImageEdgeInsets:UIEdgeInsetsMake(1.4, 1.4, 1.4, 1.4)];
-    //    searchBtn.layer.masksToBounds = NO;
-    //    searchBtn.layer.shadowOffset = CGSizeMake(2, 2);
-    //    searchBtn.layer.shadowRadius = searchBtn.frame.size.width/2;
-    //    searchBtn.layer.shadowColor = [UIColor colorWithRed:255/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f].CGColor;
-    //    searchBtn.layer.shadowOpacity = 0.9f;
-    //    searchBtn.layer.borderWidth = 0;
-    
+  
     [searchBtn addTarget:self action:@selector(searchDotaer) forControlEvents:UIControlEventTouchUpInside];
     [searchingBar addSubview:searchBtn];
     [searchBtn setEnabled:NO];
@@ -644,6 +615,10 @@ int uploadPositionCount;
     
         [hud hide:YES];
         
+        NSString *invis = [[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"];
+        if (![invis isEqualToString:@"yes"]) {
+            [self showLocationPermission];
+        }
         
         [self configUserInfo:userinfoDic];
         
@@ -919,10 +894,7 @@ int uploadPositionCount;
     
     self.title = @"附近";
     
-    [_mapView viewWillAppear];
-    
-    _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
-    
+
     
     NSLog(@"isGuest:%d",[[DataCenter sharedDataCenter] isGuest]);
     if ([[DataCenter sharedDataCenter] isGuest]) {
@@ -948,6 +920,11 @@ int uploadPositionCount;
                 
             }else
             {
+                if ([[DataCenter sharedDataCenter] alertLocationPermission])
+                {
+                    [self showLocationPermission];
+                }
+                
                 [self configUserInfo:userDic];
                 
                 
@@ -985,6 +962,57 @@ int uploadPositionCount;
     
     
 }
+
+-(void)showLocationPermission
+{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:15];  //Time out after 25 seconds
+    
+    
+    NSDictionary *parameters = @{@"tag": @"needPermissionAlert"};
+
+    NSString *infoURLstring = [NSString stringWithFormat:@"http://cgx.nwpu.info/Sites/settings.php"];
+    
+    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+        if ([[responseObject objectForKey:@"location_alert"] isEqualToString:@"yes"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"友情提示" message:@"捣塔圈已共享您的位置信息，如果您不想被周围玩家查看，可以在我的圈子中进行隐身设置哦。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"去设置", nil];
+            
+            [[DataCenter sharedDataCenter] setAlertLocationPermission:NO];
+            alert.tag = 100;
+            [alert show];
+        }
+       
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+      
+        
+    }];
+
+    
+    
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 100) {
+        if(buttonIndex == 1)
+        {
+            settingViewController *settingVC = [[settingViewController alloc] initWithNibName:@"settingViewController" bundle:nil];
+            [self.navigationController pushViewController:settingVC animated:YES];
+
+        }
+    }
+}
+
 
 
 -(void)updateUserScores:(NSString *)username
@@ -1080,7 +1108,6 @@ int uploadPositionCount;
     [super viewWillDisappear:animated];
     
     [_mapView viewWillDisappear];
-    _mapView.delegate = nil; // 不用时，置nil
 }
 
 -(void)uploadLocation
@@ -2119,8 +2146,7 @@ int uploadPositionCount;
     
 }
 - (void) dealloc {
-    //    _radarManager = nil;
-    //    [BMKRadarManager releaseRadarManagerInstance];
+    self.mapView.delegate = nil; // 不用时，置nil
     _locServer.delegate = nil;
     _locServer = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
