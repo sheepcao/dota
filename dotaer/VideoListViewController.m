@@ -19,7 +19,7 @@
 @interface VideoListViewController ()<GADBannerViewDelegate>
 
 @property (nonatomic ,strong) NSMutableArray *videoArray;
-@property (nonatomic ,strong) NSString *totalVideos;
+//@property (nonatomic ,strong) NSString *totalVideos;
 
 @property (nonatomic,strong) MPMoviePlayerController *moviePlayer;
 @property(nonatomic, strong)  GADBannerView *bannerView;
@@ -27,7 +27,12 @@
 @end
 
 @implementation VideoListViewController
+
+int pageNow;
+
 @synthesize moviePlayer;
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -43,20 +48,14 @@
 //    [self.bannerView loadRequest:request];
 //    [self.view addSubview:self.bannerView];
     //need to recover..............
+    
+    pageNow = 1;
+    self.videoArray = [[NSMutableArray alloc] init];
+    [self requestMoreVideo:pageNow];
+    
+//    self.totalVideos = [self.videoDic objectForKey:@"total"];
+    
 
-    
-    self.videoArray = [NSMutableArray arrayWithArray: [self.videoDic objectForKey:@"videos"]];
-    
-    self.totalVideos = [self.videoDic objectForKey:@"total"];
-    
-//    UIVisualEffect *blurEffect_b;
-//    blurEffect_b = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    
-//    UIVisualEffectView *visualEffectView_b;
-//    visualEffectView_b = [[UIVisualEffectView alloc] initWithEffect:blurEffect_b];
-//    
-//    visualEffectView_b.frame =CGRectMake(0, 0, self.backIMG.frame.size.width, self.backIMG.frame.size.height) ;
-//    [self.backIMG addSubview:visualEffectView_b];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,17 +83,17 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     }
-    NSString *videoLink = [self.videoArray[indexPath.row] objectForKey:@"thumbnail"];
+    NSString *videoLink = [self.videoArray[indexPath.row] objectForKey:@"image"];
     NSURL *url = [NSURL URLWithString:[videoLink stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    NSString *updateDate = [[self.videoArray[indexPath.row] objectForKey:@"published"] componentsSeparatedByString:@" "][0];
+    NSString *updateDate = [[self.videoArray[indexPath.row] objectForKey:@"pdate"] componentsSeparatedByString:@" "][0];
 
     cell.backgroundColor = [UIColor clearColor];
     
     [cell.headImg setImageWithURL:url];
     [cell.title setText:[self.videoArray[indexPath.row] objectForKey:@"title"]];
     [cell.updateTime setText:updateDate];
-    NSString *viewCount = [self.videoArray[indexPath.row] objectForKey:@"view_count"];
+    NSString *viewCount = [self.videoArray[indexPath.row] objectForKey:@"viewcount"];
     if ([viewCount longLongValue] >100000) {
         viewCount = [NSString stringWithFormat:@"%d万",(int)[viewCount longLongValue]/10000];
     }
@@ -102,10 +101,11 @@
 
     NSLog(@"index:%ld",indexPath.row);
 
-    if((indexPath.row+1)%30 == 0 )
+    if((indexPath.row+1)%20 == 0 )
     {
-        if (self.videoArray.count <= (indexPath.row+1) && (indexPath.row+1) < [self.totalVideos intValue]) {
-            [self requestMoreVideo:((int)indexPath.row +1 +30)];
+        if (self.videoArray.count <= (indexPath.row+1) /*&& (indexPath.row+1) < 20*pageNow*/) {
+            pageNow++;
+            [self requestMoreVideo:pageNow];
         }
     }
     
@@ -129,9 +129,10 @@
    
     
 
-    NSString *link = [self.videoArray[indexPath.row] objectForKey:@"link"];
+    NSString *videoID = [self.videoArray[indexPath.row] objectForKey:@"ykid"];
     
-    [self requestVideoInfo:link];
+//    [self requestVideoInfo:videoID];
+    [self requestVideoURLForLink:videoID];
 
     
 }
@@ -284,24 +285,10 @@
 
 
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    if (((int)(scrollView.contentOffset.y+self.publisherListTable.frame.size.height) % (220 * 15)) == 0 &&scrollView.contentOffset.y >0.001) {
-//        
-//        int refreshCount = ((int)(scrollView.contentOffset.y+self.publisherListTable.frame.size.height) / (220 * 15));
-//        if ((refreshCount+1)*15 > self.videoArray.count) {
-//            NSLog(@"refresh!!!!!!!!!!!!!!!!!!!");
-//        }
-//        
-//    }
-//}
 
--(void)requestMoreVideo:(int)total
+-(void)requestMoreVideo:(int)page
 {
 
-    if (total > [self.totalVideos intValue]) {
-        total = [self.totalVideos intValue];
-    }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
@@ -312,15 +299,14 @@
     [manager.requestSerializer setTimeoutInterval:30];
     NSString *infoString;
 
-    infoString = [NSString stringWithFormat:@"https://openapi.youku.com/v2/videos/by_user.json?client_id=cb52b838b5477abd&user_name=%@&count=30&page=%d",self.title,total/30];
-    NSLog(@"total:%d",total);
+    infoString = [NSString stringWithFormat:@"http://lefun.net.cn:8081/dota/getvideos.json?subcateid=%d&p=%d&ps=20",[self.publisherID intValue],page];
     
     NSString* infoURLstring = [infoString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@" --- responseObject:%@",responseObject);
         
 //        [self.videoArray removeAllObjects];
-        NSArray *videoNewArray = [responseObject objectForKey:@"videos"];
+        NSArray *videoNewArray = [responseObject objectForKey:@"items"];
 
      
         self.videoArray = [NSMutableArray arrayWithArray:[self.videoArray arrayByAddingObjectsFromArray:videoNewArray]];
