@@ -144,8 +144,9 @@ bool needRefresh;
     [self initCustomTextViewWithY:SCREEN_HEIGHT];
 
 
-    
-    [self requestReverseGeocode];
+    //eric:hide position info
+//    [self requestReverseGeocode];
+    [self showPositionInfo];
     
     
 
@@ -190,6 +191,39 @@ bool needRefresh;
     }
 
 }
+
+-(void)showPositionInfo
+{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:15];  //Time out after 25 seconds
+    
+    
+    NSDictionary *parameters = @{@"tag": @"needPermissionAlert"};
+    
+    NSString *infoURLstring = [NSString stringWithFormat:@"http://cgx.nwpu.info/Sites/settings.php"];
+    
+    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+        if ([[responseObject objectForKey:@"show_map"] isEqualToString:@"yes"]) {
+            [self requestReverseGeocode];
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        
+    }];
+    
+    
+    
+    
+    
+}
+
 
 -(void)requestReverseGeocode
 {

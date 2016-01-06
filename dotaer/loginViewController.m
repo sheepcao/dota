@@ -411,7 +411,6 @@ bool nameOK;
     //
     [manager GET:infoURLstring parameters:nil success:^(AFHTTPRequestOperation *operation, NSData *responseObject) {
         
-        
         UIImage *aString = [[UIImage alloc] initWithData:responseObject];
         
         [self.PopAlert.codeImage setBackgroundImage: aString forState:UIControlStateNormal];
@@ -797,7 +796,7 @@ bool nameOK;
 -(void)submitDeviceTockenFor:(NSString *)username
 {
     NSString *device = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
-    if ([device isKindOfClass:[NSNull class]]) {
+    if (device == nil || [device isKindOfClass:[NSNull class]]) {
         return;
     }
     NSString *token = [[device description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
@@ -820,10 +819,6 @@ bool nameOK;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"device JsonError: %@", error.localizedDescription);
         NSLog(@"device Json ERROR: %@",  operation.responseString);
-        
-        
-        
-        
         
     }];
     

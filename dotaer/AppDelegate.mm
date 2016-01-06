@@ -16,6 +16,7 @@
 #import "BPush.h"
 
 
+
 @interface AppDelegate ()<BMKGeneralDelegate>
 
 @end
@@ -101,7 +102,6 @@ BMKMapManager* _mapManager;
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
     
-    [self setShareIDs];
     
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -122,7 +122,7 @@ BMKMapManager* _mapManager;
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     NSLog(@"My token is: %@", deviceToken);
-    [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:@"deviceToken"];
+//    [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:@"deviceToken"];
     
     
     [BPush registerDeviceToken:deviceToken];
@@ -131,10 +131,10 @@ BMKMapManager* _mapManager;
         // 需要在绑定成功后进行 settag listtag deletetag unbind 操作否则会失败
         if (result) {
             
-           NSLog(@"%@", [NSString stringWithFormat:@"Method: %@\n%@",BPushRequestMethodBind,result]);
-
+            NSLog(@"%@", [NSString stringWithFormat:@"Method: %@\n%@",BPushRequestMethodBind,result]);
             
-           
+            
+            
             [BPush setTag:@"Mytag" withCompleteHandler:^(id result, NSError *error) {
                 if (result) {
                     NSLog(@"设置tag成功");
@@ -187,50 +187,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)application:(UIApplication *)application
-      handleOpenURL:(NSURL *)url
-{
-    return [ShareSDK handleOpenURL:url
-                        wxDelegate:self];
-}
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    return [ShareSDK handleOpenURL:url
-                 sourceApplication:sourceApplication
-                        annotation:annotation
-                        wxDelegate:self];
-}
-
-
--(void)setShareIDs
-{
-    [ShareSDK registerApp:@"943060bfe881"];//字符串api20为您的ShareSDK的AppKey
-    
-    //添加新浪微博应用 注册网址 http://open.weibo.com
-    [ShareSDK connectSinaWeiboWithAppKey:@"1054017016"
-                               appSecret:@"f724ecce1e644e16c1cb44c349f2df27"
-                             redirectUri:@"https://api.weibo.com/oauth2/default.html"];
-    
-    //当使用新浪微博客户端分享的时候需要按照下面的方法来初始化新浪的平台
-    [ShareSDK  connectSinaWeiboWithAppKey:@"1054017016"
-                                appSecret:@"f724ecce1e644e16c1cb44c349f2df27"
-                              redirectUri:@"https://api.weibo.com/oauth2/default.html"
-                              weiboSDKCls:[WeiboSDK class]];
-    //添加微信应用 注册网址 http://open.weixin.qq.com
-    [ShareSDK connectWeChatWithAppId:@"wxe9f0021070a60b40"
-                           wechatCls:[WXApi class]];
-    
-    
-    [ShareSDK connectWeChatWithAppId:@"wxe9f0021070a60b40"   //微信APPID
-                           appSecret:@"2b1b86bc877665e9dc8bb3b6af7e3bb4"  //微信APPSecret
-                           wechatCls:[WXApi class]];
-    
-    
-}
 
 
 #pragma mapDelegate

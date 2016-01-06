@@ -44,11 +44,7 @@
 #define videoInfoService @"http://cgx.nwpu.info/Sites/videoURL.php"
 
 #import "MBProgressHUD.h"
-#import <ShareSDK/ShareSDK.h>
-#import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h>
-#import "WXApi.h"
-#import "WeiboSDK.h"
+
 #import "MobClick.h"
 #import "UIImageView+AFNetworking.h"
 

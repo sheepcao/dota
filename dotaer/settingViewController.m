@@ -29,7 +29,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
-
+    
     self.bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-50-64,SCREEN_WIDTH, 50)];
     self.bannerView.delegate = self;
     self.bannerView.adUnitID =ADMOB_ID;
@@ -76,7 +76,7 @@
         if (section == 0) {
             return 1;
         }else{
-            return 6;
+            return 5;
         }
     }else{
         
@@ -94,7 +94,7 @@
         }
         else if (section ==3)
         {
-            rowCount = 6;
+            rowCount = 5;
         }
         
         return rowCount;
@@ -104,15 +104,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
+    //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //    if (cell == nil) {
     UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //    }
     
-//    if (self.visibleSwitch.superview) {
-//        [self.visibleSwitch removeFromSuperview];
-//    }
+    //    if (self.visibleSwitch.superview) {
+    //        [self.visibleSwitch removeFromSuperview];
+    //    }
     
     cell.backgroundColor = [UIColor clearColor];
     cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -127,63 +127,64 @@
     UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(30, 60, SCREEN_WIDTH-45, 0.75)];
     [bottomLine setBackgroundColor:[UIColor colorWithRed:110/255.0f green:110/255.0f blue:110/255.0f alpha:1.0f]];
     [cell addSubview:bottomLine];
-   
+    
     if([[DataCenter sharedDataCenter] isGuest])
     {
         switch (indexPath.section) {
             case 0:
                 
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+                
                 [cell.textLabel setText:@"关注的人"];
-
+                
                 
                 break;
             case 1:
             {
+                //                if (indexPath.row == 0) {
+                //                    [cell.textLabel setText:@"分享好友"];
+                //
+                //                }else
                 if (indexPath.row == 0) {
-                    [cell.textLabel setText:@"分享好友"];
-                    
-                }else if (indexPath.row == 1) {
                     [cell.textLabel setText:@"好评鼓励"];
                     
-                }else if (indexPath.row == 2) {
+                }else if (indexPath.row == 1) {
                     [cell.textLabel setText:@"团队作品"];
                     
-                }else if (indexPath.row == 3)
+                }else if (indexPath.row == 2)
                 {
                     [cell.textLabel setText:@"意见反馈"];
                     
-                }else if (indexPath.row == 4)
+                }else if (indexPath.row == 3)
                 {
                     [cell.textLabel setText:@"官方QQ:82107815"];
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     
-                }else if (indexPath.row == 5)
+                }else if (indexPath.row == 4)
                 {
                     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
                     
                     
                     [cell.textLabel setText:[NSString stringWithFormat:@"版本: %@",version]];
-//                    [cell.detailTextLabel setText:version];
+                    //                    [cell.detailTextLabel setText:version];
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     
                 }
-
+                
                 break;
             }
-                default:
+            default:
                 break;
         }
         
-         
-
+        
+        
     }else
     {
         switch (indexPath.section) {
             case 0:
             {
-
+                
                 if (indexPath.row == 0) {
                     [cell.textLabel setText:@"修改密码"];
                     
@@ -193,10 +194,10 @@
             case 1:
             {
                 cell.accessoryType = UITableViewCellAccessoryNone;
-
+                
                 [cell.textLabel setText:@"隐身(对他人不可见)"];
                 
-
+                
                 if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"invisible"] isEqualToString:@"yes"]) {
                     self.visibleSwitch.on = YES;
                 }else
@@ -220,37 +221,38 @@
             }
             case 3:
             {
+                //                if (indexPath.row == 0) {
+                //                    [cell.textLabel setText:@"分享好友"];
+                //
+                //                }else
                 if (indexPath.row == 0) {
-                    [cell.textLabel setText:@"分享好友"];
-                    
-                }else if (indexPath.row == 1) {
                     [cell.textLabel setText:@"好评鼓励"];
                     
-                }else if (indexPath.row == 2) {
+                }else if (indexPath.row == 1) {
                     [cell.textLabel setText:@"团队作品"];
-
+                    
+                    
+                }else if (indexPath.row == 2)
+                {
+                    [cell.textLabel setText:@"意见反馈"];
+                    
                     
                 }else if (indexPath.row == 3)
                 {
-                    [cell.textLabel setText:@"意见反馈"];
-
+                    [cell.textLabel setText:@"官方QQ:82107815"];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
                     
                 }else if (indexPath.row == 4)
                 {
-                    [cell.textLabel setText:@"官方QQ:82107815"];
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-
-                }else if (indexPath.row == 5)
-                {
                     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-
+                    
                     
                     [cell.textLabel setText:[NSString stringWithFormat:@"版本: %@",version]];
-//                    [cell.detailTextLabel setText:version];
+                    //                    [cell.detailTextLabel setText:version];
                     cell.accessoryType = UITableViewCellAccessoryNone;
                     
                 }
-
+                
                 
                 
                 break;
@@ -260,7 +262,7 @@
                 
                 break;
         }
-
+        
     }
     
     return cell;
@@ -270,7 +272,7 @@
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSString *title = @"";
-
+    
     if([[DataCenter sharedDataCenter] isGuest])
     {
         if(section == 0)
@@ -300,29 +302,29 @@
         }
     }
     
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
-        
-        [headerView setBackgroundColor:[UIColor colorWithRed:130/255.0f green:130/255.0f blue:130/255.0f alpha:1.0f]];
-        
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 4, 80, 27)];
-        [titleLabel setText:title];
-        titleLabel.font = [UIFont systemFontOfSize:17.0f];
-        [titleLabel setTextColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f]];
-        [headerView addSubview:titleLabel];
-        
-
-        
-        return headerView;
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
+    
+    [headerView setBackgroundColor:[UIColor colorWithRed:130/255.0f green:130/255.0f blue:130/255.0f alpha:1.0f]];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 4, 80, 27)];
+    [titleLabel setText:title];
+    titleLabel.font = [UIFont systemFontOfSize:17.0f];
+    [titleLabel setTextColor:[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f]];
+    [headerView addSubview:titleLabel];
     
     
-
+    
+    return headerView;
+    
+    
+    
 }
 
 #pragma mark -
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
     return 60;
     
 }
@@ -345,7 +347,7 @@
                 favorVC.isFromFavor = YES;
                 
                 [self.navigationController pushViewController:favorVC animated:YES];
-
+                
                 
             }else
             {
@@ -359,30 +361,31 @@
                 return;
                 
             }
-
+            
         }else
         {
+            //            if (indexPath.row == 0) {
+            //                [self shareAppTapped];
+            //
+            //            }
             if (indexPath.row == 0) {
-                [self shareAppTapped];
-                
-            }if (indexPath.row == 1) {
                 
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:REVIEW_URL]];
                 [MobClick event:@"review"];
-
-            }else if (indexPath.row == 2) {
+                
+            }else if (indexPath.row == 1) {
                 
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ALLAPP_URL]];
                 [MobClick event:@"teamApp"];
-
-            }else if(indexPath.row == 3)
+                
+            }else if(indexPath.row == 2)
             {
                 [self contactTapped];
             }
-
+            
         }
         
-       
+        
     }else
     {
         switch (indexPath.section) {
@@ -414,29 +417,30 @@
                     hud.mode = MBProgressHUDModeText;
                     hud.labelText = @"尚未关注任何人";
                     [hud hide:YES afterDelay:1.2];
-
+                    
                     return;
                     
                 }
-
+                
                 
                 break;
             }
                 
             case 3:
+                //                if (indexPath.row == 0) {
+                //                    [self shareAppTapped];
+                //                }
                 if (indexPath.row == 0) {
-                    [self shareAppTapped];
-                }if (indexPath.row == 1) {
                     
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:REVIEW_URL]];
                     [MobClick event:@"review"];
-
-                }else if (indexPath.row == 2) {
+                    
+                }else if (indexPath.row == 1) {
                     
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ALLAPP_URL]];
                     [MobClick event:@"teamApp"];
-
-                }else if(indexPath.row == 3)
+                    
+                }else if(indexPath.row == 2)
                 {
                     [self contactTapped];
                 }
@@ -445,9 +449,9 @@
             default:
                 break;
         }
-
-    }
         
+    }
+    
     
     
 }
@@ -459,7 +463,7 @@
     }else
     {
         [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"invisible"];
-
+        
     }
 }
 
@@ -467,7 +471,7 @@
 -(void)contactTapped
 {
     
-//    [MobClick event:@"email"];
+    //    [MobClick event:@"email"];
     
     
     MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
@@ -562,47 +566,6 @@
 
 
 
--(void)shareAppTapped
-
-{
-    [MobClick event:@"shareApp"];
-    
-    
-    UIImage *icon = [UIImage imageNamed:@"ICON 512"];
-    
-    id<ISSContent> publishContent = [ShareSDK content:@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。"
-                                       defaultContent:NSLocalizedString(@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。。",nil)
-                                                image:[ShareSDK pngImageWithImage:icon]
-                                                title:@"捣塔圈"
-                                                  url:REVIEW_URL
-                                          description:NSLocalizedString(@"捣塔圈子,帅哥妹子，轻松组队，开黑必备！\n一个真实的dota社交圈子。",nil)
-                                            mediaType:SSPublishContentMediaTypeNews];
-    //创建弹出菜单容器
-    id<ISSContainer> container = [ShareSDK container];
-    
-    //弹出分享菜单
-    [ShareSDK showShareActionSheet:container
-                         shareList:nil
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions:nil
-                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                
-                                if (state == SSResponseStateSuccess)
-                                {
-                                    //eric: to be sned da bai....
-                                    NSLog(NSLocalizedString(@"TEXT_ShARE_SUC", @"分享成功"));
-                                }
-                                else if (state == SSResponseStateFail)
-                                {
-                                    NSLog(NSLocalizedString(@"TEXT_ShARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
-                                }
-                            }];
-    
-    
-    
-}
 
 
 - (BOOL)shouldAutorotate {

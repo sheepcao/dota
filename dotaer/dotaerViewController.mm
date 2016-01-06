@@ -120,7 +120,10 @@ int uploadPositionCount;
     [self.listView registerNib:nib forCellReuseIdentifier:@"listCell"];
     
     [self setupMenuBarButtonItems];
-    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+    //eric:hide map button
+    
+    [self showMapButton];
+//    self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
     
     [self setupCenterView];
     [self requestTopic];
@@ -853,20 +856,14 @@ int uploadPositionCount;
                 hud.dimBackground = YES;
                 [hud hide:YES afterDelay:1.0];
             }];
-            
-            
- 
-           
-
-            
+         
         }else
         {
             [self refreshCode];
             [self.PopAlert.codeField setText:@""];
             
         }
-        
-        
+
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
@@ -995,6 +992,38 @@ int uploadPositionCount;
         
     }];
 
+    
+    
+    
+    
+}
+
+-(void)showMapButton
+{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    [manager.requestSerializer setTimeoutInterval:15];  //Time out after 25 seconds
+    
+    
+    NSDictionary *parameters = @{@"tag": @"needPermissionAlert"};
+    
+    NSString *infoURLstring = [NSString stringWithFormat:@"http://cgx.nwpu.info/Sites/settings.php"];
+    
+    [manager POST:infoURLstring parameters:parameters success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        
+        if ([[responseObject objectForKey:@"show_map"] isEqualToString:@"yes"]) {
+            self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"JSON ERROR: %@",  operation.responseString);
+        
+        
+    }];
+    
     
     
     

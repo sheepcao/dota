@@ -13,6 +13,4 @@
 @property (weak, nonatomic) IBOutlet UITableView *publisherListTable;
 
 @property (strong,nonatomic) NSDictionary *videoDic;
-@property (strong,nonatomic) NSString *publisherID;
-
 @end
